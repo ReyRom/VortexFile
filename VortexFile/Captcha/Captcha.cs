@@ -22,25 +22,25 @@ namespace Captcha
         {
             CaptchaPictureBox.Image = CreateImage(CaptchaPictureBox.Width, CaptchaPictureBox.Height);
         }
+
+        public bool CheckText(string text)
+        {
+            return text == this.text;
+        }
+
         private Bitmap CreateImage(int Width, int Height)
         {
             Random rnd = new Random();
-
-            //Создадим изображение
-            Bitmap result = new Bitmap(Width, Height);
-
-            //Укажем где рисовать
-            Graphics g = Graphics.FromImage((Image)result);
-
-            //Пусть фон картинки будет серым
-            g.Clear(Color.Gray);
-
-            //Сгенерируем текст
             text = String.Empty;
             string ALF = "1234567890QWERTYUIOPASDFGHJKLZXCVBNM";
+
+            Bitmap result = new Bitmap(Width, Height);
+            Graphics g = Graphics.FromImage((Image)result);
+
+            g.Clear(Color.Gray);
+
             for (int i = 0; i < 5; ++i)
                 text += ALF[rnd.Next(ALF.Length)];
-
 
             Font stringFont = new Font("Arial", 30);
             double textWidth;
@@ -50,11 +50,10 @@ namespace Captcha
                 SizeF stringSize = Graphics.FromImage(tempImage).MeasureString(text, stringFont);
                 textWidth = stringSize.Width;
             }
-            //Вычислим позицию текста
+
             int Xpos = rnd.Next(0, Width - (int)textWidth - 15);
             int Ypos = rnd.Next(15, Height - 45);
 
-            ///Линии из углов
             for (int i = 0; i < 10; i++)
             {
                 g.DrawLine(Pens.LightGray,
@@ -68,13 +67,11 @@ namespace Captcha
                        new Point(Width - 1, Height - rnd.Next(Height)));
             }
 
-            //Нарисуем сгенирируемый текст
             g.DrawString(text,
-                         new Font("Arial", 30),
+                         stringFont,
                          Brushes.DimGray,
                          new PointF(Xpos, Ypos));
 
-            ////Белые точки
             for (int i = 0; i < Width; ++i)
                 for (int j = 0; j < Height; ++j)
                     if (rnd.Next() % 20 == 0)
