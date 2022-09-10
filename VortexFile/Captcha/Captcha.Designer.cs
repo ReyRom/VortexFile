@@ -1,6 +1,6 @@
 ﻿namespace Captcha
 {
-    partial class UserControl1
+    partial class Captcha
     {
         /// <summary>
         /// Обязательная переменная конструктора.
@@ -28,11 +28,33 @@
         /// </summary>
         private void InitializeComponent()
         {
-            components = new System.ComponentModel.Container();
+            this.CaptchaPictureBox = new System.Windows.Forms.PictureBox();
+            ((System.ComponentModel.ISupportInitialize)(this.CaptchaPictureBox)).BeginInit();
+            this.SuspendLayout();
+            // 
+            // CaptchaPictureBox
+            // 
+            this.CaptchaPictureBox.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.CaptchaPictureBox.Location = new System.Drawing.Point(0, 0);
+            this.CaptchaPictureBox.Name = "CaptchaPictureBox";
+            this.CaptchaPictureBox.Size = new System.Drawing.Size(279, 105);
+            this.CaptchaPictureBox.TabIndex = 0;
+            this.CaptchaPictureBox.TabStop = false;
+            // 
+            // Captcha
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.CaptchaPictureBox);
+            this.Name = "Captcha";
+            this.Size = new System.Drawing.Size(279, 105);
+            ((System.ComponentModel.ISupportInitialize)(this.CaptchaPictureBox)).EndInit();
+            this.ResumeLayout(false);
+
         }
 
         #endregion
+
+        private System.Windows.Forms.PictureBox CaptchaPictureBox;
     }
 }
