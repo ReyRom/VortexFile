@@ -67,6 +67,16 @@ namespace VortexFileClient.Data
             return user;
         }
 
+        public static User? GetUser(string login)
+        {
+            User? user = GetUserByLogin(login);
+            if (user == null)
+            {
+                user = GetUserByEmail(login);
+            }
+            return user;
+        }
+
         public static User AddUser(User user)
         {
             connection.Open();

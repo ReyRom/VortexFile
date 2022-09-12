@@ -33,11 +33,7 @@ namespace VortexFileClient.Data
 
         public User? Authorize(string login, string password)
         {
-            User ?user = DAL.GetUserByLogin(login);
-            if (user == null)
-            {
-                user = DAL.GetUserByEmail(login);
-            }
+            User ?user = DAL.GetUser(login);
             if (user != null && user.Password == password)
             {
                 CurrentUser = user;
