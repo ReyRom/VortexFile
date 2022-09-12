@@ -38,19 +38,7 @@ namespace VortexFileClient.Data
 
         public async Task SendEmailCodeAsync(string email, string subject)
         {
-            MailAddress fromAddress = new MailAddress(this.email, name);
-            MailAddress toAddress = new MailAddress(email);
-            MailMessage message = new MailMessage(fromAddress, toAddress);
-            message.Subject = subject;
-            message.Body = $"Код восстановления пароля - {code}";
-            SmtpClient smtp = new SmtpClient("smtp.yandex.ru", 587);
-            smtp.Credentials = new NetworkCredential(this.email, password);
-            smtp.EnableSsl = true;
-            try
-            {
-                await smtp.SendMailAsync(message);
-            }
-            catch (Exception) { }
+            await SendEmailAsync(email, subject, $"Код восстановления пароля - {code}");
         }
 
         public async Task SendEmailAsync(string email, string subject, string body)
