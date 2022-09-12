@@ -47,7 +47,48 @@ namespace VortexFileClient.Data
             {
                 user = reader.ConvertToObject<User>();
             }
+            connection.Close();
             return user;
+        }
+
+        public static User? GetUserByEmail(string email)
+        {
+            connection.Open();
+            SqlParameter sqlParameter = new SqlParameter("@email", email);
+            SqlCommand sqlCommand = new SqlCommand("SELECT * FROM [User] WHERE Email = @email", connection);
+            sqlCommand.Parameters.Add(sqlParameter);
+            var reader = sqlCommand.ExecuteReader();
+            User? user = null;
+            if (reader.Read())
+            {
+                user = reader.ConvertToObject<User>();
+            }
+            connection.Close();
+            return user;
+        }
+
+        public static User? GetUser(string login)
+        {
+            User? user = GetUserByLogin(login);
+            if (user == null)
+            {
+                user = GetUserByEmail(login);
+            }
+            return user;
+        }
+
+        public static User AddUser(User user)
+        {
+            connection.Open();
+            SqlCommand sqlCommand = new SqlCommand("INSERT INTO [User](Login,Email,Password,Username,Phone) VALUES (@login,@email,@password,@username,@phone)", connection);
+            sqlCommand.Parameters.Add(new SqlParameter("@login", user.Login));
+            sqlCommand.Parameters.Add(new SqlParameter("@email", user.Email));
+            sqlCommand.Parameters.Add(new SqlParameter("@password", user.Password));
+            sqlCommand.Parameters.Add(new SqlParameter("@username", user.Username));
+            sqlCommand.Parameters.Add(new SqlParameter("@phone", user.Phone));
+            sqlCommand.ExecuteNonQuery();
+            connection.Close();
+            return GetUserByLogin(user.Login);
         }
 
         private static T ConvertToObject<T>(this SqlDataReader rd) where T : class, new()
@@ -69,7 +110,6 @@ namespace VortexFileClient.Data
                     }
                 }
             }
-
             return t;
         }
     }

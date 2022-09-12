@@ -28,13 +28,24 @@ partial class MainForm
     /// </summary>
     private void InitializeComponent()
     {
+            this.HeadPanel = new System.Windows.Forms.Panel();
             this.SuspendLayout();
+            // 
+            // HeadPanel
+            // 
+            this.HeadPanel.Dock = System.Windows.Forms.DockStyle.Top;
+            this.HeadPanel.Location = new System.Drawing.Point(0, 0);
+            this.HeadPanel.Name = "HeadPanel";
+            this.HeadPanel.Size = new System.Drawing.Size(700, 30);
+            this.HeadPanel.TabIndex = 0;
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(490, 291);
+            this.ClientSize = new System.Drawing.Size(700, 460);
+            this.Controls.Add(this.HeadPanel);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "MainForm";
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.MainForm_Load);
@@ -43,4 +54,6 @@ partial class MainForm
     }
 
     #endregion
+
+    private Panel HeadPanel;
 }
