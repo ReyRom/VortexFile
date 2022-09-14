@@ -120,6 +120,7 @@ partial class MainForm
             this.BodyPanel.Name = "BodyPanel";
             this.BodyPanel.Size = new System.Drawing.Size(773, 393);
             this.BodyPanel.TabIndex = 1;
+            this.BodyPanel.Resize += new System.EventHandler(this.BodyPanel_Resize);
             // 
             // MainForm
             // 
@@ -133,6 +134,7 @@ partial class MainForm
             this.Name = "MainForm";
             this.Text = "Header";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
+            this.Load += new System.EventHandler(this.MainForm_Load);
             this.HeadPanel.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.LogoPictureBox)).EndInit();
             this.ResumeLayout(false);

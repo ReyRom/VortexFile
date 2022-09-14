@@ -21,4 +21,14 @@ public partial class MainForm : Form
     {
         e.Cancel = !Extensions.Feedback.QuestionMessage("Вы уверены, что хотите завершить сеанс?");
     }
+
+    private void MainForm_Load(object sender, EventArgs e)
+    {
+        Extensions.FormTools.FormToPanel(new AuthorizationForm(), BodyPanel);
+    }
+
+    private void BodyPanel_Resize(object sender, EventArgs e)
+    {
+        this.Size = new Size(BodyPanel.Width, BodyPanel.Height + HeadPanel.Height);
+    }
 }
