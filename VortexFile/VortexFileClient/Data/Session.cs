@@ -6,32 +6,32 @@ using System.Threading.Tasks;
 
 namespace VortexFileClient.Data
 {
-    internal class Session
+    internal static class Session
     {
-        private User currentUser;
+        private static User currentUser;
 
-        public User CurrentUser { get => currentUser; set => currentUser = value; }
+        public static User CurrentUser { get => currentUser; set => currentUser = value; }
 
-        public string Login
+        public static string Login
         {
             get => Properties.Settings.Default.Login;
             set
             {
-                Properties.Settings.Default[Login] = value;
+                Properties.Settings.Default.Login = value;
                 Properties.Settings.Default.Save();
             }
         }
-        public string Password
+        public static string Password
         { 
             get => Properties.Settings.Default.Password;
             set
             {
-                Properties.Settings.Default[Password] = value;
+                Properties.Settings.Default.Password = value;
                 Properties.Settings.Default.Save();
             }
         }
 
-        public User? Authorize(string login, string password)
+        public static User? Authorize(string login, string password)
         {
             User ?user = DAL.GetUser(login);
             if (user != null && user.Password == password)
@@ -41,13 +41,13 @@ namespace VortexFileClient.Data
             return user;
         }
 
-        public User Registration(User user)
+        public static User Registration(User user)
         {
 
             return DAL.AddUser(user);
         }
 
-        public User ResetPassword()
+        public static User ResetPassword()
         {
             throw new NotImplementedException();
         }
