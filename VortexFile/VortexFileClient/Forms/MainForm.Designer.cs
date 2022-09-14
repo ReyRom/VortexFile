@@ -30,6 +30,7 @@ partial class MainForm
     {
             this.HeadPanel = new System.Windows.Forms.Panel();
             this.HeaderLabel = new System.Windows.Forms.Label();
+            this.HelpButton = new System.Windows.Forms.Button();
             this.LogoPictureBox = new System.Windows.Forms.PictureBox();
             this.MinimizeButton = new System.Windows.Forms.Button();
             this.CloseButton = new System.Windows.Forms.Button();
@@ -41,6 +42,7 @@ partial class MainForm
             // HeadPanel
             // 
             this.HeadPanel.Controls.Add(this.HeaderLabel);
+            this.HeadPanel.Controls.Add(this.HelpButton);
             this.HeadPanel.Controls.Add(this.LogoPictureBox);
             this.HeadPanel.Controls.Add(this.MinimizeButton);
             this.HeadPanel.Controls.Add(this.CloseButton);
@@ -57,10 +59,22 @@ partial class MainForm
             this.HeaderLabel.Location = new System.Drawing.Point(30, 0);
             this.HeaderLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.HeaderLabel.Name = "HeaderLabel";
-            this.HeaderLabel.Size = new System.Drawing.Size(623, 30);
-            this.HeaderLabel.TabIndex = 4;
+            this.HeaderLabel.Size = new System.Drawing.Size(563, 30);
+            this.HeaderLabel.TabIndex = 3;
             this.HeaderLabel.Text = "Header";
             this.HeaderLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // HelpButton
+            // 
+            this.HelpButton.Dock = System.Windows.Forms.DockStyle.Right;
+            this.HelpButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.HelpButton.Location = new System.Drawing.Point(593, 0);
+            this.HelpButton.Margin = new System.Windows.Forms.Padding(4);
+            this.HelpButton.Name = "HelpButton";
+            this.HelpButton.Size = new System.Drawing.Size(60, 30);
+            this.HelpButton.TabIndex = 2;
+            this.HelpButton.Text = "?";
+            this.HelpButton.UseVisualStyleBackColor = true;
             // 
             // LogoPictureBox
             // 
@@ -118,6 +132,7 @@ partial class MainForm
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "MainForm";
             this.Text = "Header";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
             this.HeadPanel.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.LogoPictureBox)).EndInit();
             this.ResumeLayout(false);
@@ -132,4 +147,5 @@ partial class MainForm
     private PictureBox LogoPictureBox;
     protected Label HeaderLabel;
     protected Panel BodyPanel;
+    private Button HelpButton;
 }

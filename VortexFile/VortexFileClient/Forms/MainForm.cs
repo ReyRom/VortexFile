@@ -16,4 +16,9 @@ public partial class MainForm : Form
     {
         this.Close();
     }
+
+    private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
+    {
+        e.Cancel = !Extensions.Feedback.QuestionMessage("Вы уверены, что хотите завершить сеанс?");
+    }
 }
