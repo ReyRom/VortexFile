@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Data.SqlClient;
 using System.Data;
 using FastMember;
+using VortexFileClient.Extensions;
 
 namespace VortexFileClient.Data
 {
@@ -22,48 +23,70 @@ namespace VortexFileClient.Data
 
         static List<T> GetData<T>(string tableName) where T : class, new()
         {
-            connection.Open();
-            SqlParameter sqlParameter = new SqlParameter("@tableName", tableName);
-            SqlCommand sqlCommand = new SqlCommand("SELECT * FROM @tableName",connection);
-            sqlCommand.Parameters.Add(sqlParameter);
-            var reader = sqlCommand.ExecuteReader();
             List<T> data = new List<T>();
-            while (reader.Read())
+            try
             {
-                data.Add(reader.ConvertToObject<T>());
+                connection.Open();
+                SqlParameter sqlParameter = new SqlParameter("@tableName", tableName);
+                SqlCommand sqlCommand = new SqlCommand("SELECT * FROM @tableName", connection);
+                sqlCommand.Parameters.Add(sqlParameter);
+                var reader = sqlCommand.ExecuteReader();
+                while (reader.Read())
+                {
+                    data.Add(reader.ConvertToObject<T>());
+                }
+            }
+            catch (Exception ex)
+            {
+                Feedback.ErrorMessage(ex);
             }
             return data;
         }
 
         public static User? GetUserByLogin(string login)
         {
-            connection.Open();
-            SqlParameter sqlParameter = new SqlParameter("@login", login);
-            SqlCommand sqlCommand = new SqlCommand("SELECT * FROM [User] WHERE login = @login", connection);
-            sqlCommand.Parameters.Add(sqlParameter);
-            var reader = sqlCommand.ExecuteReader();
             User? user = null;
-            if (reader.Read())
+            try
             {
-                user = reader.ConvertToObject<User>();
+                connection.Open();
+                SqlParameter sqlParameter = new SqlParameter("@login", login);
+                SqlCommand sqlCommand = new SqlCommand("SELECT * FROM [User] WHERE login = @login", connection);
+                sqlCommand.Parameters.Add(sqlParameter);
+                var reader = sqlCommand.ExecuteReader();
+                if (reader.Read())
+                {
+                    user = reader.ConvertToObject<User>();
+                }
+                connection.Close();
             }
-            connection.Close();
+            catch (Exception ex)
+            {
+                Feedback.ErrorMessage(ex);
+            }
             return user;
         }
 
         public static User? GetUserByEmail(string email)
         {
-            connection.Open();
-            SqlParameter sqlParameter = new SqlParameter("@email", email);
-            SqlCommand sqlCommand = new SqlCommand("SELECT * FROM [User] WHERE Email = @email", connection);
-            sqlCommand.Parameters.Add(sqlParameter);
-            var reader = sqlCommand.ExecuteReader();
             User? user = null;
-            if (reader.Read())
+            try
             {
-                user = reader.ConvertToObject<User>();
+                connection.Open();
+                SqlParameter sqlParameter = new SqlParameter("@email", email);
+                SqlCommand sqlCommand = new SqlCommand("SELECT * FROM [User] WHERE Email = @email", connection);
+                sqlCommand.Parameters.Add(sqlParameter);
+                var reader = sqlCommand.ExecuteReader();
+
+                if (reader.Read())
+                {
+                    user = reader.ConvertToObject<User>();
+                }
+                connection.Close();
             }
-            connection.Close();
+            catch (Exception ex)
+            {
+                Feedback.ErrorMessage(ex);
+            }
             return user;
         }
 
@@ -79,15 +102,40 @@ namespace VortexFileClient.Data
 
         public static User AddUser(User user)
         {
-            connection.Open();
-            SqlCommand sqlCommand = new SqlCommand("INSERT INTO [User](Login,Email,Password,Username,Phone) VALUES (@login,@email,@password,@username,@phone)", connection);
-            sqlCommand.Parameters.Add(new SqlParameter("@login", user.Login));
-            sqlCommand.Parameters.Add(new SqlParameter("@email", user.Email));
-            sqlCommand.Parameters.Add(new SqlParameter("@password", user.Password));
-            sqlCommand.Parameters.Add(new SqlParameter("@username", user.Username));
-            sqlCommand.Parameters.Add(new SqlParameter("@phone", user.Phone));
-            sqlCommand.ExecuteNonQuery();
-            connection.Close();
+            try
+            {
+                connection.Open();
+                SqlCommand sqlCommand = new SqlCommand("INSERT INTO [User](Login,Email,Password,Username,Phone) VALUES (@login,@email,@password,@username,@phone)", connection);
+                sqlCommand.Parameters.Add(new SqlParameter("@login", user.Login));
+                sqlCommand.Parameters.Add(new SqlParameter("@email", user.Email));
+                sqlCommand.Parameters.Add(new SqlParameter("@password", user.Password));
+                sqlCommand.Parameters.Add(new SqlParameter("@username", user.Username));
+                sqlCommand.Parameters.Add(new SqlParameter("@phone", user.Phone));
+                sqlCommand.ExecuteNonQuery();
+                connection.Close();
+            }
+            catch (Exception ex)
+            {
+                Feedback.ErrorMessage(ex);
+            }
+            return GetUserByLogin(user.Login);
+        }
+
+        public static User ChangeUserPassword(User user, string newPassword)
+        {
+            try
+            {
+                connection.Open();
+                SqlCommand sqlCommand = new SqlCommand("UPDATE [User] WHERE IdUser = @idUser SET Password = @password", connection);
+                sqlCommand.Parameters.Add(new SqlParameter("@idUser", user.IdUser));
+                sqlCommand.Parameters.Add(new SqlParameter("@password", newPassword));
+                sqlCommand.ExecuteNonQuery();
+                connection.Close();
+            }
+            catch (Exception ex)
+            {
+                Feedback.ErrorMessage(ex);
+            }
             return GetUserByLogin(user.Login);
         }
 
