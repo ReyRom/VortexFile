@@ -40,7 +40,7 @@
             // LoginTextBox
             // 
             this.LoginTextBox.Location = new System.Drawing.Point(161, 91);
-            this.LoginTextBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.LoginTextBox.Margin = new System.Windows.Forms.Padding(4);
             this.LoginTextBox.Name = "LoginTextBox";
             this.LoginTextBox.PlaceholderText = "Логин/Email";
             this.LoginTextBox.Size = new System.Drawing.Size(127, 29);
@@ -49,7 +49,7 @@
             // PasswordTextBox
             // 
             this.PasswordTextBox.Location = new System.Drawing.Point(161, 128);
-            this.PasswordTextBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.PasswordTextBox.Margin = new System.Windows.Forms.Padding(4);
             this.PasswordTextBox.Name = "PasswordTextBox";
             this.PasswordTextBox.PlaceholderText = "Пароль";
             this.PasswordTextBox.Size = new System.Drawing.Size(127, 29);
@@ -94,6 +94,7 @@
             this.RegistrationLinkLabel.TabIndex = 4;
             this.RegistrationLinkLabel.TabStop = true;
             this.RegistrationLinkLabel.Text = "Зарегистрироваться";
+            this.RegistrationLinkLabel.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.RegistrationLinkLabel_LinkClicked);
             // 
             // ResetPasswordLinkLabel
             // 

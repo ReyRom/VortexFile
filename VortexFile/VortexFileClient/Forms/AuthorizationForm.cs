@@ -24,7 +24,7 @@ namespace VortexFileClient.Forms
         {
             if (Data.Session.Authorize(LoginTextBox.Text, PasswordTextBox.Text) == null)
             {
-                MessageBox.Show("Неправильный логин/email или пароль.", "Внимание", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                Extensions.Feedback.WarningMessage("Неправильный логин/email или пароль.");
             }
             else if (RememberCheckBox.Checked)
             {
@@ -35,6 +35,11 @@ namespace VortexFileClient.Forms
             {
                 Data.Session.Login = Data.Session.Password = String.Empty;
             }
+        }
+
+        private void RegistrationLinkLabel_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            new RegistrationForm().ShowDialog();
         }
     }
 }
