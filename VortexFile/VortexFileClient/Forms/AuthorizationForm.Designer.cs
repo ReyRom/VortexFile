@@ -39,25 +39,25 @@
             // 
             // LoginTextBox
             // 
-            this.LoginTextBox.Location = new System.Drawing.Point(161, 91);
+            this.LoginTextBox.Location = new System.Drawing.Point(59, 82);
             this.LoginTextBox.Margin = new System.Windows.Forms.Padding(4);
             this.LoginTextBox.Name = "LoginTextBox";
             this.LoginTextBox.PlaceholderText = "Логин/Email";
-            this.LoginTextBox.Size = new System.Drawing.Size(127, 29);
+            this.LoginTextBox.Size = new System.Drawing.Size(273, 29);
             this.LoginTextBox.TabIndex = 0;
             // 
             // PasswordTextBox
             // 
-            this.PasswordTextBox.Location = new System.Drawing.Point(161, 128);
+            this.PasswordTextBox.Location = new System.Drawing.Point(59, 119);
             this.PasswordTextBox.Margin = new System.Windows.Forms.Padding(4);
             this.PasswordTextBox.Name = "PasswordTextBox";
             this.PasswordTextBox.PlaceholderText = "Пароль";
-            this.PasswordTextBox.Size = new System.Drawing.Size(127, 29);
+            this.PasswordTextBox.Size = new System.Drawing.Size(273, 29);
             this.PasswordTextBox.TabIndex = 0;
             // 
             // EnterButton
             // 
-            this.EnterButton.Location = new System.Drawing.Point(274, 195);
+            this.EnterButton.Location = new System.Drawing.Point(358, 87);
             this.EnterButton.Name = "EnterButton";
             this.EnterButton.Size = new System.Drawing.Size(137, 48);
             this.EnterButton.TabIndex = 1;
@@ -68,7 +68,7 @@
             // RememberCheckBox
             // 
             this.RememberCheckBox.AutoSize = true;
-            this.RememberCheckBox.Location = new System.Drawing.Point(232, 303);
+            this.RememberCheckBox.Location = new System.Drawing.Point(59, 163);
             this.RememberCheckBox.Name = "RememberCheckBox";
             this.RememberCheckBox.Size = new System.Drawing.Size(148, 25);
             this.RememberCheckBox.TabIndex = 2;
@@ -78,7 +78,7 @@
             // OfflineCheckBox
             // 
             this.OfflineCheckBox.AutoSize = true;
-            this.OfflineCheckBox.Location = new System.Drawing.Point(252, 345);
+            this.OfflineCheckBox.Location = new System.Drawing.Point(59, 194);
             this.OfflineCheckBox.Name = "OfflineCheckBox";
             this.OfflineCheckBox.Size = new System.Drawing.Size(158, 25);
             this.OfflineCheckBox.TabIndex = 3;
@@ -88,7 +88,7 @@
             // RegistrationLinkLabel
             // 
             this.RegistrationLinkLabel.AutoSize = true;
-            this.RegistrationLinkLabel.Location = new System.Drawing.Point(79, 459);
+            this.RegistrationLinkLabel.Location = new System.Drawing.Point(12, 275);
             this.RegistrationLinkLabel.Name = "RegistrationLinkLabel";
             this.RegistrationLinkLabel.Size = new System.Drawing.Size(155, 21);
             this.RegistrationLinkLabel.TabIndex = 4;
@@ -99,18 +99,19 @@
             // ResetPasswordLinkLabel
             // 
             this.ResetPasswordLinkLabel.AutoSize = true;
-            this.ResetPasswordLinkLabel.Location = new System.Drawing.Point(544, 465);
+            this.ResetPasswordLinkLabel.Location = new System.Drawing.Point(424, 275);
             this.ResetPasswordLinkLabel.Name = "ResetPasswordLinkLabel";
             this.ResetPasswordLinkLabel.Size = new System.Drawing.Size(119, 21);
             this.ResetPasswordLinkLabel.TabIndex = 5;
             this.ResetPasswordLinkLabel.TabStop = true;
             this.ResetPasswordLinkLabel.Text = "Забыли пароль";
+            this.ResetPasswordLinkLabel.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.ResetPasswordLinkLabel_LinkClicked);
             // 
             // AuthorizationForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 21F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(960, 525);
+            this.ClientSize = new System.Drawing.Size(555, 305);
             this.Controls.Add(this.ResetPasswordLinkLabel);
             this.Controls.Add(this.RegistrationLinkLabel);
             this.Controls.Add(this.OfflineCheckBox);

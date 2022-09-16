@@ -39,7 +39,12 @@ namespace VortexFileClient.Forms
 
         private void RegistrationLinkLabel_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            Extensions.FormTools.FormToPanel(new RegistrationForm(), (Panel)this.Parent);
+            Program.MainForm.LoadForm(new RegistrationForm());
+        }
+
+        private void ResetPasswordLinkLabel_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            Program.MainForm.LoadForm(new ResetPasswordForm());
         }
     }
 }
