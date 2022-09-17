@@ -7,6 +7,8 @@ public partial class MainForm : Form
         InitializeComponent();
     }
 
+    Stack<Form> forms = new Stack<Form>();
+
     private void MinimizeButton_Click(object sender, EventArgs e)
     {
         this.WindowState = FormWindowState.Minimized;
@@ -24,11 +26,26 @@ public partial class MainForm : Form
 
     private void MainForm_Load(object sender, EventArgs e)
     {
-        Extensions.FormTools.FormToPanel(new AuthorizationForm(), BodyPanel);
+        LoadForm(new AuthorizationForm());
     }
 
     private void BodyPanel_Resize(object sender, EventArgs e)
     {
         this.Size = new Size(BodyPanel.Width, BodyPanel.Height + HeadPanel.Height);
+    }
+
+    public void LoadForm(Form form) 
+    {
+        forms.Push(form);
+        Extensions.FormTools.FormToPanel(form, BodyPanel);
+        HeaderLabel.Text = form.Text;
+    }
+
+    public void GoBack()
+    {
+        forms.Pop().Dispose();
+        Form form = forms.Peek();
+        Extensions.FormTools.FormToPanel(form, BodyPanel);
+        HeaderLabel.Text = form.Text;
     }
 }
