@@ -39,6 +39,7 @@
             this.CaptchaTextBox = new System.Windows.Forms.TextBox();
             this.RenewCaptchaButton = new System.Windows.Forms.Button();
             this.GoBackButton = new System.Windows.Forms.Button();
+            this.ConfirmCaptchaButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // EnterButton
@@ -48,7 +49,7 @@
             this.EnterButton.Name = "EnterButton";
             this.EnterButton.Size = new System.Drawing.Size(176, 67);
             this.EnterButton.TabIndex = 4;
-            this.EnterButton.Text = "Войти";
+            this.EnterButton.Text = "Зарегистрироваться";
             this.EnterButton.UseVisualStyleBackColor = true;
             // 
             // PasswordTextBox
@@ -105,7 +106,7 @@
             // 
             // Captcha
             // 
-            this.Captcha.Location = new System.Drawing.Point(482, 90);
+            this.Captcha.Location = new System.Drawing.Point(422, 32);
             this.Captcha.Margin = new System.Windows.Forms.Padding(4);
             this.Captcha.Name = "Captcha";
             this.Captcha.Size = new System.Drawing.Size(278, 106);
@@ -113,18 +114,18 @@
             // 
             // CaptchaTextBox
             // 
-            this.CaptchaTextBox.Location = new System.Drawing.Point(482, 238);
+            this.CaptchaTextBox.Location = new System.Drawing.Point(422, 145);
             this.CaptchaTextBox.Name = "CaptchaTextBox";
-            this.CaptchaTextBox.Size = new System.Drawing.Size(138, 29);
+            this.CaptchaTextBox.Size = new System.Drawing.Size(151, 29);
             this.CaptchaTextBox.TabIndex = 10;
             // 
             // RenewCaptchaButton
             // 
-            this.RenewCaptchaButton.Location = new System.Drawing.Point(642, 228);
+            this.RenewCaptchaButton.Location = new System.Drawing.Point(707, 67);
             this.RenewCaptchaButton.Name = "RenewCaptchaButton";
             this.RenewCaptchaButton.Size = new System.Drawing.Size(118, 39);
             this.RenewCaptchaButton.TabIndex = 11;
-            this.RenewCaptchaButton.Text = "button1";
+            this.RenewCaptchaButton.Text = "Обновить";
             this.RenewCaptchaButton.UseVisualStyleBackColor = true;
             this.RenewCaptchaButton.Click += new System.EventHandler(this.RenewCaptchaButton_Click);
             // 
@@ -138,11 +139,22 @@
             this.GoBackButton.UseVisualStyleBackColor = true;
             this.GoBackButton.Click += new System.EventHandler(this.GoBackButton_Click);
             // 
+            // ConfirmCaptchaButton
+            // 
+            this.ConfirmCaptchaButton.Location = new System.Drawing.Point(588, 145);
+            this.ConfirmCaptchaButton.Name = "ConfirmCaptchaButton";
+            this.ConfirmCaptchaButton.Size = new System.Drawing.Size(112, 29);
+            this.ConfirmCaptchaButton.TabIndex = 13;
+            this.ConfirmCaptchaButton.Text = "Я не робот";
+            this.ConfirmCaptchaButton.UseVisualStyleBackColor = true;
+            this.ConfirmCaptchaButton.Click += new System.EventHandler(this.ConfirmCaptchaButton_Click);
+            // 
             // RegistrationForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 21F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(847, 511);
+            this.Controls.Add(this.ConfirmCaptchaButton);
             this.Controls.Add(this.GoBackButton);
             this.Controls.Add(this.RenewCaptchaButton);
             this.Controls.Add(this.CaptchaTextBox);
@@ -177,5 +189,6 @@
         private TextBox CaptchaTextBox;
         private Button RenewCaptchaButton;
         private Button GoBackButton;
+        private Button ConfirmCaptchaButton;
     }
 }

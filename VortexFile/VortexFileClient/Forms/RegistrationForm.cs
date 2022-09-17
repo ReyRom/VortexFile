@@ -12,6 +12,14 @@ namespace VortexFileClient.Forms
 {
     public partial class RegistrationForm : Form
     {
+        bool isCaptchaConfirmed = false;
+        bool IsCaptchaConfirmed
+        {
+            set
+            {
+                EnterButton.Enabled = value;
+            }
+        }
         public RegistrationForm()
         {
             InitializeComponent();
@@ -25,6 +33,19 @@ namespace VortexFileClient.Forms
         private void GoBackButton_Click(object sender, EventArgs e)
         {
             Program.MainForm.GoBack();
+        }
+
+        private void ConfirmCaptchaButton_Click(object sender, EventArgs e)
+        {
+            if (Captcha.CheckText(CaptchaTextBox.Text))
+            {
+                IsCaptchaConfirmed = true;
+            }
+            else
+            {
+                Extensions.Feedback.WarningMessage("Неверно, попробуйте снова");
+                Captcha.Renew();
+            }
         }
     }
 }
