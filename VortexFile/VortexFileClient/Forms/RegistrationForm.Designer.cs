@@ -38,6 +38,7 @@
             this.Captcha = new VortexFileClient.Extensions.Captcha();
             this.CaptchaTextBox = new System.Windows.Forms.TextBox();
             this.RenewCaptchaButton = new System.Windows.Forms.Button();
+            this.GoBackButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // EnterButton
@@ -105,7 +106,7 @@
             // Captcha
             // 
             this.Captcha.Location = new System.Drawing.Point(482, 90);
-            this.Captcha.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Captcha.Margin = new System.Windows.Forms.Padding(4);
             this.Captcha.Name = "Captcha";
             this.Captcha.Size = new System.Drawing.Size(278, 106);
             this.Captcha.TabIndex = 9;
@@ -127,11 +128,22 @@
             this.RenewCaptchaButton.UseVisualStyleBackColor = true;
             this.RenewCaptchaButton.Click += new System.EventHandler(this.RenewCaptchaButton_Click);
             // 
+            // GoBackButton
+            // 
+            this.GoBackButton.Location = new System.Drawing.Point(84, 388);
+            this.GoBackButton.Name = "GoBackButton";
+            this.GoBackButton.Size = new System.Drawing.Size(146, 43);
+            this.GoBackButton.TabIndex = 12;
+            this.GoBackButton.Text = "button1";
+            this.GoBackButton.UseVisualStyleBackColor = true;
+            this.GoBackButton.Click += new System.EventHandler(this.GoBackButton_Click);
+            // 
             // RegistrationForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 21F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(847, 511);
+            this.Controls.Add(this.GoBackButton);
             this.Controls.Add(this.RenewCaptchaButton);
             this.Controls.Add(this.CaptchaTextBox);
             this.Controls.Add(this.Captcha);
@@ -164,5 +176,6 @@
         private Extensions.Captcha Captcha;
         private TextBox CaptchaTextBox;
         private Button RenewCaptchaButton;
+        private Button GoBackButton;
     }
 }

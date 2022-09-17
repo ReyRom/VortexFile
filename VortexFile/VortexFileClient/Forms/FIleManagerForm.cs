@@ -10,21 +10,16 @@ using System.Windows.Forms;
 
 namespace VortexFileClient.Forms
 {
-    public partial class RegistrationForm : Form
+    public partial class FIleManagerForm : Form
     {
-        public RegistrationForm()
+        public FIleManagerForm()
         {
             InitializeComponent();
         }
 
-        private void RenewCaptchaButton_Click(object sender, EventArgs e)
+        private void FIleManagerForm_Load(object sender, EventArgs e)
         {
-            Captcha.Renew();
-        }
-
-        private void GoBackButton_Click(object sender, EventArgs e)
-        {
-            Program.MainForm.GoBack();
+            label2.Text = Data.Session.CurrentUser.Login;
         }
     }
 }

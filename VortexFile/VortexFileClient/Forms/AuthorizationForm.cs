@@ -26,14 +26,18 @@ namespace VortexFileClient.Forms
             {
                 Extensions.Feedback.WarningMessage("Неправильный логин/email или пароль.");
             }
-            else if (RememberCheckBox.Checked)
-            {
-                Data.Session.Login = LoginTextBox.Text;
-                Data.Session.Password = PasswordTextBox.Text;
-            }
             else
             {
-                Data.Session.Login = Data.Session.Password = String.Empty;
+                if (RememberCheckBox.Checked)
+                {
+                    Data.Session.Login = LoginTextBox.Text;
+                    Data.Session.Password = PasswordTextBox.Text;
+                }
+                else
+                {
+                    Data.Session.Login = Data.Session.Password = String.Empty;
+                }
+                Program.MainForm.LoadForm(new FIleManagerForm());
             }
         }
 

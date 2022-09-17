@@ -40,4 +40,12 @@ public partial class MainForm : Form
         Extensions.FormTools.FormToPanel(form, BodyPanel);
         HeaderLabel.Text = form.Text;
     }
+
+    public void GoBack()
+    {
+        forms.Pop().Dispose();
+        Form form = forms.Peek();
+        Extensions.FormTools.FormToPanel(form, BodyPanel);
+        HeaderLabel.Text = form.Text;
+    }
 }
