@@ -28,13 +28,16 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AuthorizationForm));
             this.LoginTextBox = new System.Windows.Forms.TextBox();
             this.PasswordTextBox = new System.Windows.Forms.TextBox();
             this.EnterButton = new System.Windows.Forms.Button();
-            this.RememberCheckBox = new System.Windows.Forms.CheckBox();
-            this.OfflineCheckBox = new System.Windows.Forms.CheckBox();
+            this.OnOffImageList = new System.Windows.Forms.ImageList(this.components);
             this.RegistrationLinkLabel = new System.Windows.Forms.LinkLabel();
             this.ResetPasswordLinkLabel = new System.Windows.Forms.LinkLabel();
+            this.RememberCheckBox = new VortexFileClient.Extensions.SliderCheckBox();
+            this.OfflineCheckBox = new VortexFileClient.Extensions.SliderCheckBox();
             this.SuspendLayout();
             // 
             // LoginTextBox
@@ -65,25 +68,13 @@
             this.EnterButton.UseVisualStyleBackColor = true;
             this.EnterButton.Click += new System.EventHandler(this.EnterButton_Click);
             // 
-            // RememberCheckBox
+            // OnOffImageList
             // 
-            this.RememberCheckBox.AutoSize = true;
-            this.RememberCheckBox.Location = new System.Drawing.Point(59, 163);
-            this.RememberCheckBox.Name = "RememberCheckBox";
-            this.RememberCheckBox.Size = new System.Drawing.Size(148, 25);
-            this.RememberCheckBox.TabIndex = 2;
-            this.RememberCheckBox.Text = "Запомнить меня";
-            this.RememberCheckBox.UseVisualStyleBackColor = true;
-            // 
-            // OfflineCheckBox
-            // 
-            this.OfflineCheckBox.AutoSize = true;
-            this.OfflineCheckBox.Location = new System.Drawing.Point(59, 194);
-            this.OfflineCheckBox.Name = "OfflineCheckBox";
-            this.OfflineCheckBox.Size = new System.Drawing.Size(158, 25);
-            this.OfflineCheckBox.TabIndex = 3;
-            this.OfflineCheckBox.Text = "Автономный вход";
-            this.OfflineCheckBox.UseVisualStyleBackColor = true;
+            this.OnOffImageList.ColorDepth = System.Windows.Forms.ColorDepth.Depth32Bit;
+            this.OnOffImageList.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("OnOffImageList.ImageStream")));
+            this.OnOffImageList.TransparentColor = System.Drawing.Color.Transparent;
+            this.OnOffImageList.Images.SetKeyName(0, "OFF1.png");
+            this.OnOffImageList.Images.SetKeyName(1, "ON1.png");
             // 
             // RegistrationLinkLabel
             // 
@@ -107,15 +98,53 @@
             this.ResetPasswordLinkLabel.Text = "Забыли пароль";
             this.ResetPasswordLinkLabel.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.ResetPasswordLinkLabel_LinkClicked);
             // 
+            // RememberCheckBox
+            // 
+            this.RememberCheckBox.Appearance = System.Windows.Forms.Appearance.Button;
+            this.RememberCheckBox.AutoSize = true;
+            this.RememberCheckBox.FlatAppearance.BorderSize = 0;
+            this.RememberCheckBox.FlatAppearance.CheckedBackColor = System.Drawing.Color.Transparent;
+            this.RememberCheckBox.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
+            this.RememberCheckBox.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.RememberCheckBox.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.RememberCheckBox.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.RememberCheckBox.ImageIndex = 0;
+            this.RememberCheckBox.Location = new System.Drawing.Point(59, 155);
+            this.RememberCheckBox.Name = "RememberCheckBox";
+            this.RememberCheckBox.Size = new System.Drawing.Size(171, 31);
+            this.RememberCheckBox.TabIndex = 6;
+            this.RememberCheckBox.Text = "Запомнить меня";
+            this.RememberCheckBox.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.RememberCheckBox.UseVisualStyleBackColor = true;
+            // 
+            // OfflineCheckBox
+            // 
+            this.OfflineCheckBox.Appearance = System.Windows.Forms.Appearance.Button;
+            this.OfflineCheckBox.AutoSize = true;
+            this.OfflineCheckBox.FlatAppearance.BorderSize = 0;
+            this.OfflineCheckBox.FlatAppearance.CheckedBackColor = System.Drawing.Color.Transparent;
+            this.OfflineCheckBox.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
+            this.OfflineCheckBox.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.OfflineCheckBox.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.OfflineCheckBox.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.OfflineCheckBox.ImageIndex = 0;
+            this.OfflineCheckBox.Location = new System.Drawing.Point(59, 192);
+            this.OfflineCheckBox.Name = "OfflineCheckBox";
+            this.OfflineCheckBox.Size = new System.Drawing.Size(181, 31);
+            this.OfflineCheckBox.TabIndex = 7;
+            this.OfflineCheckBox.Text = "Автономный вход";
+            this.OfflineCheckBox.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.OfflineCheckBox.UseVisualStyleBackColor = true;
+            // 
             // AuthorizationForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 21F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(555, 305);
-            this.Controls.Add(this.ResetPasswordLinkLabel);
-            this.Controls.Add(this.RegistrationLinkLabel);
             this.Controls.Add(this.OfflineCheckBox);
             this.Controls.Add(this.RememberCheckBox);
+            this.Controls.Add(this.ResetPasswordLinkLabel);
+            this.Controls.Add(this.RegistrationLinkLabel);
             this.Controls.Add(this.EnterButton);
             this.Controls.Add(this.PasswordTextBox);
             this.Controls.Add(this.LoginTextBox);
@@ -133,9 +162,10 @@
         private TextBox LoginTextBox;
         private TextBox PasswordTextBox;
         private Button EnterButton;
-        private CheckBox RememberCheckBox;
-        private CheckBox OfflineCheckBox;
         private LinkLabel RegistrationLinkLabel;
         private LinkLabel ResetPasswordLinkLabel;
+        private ImageList OnOffImageList;
+        private Extensions.SliderCheckBox RememberCheckBox;
+        private Extensions.SliderCheckBox OfflineCheckBox;
     }
 }
