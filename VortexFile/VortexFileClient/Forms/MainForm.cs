@@ -2,6 +2,8 @@ namespace VortexFileClient.Forms;
 
 public partial class MainForm : Form
 {
+    private Point mPoint;
+
     public MainForm()
     {
         InitializeComponent();
@@ -47,5 +49,23 @@ public partial class MainForm : Form
         Form form = forms.Peek();
         Extensions.FormTools.FormToPanel(form, BodyPanel);
         HeaderLabel.Text = form.Text;
+    }
+
+    private void HeaderLabel_MouseDown(object sender, MouseEventArgs e)
+    {
+        mPoint = new Point(e.X, e.Y);
+    }
+
+    private void HeaderLabel_MouseMove(object sender, MouseEventArgs e)
+    {
+        if (e.Button == MouseButtons.Left)
+        {
+            this.Location = new Point(this.Location.X + e.X - mPoint.X, this.Location.Y + e.Y - mPoint.Y);
+        }
+    }
+
+    private void HelpButton_Click(object sender, EventArgs e)
+    {
+        LoadForm(new UserGuideForm());
     }
 }

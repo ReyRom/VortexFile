@@ -9,7 +9,7 @@ namespace VortexFileClient.Data
 {
     internal static class Session
     {
-        private static User currentUser;
+        private static User ?currentUser;
 
         public static User CurrentUser { get => currentUser; set => currentUser = value; }
 

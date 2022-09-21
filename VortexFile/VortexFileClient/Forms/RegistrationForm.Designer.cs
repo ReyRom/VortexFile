@@ -39,122 +39,133 @@
             this.CaptchaTextBox = new System.Windows.Forms.TextBox();
             this.RenewCaptchaButton = new System.Windows.Forms.Button();
             this.GoBackButton = new System.Windows.Forms.Button();
-            this.ConfirmCaptchaButton = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // EnterButton
             // 
-            this.EnterButton.Location = new System.Drawing.Point(569, 372);
+            this.EnterButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(100)))), ((int)(((byte)(210)))));
+            this.EnterButton.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.EnterButton.ForeColor = System.Drawing.Color.White;
+            this.EnterButton.Location = new System.Drawing.Point(33, 452);
             this.EnterButton.Margin = new System.Windows.Forms.Padding(4);
             this.EnterButton.Name = "EnterButton";
-            this.EnterButton.Size = new System.Drawing.Size(176, 67);
+            this.EnterButton.Size = new System.Drawing.Size(345, 42);
             this.EnterButton.TabIndex = 4;
             this.EnterButton.Text = "Зарегистрироваться";
-            this.EnterButton.UseVisualStyleBackColor = true;
+            this.EnterButton.UseVisualStyleBackColor = false;
             // 
             // PasswordTextBox
             // 
-            this.PasswordTextBox.Location = new System.Drawing.Point(88, 114);
+            this.PasswordTextBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(237)))), ((int)(((byte)(252)))));
+            this.PasswordTextBox.Location = new System.Drawing.Point(33, 156);
             this.PasswordTextBox.Margin = new System.Windows.Forms.Padding(5, 6, 5, 6);
             this.PasswordTextBox.Name = "PasswordTextBox";
             this.PasswordTextBox.PlaceholderText = "Пароль";
-            this.PasswordTextBox.Size = new System.Drawing.Size(225, 29);
+            this.PasswordTextBox.Size = new System.Drawing.Size(345, 26);
             this.PasswordTextBox.TabIndex = 2;
             // 
             // LoginTextBox
             // 
-            this.LoginTextBox.Location = new System.Drawing.Point(88, 73);
+            this.LoginTextBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(237)))), ((int)(((byte)(252)))));
+            this.LoginTextBox.Location = new System.Drawing.Point(33, 113);
             this.LoginTextBox.Margin = new System.Windows.Forms.Padding(5, 6, 5, 6);
             this.LoginTextBox.Name = "LoginTextBox";
             this.LoginTextBox.PlaceholderText = "Email";
-            this.LoginTextBox.Size = new System.Drawing.Size(225, 29);
+            this.LoginTextBox.Size = new System.Drawing.Size(345, 26);
             this.LoginTextBox.TabIndex = 3;
             // 
             // ConfirmTextBox
             // 
-            this.ConfirmTextBox.Location = new System.Drawing.Point(88, 155);
+            this.ConfirmTextBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(237)))), ((int)(((byte)(252)))));
+            this.ConfirmTextBox.Location = new System.Drawing.Point(33, 199);
             this.ConfirmTextBox.Margin = new System.Windows.Forms.Padding(5, 6, 5, 6);
             this.ConfirmTextBox.Name = "ConfirmTextBox";
             this.ConfirmTextBox.PlaceholderText = "Подтверждение пароля";
-            this.ConfirmTextBox.Size = new System.Drawing.Size(225, 29);
+            this.ConfirmTextBox.Size = new System.Drawing.Size(345, 26);
             this.ConfirmTextBox.TabIndex = 5;
             // 
             // UsernameTextBox
             // 
-            this.UsernameTextBox.Location = new System.Drawing.Point(88, 193);
+            this.UsernameTextBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(237)))), ((int)(((byte)(252)))));
+            this.UsernameTextBox.Location = new System.Drawing.Point(33, 239);
             this.UsernameTextBox.Name = "UsernameTextBox";
             this.UsernameTextBox.PlaceholderText = "Имя пользователя(необязательно)";
-            this.UsernameTextBox.Size = new System.Drawing.Size(261, 29);
+            this.UsernameTextBox.Size = new System.Drawing.Size(345, 26);
             this.UsernameTextBox.TabIndex = 6;
             // 
             // PhoneTextBox
             // 
-            this.PhoneTextBox.Location = new System.Drawing.Point(88, 238);
+            this.PhoneTextBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(237)))), ((int)(((byte)(252)))));
+            this.PhoneTextBox.Location = new System.Drawing.Point(33, 280);
             this.PhoneTextBox.Name = "PhoneTextBox";
             this.PhoneTextBox.PlaceholderText = "Номер телефона(необязательно)";
-            this.PhoneTextBox.Size = new System.Drawing.Size(261, 29);
+            this.PhoneTextBox.Size = new System.Drawing.Size(345, 26);
             this.PhoneTextBox.TabIndex = 7;
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(88, 32);
+            this.textBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(237)))), ((int)(((byte)(252)))));
+            this.textBox1.Location = new System.Drawing.Point(33, 70);
             this.textBox1.Margin = new System.Windows.Forms.Padding(5, 6, 5, 6);
             this.textBox1.Name = "textBox1";
             this.textBox1.PlaceholderText = "Логин";
-            this.textBox1.Size = new System.Drawing.Size(225, 29);
+            this.textBox1.Size = new System.Drawing.Size(345, 26);
             this.textBox1.TabIndex = 8;
             // 
             // Captcha
             // 
-            this.Captcha.Location = new System.Drawing.Point(422, 32);
+            this.Captcha.Location = new System.Drawing.Point(33, 329);
             this.Captcha.Margin = new System.Windows.Forms.Padding(4);
             this.Captcha.Name = "Captcha";
-            this.Captcha.Size = new System.Drawing.Size(278, 106);
+            this.Captcha.Size = new System.Drawing.Size(276, 74);
             this.Captcha.TabIndex = 9;
             // 
             // CaptchaTextBox
             // 
-            this.CaptchaTextBox.Location = new System.Drawing.Point(422, 145);
+            this.CaptchaTextBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(237)))), ((int)(((byte)(252)))));
+            this.CaptchaTextBox.Location = new System.Drawing.Point(33, 411);
             this.CaptchaTextBox.Name = "CaptchaTextBox";
-            this.CaptchaTextBox.Size = new System.Drawing.Size(151, 29);
+            this.CaptchaTextBox.Size = new System.Drawing.Size(146, 26);
             this.CaptchaTextBox.TabIndex = 10;
             // 
             // RenewCaptchaButton
             // 
-            this.RenewCaptchaButton.Location = new System.Drawing.Point(707, 67);
+            this.RenewCaptchaButton.Location = new System.Drawing.Point(335, 373);
             this.RenewCaptchaButton.Name = "RenewCaptchaButton";
-            this.RenewCaptchaButton.Size = new System.Drawing.Size(118, 39);
+            this.RenewCaptchaButton.Size = new System.Drawing.Size(30, 30);
             this.RenewCaptchaButton.TabIndex = 11;
-            this.RenewCaptchaButton.Text = "Обновить";
+            this.RenewCaptchaButton.Text = "картинка рефреш";
             this.RenewCaptchaButton.UseVisualStyleBackColor = true;
             this.RenewCaptchaButton.Click += new System.EventHandler(this.RenewCaptchaButton_Click);
             // 
             // GoBackButton
             // 
-            this.GoBackButton.Location = new System.Drawing.Point(84, 388);
+            this.GoBackButton.Location = new System.Drawing.Point(33, 516);
             this.GoBackButton.Name = "GoBackButton";
-            this.GoBackButton.Size = new System.Drawing.Size(146, 43);
+            this.GoBackButton.Size = new System.Drawing.Size(146, 45);
             this.GoBackButton.TabIndex = 12;
-            this.GoBackButton.Text = "button1";
+            this.GoBackButton.Text = "<--";
             this.GoBackButton.UseVisualStyleBackColor = true;
             this.GoBackButton.Click += new System.EventHandler(this.GoBackButton_Click);
             // 
-            // ConfirmCaptchaButton
+            // label1
             // 
-            this.ConfirmCaptchaButton.Location = new System.Drawing.Point(588, 145);
-            this.ConfirmCaptchaButton.Name = "ConfirmCaptchaButton";
-            this.ConfirmCaptchaButton.Size = new System.Drawing.Size(112, 29);
-            this.ConfirmCaptchaButton.TabIndex = 13;
-            this.ConfirmCaptchaButton.Text = "Я не робот";
-            this.ConfirmCaptchaButton.UseVisualStyleBackColor = true;
-            this.ConfirmCaptchaButton.Click += new System.EventHandler(this.ConfirmCaptchaButton_Click);
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Trebuchet MS", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(100)))), ((int)(((byte)(210)))));
+            this.label1.Location = new System.Drawing.Point(109, 9);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(185, 37);
+            this.label1.TabIndex = 14;
+            this.label1.Text = "Регистрация";
             // 
             // RegistrationForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 21F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 22F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(847, 511);
-            this.Controls.Add(this.ConfirmCaptchaButton);
+            this.ClientSize = new System.Drawing.Size(405, 574);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.GoBackButton);
             this.Controls.Add(this.RenewCaptchaButton);
             this.Controls.Add(this.CaptchaTextBox);
@@ -166,7 +177,7 @@
             this.Controls.Add(this.EnterButton);
             this.Controls.Add(this.PasswordTextBox);
             this.Controls.Add(this.LoginTextBox);
-            this.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.Font = new System.Drawing.Font("Trebuchet MS", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "RegistrationForm";
@@ -189,6 +200,6 @@
         private TextBox CaptchaTextBox;
         private Button RenewCaptchaButton;
         private Button GoBackButton;
-        private Button ConfirmCaptchaButton;
+        private Label label1;
     }
 }

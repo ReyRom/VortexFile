@@ -16,5 +16,15 @@ namespace VortexFileClient.Forms
         {
             InitializeComponent();
         }
+
+        private void SaveButton_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void SendCodeButton_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

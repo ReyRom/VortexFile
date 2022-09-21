@@ -55,5 +55,10 @@ namespace VortexFileClient.Forms
         {
             RememberCheckBox.ImageIndex = RememberCheckBox.Checked ? 1 : 0;
         }
+
+        private void PasswordCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            PasswordTextBox.UseSystemPasswordChar = !PasswordCheckBox.Checked;
+        }
     }
 }

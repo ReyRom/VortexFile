@@ -63,10 +63,13 @@ partial class MainForm
             this.HeaderLabel.TabIndex = 3;
             this.HeaderLabel.Text = "Header";
             this.HeaderLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.HeaderLabel.MouseDown += new System.Windows.Forms.MouseEventHandler(this.HeaderLabel_MouseDown);
+            this.HeaderLabel.MouseMove += new System.Windows.Forms.MouseEventHandler(this.HeaderLabel_MouseMove);
             // 
             // HelpButton
             // 
             this.HelpButton.Dock = System.Windows.Forms.DockStyle.Right;
+            this.HelpButton.FlatAppearance.BorderSize = 0;
             this.HelpButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.HelpButton.Location = new System.Drawing.Point(593, 0);
             this.HelpButton.Margin = new System.Windows.Forms.Padding(4);
@@ -75,6 +78,7 @@ partial class MainForm
             this.HelpButton.TabIndex = 2;
             this.HelpButton.Text = "?";
             this.HelpButton.UseVisualStyleBackColor = true;
+            this.HelpButton.Click += new System.EventHandler(this.HelpButton_Click);
             // 
             // LogoPictureBox
             // 
@@ -89,6 +93,7 @@ partial class MainForm
             // MinimizeButton
             // 
             this.MinimizeButton.Dock = System.Windows.Forms.DockStyle.Right;
+            this.MinimizeButton.FlatAppearance.BorderSize = 0;
             this.MinimizeButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.MinimizeButton.Location = new System.Drawing.Point(653, 0);
             this.MinimizeButton.Margin = new System.Windows.Forms.Padding(4);
@@ -102,6 +107,7 @@ partial class MainForm
             // CloseButton
             // 
             this.CloseButton.Dock = System.Windows.Forms.DockStyle.Right;
+            this.CloseButton.FlatAppearance.BorderSize = 0;
             this.CloseButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.CloseButton.Location = new System.Drawing.Point(713, 0);
             this.CloseButton.Margin = new System.Windows.Forms.Padding(4);
@@ -132,6 +138,7 @@ partial class MainForm
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "MainForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Header";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
             this.Load += new System.EventHandler(this.MainForm_Load);

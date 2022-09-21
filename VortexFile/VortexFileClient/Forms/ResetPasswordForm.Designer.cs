@@ -54,6 +54,7 @@
             this.SendCodeButton.TabIndex = 2;
             this.SendCodeButton.Text = "Отправить код";
             this.SendCodeButton.UseVisualStyleBackColor = true;
+            this.SendCodeButton.Click += new System.EventHandler(this.SendCodeButton_Click);
             // 
             // CodeTextBox
             // 
@@ -98,6 +99,7 @@
             this.SaveButton.TabIndex = 8;
             this.SaveButton.Text = "Сохранить";
             this.SaveButton.UseVisualStyleBackColor = true;
+            this.SaveButton.Click += new System.EventHandler(this.SaveButton_Click);
             // 
             // ResetPasswordForm
             // 
@@ -113,7 +115,7 @@
             this.Controls.Add(this.LoginTextBox);
             this.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "ResetPasswordForm";
             this.Text = "Восстановление пароля";
             this.ResumeLayout(false);
