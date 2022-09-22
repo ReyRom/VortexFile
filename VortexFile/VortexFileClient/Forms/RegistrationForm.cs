@@ -47,5 +47,15 @@ namespace VortexFileClient.Forms
                 Captcha.Renew();
             }
         }
+
+        private void GoBackLinkLabel_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            Program.MainForm.GoBack();
+        }
+
+        private void RegistrationForm_Load(object sender, EventArgs e)
+        {
+            Captcha.Renew();
+        }
     }
 }

@@ -41,6 +41,7 @@ partial class MainForm
             // 
             // HeadPanel
             // 
+            this.HeadPanel.BackColor = System.Drawing.Color.White;
             this.HeadPanel.Controls.Add(this.HeaderLabel);
             this.HeadPanel.Controls.Add(this.HelpButton);
             this.HeadPanel.Controls.Add(this.LogoPictureBox);
@@ -56,10 +57,10 @@ partial class MainForm
             // HeaderLabel
             // 
             this.HeaderLabel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.HeaderLabel.Location = new System.Drawing.Point(30, 0);
+            this.HeaderLabel.Location = new System.Drawing.Point(120, 0);
             this.HeaderLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.HeaderLabel.Name = "HeaderLabel";
-            this.HeaderLabel.Size = new System.Drawing.Size(563, 30);
+            this.HeaderLabel.Size = new System.Drawing.Size(473, 30);
             this.HeaderLabel.TabIndex = 3;
             this.HeaderLabel.Text = "Header";
             this.HeaderLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -83,10 +84,11 @@ partial class MainForm
             // LogoPictureBox
             // 
             this.LogoPictureBox.Dock = System.Windows.Forms.DockStyle.Left;
+            this.LogoPictureBox.Image = global::VortexFileClient.Properties.Resources.FullLogo;
             this.LogoPictureBox.Location = new System.Drawing.Point(0, 0);
             this.LogoPictureBox.Margin = new System.Windows.Forms.Padding(4);
             this.LogoPictureBox.Name = "LogoPictureBox";
-            this.LogoPictureBox.Size = new System.Drawing.Size(30, 30);
+            this.LogoPictureBox.Size = new System.Drawing.Size(120, 30);
             this.LogoPictureBox.TabIndex = 3;
             this.LogoPictureBox.TabStop = false;
             // 
@@ -120,6 +122,7 @@ partial class MainForm
             // 
             // BodyPanel
             // 
+            this.BodyPanel.BackColor = System.Drawing.Color.White;
             this.BodyPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.BodyPanel.Location = new System.Drawing.Point(0, 30);
             this.BodyPanel.Margin = new System.Windows.Forms.Padding(4);
@@ -131,6 +134,7 @@ partial class MainForm
             // MainForm
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
+            this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(773, 423);
             this.Controls.Add(this.BodyPanel);
             this.Controls.Add(this.HeadPanel);
@@ -139,9 +143,10 @@ partial class MainForm
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "MainForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Header";
+            this.Text = "VortexFile";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
             this.Load += new System.EventHandler(this.MainForm_Load);
+            this.SizeChanged += new System.EventHandler(this.MainForm_SizeChanged);
             this.HeadPanel.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.LogoPictureBox)).EndInit();
             this.ResumeLayout(false);

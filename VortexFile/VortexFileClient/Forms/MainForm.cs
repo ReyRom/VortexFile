@@ -3,6 +3,9 @@ namespace VortexFileClient.Forms;
 public partial class MainForm : Form
 {
     private Point mPoint;
+    int mWidth;
+    int mHeight;
+    bool isMinimized=false;
 
     public MainForm()
     {
@@ -13,6 +16,9 @@ public partial class MainForm : Form
 
     private void MinimizeButton_Click(object sender, EventArgs e)
     {
+        mWidth = this.Width;
+        mHeight = this.Height;
+        isMinimized = true;
         this.WindowState = FormWindowState.Minimized;
     }
 
@@ -67,5 +73,15 @@ public partial class MainForm : Form
     private void HelpButton_Click(object sender, EventArgs e)
     {
         LoadForm(new UserGuideForm());
+    }
+
+    private void MainForm_SizeChanged(object sender, EventArgs e)
+    {
+        if (isMinimized)
+        {
+            this.Height = mHeight;
+            this.Width = mWidth;
+            isMinimized = false;
+        }
     }
 }

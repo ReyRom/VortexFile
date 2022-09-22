@@ -33,10 +33,13 @@
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <ItemGroup>
-    <None Remove="Resources\hide.png" />
+    <None Remove="Resources\FullLogo.png" />
+    <None Remove="Resources\Hide.png" />
+    <None Remove="Resources\Logo.png" />
     <None Remove="Resources\OFF.png" />
     <None Remove="Resources\ON.png" />
-    <None Remove="Resources\show.png" />
+    <None Remove="Resources\Refresh.png" />
+    <None Remove="Resources\Show.png" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
@@ -46,10 +49,13 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Resources\hide.png" />
+    <EmbeddedResource Include="Resources\FullLogo.png" />
+    <EmbeddedResource Include="Resources\Hide.png" />
+    <EmbeddedResource Include="Resources\Logo.png" />
     <EmbeddedResource Include="Resources\OFF.png" />
     <EmbeddedResource Include="Resources\ON.png" />
-    <EmbeddedResource Include="Resources\show.png" />
+    <EmbeddedResource Include="Resources\Refresh.png" />
+    <EmbeddedResource Include="Resources\Show.png" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="FastMember" Version="1.5.0" />
