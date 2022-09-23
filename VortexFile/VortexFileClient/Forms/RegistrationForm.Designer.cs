@@ -30,11 +30,11 @@
         {
             this.EnterButton = new System.Windows.Forms.Button();
             this.PasswordTextBox = new System.Windows.Forms.TextBox();
-            this.LoginTextBox = new System.Windows.Forms.TextBox();
+            this.EmailTextBox = new System.Windows.Forms.TextBox();
             this.ConfirmTextBox = new System.Windows.Forms.TextBox();
             this.UsernameTextBox = new System.Windows.Forms.TextBox();
             this.PhoneTextBox = new System.Windows.Forms.TextBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.LoginTextBox = new System.Windows.Forms.TextBox();
             this.CaptchaTextBox = new System.Windows.Forms.TextBox();
             this.RenewCaptchaButton = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
@@ -50,15 +50,16 @@
             // EnterButton
             // 
             this.EnterButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(100)))), ((int)(((byte)(210)))));
-            this.EnterButton.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.EnterButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.EnterButton.ForeColor = System.Drawing.Color.White;
-            this.EnterButton.Location = new System.Drawing.Point(30, 487);
+            this.EnterButton.Location = new System.Drawing.Point(30, 485);
             this.EnterButton.Margin = new System.Windows.Forms.Padding(4);
             this.EnterButton.Name = "EnterButton";
             this.EnterButton.Size = new System.Drawing.Size(345, 42);
             this.EnterButton.TabIndex = 4;
             this.EnterButton.Text = "Зарегистрироваться";
             this.EnterButton.UseVisualStyleBackColor = false;
+            this.EnterButton.Click += new System.EventHandler(this.EnterButton_Click);
             // 
             // PasswordTextBox
             // 
@@ -70,15 +71,15 @@
             this.PasswordTextBox.Size = new System.Drawing.Size(345, 26);
             this.PasswordTextBox.TabIndex = 2;
             // 
-            // LoginTextBox
+            // EmailTextBox
             // 
-            this.LoginTextBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(237)))), ((int)(((byte)(252)))));
-            this.LoginTextBox.Location = new System.Drawing.Point(30, 113);
-            this.LoginTextBox.Margin = new System.Windows.Forms.Padding(5, 6, 5, 6);
-            this.LoginTextBox.Name = "LoginTextBox";
-            this.LoginTextBox.PlaceholderText = "Email";
-            this.LoginTextBox.Size = new System.Drawing.Size(345, 26);
-            this.LoginTextBox.TabIndex = 3;
+            this.EmailTextBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(237)))), ((int)(((byte)(252)))));
+            this.EmailTextBox.Location = new System.Drawing.Point(30, 113);
+            this.EmailTextBox.Margin = new System.Windows.Forms.Padding(5, 6, 5, 6);
+            this.EmailTextBox.Name = "EmailTextBox";
+            this.EmailTextBox.PlaceholderText = "Email";
+            this.EmailTextBox.Size = new System.Drawing.Size(345, 26);
+            this.EmailTextBox.TabIndex = 3;
             // 
             // ConfirmTextBox
             // 
@@ -108,15 +109,15 @@
             this.PhoneTextBox.Size = new System.Drawing.Size(345, 26);
             this.PhoneTextBox.TabIndex = 7;
             // 
-            // textBox1
+            // LoginTextBox
             // 
-            this.textBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(237)))), ((int)(((byte)(252)))));
-            this.textBox1.Location = new System.Drawing.Point(30, 74);
-            this.textBox1.Margin = new System.Windows.Forms.Padding(5, 6, 5, 6);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.PlaceholderText = "Логин";
-            this.textBox1.Size = new System.Drawing.Size(345, 26);
-            this.textBox1.TabIndex = 8;
+            this.LoginTextBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(237)))), ((int)(((byte)(252)))));
+            this.LoginTextBox.Location = new System.Drawing.Point(30, 74);
+            this.LoginTextBox.Margin = new System.Windows.Forms.Padding(5, 6, 5, 6);
+            this.LoginTextBox.Name = "LoginTextBox";
+            this.LoginTextBox.PlaceholderText = "Логин";
+            this.LoginTextBox.Size = new System.Drawing.Size(345, 26);
+            this.LoginTextBox.TabIndex = 8;
             // 
             // CaptchaTextBox
             // 
@@ -154,7 +155,7 @@
             // 
             this.GoBackLinkLabel.AutoSize = true;
             this.GoBackLinkLabel.LinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(100)))), ((int)(((byte)(210)))));
-            this.GoBackLinkLabel.Location = new System.Drawing.Point(133, 538);
+            this.GoBackLinkLabel.Location = new System.Drawing.Point(133, 536);
             this.GoBackLinkLabel.Name = "GoBackLinkLabel";
             this.GoBackLinkLabel.Size = new System.Drawing.Size(137, 22);
             this.GoBackLinkLabel.TabIndex = 15;
@@ -222,10 +223,12 @@
             // 
             // RegistrationForm
             // 
+            this.AcceptButton = this.EnterButton;
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 22F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(405, 575);
+            this.CancelButton = this.GoBackLinkLabel;
+            this.ClientSize = new System.Drawing.Size(405, 572);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
@@ -236,18 +239,19 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.RenewCaptchaButton);
             this.Controls.Add(this.CaptchaTextBox);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.LoginTextBox);
             this.Controls.Add(this.PhoneTextBox);
             this.Controls.Add(this.UsernameTextBox);
             this.Controls.Add(this.ConfirmTextBox);
             this.Controls.Add(this.EnterButton);
             this.Controls.Add(this.PasswordTextBox);
-            this.Controls.Add(this.LoginTextBox);
+            this.Controls.Add(this.EmailTextBox);
             this.Font = new System.Drawing.Font("Trebuchet MS", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "RegistrationForm";
             this.Load += new System.EventHandler(this.RegistrationForm_Load);
+            this.Shown += new System.EventHandler(this.RegistrationForm_Shown);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -257,11 +261,11 @@
 
         private Button EnterButton;
         private TextBox PasswordTextBox;
-        private TextBox LoginTextBox;
+        private TextBox EmailTextBox;
         private TextBox ConfirmTextBox;
         private TextBox UsernameTextBox;
         private TextBox PhoneTextBox;
-        private TextBox textBox1;
+        private TextBox LoginTextBox;
         private TextBox CaptchaTextBox;
         private Button RenewCaptchaButton;
         private Label label1;

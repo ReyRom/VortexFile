@@ -11,7 +11,7 @@ namespace VortexFileClient.Data
     {
         private static User ?currentUser;
 
-        public static User CurrentUser { get => currentUser; set => currentUser = value; }
+        public static User ?CurrentUser { get => currentUser; set => currentUser = value; }
 
         public static string Login
         {
@@ -39,7 +39,7 @@ namespace VortexFileClient.Data
             {
                 CurrentUser = user;
             }
-            return user;
+            return CurrentUser;
         }
 
         public static User Registration(User user)
@@ -57,13 +57,13 @@ namespace VortexFileClient.Data
             {
                 errors.AppendLine("Введен некорректный логин. Логин должен состоять из 2 - 30 символов, которые могут быть строчными и прописными латинскими буквами и цифрами.");
             }
-            if (!Regex.IsMatch(user.Email, @"^[A-Z0-9._%+-]+@[A-Z0-9-]+.+.[A-Z]{2,4}$"))
+            if (!Regex.IsMatch(user.Email, @"^([A-Za-z0-9]+[.-_])*[A-Za-z0-9]+@[A-Za-z0-9-]+(\.[A-Z|a-z]{2,})+$"))
             {
                 errors.AppendLine("Введен некорректный почтовый адрес.");
             }
-            if (!Regex.IsMatch(user.Password, @"^[a-zA-ZА-Яа-яЁё0-9]{8,50}$") || user.Password.Contains(" "))
+            if (!Regex.IsMatch(user.Password, @"^[a-zA-ZА-Яа-яЁё0-9]{8,20}$") || user.Password.Contains(" "))
             {
-                errors.AppendLine("Введен некорректный пароль. Пароль должен состоять из 8 - 50 символов, которые могут быть цифрами, строчными и прописными буквами.");
+                errors.AppendLine("Введен некорректный пароль. Пароль должен состоять из 8 - 20 символов, которые могут быть цифрами, строчными и прописными буквами.");
             }
             if (user.Phone != String.Empty && !Regex.IsMatch(user.Phone, @"^7|8+[0-9]{10}$"))
             {

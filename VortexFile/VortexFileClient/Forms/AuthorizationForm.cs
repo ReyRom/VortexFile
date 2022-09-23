@@ -60,5 +60,10 @@ namespace VortexFileClient.Forms
         {
             PasswordTextBox.UseSystemPasswordChar = !PasswordCheckBox.Checked;
         }
+
+        private void AuthorizationForm_Shown(object sender, EventArgs e)
+        {
+            LoginTextBox.Focus();
+        }
     }
 }

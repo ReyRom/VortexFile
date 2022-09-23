@@ -68,10 +68,10 @@
             // EnterButton
             // 
             this.EnterButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(100)))), ((int)(((byte)(210)))));
-            this.EnterButton.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.EnterButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.EnterButton.Font = new System.Drawing.Font("Trebuchet MS", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.EnterButton.ForeColor = System.Drawing.Color.White;
-            this.EnterButton.Location = new System.Drawing.Point(30, 195);
+            this.EnterButton.Location = new System.Drawing.Point(30, 193);
             this.EnterButton.Name = "EnterButton";
             this.EnterButton.Size = new System.Drawing.Size(345, 40);
             this.EnterButton.TabIndex = 1;
@@ -92,7 +92,7 @@
             this.RegistrationLinkLabel.AutoSize = true;
             this.RegistrationLinkLabel.Font = new System.Drawing.Font("Trebuchet MS", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.RegistrationLinkLabel.LinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(100)))), ((int)(((byte)(210)))));
-            this.RegistrationLinkLabel.Location = new System.Drawing.Point(127, 244);
+            this.RegistrationLinkLabel.Location = new System.Drawing.Point(127, 242);
             this.RegistrationLinkLabel.Name = "RegistrationLinkLabel";
             this.RegistrationLinkLabel.Size = new System.Drawing.Size(158, 22);
             this.RegistrationLinkLabel.TabIndex = 4;
@@ -189,10 +189,11 @@
             // 
             // AuthorizationForm
             // 
+            this.AcceptButton = this.EnterButton;
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 22F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(405, 284);
+            this.ClientSize = new System.Drawing.Size(405, 282);
             this.Controls.Add(this.PasswordCheckBox);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.OfflineCheckBox);
@@ -206,6 +207,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Margin = new System.Windows.Forms.Padding(5, 6, 5, 6);
             this.Name = "AuthorizationForm";
+            this.Shown += new System.EventHandler(this.AuthorizationForm_Shown);
             this.ResumeLayout(false);
             this.PerformLayout();
 
