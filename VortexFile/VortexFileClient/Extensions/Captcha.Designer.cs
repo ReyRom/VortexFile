@@ -34,10 +34,11 @@
             // 
             // CaptchaPictureBox
             // 
+            this.CaptchaPictureBox.BackColor = System.Drawing.SystemColors.ScrollBar;
             this.CaptchaPictureBox.Dock = System.Windows.Forms.DockStyle.Fill;
             this.CaptchaPictureBox.Location = new System.Drawing.Point(0, 0);
             this.CaptchaPictureBox.Name = "CaptchaPictureBox";
-            this.CaptchaPictureBox.Size = new System.Drawing.Size(278, 106);
+            this.CaptchaPictureBox.Size = new System.Drawing.Size(355, 104);
             this.CaptchaPictureBox.TabIndex = 0;
             this.CaptchaPictureBox.TabStop = false;
             // 
@@ -45,9 +46,10 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.Controls.Add(this.CaptchaPictureBox);
             this.Name = "Captcha";
-            this.Size = new System.Drawing.Size(278, 106);
+            this.Size = new System.Drawing.Size(355, 104);
             ((System.ComponentModel.ISupportInitialize)(this.CaptchaPictureBox)).EndInit();
             this.ResumeLayout(false);
 

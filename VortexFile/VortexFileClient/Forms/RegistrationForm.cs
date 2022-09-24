@@ -7,19 +7,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using VortexFileClient.Data;
+using VortexFileClient.Extensions;
 
 namespace VortexFileClient.Forms
 {
     public partial class RegistrationForm : Form
     {
-        bool isCaptchaConfirmed = false;
-        bool IsCaptchaConfirmed
-        {
-            set
-            {
-                EnterButton.Enabled = value;
-            }
-        }
         public RegistrationForm()
         {
             InitializeComponent();
@@ -30,22 +24,60 @@ namespace VortexFileClient.Forms
             Captcha.Renew();
         }
 
-        private void GoBackButton_Click(object sender, EventArgs e)
+        private void GoBackLinkLabel_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             Program.MainForm.GoBack();
         }
 
-        private void ConfirmCaptchaButton_Click(object sender, EventArgs e)
+        private void RegistrationForm_Load(object sender, EventArgs e)
         {
-            if (Captcha.CheckText(CaptchaTextBox.Text))
+            Captcha.Renew();
+        }
+
+        private void EnterButton_Click(object sender, EventArgs e)
+        {
+            if (PasswordTextBox.Text != ConfirmTextBox.Text)
             {
-                IsCaptchaConfirmed = true;
+                Feedback.WarningMessage("Пароли не совпадают.");
+                return;
             }
-            else
+            if (!Captcha.CheckText(CaptchaTextBox.Text))
             {
-                Extensions.Feedback.WarningMessage("Неверно, попробуйте снова");
-                Captcha.Renew();
+                Feedback.WarningMessage("Неправильно указан текст с картинки.");
+                return;
             }
+            User newUser = new User()
+            {
+                Login = LoginTextBox.Text,
+                Email = EmailTextBox.Text,
+                Password = PasswordTextBox.Text,
+                Username = UsernameTextBox.Text,
+                Phone = PhoneTextBox.Text
+            };
+            try
+            {
+                Session.Registration(newUser);
+                Feedback.InformationMessage("Вы успешно зарегистрировались.");
+                Program.MainForm.GoBack();
+            }
+            catch (Exception ex)
+            {
+                Feedback.WarningMessage(ex.Message);
+            }
+        }
+
+        private void RegistrationForm_Shown(object sender, EventArgs e)
+        {
+            LoginTextBox.Focus();
+        }
+        private void PasswordCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            PasswordTextBox.UseSystemPasswordChar = ConfirmTextBox.UseSystemPasswordChar = !PasswordCheckBox.Checked;
+        }
+
+        private void CaptchaTextBox_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            e.KeyChar = char.ToUpper(e.KeyChar);
         }
     }
 }

@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Net.Mail;
 using System.Net;
+using VortexFileClient.Extensions;
 
 namespace VortexFileClient.Data
 {
@@ -55,7 +56,7 @@ namespace VortexFileClient.Data
             {
                 await smtp.SendMailAsync(message);
             }
-            catch (Exception) { }
+            catch (Exception ex) { Feedback.ErrorMessage(ex); }
         }
     }
 }

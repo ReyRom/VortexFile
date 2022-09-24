@@ -40,6 +40,10 @@ namespace VortexFileClient.Data
             {
                 Feedback.ErrorMessage(ex);
             }
+            finally
+            {
+                connection.Close();
+            }
             return data;
         }
 
@@ -57,11 +61,14 @@ namespace VortexFileClient.Data
                 {
                     user = reader.ConvertToObject<User>();
                 }
-                connection.Close();
             }
             catch (Exception ex)
             {
                 Feedback.ErrorMessage(ex);
+            }
+            finally
+            {
+                connection.Close();
             }
             return user;
         }
@@ -81,11 +88,14 @@ namespace VortexFileClient.Data
                 {
                     user = reader.ConvertToObject<User>();
                 }
-                connection.Close();
             }
             catch (Exception ex)
             {
                 Feedback.ErrorMessage(ex);
+            }
+            finally
+            {
+                connection.Close();
             }
             return user;
         }
@@ -105,18 +115,21 @@ namespace VortexFileClient.Data
             try
             {
                 connection.Open();
-                SqlCommand sqlCommand = new SqlCommand("INSERT INTO [User](Login,Email,Password,Username,Phone) VALUES (@login,@email,@password,@username,@phone)", connection);
+                SqlCommand sqlCommand = new SqlCommand("INSERT INTO [User](Login,Email,Password,Username,Phone) VALUES (@login,@email,@password,NULLIF(@username,''),NULLIF(@phone,''))", connection);
                 sqlCommand.Parameters.Add(new SqlParameter("@login", user.Login));
                 sqlCommand.Parameters.Add(new SqlParameter("@email", user.Email));
                 sqlCommand.Parameters.Add(new SqlParameter("@password", user.Password));
                 sqlCommand.Parameters.Add(new SqlParameter("@username", user.Username));
                 sqlCommand.Parameters.Add(new SqlParameter("@phone", user.Phone));
                 sqlCommand.ExecuteNonQuery();
-                connection.Close();
             }
             catch (Exception ex)
             {
                 Feedback.ErrorMessage(ex);
+            }
+            finally
+            {
+                connection.Close();
             }
             return GetUserByLogin(user.Login);
         }
@@ -126,15 +139,18 @@ namespace VortexFileClient.Data
             try
             {
                 connection.Open();
-                SqlCommand sqlCommand = new SqlCommand("UPDATE [User] WHERE IdUser = @idUser SET Password = @password", connection);
+                SqlCommand sqlCommand = new SqlCommand("UPDATE [User] SET Password = @password WHERE IdUser = @idUser", connection);
                 sqlCommand.Parameters.Add(new SqlParameter("@idUser", user.IdUser));
                 sqlCommand.Parameters.Add(new SqlParameter("@password", newPassword));
                 sqlCommand.ExecuteNonQuery();
-                connection.Close();
             }
             catch (Exception ex)
             {
                 Feedback.ErrorMessage(ex);
+            }
+            finally
+            {
+                connection.Close();
             }
             return GetUserByLogin(user.Login);
         }

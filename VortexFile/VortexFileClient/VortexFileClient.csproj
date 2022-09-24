@@ -33,8 +33,13 @@
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <ItemGroup>
+    <None Remove="Resources\FullLogo.png" />
+    <None Remove="Resources\Hide.png" />
+    <None Remove="Resources\Logo.png" />
     <None Remove="Resources\OFF.png" />
     <None Remove="Resources\ON.png" />
+    <None Remove="Resources\Refresh.png" />
+    <None Remove="Resources\Show.png" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
@@ -44,14 +49,22 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Resources\FullLogo.png" />
+    <EmbeddedResource Include="Resources\Hide.png" />
+    <EmbeddedResource Include="Resources\Logo.png" />
     <EmbeddedResource Include="Resources\OFF.png" />
     <EmbeddedResource Include="Resources\ON.png" />
+    <EmbeddedResource Include="Resources\Refresh.png" />
+    <EmbeddedResource Include="Resources\Show.png" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="FastMember" Version="1.5.0" />
     <PackageReference Include="System.Data.SqlClient" Version="4.8.3" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Update="Extensions\PasswordCheckBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Update="Properties\Resources.Designer.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
@@ -80,5 +93,8 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Fonts\" />
   </ItemGroup>
 </Project>
