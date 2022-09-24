@@ -58,6 +58,7 @@
     <EmbeddedResource Include="Resources\Show.png" />
   </ItemGroup>
   <ItemGroup>
+    <PackageReference Include="DotNetZip" Version="1.16.0" />
     <PackageReference Include="FastMember" Version="1.5.0" />
     <PackageReference Include="System.Data.SqlClient" Version="4.8.3" />
   </ItemGroup>
