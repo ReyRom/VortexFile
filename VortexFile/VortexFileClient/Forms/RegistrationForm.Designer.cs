@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.EnterButton = new System.Windows.Forms.Button();
             this.PasswordTextBox = new System.Windows.Forms.TextBox();
             this.EmailTextBox = new System.Windows.Forms.TextBox();
@@ -45,6 +46,7 @@
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
+            this.PasswordCheckBox = new VortexFileClient.Extensions.PasswordCheckBox();
             this.SuspendLayout();
             // 
             // EnterButton
@@ -66,16 +68,19 @@
             this.PasswordTextBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(237)))), ((int)(((byte)(252)))));
             this.PasswordTextBox.Location = new System.Drawing.Point(30, 152);
             this.PasswordTextBox.Margin = new System.Windows.Forms.Padding(5, 6, 5, 6);
+            this.PasswordTextBox.MaxLength = 20;
             this.PasswordTextBox.Name = "PasswordTextBox";
             this.PasswordTextBox.PlaceholderText = "Пароль";
             this.PasswordTextBox.Size = new System.Drawing.Size(345, 26);
             this.PasswordTextBox.TabIndex = 2;
+            this.PasswordTextBox.UseSystemPasswordChar = true;
             // 
             // EmailTextBox
             // 
             this.EmailTextBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(237)))), ((int)(((byte)(252)))));
             this.EmailTextBox.Location = new System.Drawing.Point(30, 113);
             this.EmailTextBox.Margin = new System.Windows.Forms.Padding(5, 6, 5, 6);
+            this.EmailTextBox.MaxLength = 320;
             this.EmailTextBox.Name = "EmailTextBox";
             this.EmailTextBox.PlaceholderText = "Email";
             this.EmailTextBox.Size = new System.Drawing.Size(345, 26);
@@ -86,15 +91,18 @@
             this.ConfirmTextBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(237)))), ((int)(((byte)(252)))));
             this.ConfirmTextBox.Location = new System.Drawing.Point(30, 191);
             this.ConfirmTextBox.Margin = new System.Windows.Forms.Padding(5, 6, 5, 6);
+            this.ConfirmTextBox.MaxLength = 20;
             this.ConfirmTextBox.Name = "ConfirmTextBox";
             this.ConfirmTextBox.PlaceholderText = "Подтверждение пароля";
             this.ConfirmTextBox.Size = new System.Drawing.Size(345, 26);
             this.ConfirmTextBox.TabIndex = 5;
+            this.ConfirmTextBox.UseSystemPasswordChar = true;
             // 
             // UsernameTextBox
             // 
             this.UsernameTextBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(237)))), ((int)(((byte)(252)))));
             this.UsernameTextBox.Location = new System.Drawing.Point(30, 231);
+            this.UsernameTextBox.MaxLength = 100;
             this.UsernameTextBox.Name = "UsernameTextBox";
             this.UsernameTextBox.PlaceholderText = "Имя пользователя";
             this.UsernameTextBox.Size = new System.Drawing.Size(345, 26);
@@ -104,6 +112,7 @@
             // 
             this.PhoneTextBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(237)))), ((int)(((byte)(252)))));
             this.PhoneTextBox.Location = new System.Drawing.Point(30, 270);
+            this.PhoneTextBox.MaxLength = 11;
             this.PhoneTextBox.Name = "PhoneTextBox";
             this.PhoneTextBox.PlaceholderText = "Номер телефона";
             this.PhoneTextBox.Size = new System.Drawing.Size(345, 26);
@@ -114,6 +123,7 @@
             this.LoginTextBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(237)))), ((int)(((byte)(252)))));
             this.LoginTextBox.Location = new System.Drawing.Point(30, 74);
             this.LoginTextBox.Margin = new System.Windows.Forms.Padding(5, 6, 5, 6);
+            this.LoginTextBox.MaxLength = 30;
             this.LoginTextBox.Name = "LoginTextBox";
             this.LoginTextBox.PlaceholderText = "Логин";
             this.LoginTextBox.Size = new System.Drawing.Size(345, 26);
@@ -123,9 +133,11 @@
             // 
             this.CaptchaTextBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(237)))), ((int)(((byte)(252)))));
             this.CaptchaTextBox.Location = new System.Drawing.Point(30, 445);
+            this.CaptchaTextBox.MaxLength = 5;
             this.CaptchaTextBox.Name = "CaptchaTextBox";
             this.CaptchaTextBox.Size = new System.Drawing.Size(315, 26);
             this.CaptchaTextBox.TabIndex = 10;
+            this.CaptchaTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CaptchaTextBox_KeyPress);
             // 
             // RenewCaptchaButton
             // 
@@ -221,6 +233,26 @@
             this.label6.TabIndex = 21;
             this.label6.Text = "Введите код с картинки в поле ниже:";
             // 
+            // PasswordCheckBox
+            // 
+            this.PasswordCheckBox.Appearance = System.Windows.Forms.Appearance.Button;
+            this.PasswordCheckBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(237)))), ((int)(((byte)(252)))));
+            this.PasswordCheckBox.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.PasswordCheckBox.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.PasswordCheckBox.FlatAppearance.BorderSize = 0;
+            this.PasswordCheckBox.FlatAppearance.CheckedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(237)))), ((int)(((byte)(252)))));
+            this.PasswordCheckBox.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(237)))), ((int)(((byte)(252)))));
+            this.PasswordCheckBox.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(237)))), ((int)(((byte)(252)))));
+            this.PasswordCheckBox.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.PasswordCheckBox.Font = new System.Drawing.Font("Trebuchet MS", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.PasswordCheckBox.ImageIndex = 0;
+            this.PasswordCheckBox.Location = new System.Drawing.Point(339, 153);
+            this.PasswordCheckBox.Name = "PasswordCheckBox";
+            this.PasswordCheckBox.Size = new System.Drawing.Size(35, 24);
+            this.PasswordCheckBox.TabIndex = 22;
+            this.PasswordCheckBox.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.PasswordCheckBox.UseVisualStyleBackColor = false;
+            // 
             // RegistrationForm
             // 
             this.AcceptButton = this.EnterButton;
@@ -229,6 +261,7 @@
             this.BackColor = System.Drawing.Color.White;
             this.CancelButton = this.GoBackLinkLabel;
             this.ClientSize = new System.Drawing.Size(405, 572);
+            this.Controls.Add(this.PasswordCheckBox);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
@@ -276,5 +309,6 @@
         private Label label4;
         private Label label5;
         private Label label6;
+        private Extensions.PasswordCheckBox PasswordCheckBox;
     }
 }

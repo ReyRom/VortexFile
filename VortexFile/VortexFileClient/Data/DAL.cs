@@ -139,7 +139,7 @@ namespace VortexFileClient.Data
             try
             {
                 connection.Open();
-                SqlCommand sqlCommand = new SqlCommand("UPDATE [User] WHERE IdUser = @idUser SET Password = @password", connection);
+                SqlCommand sqlCommand = new SqlCommand("UPDATE [User] SET Password = @password WHERE IdUser = @idUser", connection);
                 sqlCommand.Parameters.Add(new SqlParameter("@idUser", user.IdUser));
                 sqlCommand.Parameters.Add(new SqlParameter("@password", newPassword));
                 sqlCommand.ExecuteNonQuery();

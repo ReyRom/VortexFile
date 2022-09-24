@@ -70,5 +70,14 @@ namespace VortexFileClient.Forms
         {
             LoginTextBox.Focus();
         }
+        private void PasswordCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            PasswordTextBox.UseSystemPasswordChar = ConfirmTextBox.UseSystemPasswordChar = !PasswordCheckBox.Checked;
+        }
+
+        private void CaptchaTextBox_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            e.KeyChar = char.ToUpper(e.KeyChar);
+        }
     }
 }

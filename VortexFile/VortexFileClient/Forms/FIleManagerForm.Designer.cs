@@ -30,6 +30,7 @@
         {
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
+            this.FileManagerListView = new System.Windows.Forms.ListView();
             this.SuspendLayout();
             // 
             // label1
@@ -44,17 +45,26 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(523, 207);
+            this.label2.Location = new System.Drawing.Point(163, 162);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(38, 15);
             this.label2.TabIndex = 1;
             this.label2.Text = "label2";
+            // 
+            // FileManagerListView
+            // 
+            this.FileManagerListView.Location = new System.Drawing.Point(355, 12);
+            this.FileManagerListView.Name = "FileManagerListView";
+            this.FileManagerListView.Size = new System.Drawing.Size(389, 405);
+            this.FileManagerListView.TabIndex = 2;
+            this.FileManagerListView.UseCompatibleStateImageBehavior = false;
             // 
             // FIleManagerForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(756, 429);
+            this.Controls.Add(this.FileManagerListView);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
@@ -70,5 +80,6 @@
 
         private Label label1;
         private Label label2;
+        private ListView FileManagerListView;
     }
 }

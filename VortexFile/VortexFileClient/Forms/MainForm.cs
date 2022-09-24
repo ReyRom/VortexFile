@@ -39,7 +39,7 @@ public partial class MainForm : Form
 
     private void BodyPanel_Resize(object sender, EventArgs e)
     {
-        this.Size = new Size(BodyPanel.Width, BodyPanel.Height + HeadPanel.Height);
+        this.Size = new Size(BodyPanel.Width, BodyPanel.Height + HeadPanel.Height + FooterPanel.Height);
     }
 
     public void LoadForm(Form form) 
@@ -47,6 +47,7 @@ public partial class MainForm : Form
         forms.Push(form);
         Extensions.FormTools.FormToPanel(form, BodyPanel);
         HeaderLabel.Text = form.Text;
+        BackButton.Visible = forms.Count > 1;
     }
 
     public void GoBack()
@@ -55,6 +56,7 @@ public partial class MainForm : Form
         Form form = forms.Peek();
         Extensions.FormTools.FormToPanel(form, BodyPanel);
         HeaderLabel.Text = form.Text;
+        BackButton.Visible = forms.Count > 1;
     }
 
     private void HeaderLabel_MouseDown(object sender, MouseEventArgs e)
@@ -83,5 +85,10 @@ public partial class MainForm : Form
             this.Width = mWidth;
             isMinimized = false;
         }
+    }
+
+    private void BackButton_Click(object sender, EventArgs e)
+    {
+        GoBack();
     }
 }

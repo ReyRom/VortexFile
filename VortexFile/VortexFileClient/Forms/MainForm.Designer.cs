@@ -35,8 +35,12 @@ partial class MainForm
             this.MinimizeButton = new System.Windows.Forms.Button();
             this.CloseButton = new System.Windows.Forms.Button();
             this.BodyPanel = new System.Windows.Forms.Panel();
+            this.FooterPanel = new System.Windows.Forms.Panel();
+            this.BackButton = new System.Windows.Forms.Button();
+            this.ConnectionButton = new System.Windows.Forms.Button();
             this.HeadPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.LogoPictureBox)).BeginInit();
+            this.FooterPanel.SuspendLayout();
             this.SuspendLayout();
             // 
             // HeadPanel
@@ -57,10 +61,10 @@ partial class MainForm
             // HeaderLabel
             // 
             this.HeaderLabel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.HeaderLabel.Location = new System.Drawing.Point(120, 0);
+            this.HeaderLabel.Location = new System.Drawing.Point(40, 0);
             this.HeaderLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.HeaderLabel.Name = "HeaderLabel";
-            this.HeaderLabel.Size = new System.Drawing.Size(473, 30);
+            this.HeaderLabel.Size = new System.Drawing.Size(553, 30);
             this.HeaderLabel.TabIndex = 3;
             this.HeaderLabel.Text = "Header";
             this.HeaderLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -84,11 +88,12 @@ partial class MainForm
             // LogoPictureBox
             // 
             this.LogoPictureBox.Dock = System.Windows.Forms.DockStyle.Left;
-            this.LogoPictureBox.Image = global::VortexFileClient.Properties.Resources.FullLogo;
+            this.LogoPictureBox.Image = global::VortexFileClient.Properties.Resources.Logo;
             this.LogoPictureBox.Location = new System.Drawing.Point(0, 0);
             this.LogoPictureBox.Margin = new System.Windows.Forms.Padding(4);
             this.LogoPictureBox.Name = "LogoPictureBox";
-            this.LogoPictureBox.Size = new System.Drawing.Size(120, 30);
+            this.LogoPictureBox.Padding = new System.Windows.Forms.Padding(5, 0, 0, 0);
+            this.LogoPictureBox.Size = new System.Drawing.Size(40, 30);
             this.LogoPictureBox.TabIndex = 3;
             this.LogoPictureBox.TabStop = false;
             // 
@@ -127,17 +132,53 @@ partial class MainForm
             this.BodyPanel.Location = new System.Drawing.Point(0, 30);
             this.BodyPanel.Margin = new System.Windows.Forms.Padding(4);
             this.BodyPanel.Name = "BodyPanel";
-            this.BodyPanel.Size = new System.Drawing.Size(773, 393);
-            this.BodyPanel.TabIndex = 1;
+            this.BodyPanel.Size = new System.Drawing.Size(773, 375);
+            this.BodyPanel.TabIndex = 3;
             this.BodyPanel.Resize += new System.EventHandler(this.BodyPanel_Resize);
+            // 
+            // FooterPanel
+            // 
+            this.FooterPanel.Controls.Add(this.BackButton);
+            this.FooterPanel.Controls.Add(this.ConnectionButton);
+            this.FooterPanel.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.FooterPanel.Location = new System.Drawing.Point(0, 405);
+            this.FooterPanel.Name = "FooterPanel";
+            this.FooterPanel.Size = new System.Drawing.Size(773, 30);
+            this.FooterPanel.TabIndex = 2;
+            // 
+            // BackButton
+            // 
+            this.BackButton.Dock = System.Windows.Forms.DockStyle.Left;
+            this.BackButton.FlatAppearance.BorderSize = 0;
+            this.BackButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BackButton.Location = new System.Drawing.Point(0, 0);
+            this.BackButton.Name = "BackButton";
+            this.BackButton.Size = new System.Drawing.Size(121, 30);
+            this.BackButton.TabIndex = 1;
+            this.BackButton.Text = "<- Назад";
+            this.BackButton.UseVisualStyleBackColor = true;
+            this.BackButton.Click += new System.EventHandler(this.BackButton_Click);
+            // 
+            // ConnectionButton
+            // 
+            this.ConnectionButton.Dock = System.Windows.Forms.DockStyle.Right;
+            this.ConnectionButton.FlatAppearance.BorderSize = 0;
+            this.ConnectionButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.ConnectionButton.Location = new System.Drawing.Point(653, 0);
+            this.ConnectionButton.Name = "ConnectionButton";
+            this.ConnectionButton.Size = new System.Drawing.Size(120, 30);
+            this.ConnectionButton.TabIndex = 0;
+            this.ConnectionButton.Text = "Соединение";
+            this.ConnectionButton.UseVisualStyleBackColor = true;
             // 
             // MainForm
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(773, 423);
+            this.ClientSize = new System.Drawing.Size(773, 435);
             this.Controls.Add(this.BodyPanel);
             this.Controls.Add(this.HeadPanel);
+            this.Controls.Add(this.FooterPanel);
             this.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Margin = new System.Windows.Forms.Padding(4);
@@ -149,6 +190,7 @@ partial class MainForm
             this.SizeChanged += new System.EventHandler(this.MainForm_SizeChanged);
             this.HeadPanel.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.LogoPictureBox)).EndInit();
+            this.FooterPanel.ResumeLayout(false);
             this.ResumeLayout(false);
 
     }
@@ -162,4 +204,7 @@ partial class MainForm
     protected Label HeaderLabel;
     protected Panel BodyPanel;
     private Button HelpButton;
+    private Panel FooterPanel;
+    private Button BackButton;
+    private Button ConnectionButton;
 }
