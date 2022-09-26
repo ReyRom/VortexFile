@@ -37,7 +37,8 @@ namespace VortexFileClient.Forms
                 {
                     Data.Session.Login = Data.Session.Password = String.Empty;
                 }
-                Program.MainForm.LoadForm(new FIleManagerForm());
+                Extensions.Feedback.InformationMessage("Вы успешно авторизованы");
+                Program.MainForm.LoadForm(new FileManagerForm());
             }
         }
 

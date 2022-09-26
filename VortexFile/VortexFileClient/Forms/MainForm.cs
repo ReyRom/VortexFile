@@ -91,4 +91,9 @@ public partial class MainForm : Form
     {
         GoBack();
     }
+
+    private void SettingsButton_Click(object sender, EventArgs e)
+    {
+        LoadForm(new SettingsForm());
+    }
 }

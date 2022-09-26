@@ -38,6 +38,7 @@ partial class MainForm
             this.FooterPanel = new System.Windows.Forms.Panel();
             this.BackButton = new System.Windows.Forms.Button();
             this.ConnectionButton = new System.Windows.Forms.Button();
+            this.SettingsButton = new System.Windows.Forms.Button();
             this.HeadPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.LogoPictureBox)).BeginInit();
             this.FooterPanel.SuspendLayout();
@@ -138,6 +139,7 @@ partial class MainForm
             // 
             // FooterPanel
             // 
+            this.FooterPanel.Controls.Add(this.SettingsButton);
             this.FooterPanel.Controls.Add(this.BackButton);
             this.FooterPanel.Controls.Add(this.ConnectionButton);
             this.FooterPanel.Dock = System.Windows.Forms.DockStyle.Bottom;
@@ -170,6 +172,17 @@ partial class MainForm
             this.ConnectionButton.TabIndex = 0;
             this.ConnectionButton.Text = "Соединение";
             this.ConnectionButton.UseVisualStyleBackColor = true;
+            // 
+            // SettingsButton
+            // 
+            this.SettingsButton.Dock = System.Windows.Forms.DockStyle.Right;
+            this.SettingsButton.Location = new System.Drawing.Point(533, 0);
+            this.SettingsButton.Name = "SettingsButton";
+            this.SettingsButton.Size = new System.Drawing.Size(120, 30);
+            this.SettingsButton.TabIndex = 2;
+            this.SettingsButton.Text = "Настройки";
+            this.SettingsButton.UseVisualStyleBackColor = true;
+            this.SettingsButton.Click += new System.EventHandler(this.SettingsButton_Click);
             // 
             // MainForm
             // 
@@ -207,4 +220,5 @@ partial class MainForm
     private Panel FooterPanel;
     private Button BackButton;
     private Button ConnectionButton;
+    private Button SettingsButton;
 }

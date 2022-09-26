@@ -76,6 +76,7 @@ namespace VortexFileClient.Forms
                 return;
             }
             DAL.ChangeUserPassword(user, PasswordTextBox.Text);
+            Extensions.Feedback.InformationMessage("Пароль успешно изменен");
             Program.MainForm.GoBack();
         }
 

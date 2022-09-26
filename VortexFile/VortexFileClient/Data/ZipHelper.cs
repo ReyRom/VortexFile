@@ -10,6 +10,7 @@ namespace VortexFileClient.Data
 {
     public static class ZipHelper
     {
+        private static Encoding encoding = Encoding.GetEncoding(866);
         public static void CompressionDirectory(string fileName,
             string sourceDirectory,
             CompressionLevel compressionLevel = CompressionLevel.Default)
@@ -61,5 +62,48 @@ namespace VortexFileClient.Data
                 }
             }
         }
+
+        public static string CreateZip(string fileName)
+        {
+            using(var zip = new ZipFile())
+            {
+                zip.CompressionLevel = CompressionLevel.Default;
+                zip.Save(fileName);
+            }
+            return fileName;
+        }
+
+        public static ZipFile ReadZip(string fileName)
+        {
+            using (var zip = ZipFile.Read(fileName))
+            {
+                return zip;
+            }
+        }
+        public static ZipFile ReadSubZip(string fileName, string subFileName)
+        {
+            ReadOptions readOptions = new ReadOptions();
+            readOptions.Encoding = encoding;
+            using (var zip = ZipFile.Read(fileName, readOptions))
+            {
+                
+                zip.AlternateEncodingUsage = ZipOption.Always;
+                zip.AlternateEncoding = encoding;
+                ZipEntry entry = zip[subFileName];
+                using (var subZip = ZipFile.Read(entry.ExtractToMemoryStream(), readOptions))
+                {
+                    subZip.AlternateEncodingUsage = ZipOption.Always;
+                    subZip.AlternateEncoding = encoding;
+                    return subZip;
+                }
+            }
+        }
+            public static MemoryStream ExtractToMemoryStream(this ZipEntry zipEntry)
+            {
+                var mstream = new MemoryStream();
+                zipEntry.Extract(mstream);
+                mstream.Position = 0;
+                return mstream;
+            }
     }
 }
