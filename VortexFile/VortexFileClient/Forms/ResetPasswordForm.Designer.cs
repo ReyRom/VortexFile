@@ -151,6 +151,7 @@
             // 
             // CodeTabPage
             // 
+            this.CodeTabPage.BackColor = System.Drawing.Color.White;
             this.CodeTabPage.Controls.Add(this.SendCodeLinkLabel);
             this.CodeTabPage.Controls.Add(this.CodeTextBox);
             this.CodeTabPage.Location = new System.Drawing.Point(4, 20);
@@ -159,7 +160,6 @@
             this.CodeTabPage.Size = new System.Drawing.Size(410, 165);
             this.CodeTabPage.TabIndex = 1;
             this.CodeTabPage.Text = "CodeTabPage";
-            this.CodeTabPage.UseVisualStyleBackColor = true;
             // 
             // SendCodeLinkLabel
             // 
@@ -176,6 +176,7 @@
             // 
             // PasswordTabPage
             // 
+            this.PasswordTabPage.BackColor = System.Drawing.Color.White;
             this.PasswordTabPage.Controls.Add(this.PasswordCheckBox);
             this.PasswordTabPage.Controls.Add(this.ConfirmButton);
             this.PasswordTabPage.Controls.Add(this.ConfirmTextBox);
@@ -186,7 +187,6 @@
             this.PasswordTabPage.Size = new System.Drawing.Size(410, 165);
             this.PasswordTabPage.TabIndex = 2;
             this.PasswordTabPage.Text = "PasswordTabPage";
-            this.PasswordTabPage.UseVisualStyleBackColor = true;
             // 
             // PasswordCheckBox
             // 
@@ -224,9 +224,9 @@
             // 
             // panel1
             // 
-            this.panel1.Location = new System.Drawing.Point(-4, 61);
+            this.panel1.Location = new System.Drawing.Point(-4, 62);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(428, 34);
+            this.panel1.Size = new System.Drawing.Size(428, 24);
             this.panel1.TabIndex = 17;
             // 
             // ResetPasswordForm
