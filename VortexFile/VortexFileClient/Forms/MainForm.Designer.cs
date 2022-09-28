@@ -36,9 +36,9 @@ partial class MainForm
             this.CloseButton = new System.Windows.Forms.Button();
             this.BodyPanel = new System.Windows.Forms.Panel();
             this.FooterPanel = new System.Windows.Forms.Panel();
+            this.SettingsButton = new System.Windows.Forms.Button();
             this.BackButton = new System.Windows.Forms.Button();
             this.ConnectionButton = new System.Windows.Forms.Button();
-            this.SettingsButton = new System.Windows.Forms.Button();
             this.HeadPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.LogoPictureBox)).BeginInit();
             this.FooterPanel.SuspendLayout();
@@ -148,6 +148,19 @@ partial class MainForm
             this.FooterPanel.Size = new System.Drawing.Size(773, 30);
             this.FooterPanel.TabIndex = 2;
             // 
+            // SettingsButton
+            // 
+            this.SettingsButton.Dock = System.Windows.Forms.DockStyle.Right;
+            this.SettingsButton.FlatAppearance.BorderSize = 0;
+            this.SettingsButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.SettingsButton.Location = new System.Drawing.Point(533, 0);
+            this.SettingsButton.Name = "SettingsButton";
+            this.SettingsButton.Size = new System.Drawing.Size(120, 30);
+            this.SettingsButton.TabIndex = 2;
+            this.SettingsButton.Text = "Настройки";
+            this.SettingsButton.UseVisualStyleBackColor = true;
+            this.SettingsButton.Click += new System.EventHandler(this.SettingsButton_Click);
+            // 
             // BackButton
             // 
             this.BackButton.Dock = System.Windows.Forms.DockStyle.Left;
@@ -172,17 +185,6 @@ partial class MainForm
             this.ConnectionButton.TabIndex = 0;
             this.ConnectionButton.Text = "Соединение";
             this.ConnectionButton.UseVisualStyleBackColor = true;
-            // 
-            // SettingsButton
-            // 
-            this.SettingsButton.Dock = System.Windows.Forms.DockStyle.Right;
-            this.SettingsButton.Location = new System.Drawing.Point(533, 0);
-            this.SettingsButton.Name = "SettingsButton";
-            this.SettingsButton.Size = new System.Drawing.Size(120, 30);
-            this.SettingsButton.TabIndex = 2;
-            this.SettingsButton.Text = "Настройки";
-            this.SettingsButton.UseVisualStyleBackColor = true;
-            this.SettingsButton.Click += new System.EventHandler(this.SettingsButton_Click);
             // 
             // MainForm
             // 

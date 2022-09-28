@@ -252,6 +252,7 @@
             this.PasswordCheckBox.TabIndex = 22;
             this.PasswordCheckBox.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.PasswordCheckBox.UseVisualStyleBackColor = false;
+            this.PasswordCheckBox.CheckedChanged += new System.EventHandler(this.PasswordCheckBox_CheckedChanged);
             // 
             // RegistrationForm
             // 
