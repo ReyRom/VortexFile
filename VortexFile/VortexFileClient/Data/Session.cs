@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using VortexFileClient.Models;
 
 namespace VortexFileClient.Data
 {
@@ -32,9 +33,9 @@ namespace VortexFileClient.Data
             }
         }
 
-        public static User? Authorize(string login, string password)
+        public static User Authorize(string login, string password)
         {
-            User ?user = DAL.GetUser(login);
+            User user = DALold.GetUser(login);
             if (user != null && user.Password == password)
             {
                 CurrentUser = user;
@@ -45,11 +46,11 @@ namespace VortexFileClient.Data
         public static User Registration(User user)
         {
             StringBuilder errors = new StringBuilder();
-            if (DAL.GetUserByLogin(user.Login) != null)
+            if (DALold.GetUserByLogin(user.Login) != null)
             {
                 errors.AppendLine("Логин занят другим пользователем.");
             }
-            if (DAL.GetUserByEmail(user.Email) != null)
+            if (DALold.GetUserByEmail(user.Email) != null)
             {
                 errors.AppendLine("Почта занята другим пользователем.");
             }
@@ -73,7 +74,7 @@ namespace VortexFileClient.Data
             {
                 throw new Exception(errors.ToString());
             }
-            return DAL.AddUser(user);
+            return DALold.AddUser(user);
         }
     }
 }
