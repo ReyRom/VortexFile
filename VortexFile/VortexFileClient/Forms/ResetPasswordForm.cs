@@ -26,7 +26,7 @@ namespace VortexFileClient.Forms
 
         private void SendCode()
         {
-            user = DALold.GetUser(LoginTextBox.Text);
+            user = DAL.GetUser(LoginTextBox.Text);
             if (user != null)
             {
                 emailMessanger = new EmailMessanger("vortexfile-email-confirm@yandex.ru", "Vortex File", "zbhicmvhztojxnar");
@@ -76,7 +76,7 @@ namespace VortexFileClient.Forms
                 Feedback.WarningMessage("Введен некорректный пароль. Пароль должен состоять из 8 - 20 символов, которые могут быть цифрами, строчными и прописными буквами.");
                 return;
             }
-            DALold.ChangeUserPassword(user, PasswordTextBox.Text);
+            DAL.ChangeUserPassword(user, PasswordTextBox.Text);
             Extensions.Feedback.InformationMessage("Пароль успешно изменен");
             Program.MainForm.GoBack();
         }

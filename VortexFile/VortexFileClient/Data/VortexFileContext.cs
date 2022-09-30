@@ -54,5 +54,17 @@ namespace VortexFileClient.Data
         }
 
         partial void OnModelCreatingPartial(ModelBuilder modelBuilder);
+
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            if (!optionsBuilder.IsConfigured)
+            {
+                optionsBuilder.UseSqlServer("Server=ROMA1NV1CTUS;" +
+                                            "Database=VortexFile;" +
+                                            "User id=sa;" +
+                                            "Password=1;" +
+                                            "Trusted_Connection=True;");
+            }
+        }
     }
 }

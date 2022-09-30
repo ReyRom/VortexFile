@@ -35,7 +35,7 @@ namespace VortexFileClient.Data
 
         public static User Authorize(string login, string password)
         {
-            User user = DALold.GetUser(login);
+            User user = DAL.GetUser(login);
             if (user != null && user.Password == password)
             {
                 CurrentUser = user;
@@ -46,11 +46,11 @@ namespace VortexFileClient.Data
         public static User Registration(User user)
         {
             StringBuilder errors = new StringBuilder();
-            if (DALold.GetUserByLogin(user.Login) != null)
+            if (DAL.GetUserByLogin(user.Login) != null)
             {
                 errors.AppendLine("Логин занят другим пользователем.");
             }
-            if (DALold.GetUserByEmail(user.Email) != null)
+            if (DAL.GetUserByEmail(user.Email) != null)
             {
                 errors.AppendLine("Почта занята другим пользователем.");
             }
@@ -74,7 +74,7 @@ namespace VortexFileClient.Data
             {
                 throw new Exception(errors.ToString());
             }
-            return DALold.AddUser(user);
+            return DAL.AddUser(user);
         }
     }
 }
