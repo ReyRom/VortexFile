@@ -11,9 +11,7 @@ using VortexFileClient.Extensions;
 namespace VortexFileClient.Data
 {
     public static class DAL
-    {
-        static SqlConnectionStringBuilder builder = new SqlConnectionStringBuilder();
-        
+    {   
         static string connectionString =    "Data Source=ROMA1NV1CTUS;" +
                                             "Initial Catalog=VortexFile;" +
                                             "User id=sa;" +
