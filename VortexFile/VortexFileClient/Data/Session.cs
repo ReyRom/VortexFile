@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using VortexFileClient.Models;
 
 namespace VortexFileClient.Data
 {
@@ -32,9 +33,9 @@ namespace VortexFileClient.Data
             }
         }
 
-        public static User? Authorize(string login, string password)
+        public static User Authorize(string login, string password)
         {
-            User ?user = DAL.GetUser(login);
+            User user = DAL.GetUser(login);
             if (user != null && user.Password == password)
             {
                 CurrentUser = user;
