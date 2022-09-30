@@ -7,6 +7,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using VortexFileClient.Data;
+using VortexFileClient.Models;
 
 namespace VortexFileClient.Forms
 {
@@ -15,6 +17,11 @@ namespace VortexFileClient.Forms
         public AdministationForm()
         {
             InitializeComponent();
+        }
+
+        private void AdministationForm_Load(object sender, EventArgs e)
+        {
+            
         }
     }
 }

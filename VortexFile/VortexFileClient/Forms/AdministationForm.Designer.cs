@@ -28,27 +28,30 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.components = new System.ComponentModel.Container();
+            this.UsersDataGridView = new System.Windows.Forms.DataGridView();
             this.LoginColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.EmailColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.UsernameColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.PhoneColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            this.UsersBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            ((System.ComponentModel.ISupportInitialize)(this.UsersDataGridView)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.UsersBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
-            // dataGridView1
+            // UsersDataGridView
             // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.UsersDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.UsersDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.LoginColumn,
             this.EmailColumn,
             this.UsernameColumn,
             this.PhoneColumn});
-            this.dataGridView1.Location = new System.Drawing.Point(12, 12);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.RowTemplate.Height = 25;
-            this.dataGridView1.Size = new System.Drawing.Size(599, 373);
-            this.dataGridView1.TabIndex = 0;
+            this.UsersDataGridView.Location = new System.Drawing.Point(12, 12);
+            this.UsersDataGridView.Name = "UsersDataGridView";
+            this.UsersDataGridView.RowTemplate.Height = 25;
+            this.UsersDataGridView.Size = new System.Drawing.Size(599, 373);
+            this.UsersDataGridView.TabIndex = 0;
             // 
             // LoginColumn
             // 
@@ -75,21 +78,24 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(623, 397);
-            this.Controls.Add(this.dataGridView1);
+            this.Controls.Add(this.UsersDataGridView);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "AdministationForm";
             this.Text = "AdministationForm";
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            this.Load += new System.EventHandler(this.AdministationForm_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.UsersDataGridView)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.UsersBindingSource)).EndInit();
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private DataGridView dataGridView1;
+        private DataGridView UsersDataGridView;
         private DataGridViewTextBoxColumn LoginColumn;
         private DataGridViewTextBoxColumn EmailColumn;
         private DataGridViewTextBoxColumn UsernameColumn;
         private DataGridViewTextBoxColumn PhoneColumn;
+        private BindingSource UsersBindingSource;
     }
 }
