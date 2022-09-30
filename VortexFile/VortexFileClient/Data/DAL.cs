@@ -14,6 +14,7 @@ namespace VortexFileClient.Data
     public static class DAL
     {
         public static User GetUserByLogin(string login)
+
         {
             User? user = null;
             try
