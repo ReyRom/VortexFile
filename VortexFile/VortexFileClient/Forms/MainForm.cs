@@ -96,4 +96,9 @@ public partial class MainForm : Form
     {
         LoadForm(new SettingsForm());
     }
+
+    private void AdminButton_Click(object sender, EventArgs e)
+    {
+        LoadForm(new AdministrationForm());
+    }
 }

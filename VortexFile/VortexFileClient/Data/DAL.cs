@@ -13,8 +13,9 @@ namespace VortexFileClient.Data
 {
     public static class DAL
     {
-        public static User GetUserByLogin(string login)
+        public static event EventHandler OnUserDelete;
 
+        public static User GetUserByLogin(string login)
         {
             User? user = null;
             try
@@ -79,6 +80,38 @@ namespace VortexFileClient.Data
                 Feedback.ErrorMessage(ex);
             }
             return GetUserByLogin(user.Login);
+        }
+
+        public static List<User> GetUsers()
+        {
+            return Core.Context.Users.ToList();
+        }
+
+        public static void UpdateUser(User user)
+        {
+            try
+            {
+                Core.Context.Entry(user).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
+                Core.Context.SaveChanges();
+            }
+            catch (Exception ex)
+            {
+                Feedback.ErrorMessage(ex);
+            }
+        }
+        public static void DeleteUser(User user)
+        {
+            try
+            {
+                var login = user.Login;
+                Core.Context.Remove(user);
+                Core.Context.SaveChanges();
+                OnUserDelete.Invoke(login, EventArgs.Empty);
+            }
+            catch (Exception ex)
+            {
+                Feedback.ErrorMessage(ex);
+            }
         }
     }
 }
