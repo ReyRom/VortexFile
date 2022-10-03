@@ -15,7 +15,9 @@ namespace VortexFileClient.Data
 
         private string userCatalog = Session.CurrentUser.Login + ".zip";
 
-        
+        private string zipPassword = Properties.Settings.Default.ZipPassword;
+
+        private string password = Session.CurrentUser.Password;
 
         public LocalStorage()
         {
@@ -30,7 +32,7 @@ namespace VortexFileClient.Data
             if (!GetCatalog().Any(z=>z.FileName == userCatalog))
             {
                 string tempPath = Path.Combine(Properties.Settings.Default.Path, userCatalog);
-                ZipHelper.AppendFilesToZip(initialCatalog, new List<string> { ZipHelper.CreateZip(tempPath) });
+                ZipHelper.AppendFilesToZipWithPassword(initialCatalog, new List<string> { ZipHelper.CreateZip(tempPath) }, zipPassword);
                 File.Delete(tempPath);
             }
             DAL.OnUserDelete += DAL_OnUserDelete;
@@ -49,11 +51,11 @@ namespace VortexFileClient.Data
 
         public void DeleteFiles(List<string> fileNames)
         {
-            using (ZipFile zip = ZipHelper.ReadSubZip(initialCatalog,userCatalog))
+            using (ZipFile zip = ZipHelper.ReadSubZipWithPassword(initialCatalog,userCatalog, zipPassword))
             {
                 foreach (var fileName in fileNames)
                 {
-                    var zipEntry = GetUserCatalog().SingleOrDefault(z => z.FileName == fileName);
+                    var zipEntry = GetUserCatalog(password).SingleOrDefault(z => z.FileName == fileName);
                     zip.RemoveEntry(zipEntry);
                 }
                 using (MemoryStream memoryStream = new MemoryStream())
@@ -73,8 +75,8 @@ namespace VortexFileClient.Data
         {
             foreach (var fileName in fileNames)
             {
-                var zipEntry = GetUserCatalog().SingleOrDefault(z => z.FileName == fileName);
-                using (MemoryStream memoryStream = zipEntry.ExtractToMemoryStream())
+                var zipEntry = GetUserCatalog(password).SingleOrDefault(z => z.FileName == fileName);
+                using (MemoryStream memoryStream = zipEntry.ExtractToMemoryStreamWithPassword(password))
                 {
                     File.WriteAllBytes(Path.Combine(outFolder, fileName), memoryStream.ToArray());
                 }
@@ -83,9 +85,10 @@ namespace VortexFileClient.Data
 
         public void UploadFiles(List<string> filesName)
         {
-            using (ZipFile zip = ZipHelper.ReadSubZip(initialCatalog, userCatalog))
+            using (ZipFile zip = ZipHelper.ReadSubZipWithPassword(initialCatalog, userCatalog, zipPassword))
             {
                 zip.CompressionLevel = Ionic.Zlib.CompressionLevel.Default;
+                zip.Password = password;
                 foreach (var item in filesName)
                 {
                     try
@@ -113,9 +116,9 @@ namespace VortexFileClient.Data
             }
         }
 
-        public List<ZipEntry> GetUserCatalog()
+        public List<ZipEntry> GetUserCatalog(string password)
         {
-            return ZipHelper.ReadSubZip(initialCatalog, userCatalog).Entries.ToList();
+            return ZipHelper.ReadSubZipWithPassword(initialCatalog, userCatalog, password).Entries.ToList();
         }
 
         public List<ZipEntry> GetCatalog()

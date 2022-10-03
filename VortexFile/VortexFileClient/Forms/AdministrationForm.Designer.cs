@@ -43,7 +43,14 @@
             // UsersDataGridView
             // 
             this.UsersDataGridView.AllowUserToAddRows = false;
+            this.UsersDataGridView.AllowUserToDeleteRows = false;
+            this.UsersDataGridView.AllowUserToResizeRows = false;
+            this.UsersDataGridView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.UsersDataGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.UsersDataGridView.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(237)))), ((int)(((byte)(252)))));
+            this.UsersDataGridView.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.UsersDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.UsersDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.LoginColumn,
@@ -51,10 +58,15 @@
             this.UsernameColumn,
             this.PhoneColumn,
             this.DeleteColumn});
-            this.UsersDataGridView.Location = new System.Drawing.Point(12, 12);
+            this.UsersDataGridView.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(101)))), ((int)(((byte)(215)))));
+            this.UsersDataGridView.Location = new System.Drawing.Point(15, 18);
+            this.UsersDataGridView.Margin = new System.Windows.Forms.Padding(4);
+            this.UsersDataGridView.MultiSelect = false;
             this.UsersDataGridView.Name = "UsersDataGridView";
+            this.UsersDataGridView.RowHeadersVisible = false;
             this.UsersDataGridView.RowTemplate.Height = 25;
-            this.UsersDataGridView.Size = new System.Drawing.Size(599, 373);
+            this.UsersDataGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.UsersDataGridView.Size = new System.Drawing.Size(646, 385);
             this.UsersDataGridView.TabIndex = 0;
             this.UsersDataGridView.CellBeginEdit += new System.Windows.Forms.DataGridViewCellCancelEventHandler(this.UsersDataGridView_CellBeginEdit);
             this.UsersDataGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.UsersDataGridView_CellContentClick);
@@ -62,10 +74,11 @@
             // 
             // LoginColumn
             // 
+            this.LoginColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.LoginColumn.DataPropertyName = "Login";
             this.LoginColumn.HeaderText = "Логин";
+            this.LoginColumn.MinimumWidth = 100;
             this.LoginColumn.Name = "LoginColumn";
-            this.LoginColumn.ReadOnly = true;
             // 
             // EmailColumn
             // 
@@ -76,7 +89,7 @@
             // UsernameColumn
             // 
             this.UsernameColumn.DataPropertyName = "Username";
-            this.UsernameColumn.HeaderText = "Имя пользователя";
+            this.UsernameColumn.HeaderText = "Имя";
             this.UsernameColumn.Name = "UsernameColumn";
             // 
             // PhoneColumn
@@ -87,6 +100,7 @@
             // 
             // DeleteColumn
             // 
+            this.DeleteColumn.FillWeight = 50F;
             this.DeleteColumn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.DeleteColumn.HeaderText = "";
             this.DeleteColumn.Name = "DeleteColumn";
@@ -97,11 +111,13 @@
             // 
             // AdministrationForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 22F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(623, 397);
+            this.ClientSize = new System.Drawing.Size(676, 420);
             this.Controls.Add(this.UsersDataGridView);
+            this.Font = new System.Drawing.Font("Trebuchet MS", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "AdministrationForm";
             this.Text = "AdministationForm";
             this.Load += new System.EventHandler(this.AdministrationForm_Load);

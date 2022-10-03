@@ -155,7 +155,7 @@ partial class MainForm
             this.AdminButton.Dock = System.Windows.Forms.DockStyle.Right;
             this.AdminButton.FlatAppearance.BorderSize = 0;
             this.AdminButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.AdminButton.Location = new System.Drawing.Point(353, 0);
+            this.AdminButton.Location = new System.Drawing.Point(359, 0);
             this.AdminButton.Name = "AdminButton";
             this.AdminButton.Size = new System.Drawing.Size(180, 30);
             this.AdminButton.TabIndex = 3;
@@ -168,11 +168,12 @@ partial class MainForm
             this.SettingsButton.Dock = System.Windows.Forms.DockStyle.Right;
             this.SettingsButton.FlatAppearance.BorderSize = 0;
             this.SettingsButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.SettingsButton.Location = new System.Drawing.Point(533, 0);
+            this.SettingsButton.Location = new System.Drawing.Point(539, 0);
             this.SettingsButton.Name = "SettingsButton";
-            this.SettingsButton.Size = new System.Drawing.Size(120, 30);
+            this.SettingsButton.Size = new System.Drawing.Size(114, 30);
             this.SettingsButton.TabIndex = 2;
             this.SettingsButton.Text = "Настройки";
+            this.SettingsButton.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.SettingsButton.UseVisualStyleBackColor = true;
             this.SettingsButton.Click += new System.EventHandler(this.SettingsButton_Click);
             // 
