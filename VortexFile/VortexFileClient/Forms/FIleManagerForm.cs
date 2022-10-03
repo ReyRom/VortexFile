@@ -29,7 +29,7 @@ namespace VortexFileClient.Forms
         private void LoadData()
         {
             FileManagerListView.Items.Clear();
-            foreach (var item in localStorage.GetUserCatalog())
+            foreach (var item in localStorage.GetUserCatalog(Properties.Settings.Default.ZipPassword))
             {
                 ListViewItem viewItem = new ListViewItem(item.FileName, GetIndex(Path.GetExtension(item.FileName)));
                 FileManagerListView.Items.Add(viewItem);

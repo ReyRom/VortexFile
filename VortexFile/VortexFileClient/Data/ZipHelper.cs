@@ -31,6 +31,19 @@ namespace VortexFileClient.Data
             }
         }
 
+        public static void AppendFilesToZipWithPassword(string fileName,
+            List<string> appendFiles, string password,
+            CompressionLevel compressionLevel = CompressionLevel.Default)
+        {
+            using (var zipFile = ZipFile.Read(fileName))
+            {
+                zipFile.Password = password;
+                zipFile.CompressionLevel = compressionLevel;
+                zipFile.AddFiles(appendFiles, "\\");
+                zipFile.Save();
+            }
+        }
+
         public static void AppendFilesToZipFromArray(string fileName,
             List<byte[]> appendFiles,
             CompressionLevel compressionLevel = CompressionLevel.Default)
