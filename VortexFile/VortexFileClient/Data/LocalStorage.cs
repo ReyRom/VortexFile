@@ -5,6 +5,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using VortexFileClient.Models;
 
 namespace VortexFileClient.Data
 {
@@ -14,7 +15,7 @@ namespace VortexFileClient.Data
 
         private string userCatalog = Session.CurrentUser.Login + ".zip";
 
-        private BindingList<ZipEntry> bindingList = new BindingList<ZipEntry>();
+        
 
         public LocalStorage()
         {
@@ -31,6 +32,18 @@ namespace VortexFileClient.Data
                 string tempPath = Path.Combine(Properties.Settings.Default.Path, userCatalog);
                 ZipHelper.AppendFilesToZip(initialCatalog, new List<string> { ZipHelper.CreateZip(tempPath) });
                 File.Delete(tempPath);
+            }
+            DAL.OnUserDelete += DAL_OnUserDelete;
+        }
+
+        private void DAL_OnUserDelete(object? sender, EventArgs e)
+        {
+            using(ZipFile zip = ZipHelper.ReadZip(initialCatalog))
+            {
+                var zipEntry = GetCatalog().SingleOrDefault(z => z.FileName == (string)sender+".zip");
+                if (zipEntry == null) return;
+                zip.RemoveEntry(zipEntry);
+                zip.Save();
             }
         }
 
@@ -81,8 +94,10 @@ namespace VortexFileClient.Data
                     }
                     catch (ArgumentException)
                     {
-                        //обрати внимание
-                        zip.UpdateFile(item, "");
+                        if (Extensions.Feedback.QuestionMessage($"Файл с именем {Path.GetFileName(item)} уже есть в каталоге. Заменить?"))
+                        {
+                            zip.UpdateFile(item, "");
+                        }
                     }
                 }
                 using (MemoryStream memoryStream = new MemoryStream())
