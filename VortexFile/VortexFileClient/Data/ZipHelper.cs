@@ -1,9 +1,5 @@
 ﻿using Ionic.Zip;
 using Ionic.Zlib;
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
 using System.Text;
 
 namespace VortexFileClient.Data
@@ -63,9 +59,20 @@ namespace VortexFileClient.Data
             }
         }
 
+        public static void ExtractZipWithPassword(string fileName, string outFolder, string password)
+        {
+            using (var zip = ZipFile.Read(fileName))
+            {
+                foreach (var e in zip)
+                {
+                    e.ExtractWithPassword(outFolder, ExtractExistingFileAction.OverwriteSilently, password);
+                }
+            }
+        }
+
         public static string CreateZip(string fileName)
         {
-            using(var zip = new ZipFile())
+            using (var zip = new ZipFile())
             {
                 zip.CompressionLevel = CompressionLevel.Default;
                 zip.Save(fileName);
@@ -86,7 +93,7 @@ namespace VortexFileClient.Data
             readOptions.Encoding = encoding;
             using (var zip = ZipFile.Read(fileName, readOptions))
             {
-                
+
                 zip.AlternateEncodingUsage = ZipOption.Always;
                 zip.AlternateEncoding = encoding;
                 ZipEntry entry = zip[subFileName];
@@ -98,12 +105,39 @@ namespace VortexFileClient.Data
                 }
             }
         }
-            public static MemoryStream ExtractToMemoryStream(this ZipEntry zipEntry)
+
+        public static ZipFile ReadSubZipWithPassword(string fileName, string subFileName, string password)
+        {
+            ReadOptions readOptions = new ReadOptions();
+            readOptions.Encoding = encoding;
+            using (var zip = ZipFile.Read(fileName, readOptions))
             {
-                var mstream = new MemoryStream();
-                zipEntry.Extract(mstream);
-                mstream.Position = 0;
-                return mstream;
+
+                zip.AlternateEncodingUsage = ZipOption.Always;
+                zip.AlternateEncoding = encoding;
+                ZipEntry entry = zip[subFileName];
+                using (var subZip = ZipFile.Read(entry.ExtractToMemoryStreamWithPassword(password), readOptions))
+                {
+                    subZip.AlternateEncodingUsage = ZipOption.Always;
+                    subZip.AlternateEncoding = encoding;
+                    return subZip;
+                }
             }
+        }
+
+        public static MemoryStream ExtractToMemoryStream(this ZipEntry zipEntry)
+        {
+            var mstream = new MemoryStream();
+            zipEntry.Extract(mstream);
+            mstream.Position = 0;
+            return mstream;
+        }
+        public static MemoryStream ExtractToMemoryStreamWithPassword(this ZipEntry zipEntry, string password)
+        {
+            var mstream = new MemoryStream();
+            zipEntry.ExtractWithPassword(mstream, password);
+            mstream.Position = 0;
+            return mstream;
+        }
     }
 }

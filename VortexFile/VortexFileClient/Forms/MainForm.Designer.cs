@@ -36,10 +36,10 @@ partial class MainForm
             this.CloseButton = new System.Windows.Forms.Button();
             this.BodyPanel = new System.Windows.Forms.Panel();
             this.FooterPanel = new System.Windows.Forms.Panel();
+            this.AdminButton = new System.Windows.Forms.Button();
             this.SettingsButton = new System.Windows.Forms.Button();
             this.BackButton = new System.Windows.Forms.Button();
             this.ConnectionButton = new System.Windows.Forms.Button();
-            this.AdminButton = new System.Windows.Forms.Button();
             this.HeadPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.LogoPictureBox)).BeginInit();
             this.FooterPanel.SuspendLayout();
@@ -150,6 +150,19 @@ partial class MainForm
             this.FooterPanel.Size = new System.Drawing.Size(773, 30);
             this.FooterPanel.TabIndex = 2;
             // 
+            // AdminButton
+            // 
+            this.AdminButton.Dock = System.Windows.Forms.DockStyle.Right;
+            this.AdminButton.FlatAppearance.BorderSize = 0;
+            this.AdminButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.AdminButton.Location = new System.Drawing.Point(353, 0);
+            this.AdminButton.Name = "AdminButton";
+            this.AdminButton.Size = new System.Drawing.Size(180, 30);
+            this.AdminButton.TabIndex = 3;
+            this.AdminButton.Text = "Администрирование";
+            this.AdminButton.UseVisualStyleBackColor = true;
+            this.AdminButton.Click += new System.EventHandler(this.AdminButton_Click);
+            // 
             // SettingsButton
             // 
             this.SettingsButton.Dock = System.Windows.Forms.DockStyle.Right;
@@ -187,19 +200,6 @@ partial class MainForm
             this.ConnectionButton.TabIndex = 0;
             this.ConnectionButton.Text = "Соединение";
             this.ConnectionButton.UseVisualStyleBackColor = true;
-            // 
-            // AdminButton
-            // 
-            this.AdminButton.Dock = System.Windows.Forms.DockStyle.Right;
-            this.AdminButton.FlatAppearance.BorderSize = 0;
-            this.AdminButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.AdminButton.Location = new System.Drawing.Point(353, 0);
-            this.AdminButton.Name = "AdminButton";
-            this.AdminButton.Size = new System.Drawing.Size(180, 30);
-            this.AdminButton.TabIndex = 3;
-            this.AdminButton.Text = "Администрирование";
-            this.AdminButton.UseVisualStyleBackColor = true;
-            this.AdminButton.Click += new System.EventHandler(this.AdminButton_Click);
             // 
             // MainForm
             // 
