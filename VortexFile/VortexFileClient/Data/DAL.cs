@@ -87,6 +87,11 @@ namespace VortexFileClient.Data
             return Core.Context.Users.ToList();
         }
 
+        public async static Task<List<User>> GetUsersAsync()
+        {
+            return await Task.Run(() =>Core.Context.Users.ToList());
+        }
+
         public static void UpdateUser(User user)
         {
             try

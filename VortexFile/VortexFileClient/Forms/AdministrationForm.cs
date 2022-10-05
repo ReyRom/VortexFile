@@ -9,14 +9,15 @@ using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using VortexFileClient.Data;
+using VortexFileClient.Extensions;
 using VortexFileClient.Models;
 
 namespace VortexFileClient.Forms
 {
     public partial class AdministrationForm : Form
     {
-        private string tempVar;
-        private string email;
+        private string? tempVar = null;
+        private string? email = null;
         public AdministrationForm()
         {
             InitializeComponent();
@@ -25,11 +26,16 @@ namespace VortexFileClient.Forms
         private void AdministrationForm_Load(object sender, EventArgs e)
         {
             UsersDataGridView.AutoGenerateColumns = false;
-            Renew();
+            RenewAsync();
         }
 
-        private void Renew() {
-            UsersDataGridView.DataSource = DAL.GetUsers();
+        private async Task RenewAsync() 
+        {
+            UsersDataGridView.Visible = false;
+            Waiting.Visible = true;
+            UsersDataGridView.DataSource = await DAL.GetUsersAsync();
+            Waiting.Visible = false;
+            UsersDataGridView.Visible = true;
         }
 
         private void UsersDataGridView_CellEndEdit(object sender, DataGridViewCellEventArgs e)
@@ -98,7 +104,7 @@ namespace VortexFileClient.Forms
                     var user = UsersDataGridView.Rows[e.RowIndex].DataBoundItem as User;
                     email = user.Email;
                     DAL.DeleteUser(user);
-                    Renew();
+                    RenewAsync();
                     try
                     {
                         EmailMessanger emailMessanger = new EmailMessanger("vortexfile-email-confirm@yandex.ru", "Vortex File", "zbhicmvhztojxnar");

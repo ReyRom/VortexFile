@@ -1,3 +1,5 @@
+using VortexFileClient.Extensions;
+
 namespace VortexFileClient.Forms;
 
 public partial class MainForm : Form
@@ -45,7 +47,7 @@ public partial class MainForm : Form
     public void LoadForm(Form form) 
     {
         forms.Push(form);
-        Extensions.FormTools.FormToPanel(form, BodyPanel);
+        FormTools.FormToPanel(form, BodyPanel);
         HeaderLabel.Text = form.Text;
         BackButton.Visible = forms.Count > 1;
     }
@@ -54,7 +56,7 @@ public partial class MainForm : Form
     {
         forms.Pop().Dispose();
         Form form = forms.Peek();
-        Extensions.FormTools.FormToPanel(form, BodyPanel);
+        FormTools.FormToPanel(form, BodyPanel);
         HeaderLabel.Text = form.Text;
         BackButton.Visible = forms.Count > 1;
     }
