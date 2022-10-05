@@ -31,6 +31,7 @@
             this.PathTextBox = new System.Windows.Forms.TextBox();
             this.BrowseButton = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
+            this.AdminButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // PathTextBox
@@ -60,12 +61,25 @@
             this.label1.TabIndex = 2;
             this.label1.Text = "Путь к локальному хранилищу";
             // 
+            // AdminButton
+            // 
+            this.AdminButton.FlatAppearance.BorderSize = 0;
+            this.AdminButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.AdminButton.Location = new System.Drawing.Point(31, 127);
+            this.AdminButton.Name = "AdminButton";
+            this.AdminButton.Size = new System.Drawing.Size(180, 30);
+            this.AdminButton.TabIndex = 4;
+            this.AdminButton.Text = "Администрирование";
+            this.AdminButton.UseVisualStyleBackColor = true;
+            this.AdminButton.Click += new System.EventHandler(this.AdminButton_Click);
+            // 
             // SettingsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 22F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(561, 196);
+            this.Controls.Add(this.AdminButton);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.BrowseButton);
             this.Controls.Add(this.PathTextBox);
@@ -85,5 +99,6 @@
         private TextBox PathTextBox;
         private Button BrowseButton;
         private Label label1;
+        private Button AdminButton;
     }
 }

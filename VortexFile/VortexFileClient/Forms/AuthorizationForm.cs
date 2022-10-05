@@ -7,10 +7,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using VortexFileClient.Extensions;
 
 namespace VortexFileClient.Forms
 {
-    public partial class AuthorizationForm : Form
+    public partial class AuthorizationForm : Form, IStackableForm
     {
         public AuthorizationForm()
         {
@@ -19,6 +20,9 @@ namespace VortexFileClient.Forms
             PasswordTextBox.Text = Data.Session.Password;
             RememberCheckBox.Checked = LoginTextBox.Text != String.Empty;
         }
+
+        public event EventHandler<LoadFormEventArgs> LoadForm;
+        public event EventHandler GoBack;
 
         private void EnterButton_Click(object sender, EventArgs e)
         {
@@ -38,18 +42,18 @@ namespace VortexFileClient.Forms
                     Data.Session.Login = Data.Session.Password = String.Empty;
                 }
                 Extensions.Feedback.InformationMessage("Вы успешно авторизованы");
-                Program.MainForm.LoadForm(new FileManagerForm());
+                LoadForm.Invoke(this, new LoadFormEventArgs(new FileManagerForm()));
             }
         }
 
         private void RegistrationLinkLabel_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            Program.MainForm.LoadForm(new RegistrationForm());
+            LoadForm.Invoke(this, new LoadFormEventArgs(new RegistrationForm()));
         }
 
         private void ResetPasswordLinkLabel_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            Program.MainForm.LoadForm(new ResetPasswordForm());
+            LoadForm.Invoke(this, new LoadFormEventArgs(new ResetPasswordForm()));
         }
 
         private void RememberCheckBox_CheckedChanged(object sender, EventArgs e)

@@ -9,12 +9,17 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using VortexFileClient.Data;
+using VortexFileClient.Extensions;
 
 namespace VortexFileClient.Forms
 {
-    public partial class FileManagerForm : Form
+    public partial class FileManagerForm : Form, IStackableForm
     {
         private LocalStorage localStorage = new LocalStorage();
+
+        public event EventHandler<LoadFormEventArgs> LoadForm;
+        public event EventHandler GoBack;
+
         public FileManagerForm()
         {
             InitializeComponent();

@@ -14,10 +14,13 @@ using VortexFileClient.Models;
 
 namespace VortexFileClient.Forms
 {
-    public partial class ResetPasswordForm : Form
+    public partial class ResetPasswordForm : Form, IStackableForm
     {
         EmailMessanger ?emailMessanger;
         User ?user;
+
+        public event EventHandler<LoadFormEventArgs> LoadForm;
+        public event EventHandler GoBack;
 
         public ResetPasswordForm()
         {
@@ -78,7 +81,7 @@ namespace VortexFileClient.Forms
             }
             DAL.ChangeUserPassword(user, PasswordTextBox.Text);
             Extensions.Feedback.InformationMessage("Пароль успешно изменен");
-            Program.MainForm.GoBack();
+            GoBack.Invoke(this, EventArgs.Empty);
         }
 
         private void ResetPasswordForm_Load(object sender, EventArgs e)

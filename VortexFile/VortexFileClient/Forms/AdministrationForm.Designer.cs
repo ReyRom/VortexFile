@@ -37,6 +37,7 @@
             this.DeleteColumn = new System.Windows.Forms.DataGridViewButtonColumn();
             this.UsersBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.Waiting = new VortexFileClient.Extensions.Waiting();
+            this.AddButton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.UsersDataGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.UsersBindingSource)).BeginInit();
             this.SuspendLayout();
@@ -67,7 +68,7 @@
             this.UsersDataGridView.RowHeadersVisible = false;
             this.UsersDataGridView.RowTemplate.Height = 25;
             this.UsersDataGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.UsersDataGridView.Size = new System.Drawing.Size(646, 389);
+            this.UsersDataGridView.Size = new System.Drawing.Size(646, 361);
             this.UsersDataGridView.TabIndex = 0;
             this.UsersDataGridView.CellBeginEdit += new System.Windows.Forms.DataGridViewCellCancelEventHandler(this.UsersDataGridView_CellBeginEdit);
             this.UsersDataGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.UsersDataGridView_CellContentClick);
@@ -118,12 +119,23 @@
             this.Waiting.Size = new System.Drawing.Size(340, 253);
             this.Waiting.TabIndex = 1;
             // 
+            // AddButton
+            // 
+            this.AddButton.Location = new System.Drawing.Point(15, 386);
+            this.AddButton.Name = "AddButton";
+            this.AddButton.Size = new System.Drawing.Size(216, 30);
+            this.AddButton.TabIndex = 2;
+            this.AddButton.Text = "Добавить пользователя";
+            this.AddButton.UseVisualStyleBackColor = true;
+            this.AddButton.Click += new System.EventHandler(this.AddButton_Click);
+            // 
             // AdministrationForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 22F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(676, 420);
+            this.Controls.Add(this.AddButton);
             this.Controls.Add(this.Waiting);
             this.Controls.Add(this.UsersDataGridView);
             this.Font = new System.Drawing.Font("Trebuchet MS", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
@@ -148,5 +160,6 @@
         private DataGridViewTextBoxColumn PhoneColumn;
         private DataGridViewButtonColumn DeleteColumn;
         private Extensions.Waiting Waiting;
+        private Button AddButton;
     }
 }
