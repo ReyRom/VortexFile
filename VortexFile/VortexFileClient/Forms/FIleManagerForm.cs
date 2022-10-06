@@ -16,13 +16,21 @@ namespace VortexFileClient.Forms
     public partial class FileManagerForm : Form, IStackableForm
     {
         private LocalStorage localStorage = new LocalStorage();
+        private CloudStorage cloudStorage = new CloudStorage(Session.CurrentUser.Login,Session.CurrentUser.Password);
 
         public event EventHandler<LoadFormEventArgs> LoadForm;
         public event EventHandler GoBack;
 
-        public FileManagerForm()
+        private bool OnlineMode
+        {
+            get;
+            set;
+        }
+
+        public FileManagerForm(bool onlineMode = true)
         {
             InitializeComponent();
+            OnlineMode = onlineMode;
         }
 
         private void FIleManagerForm_Load(object sender, EventArgs e)
@@ -36,7 +44,12 @@ namespace VortexFileClient.Forms
             FileManagerListView.Items.Clear();
             foreach (var item in localStorage.GetUserCatalog(Properties.Settings.Default.ZipPassword))
             {
-                ListViewItem viewItem = new ListViewItem(item.FileName, GetIndex(Path.GetExtension(item.FileName)));
+                ListViewItem viewItem = new ListViewItem(item.FileName, GetIndex(Path.GetExtension(item.FileName)),FileManagerListView.Groups["localGroup"]);
+                FileManagerListView.Items.Add(viewItem);
+            }
+            foreach (var item in cloudStorage.GetUserCatalog())
+            {
+                ListViewItem viewItem = new ListViewItem(item, GetIndex(Path.GetExtension(item)), FileManagerListView.Groups["cloudGroup"]);
                 FileManagerListView.Items.Add(viewItem);
             }
         }
@@ -83,24 +96,64 @@ namespace VortexFileClient.Forms
             FolderBrowserDialog folderBrowserDialog = new FolderBrowserDialog();
             if (folderBrowserDialog.ShowDialog() == DialogResult.OK)
             {
-                List<string> filesName = new List<string>();
+                List<string> localFilesName = new List<string>();
+                List<string> cloudFilesName = new List<string>();
                 foreach (ListViewItem item in FileManagerListView.SelectedItems)
                 {
-                    filesName.Add(item.Text);
+                    if (item.Group == FileManagerListView.Groups["localGroup"])
+                    {
+                        localFilesName.Add(item.Text);
+                    }
+                    else
+                    {
+                        cloudFilesName.Add(item.Text);
+                    }
                 }
-                localStorage.DownloadFiles(filesName, folderBrowserDialog.SelectedPath);
+                if (localFilesName.Count>0)
+                {
+                    localStorage.DownloadFiles(localFilesName, folderBrowserDialog.SelectedPath);
+                }
+                if (cloudFilesName.Count>0)
+                {
+                    cloudStorage.DownloadFiles(cloudFilesName, folderBrowserDialog.SelectedPath);
+                }
             }
-            LoadData();
         }
 
         private void DeleteLocalButton_Click(object sender, EventArgs e)
         {
-            List<string> filesName = new List<string>();
+            List<string> localFilesName = new List<string>();
+            List<string> cloudFilesName = new List<string>();
             foreach (ListViewItem item in FileManagerListView.SelectedItems)
             {
-                filesName.Add(item.Text);
+                if (item.Group == FileManagerListView.Groups["localGroup"])
+                {
+                    localFilesName.Add(item.Text);
+                }
+                else
+                {
+                    cloudFilesName.Add(item.Text);
+                }
             }
-            localStorage.DeleteFiles(filesName);
+            if (localFilesName.Count > 0)
+            {
+                localStorage.DeleteFiles(localFilesName);
+            }
+            if (cloudFilesName.Count > 0)
+            {
+                cloudStorage.DeleteFiles(cloudFilesName);
+            }
+            LoadData();
+        }
+
+        private void UploadFtpButton_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.Multiselect = true;
+            if (openFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                cloudStorage.UploadFiles(openFileDialog.FileNames.ToList());
+            }
             LoadData();
         }
     }

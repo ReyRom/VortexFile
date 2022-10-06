@@ -70,5 +70,17 @@ namespace VortexFileClient.Properties {
                 this["ZipPassword"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("1234")]
+        public string AdminPassword {
+            get {
+                return ((string)(this["AdminPassword"]));
+            }
+            set {
+                this["AdminPassword"] = value;
+            }
+        }
     }
 }

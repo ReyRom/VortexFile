@@ -26,6 +26,11 @@ namespace VortexFileClient.Forms
 
         private void EnterButton_Click(object sender, EventArgs e)
         {
+            if (OfflineCheckBox.Checked)
+            {
+                Extensions.Feedback.InformationMessage("Вы успешно авторизованы");
+                LoadForm.Invoke(this, new LoadFormEventArgs(new FileManagerForm(false)));
+            }
             if (Data.Session.Authorize(LoginTextBox.Text, PasswordTextBox.Text) == null)
             {
                 Extensions.Feedback.WarningMessage("Неправильный логин/email или пароль.");

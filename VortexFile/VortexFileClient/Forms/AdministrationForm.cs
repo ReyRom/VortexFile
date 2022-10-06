@@ -128,5 +128,10 @@ namespace VortexFileClient.Forms
             LoadForm.Invoke(this, new LoadFormEventArgs(new RegistrationForm()));
             RenewAsync();
         }
+
+        private void ChangeAdminPasswordButton_Click(object sender, EventArgs e)
+        {
+            LoadForm.Invoke(this, new LoadFormEventArgs(new ChangeAdminPasswordForm()));
+        }
     }
 }

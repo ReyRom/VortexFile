@@ -50,7 +50,7 @@ namespace VortexFileClient.Forms
 
         private void AdminButton_Click(object sender, EventArgs e)
         {
-            LoadForm.Invoke(this,new LoadFormEventArgs(new AdministrationForm()));
+            LoadForm.Invoke(this,new LoadFormEventArgs(new AdminAuthForm()));
         }
     }
 }

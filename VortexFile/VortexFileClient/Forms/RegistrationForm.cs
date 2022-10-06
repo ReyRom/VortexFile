@@ -93,5 +93,15 @@ namespace VortexFileClient.Forms
         {
             e.KeyChar = char.ToUpper(e.KeyChar);
         }
+
+        private void PasswordTextBox_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void ConfirmTextBox_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

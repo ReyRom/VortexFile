@@ -34,12 +34,14 @@
   </PropertyGroup>
   <ItemGroup>
     <None Remove="Resources\FullLogo.png" />
+    <None Remove="Resources\green_circle.png" />
     <None Remove="Resources\Hide.png" />
     <None Remove="Resources\icon_cogs.png" />
     <None Remove="Resources\loading.gif" />
     <None Remove="Resources\Logo.png" />
     <None Remove="Resources\OFF.png" />
     <None Remove="Resources\ON.png" />
+    <None Remove="Resources\red_circle.png" />
     <None Remove="Resources\Refresh.png" />
     <None Remove="Resources\Show.png" />
   </ItemGroup>
@@ -52,12 +54,14 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Resources\FullLogo.png" />
+    <EmbeddedResource Include="Resources\green_circle.png" />
     <EmbeddedResource Include="Resources\Hide.png" />
     <EmbeddedResource Include="Resources\icon_cogs.png" />
     <EmbeddedResource Include="Resources\loading.gif" />
     <EmbeddedResource Include="Resources\Logo.png" />
     <EmbeddedResource Include="Resources\OFF.png" />
     <EmbeddedResource Include="Resources\ON.png" />
+    <EmbeddedResource Include="Resources\red_circle.png" />
     <EmbeddedResource Include="Resources\Refresh.png" />
     <EmbeddedResource Include="Resources\Show.png" />
   </ItemGroup>

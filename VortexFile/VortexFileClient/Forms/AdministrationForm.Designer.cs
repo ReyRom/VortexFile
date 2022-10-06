@@ -38,6 +38,7 @@
             this.UsersBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.Waiting = new VortexFileClient.Extensions.Waiting();
             this.AddButton = new System.Windows.Forms.Button();
+            this.ChangeAdminPasswordButton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.UsersDataGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.UsersBindingSource)).BeginInit();
             this.SuspendLayout();
@@ -129,12 +130,23 @@
             this.AddButton.UseVisualStyleBackColor = true;
             this.AddButton.Click += new System.EventHandler(this.AddButton_Click);
             // 
+            // ChangeAdminPasswordButton
+            // 
+            this.ChangeAdminPasswordButton.Location = new System.Drawing.Point(237, 386);
+            this.ChangeAdminPasswordButton.Name = "ChangeAdminPasswordButton";
+            this.ChangeAdminPasswordButton.Size = new System.Drawing.Size(263, 30);
+            this.ChangeAdminPasswordButton.TabIndex = 3;
+            this.ChangeAdminPasswordButton.Text = "Сменить пароль администратора";
+            this.ChangeAdminPasswordButton.UseVisualStyleBackColor = true;
+            this.ChangeAdminPasswordButton.Click += new System.EventHandler(this.ChangeAdminPasswordButton_Click);
+            // 
             // AdministrationForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 22F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(676, 420);
+            this.Controls.Add(this.ChangeAdminPasswordButton);
             this.Controls.Add(this.AddButton);
             this.Controls.Add(this.Waiting);
             this.Controls.Add(this.UsersDataGridView);
@@ -161,5 +173,6 @@
         private DataGridViewButtonColumn DeleteColumn;
         private Extensions.Waiting Waiting;
         private Button AddButton;
+        private Button ChangeAdminPasswordButton;
     }
 }
