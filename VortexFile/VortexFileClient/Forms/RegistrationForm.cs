@@ -13,12 +13,15 @@ using VortexFileClient.Models;
 
 namespace VortexFileClient.Forms
 {
-    public partial class RegistrationForm : Form
+    public partial class RegistrationForm : Form, IStackableForm
     {
         public RegistrationForm()
         {
             InitializeComponent();
         }
+
+        public event EventHandler<LoadFormEventArgs> LoadForm;
+        public event EventHandler GoBack;
 
         private void RenewCaptchaButton_Click(object sender, EventArgs e)
         {
@@ -27,7 +30,7 @@ namespace VortexFileClient.Forms
 
         private void GoBackLinkLabel_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            Program.MainForm.GoBack();
+            GoBack.Invoke(this, EventArgs.Empty);
         }
 
         private void RegistrationForm_Load(object sender, EventArgs e)
@@ -59,7 +62,17 @@ namespace VortexFileClient.Forms
             {
                 Session.Registration(newUser);
                 Feedback.InformationMessage("Вы успешно зарегистрировались.");
-                Program.MainForm.GoBack();
+                try
+                {
+                    EmailMessanger emailMessanger = new EmailMessanger("vortexfile-email-confirm@yandex.ru", "Vortex File", "zbhicmvhztojxnar");
+                    string body = "Вы зарегистрированы в системе  VortexFile";
+                    Task.Run(() => emailMessanger.SendEmailAsync(newUser.Email, "Ограничение доступа", body));
+                }
+                catch (Exception ex)
+                {
+                    Extensions.Feedback.ErrorMessage(ex);
+                }
+                GoBack.Invoke(this, EventArgs.Empty);
             }
             catch (Exception ex)
             {
@@ -79,6 +92,16 @@ namespace VortexFileClient.Forms
         private void CaptchaTextBox_KeyPress(object sender, KeyPressEventArgs e)
         {
             e.KeyChar = char.ToUpper(e.KeyChar);
+        }
+
+        private void PasswordTextBox_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void ConfirmTextBox_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

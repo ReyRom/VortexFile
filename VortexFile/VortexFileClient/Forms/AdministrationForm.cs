@@ -14,10 +14,14 @@ using VortexFileClient.Models;
 
 namespace VortexFileClient.Forms
 {
-    public partial class AdministrationForm : Form
+    public partial class AdministrationForm : Form, IStackableForm
     {
         private string? tempVar = null;
         private string? email = null;
+
+        public event EventHandler<LoadFormEventArgs> LoadForm;
+        public event EventHandler GoBack;
+
         public AdministrationForm()
         {
             InitializeComponent();
@@ -117,6 +121,17 @@ namespace VortexFileClient.Forms
                     }
                 }
             }
+        }
+
+        private void AddButton_Click(object sender, EventArgs e)
+        {
+            LoadForm.Invoke(this, new LoadFormEventArgs(new RegistrationForm()));
+            RenewAsync();
+        }
+
+        private void ChangeAdminPasswordButton_Click(object sender, EventArgs e)
+        {
+            LoadForm.Invoke(this, new LoadFormEventArgs(new ChangeAdminPasswordForm()));
         }
     }
 }

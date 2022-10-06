@@ -29,6 +29,8 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.Windows.Forms.ListViewGroup listViewGroup3 = new System.Windows.Forms.ListViewGroup("Локальное хранилище", System.Windows.Forms.HorizontalAlignment.Left);
+            System.Windows.Forms.ListViewGroup listViewGroup4 = new System.Windows.Forms.ListViewGroup("Облачное хранилище", System.Windows.Forms.HorizontalAlignment.Left);
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FileManagerForm));
             this.label2 = new System.Windows.Forms.Label();
             this.FileManagerListView = new System.Windows.Forms.ListView();
@@ -36,6 +38,7 @@
             this.UploadLocalButton = new System.Windows.Forms.Button();
             this.DownloadLocalButton = new System.Windows.Forms.Button();
             this.DeleteLocalButton = new System.Windows.Forms.Button();
+            this.UploadFtpButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label2
@@ -49,6 +52,14 @@
             // 
             // FileManagerListView
             // 
+            this.FileManagerListView.GridLines = true;
+            listViewGroup3.Header = "Локальное хранилище";
+            listViewGroup3.Name = "localGroup";
+            listViewGroup4.Header = "Облачное хранилище";
+            listViewGroup4.Name = "cloudGroup";
+            this.FileManagerListView.Groups.AddRange(new System.Windows.Forms.ListViewGroup[] {
+            listViewGroup3,
+            listViewGroup4});
             this.FileManagerListView.LargeImageList = this.ExtensionImageList;
             this.FileManagerListView.Location = new System.Drawing.Point(273, 12);
             this.FileManagerListView.Name = "FileManagerListView";
@@ -56,7 +67,7 @@
             this.FileManagerListView.SmallImageList = this.ExtensionImageList;
             this.FileManagerListView.TabIndex = 2;
             this.FileManagerListView.UseCompatibleStateImageBehavior = false;
-            this.FileManagerListView.View = System.Windows.Forms.View.List;
+            this.FileManagerListView.View = System.Windows.Forms.View.Tile;
             // 
             // ExtensionImageList
             // 
@@ -73,15 +84,15 @@
             // 
             this.UploadLocalButton.Location = new System.Drawing.Point(40, 38);
             this.UploadLocalButton.Name = "UploadLocalButton";
-            this.UploadLocalButton.Size = new System.Drawing.Size(75, 23);
+            this.UploadLocalButton.Size = new System.Drawing.Size(128, 23);
             this.UploadLocalButton.TabIndex = 3;
-            this.UploadLocalButton.Text = "Загрузить";
+            this.UploadLocalButton.Text = "Загрузить локально";
             this.UploadLocalButton.UseVisualStyleBackColor = true;
             this.UploadLocalButton.Click += new System.EventHandler(this.UploadLocalButton_Click);
             // 
             // DownloadLocalButton
             // 
-            this.DownloadLocalButton.Location = new System.Drawing.Point(40, 67);
+            this.DownloadLocalButton.Location = new System.Drawing.Point(40, 110);
             this.DownloadLocalButton.Name = "DownloadLocalButton";
             this.DownloadLocalButton.Size = new System.Drawing.Size(75, 23);
             this.DownloadLocalButton.TabIndex = 4;
@@ -91,7 +102,7 @@
             // 
             // DeleteLocalButton
             // 
-            this.DeleteLocalButton.Location = new System.Drawing.Point(40, 96);
+            this.DeleteLocalButton.Location = new System.Drawing.Point(40, 139);
             this.DeleteLocalButton.Name = "DeleteLocalButton";
             this.DeleteLocalButton.Size = new System.Drawing.Size(75, 23);
             this.DeleteLocalButton.TabIndex = 5;
@@ -99,11 +110,22 @@
             this.DeleteLocalButton.UseVisualStyleBackColor = true;
             this.DeleteLocalButton.Click += new System.EventHandler(this.DeleteLocalButton_Click);
             // 
+            // UploadFtpButton
+            // 
+            this.UploadFtpButton.Location = new System.Drawing.Point(40, 67);
+            this.UploadFtpButton.Name = "UploadFtpButton";
+            this.UploadFtpButton.Size = new System.Drawing.Size(128, 23);
+            this.UploadFtpButton.TabIndex = 6;
+            this.UploadFtpButton.Text = "Загрузить на FTP";
+            this.UploadFtpButton.UseVisualStyleBackColor = true;
+            this.UploadFtpButton.Click += new System.EventHandler(this.UploadFtpButton_Click);
+            // 
             // FileManagerForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(756, 429);
+            this.Controls.Add(this.UploadFtpButton);
             this.Controls.Add(this.DeleteLocalButton);
             this.Controls.Add(this.DownloadLocalButton);
             this.Controls.Add(this.UploadLocalButton);
@@ -125,5 +147,6 @@
         private Button UploadLocalButton;
         private Button DownloadLocalButton;
         private Button DeleteLocalButton;
+        private Button UploadFtpButton;
     }
 }

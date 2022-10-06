@@ -14,7 +14,7 @@ public partial class MainForm : Form
         InitializeComponent();
     }
 
-    Stack<Form> forms = new Stack<Form>();
+    Stack<IStackableForm> forms = new Stack<IStackableForm>();
 
     private void MinimizeButton_Click(object sender, EventArgs e)
     {
@@ -44,19 +44,37 @@ public partial class MainForm : Form
         this.Size = new Size(BodyPanel.Width, BodyPanel.Height + HeadPanel.Height + FooterPanel.Height);
     }
 
-    public void LoadForm(Form form) 
+    public void LoadForm(IStackableForm form) 
     {
+        form.LoadForm += Form_LoadForm;
+        form.GoBack += Form_GoBack;
         forms.Push(form);
-        FormTools.FormToPanel(form, BodyPanel);
+        FormTools.FormToPanel(form as Form, BodyPanel);
         HeaderLabel.Text = form.Text;
+        ValidateButtons();
+    }
+
+    private void Form_GoBack(object? sender, EventArgs e)
+    {
+        GoBack();
+    }
+
+    private void Form_LoadForm(object? sender, LoadFormEventArgs e)
+    {
+        LoadForm(e.newForm);
+    }
+
+    private void ValidateButtons()
+    {
+        SettingsButton.Visible = !(forms.Peek() is SettingsForm);
         BackButton.Visible = forms.Count > 1;
     }
 
     public void GoBack()
     {
         forms.Pop().Dispose();
-        Form form = forms.Peek();
-        FormTools.FormToPanel(form, BodyPanel);
+        IStackableForm form = forms.Peek();
+        FormTools.FormToPanel(form as Form, BodyPanel);
         HeaderLabel.Text = form.Text;
         BackButton.Visible = forms.Count > 1;
     }
@@ -97,10 +115,5 @@ public partial class MainForm : Form
     private void SettingsButton_Click(object sender, EventArgs e)
     {
         LoadForm(new SettingsForm());
-    }
-
-    private void AdminButton_Click(object sender, EventArgs e)
-    {
-        LoadForm(new AdministrationForm());
     }
 }
