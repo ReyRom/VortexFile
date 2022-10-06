@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using VortexFileClient.Data;
 using VortexFileClient.Extensions;
-using VortexFileClient.Models;
+using VortexFileClient.Data.Models;
 
 namespace VortexFileClient.Forms
 {

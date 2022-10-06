@@ -1,3 +1,4 @@
+using VortexFileClient.Data;
 using VortexFileClient.Extensions;
 
 namespace VortexFileClient.Forms;
@@ -36,6 +37,8 @@ public partial class MainForm : Form
 
     private void MainForm_Load(object sender, EventArgs e)
     {
+        VortexFileMySqlContext context = new VortexFileMySqlContext();
+        MessageBox.Show(context.Users.First().Login);
         LoadForm(new AuthorizationForm());
     }
 

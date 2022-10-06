@@ -5,7 +5,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using VortexFileClient.Models;
+using VortexFileClient.Data.Models;
 
 namespace VortexFileClient.Data
 {
