@@ -7,7 +7,7 @@ using System.Data.SqlClient;
 using System.Data;
 using FastMember;
 using VortexFileClient.Extensions;
-using VortexFileClient.Models;
+using VortexFileClient.Data.Models;
 
 namespace VortexFileClient.Data
 {
@@ -57,6 +57,11 @@ namespace VortexFileClient.Data
         {
             try
             {
+                user.uid = user.gid = 2001;
+                user.homedir = $"/srv/ftp/{user.Login}";
+                user.shell = "/sbin/nologin";
+                user.count = 0;
+                user.accessed = user.modified = DateTime.Now;
                 var newUser = Core.Context.Users.Add(user);
                 Core.Context.SaveChanges();
             }

@@ -4,7 +4,7 @@ using System;
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
-using VortexFileClient.Models;
+using VortexFileClient.Data.Models;
 
 namespace VortexFileClient.Data
 {

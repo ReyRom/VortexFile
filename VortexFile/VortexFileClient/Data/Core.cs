@@ -8,7 +8,7 @@ namespace VortexFileClient.Data
 {
     public static class Core
     {
-        static VortexFileContext context;
-        public static VortexFileContext Context { get { return context ??= new VortexFileContext(); } }
+        static VortexFileMySqlContext context;
+        public static VortexFileMySqlContext Context { get { return context ??= new VortexFileMySqlContext(); } }
     }
 }

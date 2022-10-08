@@ -7,8 +7,7 @@ using System.Data.SqlClient;
 using System.Data;
 using FastMember;
 using VortexFileClient.Extensions;
-using VortexFileClient.Models;
-
+using VortexFileClient.Data.Models;
 namespace VortexFileClient.Data
 {
     public static class DALold
