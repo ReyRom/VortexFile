@@ -36,8 +36,9 @@ partial class MainForm
             this.CloseButton = new System.Windows.Forms.Button();
             this.BodyPanel = new System.Windows.Forms.Panel();
             this.FooterPanel = new System.Windows.Forms.Panel();
+            this.SettingsButton = new System.Windows.Forms.Button();
+            this.connectionIndicator = new VortexFileClient.Extensions.ConnectionIndicator();
             this.BackButton = new System.Windows.Forms.Button();
-            this.ConnectionButton = new System.Windows.Forms.Button();
             this.HeadPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.LogoPictureBox)).BeginInit();
             this.FooterPanel.SuspendLayout();
@@ -138,13 +139,40 @@ partial class MainForm
             // 
             // FooterPanel
             // 
+            this.FooterPanel.Controls.Add(this.SettingsButton);
+            this.FooterPanel.Controls.Add(this.connectionIndicator);
             this.FooterPanel.Controls.Add(this.BackButton);
-            this.FooterPanel.Controls.Add(this.ConnectionButton);
             this.FooterPanel.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.FooterPanel.Location = new System.Drawing.Point(0, 405);
             this.FooterPanel.Name = "FooterPanel";
             this.FooterPanel.Size = new System.Drawing.Size(773, 30);
             this.FooterPanel.TabIndex = 2;
+            // 
+            // SettingsButton
+            // 
+            this.SettingsButton.Dock = System.Windows.Forms.DockStyle.Right;
+            this.SettingsButton.FlatAppearance.BorderSize = 0;
+            this.SettingsButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.SettingsButton.Location = new System.Drawing.Point(629, 0);
+            this.SettingsButton.Name = "SettingsButton";
+            this.SettingsButton.Size = new System.Drawing.Size(114, 30);
+            this.SettingsButton.TabIndex = 4;
+            this.SettingsButton.Text = "Настройки";
+            this.SettingsButton.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.SettingsButton.UseVisualStyleBackColor = true;
+            this.SettingsButton.Click += new System.EventHandler(this.SettingsButton_Click);
+            // 
+            // connectionIndicator
+            // 
+            this.connectionIndicator.ConnectImage = global::VortexFileClient.Properties.Resources.green_circle;
+            this.connectionIndicator.DisconnectImage = global::VortexFileClient.Properties.Resources.red_circle;
+            this.connectionIndicator.Dock = System.Windows.Forms.DockStyle.Right;
+            this.connectionIndicator.Location = new System.Drawing.Point(743, 0);
+            this.connectionIndicator.Margin = new System.Windows.Forms.Padding(4);
+            this.connectionIndicator.Name = "connectionIndicator";
+            this.connectionIndicator.Size = new System.Drawing.Size(30, 30);
+            this.connectionIndicator.TabIndex = 3;
+            this.connectionIndicator.TimerInterval = 60000;
             // 
             // BackButton
             // 
@@ -158,18 +186,6 @@ partial class MainForm
             this.BackButton.Text = "<- Назад";
             this.BackButton.UseVisualStyleBackColor = true;
             this.BackButton.Click += new System.EventHandler(this.BackButton_Click);
-            // 
-            // ConnectionButton
-            // 
-            this.ConnectionButton.Dock = System.Windows.Forms.DockStyle.Right;
-            this.ConnectionButton.FlatAppearance.BorderSize = 0;
-            this.ConnectionButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.ConnectionButton.Location = new System.Drawing.Point(653, 0);
-            this.ConnectionButton.Name = "ConnectionButton";
-            this.ConnectionButton.Size = new System.Drawing.Size(120, 30);
-            this.ConnectionButton.TabIndex = 0;
-            this.ConnectionButton.Text = "Соединение";
-            this.ConnectionButton.UseVisualStyleBackColor = true;
             // 
             // MainForm
             // 
@@ -206,5 +222,6 @@ partial class MainForm
     private Button HelpButton;
     private Panel FooterPanel;
     private Button BackButton;
-    private Button ConnectionButton;
+    private Extensions.ConnectionIndicator connectionIndicator;
+    private Button SettingsButton;
 }

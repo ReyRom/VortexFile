@@ -8,11 +8,11 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace VortexFileClient.Forms
+namespace VortexFileClient.Extensions
 {
-    public partial class AdministationForm : Form
+    public partial class Waiting : UserControl
     {
-        public AdministationForm()
+        public Waiting()
         {
             InitializeComponent();
         }

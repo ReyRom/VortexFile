@@ -8,5 +8,14 @@
     <Setting Name="Password" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
     </Setting>
+    <Setting Name="Path" Type="System.String" Scope="User">
+      <Value Profile="(Default)">C:\VortexFile</Value>
+    </Setting>
+    <Setting Name="ZipPassword" Type="System.String" Scope="User">
+      <Value Profile="(Default)">1234</Value>
+    </Setting>
+    <Setting Name="AdminPassword" Type="System.String" Scope="User">
+      <Value Profile="(Default)">1234</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

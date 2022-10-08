@@ -46,5 +46,41 @@ namespace VortexFileClient.Properties {
                 this["Password"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("C:\\VortexFile")]
+        public string Path {
+            get {
+                return ((string)(this["Path"]));
+            }
+            set {
+                this["Path"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("1234")]
+        public string ZipPassword {
+            get {
+                return ((string)(this["ZipPassword"]));
+            }
+            set {
+                this["ZipPassword"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("1234")]
+        public string AdminPassword {
+            get {
+                return ((string)(this["AdminPassword"]));
+            }
+            set {
+                this["AdminPassword"] = value;
+            }
+        }
     }
 }

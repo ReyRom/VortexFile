@@ -74,6 +74,7 @@
             this.PasswordTextBox.Size = new System.Drawing.Size(345, 26);
             this.PasswordTextBox.TabIndex = 2;
             this.PasswordTextBox.UseSystemPasswordChar = true;
+            this.PasswordTextBox.TextChanged += new System.EventHandler(this.PasswordTextBox_TextChanged);
             // 
             // EmailTextBox
             // 
@@ -97,6 +98,7 @@
             this.ConfirmTextBox.Size = new System.Drawing.Size(345, 26);
             this.ConfirmTextBox.TabIndex = 5;
             this.ConfirmTextBox.UseSystemPasswordChar = true;
+            this.ConfirmTextBox.TextChanged += new System.EventHandler(this.ConfirmTextBox_TextChanged);
             // 
             // UsernameTextBox
             // 
@@ -252,6 +254,7 @@
             this.PasswordCheckBox.TabIndex = 22;
             this.PasswordCheckBox.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.PasswordCheckBox.UseVisualStyleBackColor = false;
+            this.PasswordCheckBox.CheckedChanged += new System.EventHandler(this.PasswordCheckBox_CheckedChanged);
             // 
             // RegistrationForm
             // 

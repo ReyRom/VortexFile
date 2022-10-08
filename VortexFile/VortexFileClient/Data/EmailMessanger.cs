@@ -21,12 +21,7 @@ namespace VortexFileClient.Data
 
         public EmailMessanger(string email, string name, string password)
         {
-            code = String.Empty;
-            Random rnd = new Random();
-            string ALF = "1234567890QWERTYUIOPASDFGHJKLZXCVBNM";
-            for (int i = 0; i < 5; ++i)
-                code += ALF[rnd.Next(ALF.Length)];
-
+            code = Code.Generate(5);
             this.email = email;
             this.name = name;
             this.password = password;
