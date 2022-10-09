@@ -35,7 +35,7 @@
             // WaitingPictureBox
             // 
             this.WaitingPictureBox.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.WaitingPictureBox.Image = global::VortexFileClient.Properties.Resources.loading;
+            this.WaitingPictureBox.Image = global::VortexFileClient.Properties.Resources.Loading;
             this.WaitingPictureBox.Location = new System.Drawing.Point(0, 0);
             this.WaitingPictureBox.Name = "WaitingPictureBox";
             this.WaitingPictureBox.Size = new System.Drawing.Size(340, 253);

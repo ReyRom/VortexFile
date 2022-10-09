@@ -41,7 +41,7 @@ namespace VortexFileClient.Forms
 
         private void FIleManagerForm_Load(object sender, EventArgs e)
         {
-            label2.Text = Data.Session.CurrentUser.Login;
+            label2.Text = Session.CurrentUser.Login;
             LoadData();
         }
 
