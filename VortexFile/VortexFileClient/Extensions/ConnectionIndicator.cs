@@ -44,7 +44,7 @@ namespace VortexFileClient.Extensions
             }
             catch (Exception)
             {
-                backgroundWorker.CancelAsync();
+                e.Result = false;
             }
         }
 
