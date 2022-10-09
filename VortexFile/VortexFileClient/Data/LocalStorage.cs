@@ -1,11 +1,4 @@
 ﻿using Ionic.Zip;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using VortexFileClient.Data.Models;
 
 namespace VortexFileClient.Data
 {
@@ -29,7 +22,7 @@ namespace VortexFileClient.Data
             {
                 ZipHelper.CreateZip(initialCatalog);
             }
-            if (!GetCatalog().Any(z=>z.FileName == userCatalog))
+            if (!GetCatalog().Any(z => z.FileName == userCatalog))
             {
                 string tempPath = Path.Combine(Properties.Settings.Default.Path, userCatalog);
                 ZipHelper.AppendFilesToZipWithPassword(initialCatalog, new List<string> { ZipHelper.CreateZip(tempPath) }, zipPassword);
@@ -40,9 +33,9 @@ namespace VortexFileClient.Data
 
         private void DAL_OnUserDelete(object? sender, EventArgs e)
         {
-            using(ZipFile zip = ZipHelper.ReadZip(initialCatalog))
+            using (ZipFile zip = ZipHelper.ReadZip(initialCatalog))
             {
-                var zipEntry = GetCatalog().SingleOrDefault(z => z.FileName == (string)sender+".zip");
+                var zipEntry = GetCatalog().SingleOrDefault(z => z.FileName == (string)sender + ".zip");
                 if (zipEntry == null) return;
                 zip.RemoveEntry(zipEntry);
                 zip.Save();
@@ -51,7 +44,7 @@ namespace VortexFileClient.Data
 
         public void DeleteFiles(List<string> fileNames)
         {
-            using (ZipFile zip = ZipHelper.ReadSubZipWithPassword(initialCatalog,userCatalog, zipPassword))
+            using (ZipFile zip = ZipHelper.ReadSubZipWithPassword(initialCatalog, userCatalog, zipPassword))
             {
                 foreach (var fileName in fileNames)
                 {
@@ -104,7 +97,7 @@ namespace VortexFileClient.Data
                     }
                 }
                 using (MemoryStream memoryStream = new MemoryStream())
-                { 
+                {
                     zip.Save(memoryStream);
                     memoryStream.Position = 0;
                     using (var outerZip = ZipHelper.ReadZip(initialCatalog))

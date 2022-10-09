@@ -1,18 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Text;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 using VortexFileClient.Data.Models;
 
 namespace VortexFileClient.Data
 {
     internal static class Session
     {
-        private static User ?currentUser;
+        private static User? currentUser;
 
-        public static User ?CurrentUser { get => currentUser; set => currentUser = value; }
+        public static User? CurrentUser { get => currentUser; set => currentUser = value; }
 
         public static string Login
         {
@@ -24,7 +20,7 @@ namespace VortexFileClient.Data
             }
         }
         public static string Password
-        { 
+        {
             get => Properties.Settings.Default.Password;
             set
             {

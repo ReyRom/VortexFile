@@ -7,8 +7,8 @@ namespace VortexFileClient.Extensions
         public Image ConnectImage { get; set; }
         public Image DisconnectImage { get; set; }
 
-        private bool IsConnected 
-        { 
+        private bool IsConnected
+        {
             set
             {
                 if (value)

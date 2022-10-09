@@ -1,20 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using FastMember;
 using System.Data.SqlClient;
-using System.Data;
-using FastMember;
-using VortexFileClient.Extensions;
 using VortexFileClient.Data.Models;
+using VortexFileClient.Extensions;
 namespace VortexFileClient.Data
 {
     public static class DALold
     {
         static SqlConnectionStringBuilder builder = new SqlConnectionStringBuilder();
-        
-        static string connectionString =    "Data Source=ROMA1NV1CTUS;" +
+
+        static string connectionString = "Data Source=ROMA1NV1CTUS;" +
                                             "Initial Catalog=VortexFile;" +
                                             "User id=sa;" +
                                             "Password=1;";

@@ -1,23 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Text.RegularExpressions;
-using System.Threading.Tasks;
-using System.Windows.Forms;
+﻿using System.Text.RegularExpressions;
 using VortexFileClient.Data;
-using VortexFileClient.Extensions;
 using VortexFileClient.Data.Models;
+using VortexFileClient.Extensions;
 
 namespace VortexFileClient.Forms
 {
     public partial class ResetPasswordForm : Form, IStackableForm
     {
-        EmailMessanger ?emailMessanger;
-        User ?user;
+        EmailMessanger? emailMessanger;
+        User? user;
 
         public event EventHandler<LoadFormEventArgs> LoadForm;
         public event EventHandler GoBack;

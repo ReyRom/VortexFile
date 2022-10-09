@@ -1,15 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using VortexFileClient.Data;
-using VortexFileClient.Extensions;
+﻿using VortexFileClient.Data;
 using VortexFileClient.Data.Models;
+using VortexFileClient.Extensions;
 
 namespace VortexFileClient.Forms
 {

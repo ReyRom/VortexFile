@@ -1,13 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Data.SqlClient;
-using System.Data;
-using FastMember;
+﻿using VortexFileClient.Data.Models;
 using VortexFileClient.Extensions;
-using VortexFileClient.Data.Models;
 
 namespace VortexFileClient.Data
 {
@@ -31,7 +23,7 @@ namespace VortexFileClient.Data
 
         public static User GetUserByEmail(string email)
         {
-            User? user = null; 
+            User? user = null;
             try
             {
                 user = Core.Context.Users.SingleOrDefault(x => x.Email == email);
@@ -94,7 +86,7 @@ namespace VortexFileClient.Data
 
         public async static Task<List<User>> GetUsersAsync()
         {
-            return await Task.Run(() =>Core.Context.Users.ToList());
+            return await Task.Run(() => Core.Context.Users.ToList());
         }
 
         public static void UpdateUser(User user)

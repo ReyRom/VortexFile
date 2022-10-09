@@ -1,19 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using VortexFileClient.Extensions;
+﻿using VortexFileClient.Extensions;
 
 namespace VortexFileClient.Forms
 {
     public partial class SettingsForm : Form, IStackableForm
     {
-        private string Path 
+        private string Path
         {
             get
             {
@@ -50,7 +41,7 @@ namespace VortexFileClient.Forms
 
         private void AdminButton_Click(object sender, EventArgs e)
         {
-            LoadForm.Invoke(this,new LoadFormEventArgs(new AdminAuthForm()));
+            LoadForm.Invoke(this, new LoadFormEventArgs(new AdminAuthForm()));
         }
     }
 }

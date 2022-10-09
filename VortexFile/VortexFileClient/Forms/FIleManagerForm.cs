@@ -1,13 +1,4 @@
-﻿using Ionic.Zip;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
+﻿using System.ComponentModel;
 using VortexFileClient.Data;
 using VortexFileClient.Extensions;
 
@@ -117,7 +108,7 @@ namespace VortexFileClient.Forms
             openFileDialog.Multiselect = true;
             if (openFileDialog.ShowDialog() == DialogResult.OK)
             {
-                RunProgress(()=>localStorage.UploadFiles(openFileDialog.FileNames.ToList()));
+                RunProgress(() => localStorage.UploadFiles(openFileDialog.FileNames.ToList()));
             }
         }
 
