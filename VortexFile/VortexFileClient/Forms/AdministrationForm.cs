@@ -29,7 +29,14 @@ namespace VortexFileClient.Forms
         {
             UsersDataGridView.Visible = false;
             Waiting.Visible = true;
-            UsersDataGridView.DataSource = await DAL.GetUsersAsync();
+            try
+            {
+                UsersDataGridView.DataSource = await DAL.GetUsersAsync();
+            }
+            catch (Exception ex)
+            {
+                Feedback.ErrorMessage(ex);
+            }
             Waiting.Visible = false;
             UsersDataGridView.Visible = true;
         }
@@ -38,7 +45,15 @@ namespace VortexFileClient.Forms
         {
             User user = UsersDataGridView.Rows[e.RowIndex].DataBoundItem as User;
             StringBuilder errors = new StringBuilder();
-            User tmp = DAL.GetUserByEmail(user.Email);
+            User tmp = null;
+            try
+            {
+                tmp = DAL.GetUserByEmail(user.Email);
+            }
+            catch (Exception ex)
+            {
+                Feedback.ErrorMessage(ex);
+            }
             if (tmp != null && tmp.IdUser != user.IdUser)
             {
                 errors.AppendLine("Почта занята другим пользователем.");
@@ -53,7 +68,7 @@ namespace VortexFileClient.Forms
             }
             if (errors.Length > 0)
             {
-                Extensions.Feedback.WarningMessage(errors.ToString());
+                Feedback.WarningMessage(errors.ToString());
                 UsersDataGridView.Rows[e.RowIndex].Cells[e.ColumnIndex].Value = tempVar;
                 return;
             }
@@ -68,9 +83,9 @@ namespace VortexFileClient.Forms
                     user.Username = null;
                 }
             }
-            DAL.UpdateUser(user);
             try
             {
+                DAL.UpdateUser(user);
                 EmailMessanger emailMessanger = new EmailMessanger("vortexfile-email-confirm@yandex.ru", "Vortex File", "zbhicmvhztojxnar");
                 string body = "Данные вашей учётной записи изменены.";
                 if (email != user.Email)
@@ -81,7 +96,7 @@ namespace VortexFileClient.Forms
             }
             catch (Exception ex)
             {
-                Extensions.Feedback.ErrorMessage(ex);
+                Feedback.ErrorMessage(ex);
             }
         }
 
@@ -95,11 +110,19 @@ namespace VortexFileClient.Forms
         {
             if (e.ColumnIndex == DeleteColumn.Index)
             {
-                if (Extensions.Feedback.QuestionMessage("Вы уверены, что хотите удалить эту учетную запись"))
+                if (Feedback.QuestionMessage("Вы уверены, что хотите удалить эту учетную запись"))
                 {
                     var user = UsersDataGridView.Rows[e.RowIndex].DataBoundItem as User;
                     email = user.Email;
-                    DAL.DeleteUser(user);
+                    try
+                    {
+                        DAL.DeleteUser(user);
+                    }
+                    catch (Exception ex)
+                    {
+                        Feedback.ErrorMessage(ex);
+                        return;
+                    }
                     RenewAsync();
                     try
                     {
@@ -109,7 +132,7 @@ namespace VortexFileClient.Forms
                     }
                     catch (Exception ex)
                     {
-                        Extensions.Feedback.ErrorMessage(ex);
+                        Feedback.ErrorMessage(ex);
                     }
                 }
             }

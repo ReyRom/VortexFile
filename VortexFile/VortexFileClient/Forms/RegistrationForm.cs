@@ -61,7 +61,7 @@ namespace VortexFileClient.Forms
                 }
                 catch (Exception ex)
                 {
-                    Extensions.Feedback.ErrorMessage(ex);
+                    Feedback.ErrorMessage(ex);
                 }
                 GoBack.Invoke(this, EventArgs.Empty);
             }
@@ -83,16 +83,6 @@ namespace VortexFileClient.Forms
         private void CaptchaTextBox_KeyPress(object sender, KeyPressEventArgs e)
         {
             e.KeyChar = char.ToUpper(e.KeyChar);
-        }
-
-        private void PasswordTextBox_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void ConfirmTextBox_TextChanged(object sender, EventArgs e)
-        {
-
         }
     }
 }

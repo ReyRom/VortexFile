@@ -10,28 +10,14 @@ namespace VortexFileClient.Data
         public static User GetUserByLogin(string login)
         {
             User? user = null;
-            try
-            {
-                user = Core.Context.Users.SingleOrDefault(x => x.Login == login);
-            }
-            catch (Exception ex)
-            {
-                Feedback.ErrorMessage(ex);
-            }
+            user = Core.Context.Users.SingleOrDefault(x => x.Login == login);
             return user;
         }
 
         public static User GetUserByEmail(string email)
         {
             User? user = null;
-            try
-            {
-                user = Core.Context.Users.SingleOrDefault(x => x.Email == email);
-            }
-            catch (Exception ex)
-            {
-                Feedback.ErrorMessage(ex);
-            }
+            user = Core.Context.Users.SingleOrDefault(x => x.Email == email);
             return user;
         }
 
@@ -47,35 +33,21 @@ namespace VortexFileClient.Data
 
         public static User AddUser(User user)
         {
-            try
-            {
-                user.uid = user.gid = 2001;
-                user.homedir = $"/srv/ftp/{user.Login}";
-                user.shell = "/sbin/nologin";
-                user.count = 0;
-                user.accessed = user.modified = DateTime.Now;
-                var newUser = Core.Context.Users.Add(user);
-                Core.Context.SaveChanges();
-            }
-            catch (Exception ex)
-            {
-                Feedback.ErrorMessage(ex);
-            }
+            user.uid = user.gid = 2001;
+            user.homedir = $"/srv/ftp/{user.Login}";
+            user.shell = "/sbin/nologin";
+            user.count = 0;
+            user.accessed = user.modified = DateTime.Now;
+            var newUser = Core.Context.Users.Add(user);
+            Core.Context.SaveChanges();
             return GetUserByLogin(user.Login);
         }
 
         public static User ChangeUserPassword(User user, string newPassword)
         {
-            try
-            {
-                user.Password = newPassword;
-                Core.Context.Entry(user).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
-                Core.Context.SaveChanges();
-            }
-            catch (Exception ex)
-            {
-                Feedback.ErrorMessage(ex);
-            }
+            user.Password = newPassword;
+            Core.Context.Entry(user).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
+            Core.Context.SaveChanges();
             return GetUserByLogin(user.Login);
         }
 
@@ -91,29 +63,15 @@ namespace VortexFileClient.Data
 
         public static void UpdateUser(User user)
         {
-            try
-            {
-                Core.Context.Entry(user).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
-                Core.Context.SaveChanges();
-            }
-            catch (Exception ex)
-            {
-                Feedback.ErrorMessage(ex);
-            }
+            Core.Context.Entry(user).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
+            Core.Context.SaveChanges();
         }
         public static void DeleteUser(User user)
         {
-            try
-            {
-                var login = user.Login;
-                Core.Context.Remove(user);
-                Core.Context.SaveChanges();
-                OnUserDelete.Invoke(login, EventArgs.Empty);
-            }
-            catch (Exception ex)
-            {
-                Feedback.ErrorMessage(ex);
-            }
+            var login = user.Login;
+            Core.Context.Remove(user);
+            Core.Context.SaveChanges();
+            OnUserDelete.Invoke(login, EventArgs.Empty);
         }
     }
 }

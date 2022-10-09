@@ -47,16 +47,23 @@ namespace VortexFileClient.Forms
 
         private void LoadData()
         {
-            FileManagerListView.Items.Clear();
-            foreach (var item in localStorage.GetUserCatalog(Properties.Settings.Default.ZipPassword))
+            try
             {
-                ListViewItem viewItem = new ListViewItem(item.FileName, GetIndex(Path.GetExtension(item.FileName)), FileManagerListView.Groups["localGroup"]);
-                FileManagerListView.Items.Add(viewItem);
+                FileManagerListView.Items.Clear();
+                foreach (var item in localStorage.GetUserCatalog(Properties.Settings.Default.ZipPassword))
+                {
+                    ListViewItem viewItem = new ListViewItem(item.FileName, GetIndex(Path.GetExtension(item.FileName)), FileManagerListView.Groups["localGroup"]);
+                    FileManagerListView.Items.Add(viewItem);
+                }
+                foreach (var item in cloudStorage.GetUserCatalog())
+                {
+                    ListViewItem viewItem = new ListViewItem(item, GetIndex(Path.GetExtension(item)), FileManagerListView.Groups["cloudGroup"]);
+                    FileManagerListView.Items.Add(viewItem);
+                }
             }
-            foreach (var item in cloudStorage.GetUserCatalog())
+            catch (Exception ex)
             {
-                ListViewItem viewItem = new ListViewItem(item, GetIndex(Path.GetExtension(item)), FileManagerListView.Groups["cloudGroup"]);
-                FileManagerListView.Items.Add(viewItem);
+                Feedback.ErrorMessage(ex);
             }
         }
 
@@ -104,11 +111,18 @@ namespace VortexFileClient.Forms
 
         private void UploadLocal()
         {
-            OpenFileDialog openFileDialog = new OpenFileDialog();
-            openFileDialog.Multiselect = true;
-            if (openFileDialog.ShowDialog() == DialogResult.OK)
+            try
             {
-                RunProgress(() => localStorage.UploadFiles(openFileDialog.FileNames.ToList()));
+                OpenFileDialog openFileDialog = new OpenFileDialog();
+                openFileDialog.Multiselect = true;
+                if (openFileDialog.ShowDialog() == DialogResult.OK)
+                {
+                    RunProgress(() => localStorage.UploadFiles(openFileDialog.FileNames.ToList()));
+                }
+            }
+            catch (Exception ex)
+            {
+                Feedback.ErrorMessage(ex);
             }
         }
 
@@ -119,8 +133,48 @@ namespace VortexFileClient.Forms
 
         private void Download()
         {
-            FolderBrowserDialog folderBrowserDialog = new FolderBrowserDialog();
-            if (folderBrowserDialog.ShowDialog() == DialogResult.OK)
+            try
+            {
+                FolderBrowserDialog folderBrowserDialog = new FolderBrowserDialog();
+                if (folderBrowserDialog.ShowDialog() == DialogResult.OK)
+                {
+                    List<string> localFilesName = new List<string>();
+                    List<string> cloudFilesName = new List<string>();
+                    foreach (ListViewItem item in FileManagerListView.SelectedItems)
+                    {
+                        if (item.Group == FileManagerListView.Groups["localGroup"])
+                        {
+                            localFilesName.Add(item.Text);
+                        }
+                        else
+                        {
+                            cloudFilesName.Add(item.Text);
+                        }
+                    }
+                    if (localFilesName.Count > 0)
+                    {
+                        RunProgress(() => localStorage.DownloadFiles(localFilesName, folderBrowserDialog.SelectedPath), false);
+                    }
+                    if (cloudFilesName.Count > 0)
+                    {
+                        RunProgress(() => cloudStorage.DownloadFiles(cloudFilesName, folderBrowserDialog.SelectedPath), false);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Feedback.ErrorMessage(ex);
+            }
+        }
+
+        private void DeleteButton_Click(object sender, EventArgs e)
+        {
+            Delete();
+        }
+
+        private void Delete()
+        {
+            try
             {
                 List<string> localFilesName = new List<string>();
                 List<string> cloudFilesName = new List<string>();
@@ -137,42 +191,16 @@ namespace VortexFileClient.Forms
                 }
                 if (localFilesName.Count > 0)
                 {
-                    RunProgress(() => localStorage.DownloadFiles(localFilesName, folderBrowserDialog.SelectedPath), false);
+                    RunProgress(() => localStorage.DeleteFiles(localFilesName));
                 }
                 if (cloudFilesName.Count > 0)
                 {
-                    RunProgress(() => cloudStorage.DownloadFiles(cloudFilesName, folderBrowserDialog.SelectedPath), false);
+                    RunProgress(() => cloudStorage.DeleteFiles(cloudFilesName));
                 }
             }
-        }
-
-        private void DeleteButton_Click(object sender, EventArgs e)
-        {
-            Delete();
-        }
-
-        private void Delete()
-        {
-            List<string> localFilesName = new List<string>();
-            List<string> cloudFilesName = new List<string>();
-            foreach (ListViewItem item in FileManagerListView.SelectedItems)
+            catch (Exception ex)
             {
-                if (item.Group == FileManagerListView.Groups["localGroup"])
-                {
-                    localFilesName.Add(item.Text);
-                }
-                else
-                {
-                    cloudFilesName.Add(item.Text);
-                }
-            }
-            if (localFilesName.Count > 0)
-            {
-                RunProgress(() => localStorage.DeleteFiles(localFilesName));
-            }
-            if (cloudFilesName.Count > 0)
-            {
-                RunProgress(() => cloudStorage.DeleteFiles(cloudFilesName));
+                Feedback.ErrorMessage(ex);
             }
         }
 
@@ -183,11 +211,18 @@ namespace VortexFileClient.Forms
 
         private void UploadFtp()
         {
-            OpenFileDialog openFileDialog = new OpenFileDialog();
-            openFileDialog.Multiselect = true;
-            if (openFileDialog.ShowDialog() == DialogResult.OK)
+            try
             {
-                RunProgress(() => cloudStorage.UploadFiles(openFileDialog.FileNames.ToList()));
+                OpenFileDialog openFileDialog = new OpenFileDialog();
+                openFileDialog.Multiselect = true;
+                if (openFileDialog.ShowDialog() == DialogResult.OK)
+                {
+                    RunProgress(() => cloudStorage.UploadFiles(openFileDialog.FileNames.ToList()));
+                }
+            }
+            catch (Exception ex)
+            {
+                Feedback.ErrorMessage(ex);
             }
         }
 

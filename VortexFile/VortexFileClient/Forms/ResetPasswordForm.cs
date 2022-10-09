@@ -70,9 +70,16 @@ namespace VortexFileClient.Forms
                 Feedback.WarningMessage("Введен некорректный пароль. Пароль должен состоять из 8 - 20 символов, которые могут быть цифрами, строчными и прописными буквами.");
                 return;
             }
-            DAL.ChangeUserPassword(user, PasswordTextBox.Text);
-            Extensions.Feedback.InformationMessage("Пароль успешно изменен");
-            GoBack.Invoke(this, EventArgs.Empty);
+            try
+            {
+                DAL.ChangeUserPassword(user, PasswordTextBox.Text);
+                Feedback.InformationMessage("Пароль успешно изменен");
+                GoBack.Invoke(this, EventArgs.Empty);
+            }
+            catch (Exception ex)
+            {
+                Feedback.ErrorMessage(ex);
+            }
         }
 
         private void ResetPasswordForm_Load(object sender, EventArgs e)
