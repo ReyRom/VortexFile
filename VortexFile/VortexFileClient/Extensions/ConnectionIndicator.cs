@@ -38,7 +38,14 @@ namespace VortexFileClient.Extensions
 
         private async void BackgroundWorker_DoWork(object sender, System.ComponentModel.DoWorkEventArgs e)
         {
-            e.Result = Core.Context.Database.CanConnectAsync().Result;
+            try
+            {
+                e.Result = Core.Context.Database.CanConnectAsync().Result;
+            }
+            catch (Exception)
+            {
+                backgroundWorker.CancelAsync();
+            }
         }
 
         private void BackgroundWorker_RunWorkerCompleted(object sender, System.ComponentModel.RunWorkerCompletedEventArgs e)
