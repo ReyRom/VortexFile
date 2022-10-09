@@ -17,7 +17,6 @@
             foreach (var fileName in fileNames)
             {
                 var status = FtpHelper.DownloadFile(Path.Combine(outFolder, fileName), serverAddress + fileName, login, password);
-
             }
         }
 
@@ -26,7 +25,6 @@
             foreach (var fileName in fileNames)
             {
                 var status = FtpHelper.UploadFile(fileName, serverAddress + Path.GetFileName(fileName), login, password);
-
             }
         }
 
@@ -35,7 +33,6 @@
             foreach (var fileName in fileNames)
             {
                 var status = FtpHelper.DeleteFile(serverAddress + fileName, login, password);
-
             }
         }
 
