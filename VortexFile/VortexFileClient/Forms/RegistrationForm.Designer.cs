@@ -180,7 +180,7 @@
             // Captcha
             // 
             this.Captcha.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.Captcha.Location = new System.Drawing.Point(30, 337);
+            this.Captcha.Location = new System.Drawing.Point(30, 335);
             this.Captcha.Margin = new System.Windows.Forms.Padding(4);
             this.Captcha.Name = "Captcha";
             this.Captcha.Size = new System.Drawing.Size(345, 91);

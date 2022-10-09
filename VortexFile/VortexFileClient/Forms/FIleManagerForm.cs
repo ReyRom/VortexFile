@@ -21,26 +21,18 @@ namespace VortexFileClient.Forms
         public event EventHandler<LoadFormEventArgs> LoadForm;
         public event EventHandler GoBack;
 
-        private bool OnlineMode
-        {
-            get;
-            set;
-        }
+        private bool OnlineMode { get; set; }
+
+        private bool IsFileChange { get; set; }
 
         private bool IsProgress
         {
             set
             {
-                progressBar.Visible = value;
-            }
-        }
-
-        private int ProgressPercent
-        {
-            set
-            {
-                MessageBox.Show(value.ToString());
-                progressBar.Value = value;
+                progressBar.Visible = ProgressTimer.Enabled = value;
+                progressBar.Value = 0;
+                progressBar.Style = ProgressBarStyle.Blocks;
+                progressBar.Style = ProgressBarStyle.Marquee;
             }
         }
 
@@ -108,9 +100,10 @@ namespace VortexFileClient.Forms
 
         private void RunProgress(Action action, bool updateData = true)
         {
+            IsFileChange = updateData;
             fileMethod = action;
             IsProgress = true;
-            backgroundWorker.RunWorkerAsync();
+            BackgroundWorker.RunWorkerAsync();
         }
 
         private void UploadLocalButton_Click(object sender, EventArgs e)
@@ -153,11 +146,11 @@ namespace VortexFileClient.Forms
                 }
                 if (localFilesName.Count > 0)
                 {
-                    RunProgress(() => localStorage.DownloadFiles(localFilesName, folderBrowserDialog.SelectedPath));
+                    RunProgress(() => localStorage.DownloadFiles(localFilesName, folderBrowserDialog.SelectedPath), false);
                 }
                 if (cloudFilesName.Count > 0)
                 {
-                    RunProgress(() => cloudStorage.DownloadFiles(cloudFilesName, folderBrowserDialog.SelectedPath));
+                    RunProgress(() => cloudStorage.DownloadFiles(cloudFilesName, folderBrowserDialog.SelectedPath), false);
                 }
             }
         }
@@ -209,19 +202,28 @@ namespace VortexFileClient.Forms
 
         private void BackgroundWorker_DoWork(object sender, DoWorkEventArgs e)
         {
-            
             fileMethod.Invoke();
-        }
-
-        private void BackgroundWorker_ProgressChanged(object sender, ProgressChangedEventArgs e)
-        {
-            ProgressPercent = e.ProgressPercentage;
         }
 
         private void BackgroundWorker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
+            if (IsFileChange)
+            {
+                fileChanged.Invoke(this, EventArgs.Empty);
+            }
             IsProgress = false;
-            fileChanged.Invoke(this, EventArgs.Empty);
+        }
+
+        private void ProgressTimer_Tick(object sender, EventArgs e)
+        {
+            if (progressBar.Value == 600)
+            {
+                progressBar.Value = 0;
+            }
+            else
+            {
+                progressBar.Value++;
+            }
         }
     }
 }

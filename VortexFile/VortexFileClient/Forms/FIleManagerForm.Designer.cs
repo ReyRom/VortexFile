@@ -40,7 +40,8 @@
             this.DeleteButton = new System.Windows.Forms.Button();
             this.UploadFtpButton = new System.Windows.Forms.Button();
             this.progressBar = new System.Windows.Forms.ProgressBar();
-            this.backgroundWorker = new System.ComponentModel.BackgroundWorker();
+            this.BackgroundWorker = new System.ComponentModel.BackgroundWorker();
+            this.ProgressTimer = new System.Windows.Forms.Timer(this.components);
             this.SuspendLayout();
             // 
             // label2
@@ -125,18 +126,23 @@
             // progressBar
             // 
             this.progressBar.Location = new System.Drawing.Point(12, 399);
+            this.progressBar.Maximum = 600;
             this.progressBar.Name = "progressBar";
             this.progressBar.Size = new System.Drawing.Size(732, 23);
+            this.progressBar.Style = System.Windows.Forms.ProgressBarStyle.Marquee;
             this.progressBar.TabIndex = 7;
             this.progressBar.Visible = false;
             // 
-            // backgroundWorker
+            // BackgroundWorker
             // 
-            this.backgroundWorker.WorkerReportsProgress = true;
-            this.backgroundWorker.WorkerSupportsCancellation = true;
-            this.backgroundWorker.DoWork += new System.ComponentModel.DoWorkEventHandler(this.BackgroundWorker_DoWork);
-            this.backgroundWorker.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(this.BackgroundWorker_ProgressChanged);
-            this.backgroundWorker.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.BackgroundWorker_RunWorkerCompleted);
+            this.BackgroundWorker.WorkerReportsProgress = true;
+            this.BackgroundWorker.WorkerSupportsCancellation = true;
+            this.BackgroundWorker.DoWork += new System.ComponentModel.DoWorkEventHandler(this.BackgroundWorker_DoWork);
+            this.BackgroundWorker.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.BackgroundWorker_RunWorkerCompleted);
+            // 
+            // ProgressTimer
+            // 
+            this.ProgressTimer.Tick += new System.EventHandler(this.ProgressTimer_Tick);
             // 
             // FileManagerForm
             // 
@@ -168,6 +174,7 @@
         private Button DeleteButton;
         private Button UploadFtpButton;
         private ProgressBar progressBar;
-        private System.ComponentModel.BackgroundWorker backgroundWorker;
+        private System.ComponentModel.BackgroundWorker BackgroundWorker;
+        private System.Windows.Forms.Timer ProgressTimer;
     }
 }
