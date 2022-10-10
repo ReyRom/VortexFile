@@ -31,6 +31,7 @@ namespace VortexFileClient.Data
 
         public static User Authorize(string login, string password)
         {
+            CurrentUser = null;
             User user = DAL.GetUser(login);
             if (user != null && user.Password == password)
             {

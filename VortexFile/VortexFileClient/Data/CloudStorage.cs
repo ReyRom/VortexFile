@@ -24,6 +24,10 @@
         {
             foreach (var fileName in fileNames)
             {
+                if (new FileInfo(fileName).Length > Extensions.Constants.GigaByte * 2)
+                {
+                    throw new Exception("Размер загружаемого файла больше 2ГБ.");
+                }
                 var status = FtpHelper.UploadFile(fileName, serverAddress + Path.GetFileName(fileName), login, password);
             }
         }

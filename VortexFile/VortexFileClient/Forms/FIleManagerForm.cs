@@ -1,4 +1,5 @@
-﻿using System.ComponentModel;
+﻿using Ionic.Zip;
+using System.ComponentModel;
 using VortexFileClient.Data;
 using VortexFileClient.Extensions;
 
@@ -30,32 +31,34 @@ namespace VortexFileClient.Forms
         public FileManagerForm(bool onlineMode = true)
         {
             InitializeComponent();
-            fileChanged += FileManagerForm_fileChanged;
+            fileChanged += FileManagerForm_fileChangedAsync;
             OnlineMode = onlineMode;
         }
 
-        private void FileManagerForm_fileChanged(object? sender, EventArgs e)
+        private async void FileManagerForm_fileChangedAsync(object? sender, EventArgs e)
         {
-            LoadData();
+            waiting.Visible = true;
+            await LoadDataAsync();
+            waiting.Visible = false;
         }
 
-        private void FIleManagerForm_Load(object sender, EventArgs e)
+        private void FileManagerForm_Load(object sender, EventArgs e)
         {
             label2.Text = Session.CurrentUser.Login;
-            LoadData();
+            fileChanged.Invoke(null, EventArgs.Empty);
         }
 
-        private void LoadData()
+        private async Task LoadDataAsync()
         {
             try
             {
                 FileManagerListView.Items.Clear();
-                foreach (var item in localStorage.GetUserCatalog(Properties.Settings.Default.ZipPassword))
+                foreach (var item in await Task.Run(()=>localStorage.GetUserCatalog(Properties.Settings.Default.ZipPassword)))
                 {
                     ListViewItem viewItem = new ListViewItem(item.FileName, GetIndex(Path.GetExtension(item.FileName)), FileManagerListView.Groups["localGroup"]);
                     FileManagerListView.Items.Add(viewItem);
                 }
-                foreach (var item in cloudStorage.GetUserCatalog())
+                foreach (var item in await Task.Run(() => cloudStorage.GetUserCatalog()))
                 {
                     ListViewItem viewItem = new ListViewItem(item, GetIndex(Path.GetExtension(item)), FileManagerListView.Groups["cloudGroup"]);
                     FileManagerListView.Items.Add(viewItem);
@@ -228,7 +231,14 @@ namespace VortexFileClient.Forms
 
         private void BackgroundWorker_DoWork(object sender, DoWorkEventArgs e)
         {
-            fileMethod.Invoke();
+            try
+            {
+                fileMethod.Invoke();
+            }
+            catch (Exception ex)
+            {
+                Feedback.ErrorMessage(ex);
+            }
         }
 
         private void BackgroundWorker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
@@ -242,14 +252,7 @@ namespace VortexFileClient.Forms
 
         private void ProgressTimer_Tick(object sender, EventArgs e)
         {
-            if (progressBar.Value == 600)
-            {
-                progressBar.Value = 0;
-            }
-            else
-            {
-                progressBar.Value++;
-            }
+            progressBar.Value +=2;
         }
     }
 }

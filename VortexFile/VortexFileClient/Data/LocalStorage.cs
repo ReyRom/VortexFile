@@ -1,4 +1,5 @@
 ﻿using Ionic.Zip;
+using Microsoft.VisualBasic;
 
 namespace VortexFileClient.Data
 {
@@ -84,6 +85,10 @@ namespace VortexFileClient.Data
                 zip.Password = password;
                 foreach (var item in filesName)
                 {
+                    if (new FileInfo(item).Length > Extensions.Constants.GigaByte * 2)
+                    {
+                        throw new Exception("Размер загружаемого файла больше 2ГБ.");
+                    }
                     try
                     {
                         zip.AddFile(item, "");
