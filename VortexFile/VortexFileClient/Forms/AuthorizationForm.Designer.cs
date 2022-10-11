@@ -92,7 +92,7 @@
             this.RegistrationLinkLabel.AutoSize = true;
             this.RegistrationLinkLabel.Font = new System.Drawing.Font("Trebuchet MS", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.RegistrationLinkLabel.LinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(100)))), ((int)(((byte)(210)))));
-            this.RegistrationLinkLabel.Location = new System.Drawing.Point(127, 242);
+            this.RegistrationLinkLabel.Location = new System.Drawing.Point(125, 242);
             this.RegistrationLinkLabel.Name = "RegistrationLinkLabel";
             this.RegistrationLinkLabel.Size = new System.Drawing.Size(158, 22);
             this.RegistrationLinkLabel.TabIndex = 4;

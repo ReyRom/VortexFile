@@ -49,10 +49,10 @@
             this.PasswordCheckBox.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.PasswordCheckBox.Font = new System.Drawing.Font("Trebuchet MS", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.PasswordCheckBox.ImageIndex = 0;
-            this.PasswordCheckBox.Location = new System.Drawing.Point(456, 66);
-            this.PasswordCheckBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.PasswordCheckBox.Location = new System.Drawing.Point(339, 50);
+            this.PasswordCheckBox.Margin = new System.Windows.Forms.Padding(4);
             this.PasswordCheckBox.Name = "PasswordCheckBox";
-            this.PasswordCheckBox.Size = new System.Drawing.Size(45, 23);
+            this.PasswordCheckBox.Size = new System.Drawing.Size(35, 23);
             this.PasswordCheckBox.TabIndex = 12;
             this.PasswordCheckBox.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.PasswordCheckBox.UseVisualStyleBackColor = false;
@@ -64,10 +64,10 @@
             this.EnterButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.EnterButton.Font = new System.Drawing.Font("Trebuchet MS", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.EnterButton.ForeColor = System.Drawing.Color.White;
-            this.EnterButton.Location = new System.Drawing.Point(60, 109);
-            this.EnterButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.EnterButton.Location = new System.Drawing.Point(30, 93);
+            this.EnterButton.Margin = new System.Windows.Forms.Padding(4);
             this.EnterButton.Name = "EnterButton";
-            this.EnterButton.Size = new System.Drawing.Size(441, 35);
+            this.EnterButton.Size = new System.Drawing.Size(345, 40);
             this.EnterButton.TabIndex = 11;
             this.EnterButton.Text = "Войти";
             this.EnterButton.UseVisualStyleBackColor = false;
@@ -76,12 +76,12 @@
             // PasswordTextBox
             // 
             this.PasswordTextBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(237)))), ((int)(((byte)(252)))));
-            this.PasswordTextBox.Location = new System.Drawing.Point(60, 65);
+            this.PasswordTextBox.Location = new System.Drawing.Point(30, 49);
             this.PasswordTextBox.Margin = new System.Windows.Forms.Padding(5, 6, 5, 6);
             this.PasswordTextBox.MaxLength = 20;
             this.PasswordTextBox.Name = "PasswordTextBox";
             this.PasswordTextBox.PlaceholderText = "Пароль";
-            this.PasswordTextBox.Size = new System.Drawing.Size(442, 26);
+            this.PasswordTextBox.Size = new System.Drawing.Size(345, 26);
             this.PasswordTextBox.TabIndex = 10;
             this.PasswordTextBox.UseSystemPasswordChar = true;
             // 
@@ -97,13 +97,14 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 22F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(534, 189);
+            this.BackColor = System.Drawing.Color.White;
+            this.ClientSize = new System.Drawing.Size(406, 164);
             this.Controls.Add(this.PasswordCheckBox);
             this.Controls.Add(this.EnterButton);
             this.Controls.Add(this.PasswordTextBox);
             this.Font = new System.Drawing.Font("Trebuchet MS", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "AdminAuthForm";
             this.Text = "AdminAuthForm";
             this.ResumeLayout(false);
