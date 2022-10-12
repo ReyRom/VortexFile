@@ -20,8 +20,10 @@ namespace VortexFileClient.Forms
         {
             if (OfflineCheckBox.Checked)
             {
+                Data.Session.AuthorizeOffline();
                 Feedback.InformationMessage("Вы успешно авторизованы");
                 LoadForm.Invoke(this, new LoadFormEventArgs(new FileManagerForm(false)));
+                return;
             }
             User user = null;
             try

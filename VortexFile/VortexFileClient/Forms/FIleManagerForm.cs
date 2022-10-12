@@ -45,6 +45,7 @@ namespace VortexFileClient.Forms
         private void FileManagerForm_Load(object sender, EventArgs e)
         {
             label2.Text = Session.CurrentUser.Login;
+            UploadFtpButton.Enabled = OnlineMode;
             fileChanged.Invoke(null, EventArgs.Empty);
         }
 
@@ -58,10 +59,13 @@ namespace VortexFileClient.Forms
                     ListViewItem viewItem = new ListViewItem(item.FileName, GetIndex(Path.GetExtension(item.FileName)), FileManagerListView.Groups["localGroup"]);
                     FileManagerListView.Items.Add(viewItem);
                 }
-                foreach (var item in await Task.Run(() => cloudStorage.GetUserCatalog()))
+                if (OnlineMode)
                 {
-                    ListViewItem viewItem = new ListViewItem(item, GetIndex(Path.GetExtension(item)), FileManagerListView.Groups["cloudGroup"]);
-                    FileManagerListView.Items.Add(viewItem);
+                    foreach (var item in await Task.Run(() => cloudStorage.GetUserCatalog()))
+                    {
+                        ListViewItem viewItem = new ListViewItem(item, GetIndex(Path.GetExtension(item)), FileManagerListView.Groups["cloudGroup"]);
+                        FileManagerListView.Items.Add(viewItem);
+                    }
                 }
             }
             catch (Exception ex)

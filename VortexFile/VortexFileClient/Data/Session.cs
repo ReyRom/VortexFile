@@ -8,6 +8,8 @@ namespace VortexFileClient.Data
     {
         private static User? currentUser;
 
+        private static User Public = new User() { Login = "Public", Password = "1234" };
+
         public static User? CurrentUser { get => currentUser; set => currentUser = value; }
 
         public static string Login
@@ -38,6 +40,11 @@ namespace VortexFileClient.Data
                 CurrentUser = user;
             }
             return CurrentUser;
+        }
+
+        public static User AuthorizeOffline()
+        {
+            return CurrentUser = Public;
         }
 
         public static User Registration(User user)
