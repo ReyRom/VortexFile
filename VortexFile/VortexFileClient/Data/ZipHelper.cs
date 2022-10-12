@@ -6,7 +6,7 @@ namespace VortexFileClient.Data
 {
     public static class ZipHelper
     {
-        private static Encoding encoding = Encoding.GetEncoding(866);
+        private static Encoding encoding = Encoding.UTF8;
         public static void CompressionDirectory(string fileName,
             string sourceDirectory,
             CompressionLevel compressionLevel = CompressionLevel.Default)
