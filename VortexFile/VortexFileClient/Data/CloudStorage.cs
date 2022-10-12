@@ -2,7 +2,7 @@
 {
     internal class CloudStorage
     {
-        private string serverAddress = "ftp://25.36.141.142/";
+        private string serverAddress = "ftp://91.122.211.144:50021/";
         private string login = string.Empty;
         private string password = string.Empty;
 

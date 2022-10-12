@@ -45,7 +45,7 @@ namespace VortexFileClient.Data
 
         public static User ChangeUserPassword(User user, string newPassword)
         {
-            user.Password = newPassword;
+            user.Password = newPassword.EncryptString();
             Core.Context.Entry(user).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
             Core.Context.SaveChanges();
             return GetUserByLogin(user.Login);

@@ -35,7 +35,7 @@ namespace VortexFileClient.Data
         {
             CurrentUser = null;
             User user = DAL.GetUser(login);
-            if (user != null && user.Password == password)
+            if (user != null && user.Password == password.EncryptString())
             {
                 CurrentUser = user;
             }
@@ -50,7 +50,7 @@ namespace VortexFileClient.Data
         public static User Registration(User user)
         {
             StringBuilder errors = new StringBuilder();
-            if (DAL.GetUserByLogin(user.Login) != null)
+            if (DAL.GetUserByLogin(user.Login) != null && user.Login != Public.Login)
             {
                 errors.AppendLine("Логин занят другим пользователем.");
             }
@@ -78,6 +78,7 @@ namespace VortexFileClient.Data
             {
                 throw new Exception(errors.ToString());
             }
+            user.Password = user.Password.EncryptString();
             return DAL.AddUser(user);
         }
     }

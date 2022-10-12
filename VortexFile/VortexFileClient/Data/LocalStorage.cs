@@ -11,7 +11,7 @@ namespace VortexFileClient.Data
 
         private string zipPassword = Properties.Settings.Default.ZipPassword;
 
-        private string password = Session.CurrentUser.Password;
+        private string password = Session.CurrentUser.Login.EncryptString();
 
         public LocalStorage()
         {

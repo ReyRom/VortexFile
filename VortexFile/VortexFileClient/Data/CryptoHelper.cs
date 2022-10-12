@@ -1,9 +1,22 @@
 ﻿using System.Security.Cryptography;
+using System.Text;
 
 namespace VortexFileClient.Data
 {
     public static class CryptoHelper
     {
+        public static string EncryptString(this string input)
+        {
+            byte[] hash;
+            using (var sha1 = new SHA1CryptoServiceProvider())
+            {
+                hash = sha1.ComputeHash(Encoding.Unicode.GetBytes(input));
+            }
+            var sb = new StringBuilder();
+            foreach (byte b in hash) sb.AppendFormat("{0:x2}", b);
+            return sb.ToString();
+        }
+
         public static void EncryptStream(this Stream input, Stream output, byte[] key)
         {
             using (Aes aes = Aes.Create())
