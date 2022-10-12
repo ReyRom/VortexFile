@@ -56,6 +56,7 @@
             // 
             // FileManagerListView
             // 
+            this.FileManagerListView.AllowDrop = true;
             this.FileManagerListView.GridLines = true;
             listViewGroup1.Header = "Локальное хранилище";
             listViewGroup1.Name = "localGroup";
