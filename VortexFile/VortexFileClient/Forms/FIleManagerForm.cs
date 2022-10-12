@@ -1,5 +1,6 @@
 ﻿using Ionic.Zip;
 using System.ComponentModel;
+using System.Windows.Forms;
 using VortexFileClient.Data;
 using VortexFileClient.Extensions;
 
@@ -257,6 +258,27 @@ namespace VortexFileClient.Forms
         private void ProgressTimer_Tick(object sender, EventArgs e)
         {
             progressBar.Value +=2;
+        }
+
+        private void FileManagerListView_DragEnter(object sender, DragEventArgs e)
+        {
+            e.Effect = DragDropEffects.Copy;
+        }
+
+        private void FileManagerListView_DragDrop(object sender, DragEventArgs e)
+        {
+            try
+            {
+                RunProgress(() => localStorage.UploadFiles(((string[])e.Data.GetData(DataFormats.FileDrop)).ToList()));
+                if (OnlineMode)
+                {
+                    RunProgress(() => cloudStorage.UploadFiles(((string[])e.Data.GetData(DataFormats.FileDrop)).ToList()));
+                }
+            }
+            catch (Exception ex)
+            {
+                Feedback.ErrorMessage(ex);
+            }
         }
     }
 }
