@@ -7,8 +7,8 @@ namespace VortexFileClient.Extensions
         public Image ConnectImage { get; set; }
         public Image DisconnectImage { get; set; }
 
-        private bool IsConnected 
-        { 
+        private bool IsConnected
+        {
             set
             {
                 if (value)
@@ -38,7 +38,14 @@ namespace VortexFileClient.Extensions
 
         private async void BackgroundWorker_DoWork(object sender, System.ComponentModel.DoWorkEventArgs e)
         {
-            e.Result = Core.Context.Database.CanConnectAsync().Result;
+            try
+            {
+                e.Result = Core.Context.Database.CanConnectAsync().Result;
+            }
+            catch (Exception)
+            {
+                e.Result = false;
+            }
         }
 
         private void BackgroundWorker_RunWorkerCompleted(object sender, System.ComponentModel.RunWorkerCompletedEventArgs e)

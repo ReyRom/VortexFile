@@ -164,8 +164,8 @@ partial class MainForm
             // 
             // connectionIndicator
             // 
-            this.connectionIndicator.ConnectImage = global::VortexFileClient.Properties.Resources.green_circle;
-            this.connectionIndicator.DisconnectImage = global::VortexFileClient.Properties.Resources.red_circle;
+            this.connectionIndicator.ConnectImage = global::VortexFileClient.Properties.Resources.GreenCircle;
+            this.connectionIndicator.DisconnectImage = global::VortexFileClient.Properties.Resources.RedCircle;
             this.connectionIndicator.Dock = System.Windows.Forms.DockStyle.Right;
             this.connectionIndicator.Location = new System.Drawing.Point(743, 0);
             this.connectionIndicator.Margin = new System.Windows.Forms.Padding(4);

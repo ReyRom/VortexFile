@@ -1,13 +1,5 @@
 ﻿using Ionic.Zip;
-using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 using VortexFileClient.Data;
 using VortexFileClient.Extensions;
 
@@ -21,59 +13,60 @@ namespace VortexFileClient.Forms
         public event EventHandler<LoadFormEventArgs> LoadForm;
         public event EventHandler GoBack;
 
-        private bool OnlineMode
-        {
-            get;
-            set;
-        }
+        private bool OnlineMode { get; set; }
+
+        private bool IsFileChange { get; set; }
 
         private bool IsProgress
         {
             set
             {
-                progressBar.Visible = value;
-            }
-        }
-
-        private int ProgressPercent
-        {
-            set
-            {
-                MessageBox.Show(value.ToString());
-                progressBar.Value = value;
+                progressBar.Visible = ProgressTimer.Enabled = value;
+                progressBar.Value = 0;
+                progressBar.Style = ProgressBarStyle.Blocks;
+                progressBar.Style = ProgressBarStyle.Marquee;
             }
         }
 
         public FileManagerForm(bool onlineMode = true)
         {
             InitializeComponent();
-            fileChanged += FileManagerForm_fileChanged;
+            fileChanged += FileManagerForm_fileChangedAsync;
             OnlineMode = onlineMode;
         }
 
-        private void FileManagerForm_fileChanged(object? sender, EventArgs e)
+        private async void FileManagerForm_fileChangedAsync(object? sender, EventArgs e)
         {
-            LoadData();
+            waiting.Visible = true;
+            await LoadDataAsync();
+            waiting.Visible = false;
         }
 
-        private void FIleManagerForm_Load(object sender, EventArgs e)
+        private void FileManagerForm_Load(object sender, EventArgs e)
         {
-            label2.Text = Data.Session.CurrentUser.Login;
-            LoadData();
+            label2.Text = Session.CurrentUser.Login;
+            fileChanged.Invoke(null, EventArgs.Empty);
         }
 
-        private void LoadData()
+        private async Task LoadDataAsync()
         {
-            FileManagerListView.Items.Clear();
-            foreach (var item in localStorage.GetUserCatalog(Properties.Settings.Default.ZipPassword))
+            try
             {
-                ListViewItem viewItem = new ListViewItem(item.FileName, GetIndex(Path.GetExtension(item.FileName)), FileManagerListView.Groups["localGroup"]);
-                FileManagerListView.Items.Add(viewItem);
+                FileManagerListView.Items.Clear();
+                foreach (var item in await Task.Run(()=>localStorage.GetUserCatalog(Properties.Settings.Default.ZipPassword)))
+                {
+                    ListViewItem viewItem = new ListViewItem(item.FileName, GetIndex(Path.GetExtension(item.FileName)), FileManagerListView.Groups["localGroup"]);
+                    FileManagerListView.Items.Add(viewItem);
+                }
+                foreach (var item in await Task.Run(() => cloudStorage.GetUserCatalog()))
+                {
+                    ListViewItem viewItem = new ListViewItem(item, GetIndex(Path.GetExtension(item)), FileManagerListView.Groups["cloudGroup"]);
+                    FileManagerListView.Items.Add(viewItem);
+                }
             }
-            foreach (var item in cloudStorage.GetUserCatalog())
+            catch (Exception ex)
             {
-                ListViewItem viewItem = new ListViewItem(item, GetIndex(Path.GetExtension(item)), FileManagerListView.Groups["cloudGroup"]);
-                FileManagerListView.Items.Add(viewItem);
+                Feedback.ErrorMessage(ex);
             }
         }
 
@@ -108,9 +101,10 @@ namespace VortexFileClient.Forms
 
         private void RunProgress(Action action, bool updateData = true)
         {
+            IsFileChange = updateData;
             fileMethod = action;
             IsProgress = true;
-            backgroundWorker.RunWorkerAsync();
+            BackgroundWorker.RunWorkerAsync();
         }
 
         private void UploadLocalButton_Click(object sender, EventArgs e)
@@ -120,11 +114,18 @@ namespace VortexFileClient.Forms
 
         private void UploadLocal()
         {
-            OpenFileDialog openFileDialog = new OpenFileDialog();
-            openFileDialog.Multiselect = true;
-            if (openFileDialog.ShowDialog() == DialogResult.OK)
+            try
             {
-                RunProgress(()=>localStorage.UploadFiles(openFileDialog.FileNames.ToList()));
+                OpenFileDialog openFileDialog = new OpenFileDialog();
+                openFileDialog.Multiselect = true;
+                if (openFileDialog.ShowDialog() == DialogResult.OK)
+                {
+                    RunProgress(() => localStorage.UploadFiles(openFileDialog.FileNames.ToList()));
+                }
+            }
+            catch (Exception ex)
+            {
+                Feedback.ErrorMessage(ex);
             }
         }
 
@@ -135,8 +136,48 @@ namespace VortexFileClient.Forms
 
         private void Download()
         {
-            FolderBrowserDialog folderBrowserDialog = new FolderBrowserDialog();
-            if (folderBrowserDialog.ShowDialog() == DialogResult.OK)
+            try
+            {
+                FolderBrowserDialog folderBrowserDialog = new FolderBrowserDialog();
+                if (folderBrowserDialog.ShowDialog() == DialogResult.OK)
+                {
+                    List<string> localFilesName = new List<string>();
+                    List<string> cloudFilesName = new List<string>();
+                    foreach (ListViewItem item in FileManagerListView.SelectedItems)
+                    {
+                        if (item.Group == FileManagerListView.Groups["localGroup"])
+                        {
+                            localFilesName.Add(item.Text);
+                        }
+                        else
+                        {
+                            cloudFilesName.Add(item.Text);
+                        }
+                    }
+                    if (localFilesName.Count > 0)
+                    {
+                        RunProgress(() => localStorage.DownloadFiles(localFilesName, folderBrowserDialog.SelectedPath), false);
+                    }
+                    if (cloudFilesName.Count > 0)
+                    {
+                        RunProgress(() => cloudStorage.DownloadFiles(cloudFilesName, folderBrowserDialog.SelectedPath), false);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Feedback.ErrorMessage(ex);
+            }
+        }
+
+        private void DeleteButton_Click(object sender, EventArgs e)
+        {
+            Delete();
+        }
+
+        private void Delete()
+        {
+            try
             {
                 List<string> localFilesName = new List<string>();
                 List<string> cloudFilesName = new List<string>();
@@ -153,42 +194,16 @@ namespace VortexFileClient.Forms
                 }
                 if (localFilesName.Count > 0)
                 {
-                    RunProgress(() => localStorage.DownloadFiles(localFilesName, folderBrowserDialog.SelectedPath));
+                    RunProgress(() => localStorage.DeleteFiles(localFilesName));
                 }
                 if (cloudFilesName.Count > 0)
                 {
-                    RunProgress(() => cloudStorage.DownloadFiles(cloudFilesName, folderBrowserDialog.SelectedPath));
+                    RunProgress(() => cloudStorage.DeleteFiles(cloudFilesName));
                 }
             }
-        }
-
-        private void DeleteButton_Click(object sender, EventArgs e)
-        {
-            Delete();
-        }
-
-        private void Delete()
-        {
-            List<string> localFilesName = new List<string>();
-            List<string> cloudFilesName = new List<string>();
-            foreach (ListViewItem item in FileManagerListView.SelectedItems)
+            catch (Exception ex)
             {
-                if (item.Group == FileManagerListView.Groups["localGroup"])
-                {
-                    localFilesName.Add(item.Text);
-                }
-                else
-                {
-                    cloudFilesName.Add(item.Text);
-                }
-            }
-            if (localFilesName.Count > 0)
-            {
-                RunProgress(() => localStorage.DeleteFiles(localFilesName));
-            }
-            if (cloudFilesName.Count > 0)
-            {
-                RunProgress(() => cloudStorage.DeleteFiles(cloudFilesName));
+                Feedback.ErrorMessage(ex);
             }
         }
 
@@ -199,29 +214,45 @@ namespace VortexFileClient.Forms
 
         private void UploadFtp()
         {
-            OpenFileDialog openFileDialog = new OpenFileDialog();
-            openFileDialog.Multiselect = true;
-            if (openFileDialog.ShowDialog() == DialogResult.OK)
+            try
             {
-                RunProgress(() => cloudStorage.UploadFiles(openFileDialog.FileNames.ToList()));
+                OpenFileDialog openFileDialog = new OpenFileDialog();
+                openFileDialog.Multiselect = true;
+                if (openFileDialog.ShowDialog() == DialogResult.OK)
+                {
+                    RunProgress(() => cloudStorage.UploadFiles(openFileDialog.FileNames.ToList()));
+                }
+            }
+            catch (Exception ex)
+            {
+                Feedback.ErrorMessage(ex);
             }
         }
 
         private void BackgroundWorker_DoWork(object sender, DoWorkEventArgs e)
         {
-            
-            fileMethod.Invoke();
-        }
-
-        private void BackgroundWorker_ProgressChanged(object sender, ProgressChangedEventArgs e)
-        {
-            ProgressPercent = e.ProgressPercentage;
+            try
+            {
+                fileMethod.Invoke();
+            }
+            catch (Exception ex)
+            {
+                Feedback.ErrorMessage(ex);
+            }
         }
 
         private void BackgroundWorker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
+            if (IsFileChange)
+            {
+                fileChanged.Invoke(this, EventArgs.Empty);
+            }
             IsProgress = false;
-            fileChanged.Invoke(this, EventArgs.Empty);
+        }
+
+        private void ProgressTimer_Tick(object sender, EventArgs e)
+        {
+            progressBar.Value +=2;
         }
     }
 }

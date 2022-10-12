@@ -1,14 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace VortexFileClient.Extensions
+﻿namespace VortexFileClient.Extensions
 {
     public static class Code
     {
-        public static string Generate(int length) 
+        public static string Generate(int length)
         {
             string code = String.Empty;
             Random rnd = new Random();

@@ -1,16 +1,11 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using VortexFileClient.Data.Models;
 
 namespace VortexFileClient.Data
 {
-    public class VortexFileMySqlContext:DbContext
+    public class VortexFileMySqlContext : DbContext
     {
-        
+
         public DbSet<User> Users { get; set; }
 
         public VortexFileMySqlContext()

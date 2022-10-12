@@ -1,12 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
+﻿using VortexFileClient.Data.Models;
 using VortexFileClient.Extensions;
 
 namespace VortexFileClient.Forms
@@ -28,12 +20,22 @@ namespace VortexFileClient.Forms
         {
             if (OfflineCheckBox.Checked)
             {
-                Extensions.Feedback.InformationMessage("Вы успешно авторизованы");
+                Feedback.InformationMessage("Вы успешно авторизованы");
                 LoadForm.Invoke(this, new LoadFormEventArgs(new FileManagerForm(false)));
             }
-            if (Data.Session.Authorize(LoginTextBox.Text, PasswordTextBox.Text) == null)
+            User user = null;
+            try
             {
-                Extensions.Feedback.WarningMessage("Неправильный логин/email или пароль.");
+                user = Data.Session.Authorize(LoginTextBox.Text, PasswordTextBox.Text);
+            }
+            catch (Exception ex)
+            {
+                Feedback.ErrorMessage(ex);
+                return;
+            }
+            if (user == null)
+            {
+                Feedback.WarningMessage("Неправильный логин/email или пароль.");
             }
             else
             {
@@ -46,7 +48,7 @@ namespace VortexFileClient.Forms
                 {
                     Data.Session.Login = Data.Session.Password = String.Empty;
                 }
-                Extensions.Feedback.InformationMessage("Вы успешно авторизованы");
+                Feedback.InformationMessage("Вы успешно авторизованы");
                 LoadForm.Invoke(this, new LoadFormEventArgs(new FileManagerForm()));
             }
         }

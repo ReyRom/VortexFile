@@ -1,14 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace VortexFileClient.Extensions
+﻿namespace VortexFileClient.Extensions
 {
     public static class FormTools
     {
-        public static void FormToPanel(Form form, Panel panel) 
+        public static void FormToPanel(Form form, Panel panel)
         {
             panel.Controls.Clear();
             form.TopLevel = false;

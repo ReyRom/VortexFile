@@ -1,4 +1,3 @@
-using VortexFileClient.Data;
 using VortexFileClient.Extensions;
 
 namespace VortexFileClient.Forms;
@@ -8,7 +7,7 @@ public partial class MainForm : Form
     private Point mPoint;
     int mWidth;
     int mHeight;
-    bool isMinimized=false;
+    bool isMinimized = false;
 
     public MainForm()
     {
@@ -45,7 +44,7 @@ public partial class MainForm : Form
         this.Size = new Size(BodyPanel.Width, BodyPanel.Height + HeadPanel.Height + FooterPanel.Height);
     }
 
-    public void LoadForm(IStackableForm form) 
+    public void LoadForm(IStackableForm form)
     {
         form.LoadForm += Form_LoadForm;
         form.GoBack += Form_GoBack;

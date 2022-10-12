@@ -74,7 +74,6 @@
             this.PasswordTextBox.Size = new System.Drawing.Size(345, 26);
             this.PasswordTextBox.TabIndex = 2;
             this.PasswordTextBox.UseSystemPasswordChar = true;
-            this.PasswordTextBox.TextChanged += new System.EventHandler(this.PasswordTextBox_TextChanged);
             // 
             // EmailTextBox
             // 
@@ -98,7 +97,6 @@
             this.ConfirmTextBox.Size = new System.Drawing.Size(345, 26);
             this.ConfirmTextBox.TabIndex = 5;
             this.ConfirmTextBox.UseSystemPasswordChar = true;
-            this.ConfirmTextBox.TextChanged += new System.EventHandler(this.ConfirmTextBox_TextChanged);
             // 
             // UsernameTextBox
             // 
@@ -180,7 +178,7 @@
             // Captcha
             // 
             this.Captcha.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.Captcha.Location = new System.Drawing.Point(30, 337);
+            this.Captcha.Location = new System.Drawing.Point(30, 335);
             this.Captcha.Margin = new System.Windows.Forms.Padding(4);
             this.Captcha.Name = "Captcha";
             this.Captcha.Size = new System.Drawing.Size(345, 91);

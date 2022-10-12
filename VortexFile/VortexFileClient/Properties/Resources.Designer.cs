@@ -73,9 +73,9 @@ namespace VortexFileClient.Properties {
         /// <summary>
         ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
         /// </summary>
-        public static System.Drawing.Bitmap green_circle {
+        public static System.Drawing.Bitmap GreenCircle {
             get {
-                object obj = ResourceManager.GetObject("green_circle", resourceCulture);
+                object obj = ResourceManager.GetObject("GreenCircle", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -93,9 +93,9 @@ namespace VortexFileClient.Properties {
         /// <summary>
         ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
         /// </summary>
-        public static System.Drawing.Bitmap icon_cogs {
+        public static System.Drawing.Bitmap IconCogs {
             get {
-                object obj = ResourceManager.GetObject("icon_cogs", resourceCulture);
+                object obj = ResourceManager.GetObject("IconCogs", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -103,9 +103,9 @@ namespace VortexFileClient.Properties {
         /// <summary>
         ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
         /// </summary>
-        public static System.Drawing.Bitmap loading {
+        public static System.Drawing.Bitmap Loading {
             get {
-                object obj = ResourceManager.GetObject("loading", resourceCulture);
+                object obj = ResourceManager.GetObject("Loading", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -123,9 +123,9 @@ namespace VortexFileClient.Properties {
         /// <summary>
         ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
         /// </summary>
-        public static System.Drawing.Bitmap OFF {
+        public static System.Drawing.Bitmap Off {
             get {
-                object obj = ResourceManager.GetObject("OFF", resourceCulture);
+                object obj = ResourceManager.GetObject("Off", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -133,9 +133,9 @@ namespace VortexFileClient.Properties {
         /// <summary>
         ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
         /// </summary>
-        public static System.Drawing.Bitmap ON {
+        public static System.Drawing.Bitmap On {
             get {
-                object obj = ResourceManager.GetObject("ON", resourceCulture);
+                object obj = ResourceManager.GetObject("On", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -143,9 +143,9 @@ namespace VortexFileClient.Properties {
         /// <summary>
         ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
         /// </summary>
-        public static System.Drawing.Bitmap red_circle {
+        public static System.Drawing.Bitmap RedCircle {
             get {
-                object obj = ResourceManager.GetObject("red_circle", resourceCulture);
+                object obj = ResourceManager.GetObject("RedCircle", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

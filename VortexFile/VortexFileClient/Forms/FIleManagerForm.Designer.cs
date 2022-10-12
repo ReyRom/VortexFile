@@ -39,8 +39,10 @@
             this.DownloadButton = new System.Windows.Forms.Button();
             this.DeleteButton = new System.Windows.Forms.Button();
             this.UploadFtpButton = new System.Windows.Forms.Button();
-            this.progressBar = new System.Windows.Forms.ProgressBar();
-            this.backgroundWorker = new System.ComponentModel.BackgroundWorker();
+            this.BackgroundWorker = new System.ComponentModel.BackgroundWorker();
+            this.ProgressTimer = new System.Windows.Forms.Timer(this.components);
+            this.waiting = new VortexFileClient.Extensions.Waiting();
+            this.progressBar = new VortexFileClient.Extensions.ColorProgressBar();
             this.SuspendLayout();
             // 
             // label2
@@ -54,6 +56,7 @@
             // 
             // FileManagerListView
             // 
+            this.FileManagerListView.AllowDrop = true;
             this.FileManagerListView.GridLines = true;
             listViewGroup1.Header = "Локальное хранилище";
             listViewGroup1.Name = "localGroup";
@@ -122,21 +125,37 @@
             this.UploadFtpButton.UseVisualStyleBackColor = true;
             this.UploadFtpButton.Click += new System.EventHandler(this.UploadFtpButton_Click);
             // 
+            // BackgroundWorker
+            // 
+            this.BackgroundWorker.WorkerReportsProgress = true;
+            this.BackgroundWorker.WorkerSupportsCancellation = true;
+            this.BackgroundWorker.DoWork += new System.ComponentModel.DoWorkEventHandler(this.BackgroundWorker_DoWork);
+            this.BackgroundWorker.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.BackgroundWorker_RunWorkerCompleted);
+            // 
+            // ProgressTimer
+            // 
+            this.ProgressTimer.Interval = 25;
+            this.ProgressTimer.Tick += new System.EventHandler(this.ProgressTimer_Tick);
+            // 
+            // waiting
+            // 
+            this.waiting.Location = new System.Drawing.Point(355, 76);
+            this.waiting.Name = "waiting";
+            this.waiting.Size = new System.Drawing.Size(314, 253);
+            this.waiting.TabIndex = 8;
+            this.waiting.Visible = false;
+            // 
             // progressBar
             // 
+            this.progressBar.Color = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
+            this.progressBar.LineWidth = 200;
             this.progressBar.Location = new System.Drawing.Point(12, 399);
+            this.progressBar.Maximum = 600;
             this.progressBar.Name = "progressBar";
             this.progressBar.Size = new System.Drawing.Size(732, 23);
-            this.progressBar.TabIndex = 7;
+            this.progressBar.Style = System.Windows.Forms.ProgressBarStyle.Marquee;
+            this.progressBar.TabIndex = 9;
             this.progressBar.Visible = false;
-            // 
-            // backgroundWorker
-            // 
-            this.backgroundWorker.WorkerReportsProgress = true;
-            this.backgroundWorker.WorkerSupportsCancellation = true;
-            this.backgroundWorker.DoWork += new System.ComponentModel.DoWorkEventHandler(this.BackgroundWorker_DoWork);
-            this.backgroundWorker.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(this.BackgroundWorker_ProgressChanged);
-            this.backgroundWorker.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.BackgroundWorker_RunWorkerCompleted);
             // 
             // FileManagerForm
             // 
@@ -144,6 +163,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(756, 429);
             this.Controls.Add(this.progressBar);
+            this.Controls.Add(this.waiting);
             this.Controls.Add(this.UploadFtpButton);
             this.Controls.Add(this.DeleteButton);
             this.Controls.Add(this.DownloadButton);
@@ -153,7 +173,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "FileManagerForm";
             this.Text = "FIleManagerForm";
-            this.Load += new System.EventHandler(this.FIleManagerForm_Load);
+            this.Load += new System.EventHandler(this.FileManagerForm_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -167,7 +187,9 @@
         private Button DownloadButton;
         private Button DeleteButton;
         private Button UploadFtpButton;
-        private ProgressBar progressBar;
-        private System.ComponentModel.BackgroundWorker backgroundWorker;
+        private System.ComponentModel.BackgroundWorker BackgroundWorker;
+        private System.Windows.Forms.Timer ProgressTimer;
+        private Extensions.Waiting waiting;
+        private Extensions.ColorProgressBar progressBar;
     }
 }

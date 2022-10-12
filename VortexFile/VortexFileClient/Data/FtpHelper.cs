@@ -1,15 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Net;
 
 namespace VortexFileClient.Data
 {
     internal static class FtpHelper
     {
-        public static FtpStatusCode DownloadFile(string filename,string address, string login, string password)
+        public static FtpStatusCode DownloadFile(string filename, string address, string login, string password)
         {
             FtpWebRequest request = (FtpWebRequest)WebRequest.Create(address);
             request.Method = WebRequestMethods.Ftp.DownloadFile;
@@ -26,7 +21,7 @@ namespace VortexFileClient.Data
                         {
                             fs.Write(buffer, 0, size);
                         }
-                    } 
+                    }
                 }
                 return response.StatusCode;
             }
@@ -43,7 +38,7 @@ namespace VortexFileClient.Data
                 fs.Read(fileContents, 0, fileContents.Length);
                 request.ContentLength = fileContents.Length;
 
-                using(Stream requestStream = request.GetRequestStream())
+                using (Stream requestStream = request.GetRequestStream())
                 {
                     requestStream.Write(fileContents, 0, fileContents.Length);
                 }
@@ -88,7 +83,7 @@ namespace VortexFileClient.Data
 
             using (FtpWebResponse response = (FtpWebResponse)request.GetResponse())
             {
-               return response.StatusCode;
+                return response.StatusCode;
             }
         }
     }

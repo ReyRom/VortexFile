@@ -1,6 +1,4 @@
-﻿using System.Net;
-
-namespace VortexFileClient.Data
+﻿namespace VortexFileClient.Data
 {
     internal class CloudStorage
     {
@@ -19,7 +17,6 @@ namespace VortexFileClient.Data
             foreach (var fileName in fileNames)
             {
                 var status = FtpHelper.DownloadFile(Path.Combine(outFolder, fileName), serverAddress + fileName, login, password);
-                
             }
         }
 
@@ -27,8 +24,11 @@ namespace VortexFileClient.Data
         {
             foreach (var fileName in fileNames)
             {
-                var status = FtpHelper.UploadFile(fileName, serverAddress+ Path.GetFileName(fileName), login, password);
-                
+                if (new FileInfo(fileName).Length > Extensions.Constants.GigaByte * 2)
+                {
+                    throw new Exception("Размер загружаемого файла больше 2ГБ.");
+                }
+                var status = FtpHelper.UploadFile(fileName, serverAddress + Path.GetFileName(fileName), login, password);
             }
         }
 
@@ -37,7 +37,6 @@ namespace VortexFileClient.Data
             foreach (var fileName in fileNames)
             {
                 var status = FtpHelper.DeleteFile(serverAddress + fileName, login, password);
-                
             }
         }
 

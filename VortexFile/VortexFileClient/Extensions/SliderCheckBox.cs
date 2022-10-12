@@ -1,14 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-
-namespace VortexFileClient.Extensions
+﻿namespace VortexFileClient.Extensions
 {
     public partial class SliderCheckBox : CheckBox
     {
@@ -19,8 +9,8 @@ namespace VortexFileClient.Extensions
             imageList.ColorDepth = System.Windows.Forms.ColorDepth.Depth32Bit;
             imageList.TransparentColor = System.Drawing.Color.Transparent;
             imageList.ImageSize = new System.Drawing.Size(32, 14);
-            imageList.Images.Add(Properties.Resources.OFF);
-            imageList.Images.Add(Properties.Resources.ON);
+            imageList.Images.Add(Properties.Resources.Off);
+            imageList.Images.Add(Properties.Resources.On);
             this.ImageList = imageList;
             this.ImageIndex = 0;
             this.Appearance = System.Windows.Forms.Appearance.Button;

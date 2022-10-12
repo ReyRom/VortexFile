@@ -1,23 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Text.RegularExpressions;
-using System.Threading.Tasks;
-using System.Windows.Forms;
+﻿using System.Text.RegularExpressions;
 using VortexFileClient.Data;
-using VortexFileClient.Extensions;
 using VortexFileClient.Data.Models;
+using VortexFileClient.Extensions;
 
 namespace VortexFileClient.Forms
 {
     public partial class ResetPasswordForm : Form, IStackableForm
     {
-        EmailMessanger ?emailMessanger;
-        User ?user;
+        EmailMessanger? emailMessanger;
+        User? user;
 
         public event EventHandler<LoadFormEventArgs> LoadForm;
         public event EventHandler GoBack;
@@ -79,9 +70,16 @@ namespace VortexFileClient.Forms
                 Feedback.WarningMessage("Введен некорректный пароль. Пароль должен состоять из 8 - 20 символов, которые могут быть цифрами, строчными и прописными буквами.");
                 return;
             }
-            DAL.ChangeUserPassword(user, PasswordTextBox.Text);
-            Extensions.Feedback.InformationMessage("Пароль успешно изменен");
-            GoBack.Invoke(this, EventArgs.Empty);
+            try
+            {
+                DAL.ChangeUserPassword(user, PasswordTextBox.Text);
+                Feedback.InformationMessage("Пароль успешно изменен");
+                GoBack.Invoke(this, EventArgs.Empty);
+            }
+            catch (Exception ex)
+            {
+                Feedback.ErrorMessage(ex);
+            }
         }
 
         private void ResetPasswordForm_Load(object sender, EventArgs e)

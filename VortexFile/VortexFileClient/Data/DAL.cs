@@ -1,13 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Data.SqlClient;
-using System.Data;
-using FastMember;
+﻿using VortexFileClient.Data.Models;
 using VortexFileClient.Extensions;
-using VortexFileClient.Data.Models;
 
 namespace VortexFileClient.Data
 {
@@ -18,28 +10,14 @@ namespace VortexFileClient.Data
         public static User GetUserByLogin(string login)
         {
             User? user = null;
-            try
-            {
-                user = Core.Context.Users.SingleOrDefault(x => x.Login == login);
-            }
-            catch (Exception ex)
-            {
-                Feedback.ErrorMessage(ex);
-            }
+            user = Core.Context.Users.SingleOrDefault(x => x.Login == login);
             return user;
         }
 
         public static User GetUserByEmail(string email)
         {
-            User? user = null; 
-            try
-            {
-                user = Core.Context.Users.SingleOrDefault(x => x.Email == email);
-            }
-            catch (Exception ex)
-            {
-                Feedback.ErrorMessage(ex);
-            }
+            User? user = null;
+            user = Core.Context.Users.SingleOrDefault(x => x.Email == email);
             return user;
         }
 
@@ -55,35 +33,21 @@ namespace VortexFileClient.Data
 
         public static User AddUser(User user)
         {
-            try
-            {
-                user.uid = user.gid = 2001;
-                user.homedir = $"/srv/ftp/{user.Login}";
-                user.shell = "/sbin/nologin";
-                user.count = 0;
-                user.accessed = user.modified = DateTime.Now;
-                var newUser = Core.Context.Users.Add(user);
-                Core.Context.SaveChanges();
-            }
-            catch (Exception ex)
-            {
-                Feedback.ErrorMessage(ex);
-            }
+            user.uid = user.gid = 2001;
+            user.homedir = $"/srv/ftp/{user.Login}";
+            user.shell = "/sbin/nologin";
+            user.count = 0;
+            user.accessed = user.modified = DateTime.Now;
+            var newUser = Core.Context.Users.Add(user);
+            Core.Context.SaveChanges();
             return GetUserByLogin(user.Login);
         }
 
         public static User ChangeUserPassword(User user, string newPassword)
         {
-            try
-            {
-                user.Password = newPassword;
-                Core.Context.Entry(user).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
-                Core.Context.SaveChanges();
-            }
-            catch (Exception ex)
-            {
-                Feedback.ErrorMessage(ex);
-            }
+            user.Password = newPassword;
+            Core.Context.Entry(user).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
+            Core.Context.SaveChanges();
             return GetUserByLogin(user.Login);
         }
 
@@ -94,34 +58,20 @@ namespace VortexFileClient.Data
 
         public async static Task<List<User>> GetUsersAsync()
         {
-            return await Task.Run(() =>Core.Context.Users.ToList());
+            return await Task.Run(() => Core.Context.Users.ToList());
         }
 
         public static void UpdateUser(User user)
         {
-            try
-            {
-                Core.Context.Entry(user).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
-                Core.Context.SaveChanges();
-            }
-            catch (Exception ex)
-            {
-                Feedback.ErrorMessage(ex);
-            }
+            Core.Context.Entry(user).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
+            Core.Context.SaveChanges();
         }
         public static void DeleteUser(User user)
         {
-            try
-            {
-                var login = user.Login;
-                Core.Context.Remove(user);
-                Core.Context.SaveChanges();
-                OnUserDelete.Invoke(login, EventArgs.Empty);
-            }
-            catch (Exception ex)
-            {
-                Feedback.ErrorMessage(ex);
-            }
+            var login = user.Login;
+            Core.Context.Remove(user);
+            Core.Context.SaveChanges();
+            OnUserDelete.Invoke(login, EventArgs.Empty);
         }
     }
 }
