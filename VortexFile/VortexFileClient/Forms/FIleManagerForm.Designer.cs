@@ -73,6 +73,8 @@
             this.FileManagerListView.TabIndex = 2;
             this.FileManagerListView.UseCompatibleStateImageBehavior = false;
             this.FileManagerListView.View = System.Windows.Forms.View.Tile;
+            this.FileManagerListView.DragDrop += new System.Windows.Forms.DragEventHandler(this.FileManagerListView_DragDrop);
+            this.FileManagerListView.DragEnter += new System.Windows.Forms.DragEventHandler(this.FileManagerListView_DragEnter);
             // 
             // ExtensionImageList
             // 

@@ -8,7 +8,7 @@ namespace VortexFileClient.Data
     {
         private static User? currentUser;
 
-        private static User Public = new User() { Login = "Public", Password = "1234" };
+        private static User Public = new User() { Login = "Public", Password = "12345" };
 
         public static User? CurrentUser { get => currentUser; set => currentUser = value; }
 
