@@ -11,6 +11,9 @@ namespace VortexFileClient.Forms
         private LocalStorage localStorage = new LocalStorage();
         private CloudStorage cloudStorage = new CloudStorage(Session.CurrentUser.Login, Session.CurrentUser.Password);
 
+        Action fileMethod;
+        event EventHandler fileChanged;
+
         public event EventHandler<LoadFormEventArgs> LoadForm;
         public event EventHandler GoBack;
 
@@ -32,34 +35,62 @@ namespace VortexFileClient.Forms
         public FileManagerForm(bool onlineMode = true)
         {
             InitializeComponent();
-            fileChanged += FileManagerForm_fileChangedAsync;
             OnlineMode = onlineMode;
+            localStorage.FilesChangeEvent += LocalStorage_FilesChangeEventAsync;
+            cloudStorage.FilesChangeEvent += CloudStorage_FilesChangeEventAsync;
+        }
+
+        private async void CloudStorage_FilesChangeEventAsync()
+        {
+            waiting.Visible = true;
+            await LoadCloudDataAsync();
+            waiting.Visible = false;
+        }
+
+        private async void LocalStorage_FilesChangeEventAsync()
+        {
+            waiting.Visible = true;
+            await LoadLocalDataAsync();
+            waiting.Visible = false;
         }
 
         private async void FileManagerForm_fileChangedAsync(object? sender, EventArgs e)
         {
             waiting.Visible = true;
-            await LoadDataAsync();
+            await LoadLocalDataAsync();
             waiting.Visible = false;
         }
 
-        private void FileManagerForm_Load(object sender, EventArgs e)
+        private async void FileManagerForm_Load(object sender, EventArgs e)
         {
             label2.Text = Session.CurrentUser.Login;
             UploadFtpButton.Enabled = OnlineMode;
-            fileChanged.Invoke(null, EventArgs.Empty);
+            await LoadLocalDataAsync();
+            await LoadCloudDataAsync();
         }
 
-        private async Task LoadDataAsync()
+        private async Task LoadLocalDataAsync()
         {
             try
             {
-                FileManagerListView.Items.Clear();
-                foreach (var item in await Task.Run(()=>localStorage.GetUserCatalog(Properties.Settings.Default.ZipPassword)))
+                FileManagerListView.Groups[0].Items.Clear();
+                foreach (var item in await Task.Run(() => localStorage.GetUserCatalog(Properties.Settings.Default.ZipPassword)))
                 {
                     ListViewItem viewItem = new ListViewItem(item.FileName, GetIndex(Path.GetExtension(item.FileName)), FileManagerListView.Groups["localGroup"]);
                     FileManagerListView.Items.Add(viewItem);
                 }
+            }
+            catch (Exception ex)
+            {
+                Feedback.ErrorMessage(ex);
+            }
+        }
+
+        private async Task LoadCloudDataAsync()
+        {
+            try
+            {
+                FileManagerListView.Groups[1].Items.Clear();
                 if (OnlineMode)
                 {
                     foreach (var item in await Task.Run(() => cloudStorage.GetUserCatalog()))
@@ -100,9 +131,6 @@ namespace VortexFileClient.Forms
                     return 1;
             }
         }
-
-        Action fileMethod;
-        event EventHandler fileChanged;
 
         private void RunProgress(Action action, bool updateData = true)
         {

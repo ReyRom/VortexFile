@@ -2,6 +2,7 @@
 {
     internal class CloudStorage
     {
+        public event Action FilesChangeEvent;
         private string serverAddress = "ftp://91.122.211.144:50021/";
         private string login = string.Empty;
         private string password = string.Empty;
@@ -30,6 +31,7 @@
                 }
                 var status = FtpHelper.UploadFile(fileName, serverAddress + Path.GetFileName(fileName), login, password);
             }
+            FilesChangeEvent?.Invoke();
         }
 
         public void DeleteFiles(List<string> fileNames)
@@ -38,6 +40,7 @@
             {
                 var status = FtpHelper.DeleteFile(serverAddress + fileName, login, password);
             }
+            FilesChangeEvent?.Invoke();
         }
 
         public List<string> GetUserCatalog()
