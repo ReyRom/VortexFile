@@ -5,8 +5,6 @@ namespace VortexFileClient.Data
 {
     public class LocalStorage
     {
-        public event Action FilesChangeEvent;
-
         private string initialCatalog = Path.Combine(Properties.Settings.Default.Path, "VortexFile.zip");
 
         private string userCatalog = Session.CurrentUser.Login + ".zip";
@@ -65,7 +63,6 @@ namespace VortexFileClient.Data
                     }
                 }
             }
-            FilesChangeEvent?.Invoke();
         }
 
         public void DownloadFiles(List<string> fileNames, string outFolder)
@@ -115,7 +112,6 @@ namespace VortexFileClient.Data
                     }
                 }
             }
-            FilesChangeEvent?.Invoke();
         }
 
         public List<ZipEntry> GetUserCatalog(string password)

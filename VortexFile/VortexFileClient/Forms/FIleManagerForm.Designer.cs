@@ -141,9 +141,9 @@
             // 
             // waiting
             // 
-            this.waiting.Location = new System.Drawing.Point(355, 76);
+            this.waiting.Location = new System.Drawing.Point(273, 12);
             this.waiting.Name = "waiting";
-            this.waiting.Size = new System.Drawing.Size(314, 253);
+            this.waiting.Size = new System.Drawing.Size(471, 381);
             this.waiting.TabIndex = 8;
             this.waiting.Visible = false;
             // 
