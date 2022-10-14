@@ -16,29 +16,23 @@ namespace VortexFileClient.Forms
 
         private void UserGuideForm_Load(object sender, EventArgs e)
         {
-            byte[] bytes = Enumerable.Range(0, 32).Select(x => (byte)x).ToArray();
-            using (FileStream fs = new FileStream("D:\\test.txt", FileMode.OpenOrCreate))
+            byte[] bytes = ASCIIEncoding.ASCII.GetBytes("ABCDEFGH");
+            using (FileStream fs = new FileStream("D:\\test.txt", FileMode.Open, FileAccess.Read))
             {
                 using (MemoryStream ms = new MemoryStream())
                 {
-                    using (StreamWriter sr = new StreamWriter(ms))
-                    {
-                        sr.WriteLine("Привет");
-                        ms.EncryptStream(fs, bytes);
-                    }
+                    fs.EncryptStream(ms, bytes);
+                    File.WriteAllBytes("D:\\testE.txt", ms.ToArray());
                 }
             }
 
-            MessageBox.Show(File.ReadAllText("D:\\test.txt"));
-            using (FileStream fs = new FileStream("D:\\test.txt", FileMode.Open))
+            using (FileStream fs = new FileStream("D:\\testE.txt", FileMode.Open, FileAccess.Read))
             {
                 using (MemoryStream stream = new MemoryStream())
                 {
                     fs.DecryptStream(stream, bytes);
-                    using (StreamReader sr = new StreamReader(stream))
-                    {
-                        MessageBox.Show(sr.ReadToEnd());
-                    }
+                    stream.Position = 0;
+                    File.WriteAllBytes("D:\\testD.txt", stream.ToArray());
                 }
             }
         }
