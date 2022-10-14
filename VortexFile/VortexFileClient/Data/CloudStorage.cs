@@ -10,6 +10,12 @@
         {
             this.login = login;
             this.password = password;
+            DAL.OnUserDelete += DAL_OnUserDelete;
+        }
+
+        private void DAL_OnUserDelete(object? sender, EventArgs e)
+        {
+            throw new NotImplementedException();
         }
 
         public void DownloadFiles(List<string> fileNames, string outFolder)
