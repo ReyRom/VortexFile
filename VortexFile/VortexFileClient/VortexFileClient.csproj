@@ -37,6 +37,7 @@
     <None Remove="Resources\green_circle.png" />
     <None Remove="Resources\Hide.png" />
     <None Remove="Resources\icon_cogs.png" />
+    <None Remove="Resources\intro.gif" />
     <None Remove="Resources\loading.gif" />
     <None Remove="Resources\Logo.png" />
     <None Remove="Resources\OFF.png" />
@@ -57,6 +58,7 @@
     <EmbeddedResource Include="Resources\green_circle.png" />
     <EmbeddedResource Include="Resources\Hide.png" />
     <EmbeddedResource Include="Resources\icon_cogs.png" />
+    <EmbeddedResource Include="Resources\intro.gif" />
     <EmbeddedResource Include="Resources\loading.gif" />
     <EmbeddedResource Include="Resources\Logo.png" />
     <EmbeddedResource Include="Resources\OFF.png" />
