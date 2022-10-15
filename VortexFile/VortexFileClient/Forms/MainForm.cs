@@ -36,7 +36,16 @@ public partial class MainForm : Form
 
     private void MainForm_Load(object sender, EventArgs e)
     {
+        Task task = new Task(() => ShowIntro());
+        task.RunSynchronously();
+        
         LoadForm(new AuthorizationForm());
+    }
+
+    void ShowIntro()
+    {
+        var intro = new IntroForm();
+        intro.Show();
     }
 
     private void BodyPanel_Resize(object sender, EventArgs e)
