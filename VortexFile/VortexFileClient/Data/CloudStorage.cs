@@ -1,4 +1,7 @@
-﻿namespace VortexFileClient.Data
+﻿using VortexFileClient.Data.Models;
+using VortexFileClient.Extensions;
+
+namespace VortexFileClient.Data
 {
     internal class CloudStorage
     {
@@ -13,9 +16,9 @@
             DAL.OnUserDelete += DAL_OnUserDelete;
         }
 
-        private void DAL_OnUserDelete(object? sender, EventArgs e)
+        private void DAL_OnUserDelete(object? sender, UserDeleteEventArgs e)
         {
-            throw new NotImplementedException();
+            DeleteFiles(GetUserCatalog(e.User), e.User);
         }
 
         public void DownloadFiles(List<string> fileNames, string outFolder)
@@ -46,9 +49,22 @@
             }
         }
 
+        public void DeleteFiles(List<string> fileNames, User user)
+        {
+            foreach (var fileName in fileNames)
+            {
+                var status = FtpHelper.DeleteFile(serverAddress + fileName, user.Login, user.Password);
+            }
+        }
+
         public List<string> GetUserCatalog()
         {
             return FtpHelper.GetFilesList(serverAddress, login, password);
+        }
+
+        public List<string> GetUserCatalog(User user)
+        {
+            return FtpHelper.GetFilesList(serverAddress, user.Login, user.Password);
         }
     }
 }

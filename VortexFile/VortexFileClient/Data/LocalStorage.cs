@@ -1,5 +1,6 @@
 ﻿using Ionic.Zip;
 using Microsoft.VisualBasic;
+using VortexFileClient.Extensions;
 
 namespace VortexFileClient.Data
 {
@@ -32,11 +33,11 @@ namespace VortexFileClient.Data
             DAL.OnUserDelete += DAL_OnUserDelete;
         }
 
-        private void DAL_OnUserDelete(object? sender, EventArgs e)
+        private void DAL_OnUserDelete(object? sender, UserDeleteEventArgs e)
         {
             using (ZipFile zip = ZipHelper.ReadZip(initialCatalog))
             {
-                var zipEntry = GetCatalog().SingleOrDefault(z => z.FileName == (string)sender + ".zip");
+                var zipEntry = GetCatalog().SingleOrDefault(z => z.FileName == e.User.Login + ".zip");
                 if (zipEntry == null) return;
                 zip.RemoveEntry(zipEntry);
                 zip.Save();
