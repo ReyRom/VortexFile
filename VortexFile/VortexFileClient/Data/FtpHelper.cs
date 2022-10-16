@@ -15,12 +15,13 @@ namespace VortexFileClient.Data
                 {
                     using (FileStream fs = new FileStream(filename, FileMode.Create))
                     {
-                        byte[] buffer = new byte[64];
-                        int size = 0;
-                        while ((size = responseStream.Read(buffer, 0, buffer.Length)) > 0)
-                        {
-                            fs.Write(buffer, 0, size);
-                        }
+                        responseStream.DecryptStream(fs,login.GetKey());
+                        //byte[] buffer = new byte[64];
+                        //int size = 0;
+                        //while ((size = responseStream.Read(buffer, 0, buffer.Length)) > 0)
+                        //{
+                        //    fs.Write(buffer, 0, size);
+                        //}
                     }
                 }
                 return response.StatusCode;
@@ -34,13 +35,14 @@ namespace VortexFileClient.Data
             request.Credentials = new NetworkCredential(login, password);
             using (FileStream fs = new FileStream(filename, FileMode.Open))
             {
-                byte[] fileContents = new byte[fs.Length];
-                fs.Read(fileContents, 0, fileContents.Length);
-                request.ContentLength = fileContents.Length;
+                //byte[] fileContents = new byte[fs.Length];
+                //fs.Read(fileContents, 0, fileContents.Length);
+                //request.ContentLength = fileContents.Length;
 
                 using (Stream requestStream = request.GetRequestStream())
                 {
-                    requestStream.Write(fileContents, 0, fileContents.Length);
+                    //requestStream.Write(fileContents, 0, fileContents.Length);
+                    fs.EncryptStream(requestStream, login.GetKey());
                 }
 
                 using (FtpWebResponse response = (FtpWebResponse)request.GetResponse())
