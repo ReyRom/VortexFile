@@ -1,4 +1,5 @@
 ﻿using System.Drawing;
+using System.Runtime.CompilerServices;
 using System.Security.Cryptography;
 using System.Text;
 
@@ -17,6 +18,19 @@ namespace VortexFileClient.Data
             foreach (byte b in hash) 
                 sb.AppendFormat("{0:x2}", b);
             return sb.ToString();
+        }
+        public static byte[] GetKey(this string input)
+        {
+            byte[] hash = new byte[8];
+            using (var sha1 = SHA1.Create())
+            {
+                var temp = sha1.ComputeHash(Encoding.Unicode.GetBytes(input));
+                for (int i = 0; i < hash.Length; i++)
+                {
+                    hash[i] = temp[i];
+                }
+            }
+            return hash;
         }
 
         public static void EncryptStream(this Stream input, Stream output, byte[] key)
