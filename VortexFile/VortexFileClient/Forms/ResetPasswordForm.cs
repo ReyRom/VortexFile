@@ -10,6 +10,8 @@ namespace VortexFileClient.Forms
         EmailMessanger? emailMessanger;
         User? user;
 
+        int timeout;
+
         public event EventHandler<LoadFormEventArgs> LoadForm;
         public event EventHandler GoBack;
 
@@ -37,6 +39,9 @@ namespace VortexFileClient.Forms
         private void SendCodeLinkLabel_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             SendCode();
+            timeout = 60;
+            SendCodeLinkLabel.Enabled = false;
+            timer.Start();
         }
 
         private void CodeTextBox_TextChanged(object sender, EventArgs e)
@@ -96,6 +101,17 @@ namespace VortexFileClient.Forms
         private void CodeTextBox_KeyPress(object sender, KeyPressEventArgs e)
         {
             e.KeyChar = char.ToUpper(e.KeyChar);
+        }
+
+        private void timer_Tick(object sender, EventArgs e)
+        {
+            timeout--;
+            SendCodeLinkLabel.Text = $"Подождите {timeout} секунд для повторной отправки";
+            if (timeout==0)
+            {
+                SendCodeLinkLabel.Enabled = true;
+                timer.Stop();
+            }
         }
     }
 }

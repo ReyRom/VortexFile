@@ -47,6 +47,7 @@
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.PasswordCheckBox = new VortexFileClient.Extensions.PasswordCheckBox();
+            this.passwordStrengthIndicator = new VortexFileClient.Extensions.PasswordStrengthIndicator();
             this.SuspendLayout();
             // 
             // EnterButton
@@ -74,6 +75,7 @@
             this.PasswordTextBox.Size = new System.Drawing.Size(345, 26);
             this.PasswordTextBox.TabIndex = 2;
             this.PasswordTextBox.UseSystemPasswordChar = true;
+            this.PasswordTextBox.TextChanged += new System.EventHandler(this.PasswordTextBox_TextChanged);
             // 
             // EmailTextBox
             // 
@@ -254,6 +256,16 @@
             this.PasswordCheckBox.UseVisualStyleBackColor = false;
             this.PasswordCheckBox.CheckedChanged += new System.EventHandler(this.PasswordCheckBox_CheckedChanged);
             // 
+            // passwordStrengthIndicator
+            // 
+            this.passwordStrengthIndicator.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(237)))), ((int)(((byte)(252)))));
+            this.passwordStrengthIndicator.Location = new System.Drawing.Point(30, 178);
+            this.passwordStrengthIndicator.Margin = new System.Windows.Forms.Padding(4);
+            this.passwordStrengthIndicator.Name = "passwordStrengthIndicator";
+            this.passwordStrengthIndicator.Password = "";
+            this.passwordStrengthIndicator.Size = new System.Drawing.Size(345, 8);
+            this.passwordStrengthIndicator.TabIndex = 23;
+            // 
             // RegistrationForm
             // 
             this.AcceptButton = this.EnterButton;
@@ -262,6 +274,7 @@
             this.BackColor = System.Drawing.Color.White;
             this.CancelButton = this.GoBackLinkLabel;
             this.ClientSize = new System.Drawing.Size(405, 572);
+            this.Controls.Add(this.passwordStrengthIndicator);
             this.Controls.Add(this.PasswordCheckBox);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label5);
@@ -311,5 +324,6 @@
         private Label label5;
         private Label label6;
         private Extensions.PasswordCheckBox PasswordCheckBox;
+        private Extensions.PasswordStrengthIndicator passwordStrengthIndicator;
     }
 }

@@ -29,11 +29,9 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AuthorizationForm));
             this.LoginTextBox = new System.Windows.Forms.TextBox();
             this.PasswordTextBox = new System.Windows.Forms.TextBox();
             this.EnterButton = new System.Windows.Forms.Button();
-            this.OnOffImageList = new System.Windows.Forms.ImageList(this.components);
             this.RegistrationLinkLabel = new System.Windows.Forms.LinkLabel();
             this.ResetPasswordLinkLabel = new System.Windows.Forms.LinkLabel();
             this.RememberCheckBox = new VortexFileClient.Extensions.SliderCheckBox();
@@ -78,14 +76,6 @@
             this.EnterButton.Text = "Войти";
             this.EnterButton.UseVisualStyleBackColor = false;
             this.EnterButton.Click += new System.EventHandler(this.EnterButton_Click);
-            // 
-            // OnOffImageList
-            // 
-            this.OnOffImageList.ColorDepth = System.Windows.Forms.ColorDepth.Depth32Bit;
-            this.OnOffImageList.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("OnOffImageList.ImageStream")));
-            this.OnOffImageList.TransparentColor = System.Drawing.Color.Transparent;
-            this.OnOffImageList.Images.SetKeyName(0, "OFF1.png");
-            this.OnOffImageList.Images.SetKeyName(1, "ON1.png");
             // 
             // RegistrationLinkLabel
             // 
@@ -219,7 +209,6 @@
         private Button EnterButton;
         private LinkLabel RegistrationLinkLabel;
         private LinkLabel ResetPasswordLinkLabel;
-        private ImageList OnOffImageList;
         private Extensions.SliderCheckBox RememberCheckBox;
         private Extensions.SliderCheckBox OfflineCheckBox;
         private Label label1;

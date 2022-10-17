@@ -84,5 +84,10 @@ namespace VortexFileClient.Forms
         {
             e.KeyChar = char.ToUpper(e.KeyChar);
         }
+
+        private void PasswordTextBox_TextChanged(object sender, EventArgs e)
+        {
+            passwordStrengthIndicator.Password = PasswordTextBox.Text;
+        }
     }
 }

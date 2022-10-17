@@ -8,6 +8,7 @@ namespace VortexFileClient.Data
     {
         private static User? currentUser;
 
+        private static User Public = new User() { Login = "Public", Password = "12345" };
         public static User? CurrentUser { get => currentUser; set => currentUser = value; }
 
         public static string Login
@@ -32,18 +33,23 @@ namespace VortexFileClient.Data
         public static User Authorize(string login, string password)
         {
             CurrentUser = null;
-            User user = DAL.GetUser(login);
-            if (user != null && user.Password == password)
+            User? user = DAL.GetUser(login);
+            if (user != null && user.Password == password.EncryptString())
             {
                 CurrentUser = user;
             }
             return CurrentUser;
         }
 
+        public static User AuthorizeOffline()
+        {
+            return CurrentUser = Public;
+        }
+
         public static User Registration(User user)
         {
             StringBuilder errors = new StringBuilder();
-            if (DAL.GetUserByLogin(user.Login) != null)
+            if (DAL.GetUserByLogin(user.Login) != null && user.Login != Public.Login)
             {
                 errors.AppendLine("Логин занят другим пользователем.");
             }
@@ -71,6 +77,7 @@ namespace VortexFileClient.Data
             {
                 throw new Exception(errors.ToString());
             }
+            user.Password = user.Password.EncryptString();
             return DAL.AddUser(user);
         }
     }

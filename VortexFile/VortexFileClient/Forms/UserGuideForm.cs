@@ -1,4 +1,6 @@
-﻿using VortexFileClient.Extensions;
+﻿using System.Text;
+using VortexFileClient.Data;
+using VortexFileClient.Extensions;
 
 namespace VortexFileClient.Forms
 {
@@ -11,5 +13,9 @@ namespace VortexFileClient.Forms
 
         public event EventHandler<LoadFormEventArgs> LoadForm;
         public event EventHandler GoBack;
+
+        private void UserGuideForm_Load(object sender, EventArgs e)
+        {
+        }
     }
 }
