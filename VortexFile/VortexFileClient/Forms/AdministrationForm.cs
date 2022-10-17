@@ -146,7 +146,7 @@ namespace VortexFileClient.Forms
             RenewAsync();
         }
 
-        private void ChangeAdminPasswordButton_Click(object sender, EventArgs e)
+        private void ChangeAdminPasswordLinkLabel_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             LoadForm.Invoke(this, new LoadFormEventArgs(new ChangeAdminPasswordForm()));
         }

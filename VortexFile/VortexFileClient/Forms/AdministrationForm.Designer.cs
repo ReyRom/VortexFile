@@ -38,7 +38,7 @@
             this.UsersBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.Waiting = new VortexFileClient.Extensions.Waiting();
             this.AddButton = new System.Windows.Forms.Button();
-            this.ChangeAdminPasswordButton = new System.Windows.Forms.Button();
+            this.ChangeAdminPasswordLinkLabel = new System.Windows.Forms.LinkLabel();
             ((System.ComponentModel.ISupportInitialize)(this.UsersDataGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.UsersBindingSource)).BeginInit();
             this.SuspendLayout();
@@ -69,7 +69,7 @@
             this.UsersDataGridView.RowHeadersVisible = false;
             this.UsersDataGridView.RowTemplate.Height = 25;
             this.UsersDataGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.UsersDataGridView.Size = new System.Drawing.Size(646, 361);
+            this.UsersDataGridView.Size = new System.Drawing.Size(708, 339);
             this.UsersDataGridView.TabIndex = 0;
             this.UsersDataGridView.CellBeginEdit += new System.Windows.Forms.DataGridViewCellCancelEventHandler(this.UsersDataGridView_CellBeginEdit);
             this.UsersDataGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.UsersDataGridView_CellContentClick);
@@ -114,7 +114,7 @@
             // 
             // Waiting
             // 
-            this.Waiting.Location = new System.Drawing.Point(160, 91);
+            this.Waiting.Location = new System.Drawing.Point(187, 77);
             this.Waiting.Margin = new System.Windows.Forms.Padding(4);
             this.Waiting.Name = "Waiting";
             this.Waiting.Size = new System.Drawing.Size(340, 253);
@@ -122,35 +122,41 @@
             // 
             // AddButton
             // 
-            this.AddButton.Location = new System.Drawing.Point(15, 386);
+            this.AddButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(100)))), ((int)(((byte)(210)))));
+            this.AddButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.AddButton.Location = new System.Drawing.Point(15, 368);
             this.AddButton.Name = "AddButton";
-            this.AddButton.Size = new System.Drawing.Size(216, 30);
+            this.AddButton.Size = new System.Drawing.Size(162, 30);
             this.AddButton.TabIndex = 2;
-            this.AddButton.Text = "Добавить пользователя";
-            this.AddButton.UseVisualStyleBackColor = true;
+            this.AddButton.Text = "Добавить";
+            this.AddButton.UseVisualStyleBackColor = false;
             this.AddButton.Click += new System.EventHandler(this.AddButton_Click);
             // 
-            // ChangeAdminPasswordButton
+            // ChangeAdminPasswordLinkLabel
             // 
-            this.ChangeAdminPasswordButton.Location = new System.Drawing.Point(237, 386);
-            this.ChangeAdminPasswordButton.Name = "ChangeAdminPasswordButton";
-            this.ChangeAdminPasswordButton.Size = new System.Drawing.Size(263, 30);
-            this.ChangeAdminPasswordButton.TabIndex = 3;
-            this.ChangeAdminPasswordButton.Text = "Сменить пароль администратора";
-            this.ChangeAdminPasswordButton.UseVisualStyleBackColor = true;
-            this.ChangeAdminPasswordButton.Click += new System.EventHandler(this.ChangeAdminPasswordButton_Click);
+            this.ChangeAdminPasswordLinkLabel.AutoSize = true;
+            this.ChangeAdminPasswordLinkLabel.Font = new System.Drawing.Font("Trebuchet MS", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.ChangeAdminPasswordLinkLabel.LinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(100)))), ((int)(((byte)(210)))));
+            this.ChangeAdminPasswordLinkLabel.Location = new System.Drawing.Point(475, 372);
+            this.ChangeAdminPasswordLinkLabel.Name = "ChangeAdminPasswordLinkLabel";
+            this.ChangeAdminPasswordLinkLabel.Size = new System.Drawing.Size(251, 22);
+            this.ChangeAdminPasswordLinkLabel.TabIndex = 5;
+            this.ChangeAdminPasswordLinkLabel.TabStop = true;
+            this.ChangeAdminPasswordLinkLabel.Text = "Сменить пароль администратора";
+            this.ChangeAdminPasswordLinkLabel.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.ChangeAdminPasswordLinkLabel_LinkClicked);
             // 
             // AdministrationForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 22F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(676, 420);
-            this.Controls.Add(this.ChangeAdminPasswordButton);
+            this.ClientSize = new System.Drawing.Size(738, 407);
+            this.Controls.Add(this.ChangeAdminPasswordLinkLabel);
             this.Controls.Add(this.AddButton);
             this.Controls.Add(this.Waiting);
             this.Controls.Add(this.UsersDataGridView);
             this.Font = new System.Drawing.Font("Trebuchet MS", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.ForeColor = System.Drawing.Color.White;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "AdministrationForm";
@@ -159,6 +165,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.UsersDataGridView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.UsersBindingSource)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -173,6 +180,6 @@
         private DataGridViewButtonColumn DeleteColumn;
         private Extensions.Waiting Waiting;
         private Button AddButton;
-        private Button ChangeAdminPasswordButton;
+        private LinkLabel ChangeAdminPasswordLinkLabel;
     }
 }
