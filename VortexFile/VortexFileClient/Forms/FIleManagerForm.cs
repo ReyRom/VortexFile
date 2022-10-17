@@ -8,10 +8,10 @@ namespace VortexFileClient.Forms
 {
     public partial class FileManagerForm : Form, IStackableForm
     {
-        private LocalStorage localStorage = new LocalStorage();
-        private CloudStorage cloudStorage = new CloudStorage(Session.CurrentUser.Login, Session.CurrentUser.Password);
+        private LocalStorage localStorage = new LocalStorage(Session.CurrentUser);
+        private CloudStorage cloudStorage = new CloudStorage(Session.CurrentUser);
 
-        private Action fileMethod;
+        private List<Action> fileMethods = new List<Action>();
         private event Action FilesChangeEvent;
 
         public event EventHandler<LoadFormEventArgs> LoadForm;
@@ -25,6 +25,7 @@ namespace VortexFileClient.Forms
         {
             set
             {
+                UploadButton.Enabled = DownloadButton.Enabled = DeleteButton.Enabled = LocalSliderCheckBox.Enabled = CloudSliderCheckBox.Enabled = !value;
                 progressBar.Visible = ProgressTimer.Enabled = value;
                 progressBar.Value = 0;
                 progressBar.Style = ProgressBarStyle.Blocks;
@@ -49,7 +50,7 @@ namespace VortexFileClient.Forms
         private void FileManagerForm_Load(object sender, EventArgs e)
         {
             label2.Text = Session.CurrentUser.Login;
-            UploadFtpButton.Enabled = OnlineMode;
+            CloudSliderCheckBox.Enabled = CloudSliderCheckBox.Checked = OnlineMode;
             FilesChangeEvent.Invoke();
         }
 
@@ -107,26 +108,48 @@ namespace VortexFileClient.Forms
         private void RunProgress(Action action, bool updateData = true)
         {
             IsFileChange = updateData;
-            fileMethod = action;
-            IsProgress = true;
-            BackgroundWorker.RunWorkerAsync();
+            fileMethods.Add(action);
+            if (!BackgroundWorker.IsBusy)
+            {
+                IsProgress = true;
+                BackgroundWorker.RunWorkerAsync();
+            }
         }
 
-        private void UploadLocalButton_Click(object sender, EventArgs e)
+        private void UploadButton_Click(object sender, EventArgs e)
         {
-            UploadLocal();
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.Multiselect = true;
+            if (openFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                if (LocalSliderCheckBox.Checked)
+                {
+                    UploadLocal(openFileDialog.FileNames.ToList());
+                }
+                if (CloudSliderCheckBox.Checked)
+                {
+                    UploadFtp(openFileDialog.FileNames.ToList());
+                }
+            }
         }
 
-        private void UploadLocal()
+        private void UploadFtp(List<string> fileNames)
         {
             try
             {
-                OpenFileDialog openFileDialog = new OpenFileDialog();
-                openFileDialog.Multiselect = true;
-                if (openFileDialog.ShowDialog() == DialogResult.OK)
-                {
-                    RunProgress(() => localStorage.UploadFiles(openFileDialog.FileNames.ToList()));
-                }
+                RunProgress(() => cloudStorage.UploadFiles(fileNames));
+            }
+            catch (Exception ex)
+            {
+                Feedback.ErrorMessage(ex);
+            }
+        }
+
+        private void UploadLocal(List<string> fileNames)
+        {
+            try
+            {
+                RunProgress(() => localStorage.UploadFiles(fileNames));
             }
             catch (Exception ex)
             {
@@ -212,33 +235,11 @@ namespace VortexFileClient.Forms
             }
         }
 
-        private void UploadFtpButton_Click(object sender, EventArgs e)
-        {
-            UploadFtp();
-        }
-
-        private void UploadFtp()
-        {
-            try
-            {
-                OpenFileDialog openFileDialog = new OpenFileDialog();
-                openFileDialog.Multiselect = true;
-                if (openFileDialog.ShowDialog() == DialogResult.OK)
-                {
-                    RunProgress(() => cloudStorage.UploadFiles(openFileDialog.FileNames.ToList()));
-                }
-            }
-            catch (Exception ex)
-            {
-                Feedback.ErrorMessage(ex);
-            }
-        }
-
         private void BackgroundWorker_DoWork(object sender, DoWorkEventArgs e)
         {
             try
             {
-                fileMethod.Invoke();
+                fileMethods.First().Invoke();
             }
             catch (Exception ex)
             {
@@ -248,11 +249,19 @@ namespace VortexFileClient.Forms
 
         private void BackgroundWorker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
+            fileMethods.RemoveAt(0);
             if (IsFileChange)
             {
                 FilesChangeEvent?.Invoke();
             }
-            IsProgress = false;
+            if (fileMethods.Count > 0)
+            {
+                BackgroundWorker.RunWorkerAsync();
+            }
+            else
+            {
+                IsProgress = false;
+            }
         }
 
         private void ProgressTimer_Tick(object sender, EventArgs e)
@@ -269,8 +278,11 @@ namespace VortexFileClient.Forms
         {
             try
             {
-                RunProgress(() => localStorage.UploadFiles(((string[])e.Data.GetData(DataFormats.FileDrop)).ToList()));
-                if (OnlineMode)
+                if (LocalSliderCheckBox.Checked)
+                {
+                    RunProgress(() => localStorage.UploadFiles(((string[])e.Data.GetData(DataFormats.FileDrop)).ToList()));
+                }
+                if (CloudSliderCheckBox.Checked)
                 {
                     RunProgress(() => cloudStorage.UploadFiles(((string[])e.Data.GetData(DataFormats.FileDrop)).ToList()));
                 }
@@ -279,6 +291,11 @@ namespace VortexFileClient.Forms
             {
                 Feedback.ErrorMessage(ex);
             }
+        }
+
+        private void SliderCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            UploadButton.Enabled = CloudSliderCheckBox.Checked || LocalSliderCheckBox.Checked;
         }
     }
 }

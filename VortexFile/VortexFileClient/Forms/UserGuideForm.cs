@@ -16,7 +16,6 @@ namespace VortexFileClient.Forms
 
         private void UserGuideForm_Load(object sender, EventArgs e)
         {
-
         }
     }
 }

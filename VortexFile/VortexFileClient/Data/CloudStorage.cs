@@ -9,10 +9,15 @@ namespace VortexFileClient.Data
         private string login = string.Empty;
         private string password = string.Empty;
 
-        public CloudStorage(string login, string password)
+        public CloudStorage()
         {
-            this.login = login;
-            this.password = password;
+            DAL.OnUserDelete += DAL_OnUserDelete;
+        }
+
+        public CloudStorage(User user)
+        {
+            this.login = user.Login;
+            this.password = user.Password;
             DAL.OnUserDelete += DAL_OnUserDelete;
         }
 

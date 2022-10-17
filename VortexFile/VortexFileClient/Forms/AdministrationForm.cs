@@ -116,6 +116,8 @@ namespace VortexFileClient.Forms
                     email = user.Email;
                     try
                     {
+                        CloudStorage cloud = new CloudStorage();
+                        LocalStorage local = new LocalStorage();
                         DAL.DeleteUser(user);
                     }
                     catch (Exception ex)

@@ -29,20 +29,21 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.ListViewGroup listViewGroup1 = new System.Windows.Forms.ListViewGroup("Локальное хранилище", System.Windows.Forms.HorizontalAlignment.Left);
-            System.Windows.Forms.ListViewGroup listViewGroup2 = new System.Windows.Forms.ListViewGroup("Облачное хранилище", System.Windows.Forms.HorizontalAlignment.Left);
+            System.Windows.Forms.ListViewGroup listViewGroup3 = new System.Windows.Forms.ListViewGroup("Локальное хранилище", System.Windows.Forms.HorizontalAlignment.Left);
+            System.Windows.Forms.ListViewGroup listViewGroup4 = new System.Windows.Forms.ListViewGroup("Облачное хранилище", System.Windows.Forms.HorizontalAlignment.Left);
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FileManagerForm));
             this.label2 = new System.Windows.Forms.Label();
             this.FileManagerListView = new System.Windows.Forms.ListView();
             this.ExtensionImageList = new System.Windows.Forms.ImageList(this.components);
-            this.UploadLocalButton = new System.Windows.Forms.Button();
+            this.UploadButton = new System.Windows.Forms.Button();
             this.DownloadButton = new System.Windows.Forms.Button();
             this.DeleteButton = new System.Windows.Forms.Button();
-            this.UploadFtpButton = new System.Windows.Forms.Button();
             this.BackgroundWorker = new System.ComponentModel.BackgroundWorker();
             this.ProgressTimer = new System.Windows.Forms.Timer(this.components);
             this.waiting = new VortexFileClient.Extensions.Waiting();
             this.progressBar = new VortexFileClient.Extensions.ColorProgressBar();
+            this.LocalSliderCheckBox = new VortexFileClient.Extensions.SliderCheckBox();
+            this.CloudSliderCheckBox = new VortexFileClient.Extensions.SliderCheckBox();
             this.SuspendLayout();
             // 
             // label2
@@ -58,13 +59,13 @@
             // 
             this.FileManagerListView.AllowDrop = true;
             this.FileManagerListView.GridLines = true;
-            listViewGroup1.Header = "Локальное хранилище";
-            listViewGroup1.Name = "localGroup";
-            listViewGroup2.Header = "Облачное хранилище";
-            listViewGroup2.Name = "cloudGroup";
+            listViewGroup3.Header = "Локальное хранилище";
+            listViewGroup3.Name = "localGroup";
+            listViewGroup4.Header = "Облачное хранилище";
+            listViewGroup4.Name = "cloudGroup";
             this.FileManagerListView.Groups.AddRange(new System.Windows.Forms.ListViewGroup[] {
-            listViewGroup1,
-            listViewGroup2});
+            listViewGroup3,
+            listViewGroup4});
             this.FileManagerListView.LargeImageList = this.ExtensionImageList;
             this.FileManagerListView.Location = new System.Drawing.Point(273, 12);
             this.FileManagerListView.Name = "FileManagerListView";
@@ -87,19 +88,19 @@
             this.ExtensionImageList.Images.SetKeyName(3, "icon_music.png");
             this.ExtensionImageList.Images.SetKeyName(4, "icon_film.png");
             // 
-            // UploadLocalButton
+            // UploadButton
             // 
-            this.UploadLocalButton.Location = new System.Drawing.Point(40, 38);
-            this.UploadLocalButton.Name = "UploadLocalButton";
-            this.UploadLocalButton.Size = new System.Drawing.Size(128, 23);
-            this.UploadLocalButton.TabIndex = 3;
-            this.UploadLocalButton.Text = "Загрузить локально";
-            this.UploadLocalButton.UseVisualStyleBackColor = true;
-            this.UploadLocalButton.Click += new System.EventHandler(this.UploadLocalButton_Click);
+            this.UploadButton.Location = new System.Drawing.Point(40, 38);
+            this.UploadButton.Name = "UploadButton";
+            this.UploadButton.Size = new System.Drawing.Size(128, 23);
+            this.UploadButton.TabIndex = 3;
+            this.UploadButton.Text = "Загрузить";
+            this.UploadButton.UseVisualStyleBackColor = true;
+            this.UploadButton.Click += new System.EventHandler(this.UploadButton_Click);
             // 
             // DownloadButton
             // 
-            this.DownloadButton.Location = new System.Drawing.Point(40, 110);
+            this.DownloadButton.Location = new System.Drawing.Point(40, 126);
             this.DownloadButton.Name = "DownloadButton";
             this.DownloadButton.Size = new System.Drawing.Size(75, 23);
             this.DownloadButton.TabIndex = 4;
@@ -109,23 +110,13 @@
             // 
             // DeleteButton
             // 
-            this.DeleteButton.Location = new System.Drawing.Point(40, 139);
+            this.DeleteButton.Location = new System.Drawing.Point(40, 155);
             this.DeleteButton.Name = "DeleteButton";
             this.DeleteButton.Size = new System.Drawing.Size(75, 23);
             this.DeleteButton.TabIndex = 5;
             this.DeleteButton.Text = "Удалить";
             this.DeleteButton.UseVisualStyleBackColor = true;
             this.DeleteButton.Click += new System.EventHandler(this.DeleteButton_Click);
-            // 
-            // UploadFtpButton
-            // 
-            this.UploadFtpButton.Location = new System.Drawing.Point(40, 67);
-            this.UploadFtpButton.Name = "UploadFtpButton";
-            this.UploadFtpButton.Size = new System.Drawing.Size(128, 23);
-            this.UploadFtpButton.TabIndex = 6;
-            this.UploadFtpButton.Text = "Загрузить на FTP";
-            this.UploadFtpButton.UseVisualStyleBackColor = true;
-            this.UploadFtpButton.Click += new System.EventHandler(this.UploadFtpButton_Click);
             // 
             // BackgroundWorker
             // 
@@ -159,17 +150,62 @@
             this.progressBar.TabIndex = 9;
             this.progressBar.Visible = false;
             // 
+            // LocalSliderCheckBox
+            // 
+            this.LocalSliderCheckBox.Appearance = System.Windows.Forms.Appearance.Button;
+            this.LocalSliderCheckBox.AutoSize = true;
+            this.LocalSliderCheckBox.Checked = true;
+            this.LocalSliderCheckBox.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.LocalSliderCheckBox.FlatAppearance.BorderSize = 0;
+            this.LocalSliderCheckBox.FlatAppearance.CheckedBackColor = System.Drawing.Color.Transparent;
+            this.LocalSliderCheckBox.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
+            this.LocalSliderCheckBox.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.LocalSliderCheckBox.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.LocalSliderCheckBox.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.LocalSliderCheckBox.ImageIndex = 1;
+            this.LocalSliderCheckBox.Location = new System.Drawing.Point(40, 67);
+            this.LocalSliderCheckBox.Name = "LocalSliderCheckBox";
+            this.LocalSliderCheckBox.Size = new System.Drawing.Size(176, 25);
+            this.LocalSliderCheckBox.TabIndex = 10;
+            this.LocalSliderCheckBox.Text = "Локальное хранилище";
+            this.LocalSliderCheckBox.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.LocalSliderCheckBox.UseVisualStyleBackColor = true;
+            this.LocalSliderCheckBox.CheckedChanged += new System.EventHandler(this.SliderCheckBox_CheckedChanged);
+            // 
+            // CloudSliderCheckBox
+            // 
+            this.CloudSliderCheckBox.Appearance = System.Windows.Forms.Appearance.Button;
+            this.CloudSliderCheckBox.AutoSize = true;
+            this.CloudSliderCheckBox.Checked = true;
+            this.CloudSliderCheckBox.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.CloudSliderCheckBox.FlatAppearance.BorderSize = 0;
+            this.CloudSliderCheckBox.FlatAppearance.CheckedBackColor = System.Drawing.Color.Transparent;
+            this.CloudSliderCheckBox.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
+            this.CloudSliderCheckBox.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.CloudSliderCheckBox.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.CloudSliderCheckBox.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.CloudSliderCheckBox.ImageIndex = 1;
+            this.CloudSliderCheckBox.Location = new System.Drawing.Point(40, 95);
+            this.CloudSliderCheckBox.Name = "CloudSliderCheckBox";
+            this.CloudSliderCheckBox.Size = new System.Drawing.Size(172, 25);
+            this.CloudSliderCheckBox.TabIndex = 11;
+            this.CloudSliderCheckBox.Text = "Облачное хранилище";
+            this.CloudSliderCheckBox.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.CloudSliderCheckBox.UseVisualStyleBackColor = true;
+            this.CloudSliderCheckBox.CheckedChanged += new System.EventHandler(this.SliderCheckBox_CheckedChanged);
+            // 
             // FileManagerForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(756, 429);
+            this.Controls.Add(this.CloudSliderCheckBox);
+            this.Controls.Add(this.LocalSliderCheckBox);
             this.Controls.Add(this.progressBar);
             this.Controls.Add(this.waiting);
-            this.Controls.Add(this.UploadFtpButton);
             this.Controls.Add(this.DeleteButton);
             this.Controls.Add(this.DownloadButton);
-            this.Controls.Add(this.UploadLocalButton);
+            this.Controls.Add(this.UploadButton);
             this.Controls.Add(this.FileManagerListView);
             this.Controls.Add(this.label2);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
@@ -185,13 +221,14 @@
         private Label label2;
         private ListView FileManagerListView;
         private ImageList ExtensionImageList;
-        private Button UploadLocalButton;
+        private Button UploadButton;
         private Button DownloadButton;
         private Button DeleteButton;
-        private Button UploadFtpButton;
         private System.ComponentModel.BackgroundWorker BackgroundWorker;
         private System.Windows.Forms.Timer ProgressTimer;
         private Extensions.Waiting waiting;
         private Extensions.ColorProgressBar progressBar;
+        private Extensions.SliderCheckBox LocalSliderCheckBox;
+        private Extensions.SliderCheckBox CloudSliderCheckBox;
     }
 }

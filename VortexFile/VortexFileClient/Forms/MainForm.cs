@@ -31,13 +31,12 @@ public partial class MainForm : Form
 
     private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
     {
-        e.Cancel = !Extensions.Feedback.QuestionMessage("Вы уверены, что хотите завершить сеанс?");
+        e.Cancel = !Feedback.QuestionMessage("Вы уверены, что хотите завершить сеанс?");
     }
 
     private void MainForm_Load(object sender, EventArgs e)
     {
-        var intro = new IntroForm();
-        intro.ShowDialog();
+        new IntroForm().ShowDialog();
         LoadForm(new AuthorizationForm());
     }
 
@@ -68,7 +67,7 @@ public partial class MainForm : Form
 
     private void ValidateButtons()
     {
-        SettingsButton.Visible = !(forms.Peek() is SettingsForm);
+        SettingsButton.Visible = forms.Peek() is AuthorizationForm;
         BackButton.Visible = forms.Count > 1;
     }
 
@@ -78,7 +77,7 @@ public partial class MainForm : Form
         IStackableForm form = forms.Peek();
         FormTools.FormToPanel(form as Form, BodyPanel);
         HeaderLabel.Text = form.Text;
-        BackButton.Visible = forms.Count > 1;
+        ValidateButtons();
     }
 
     private void HeaderLabel_MouseDown(object sender, MouseEventArgs e)

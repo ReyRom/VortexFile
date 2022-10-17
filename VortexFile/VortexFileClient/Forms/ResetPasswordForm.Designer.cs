@@ -43,6 +43,7 @@
             this.PasswordCheckBox = new VortexFileClient.Extensions.PasswordCheckBox();
             this.ConfirmButton = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.timer = new System.Windows.Forms.Timer(this.components);
             this.tabControl.SuspendLayout();
             this.LoginTabPage.SuspendLayout();
             this.CodeTabPage.SuspendLayout();
@@ -163,15 +164,15 @@
             // 
             // SendCodeLinkLabel
             // 
-            this.SendCodeLinkLabel.AutoSize = true;
             this.SendCodeLinkLabel.Font = new System.Drawing.Font("Trebuchet MS", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.SendCodeLinkLabel.LinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(100)))), ((int)(((byte)(210)))));
-            this.SendCodeLinkLabel.Location = new System.Drawing.Point(107, 90);
+            this.SendCodeLinkLabel.Location = new System.Drawing.Point(3, 90);
             this.SendCodeLinkLabel.Name = "SendCodeLinkLabel";
-            this.SendCodeLinkLabel.Size = new System.Drawing.Size(188, 22);
+            this.SendCodeLinkLabel.Size = new System.Drawing.Size(401, 22);
             this.SendCodeLinkLabel.TabIndex = 5;
             this.SendCodeLinkLabel.TabStop = true;
             this.SendCodeLinkLabel.Text = "Отправить код повторно";
+            this.SendCodeLinkLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.SendCodeLinkLabel.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.SendCodeLinkLabel_LinkClicked);
             // 
             // PasswordTabPage
@@ -224,10 +225,15 @@
             // 
             // panel1
             // 
-            this.panel1.Location = new System.Drawing.Point(-4, 62);
+            this.panel1.Location = new System.Drawing.Point(-9, 61);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(428, 24);
             this.panel1.TabIndex = 17;
+            // 
+            // timer
+            // 
+            this.timer.Interval = 1000;
+            this.timer.Tick += new System.EventHandler(this.timer_Tick);
             // 
             // ResetPasswordForm
             // 
@@ -271,5 +277,6 @@
         private Button ConfirmButton;
         private Panel panel1;
         private Extensions.PasswordCheckBox PasswordCheckBox;
+        private System.Windows.Forms.Timer timer;
     }
 }
