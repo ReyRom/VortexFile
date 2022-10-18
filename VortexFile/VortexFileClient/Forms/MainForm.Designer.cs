@@ -139,6 +139,7 @@ partial class MainForm
             // 
             // FooterPanel
             // 
+            this.FooterPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(237)))), ((int)(((byte)(252)))));
             this.FooterPanel.Controls.Add(this.SettingsButton);
             this.FooterPanel.Controls.Add(this.connectionIndicator);
             this.FooterPanel.Controls.Add(this.BackButton);

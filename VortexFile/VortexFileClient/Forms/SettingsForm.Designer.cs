@@ -31,55 +31,61 @@
             this.PathTextBox = new System.Windows.Forms.TextBox();
             this.BrowseButton = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
-            this.AdminButton = new System.Windows.Forms.Button();
+            this.AdministrationLinkLabel = new System.Windows.Forms.LinkLabel();
             this.SuspendLayout();
             // 
             // PathTextBox
             // 
-            this.PathTextBox.Location = new System.Drawing.Point(31, 79);
+            this.PathTextBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(237)))), ((int)(((byte)(252)))));
+            this.PathTextBox.Location = new System.Drawing.Point(13, 64);
             this.PathTextBox.Margin = new System.Windows.Forms.Padding(4);
             this.PathTextBox.Name = "PathTextBox";
-            this.PathTextBox.Size = new System.Drawing.Size(352, 26);
+            this.PathTextBox.Size = new System.Drawing.Size(423, 26);
             this.PathTextBox.TabIndex = 0;
+            this.PathTextBox.Text = "C:\\";
             // 
             // BrowseButton
             // 
-            this.BrowseButton.Location = new System.Drawing.Point(401, 76);
+            this.BrowseButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(100)))), ((int)(((byte)(210)))));
+            this.BrowseButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BrowseButton.ForeColor = System.Drawing.Color.White;
+            this.BrowseButton.Location = new System.Drawing.Point(443, 61);
             this.BrowseButton.Name = "BrowseButton";
-            this.BrowseButton.Size = new System.Drawing.Size(106, 34);
+            this.BrowseButton.Size = new System.Drawing.Size(106, 32);
             this.BrowseButton.TabIndex = 1;
             this.BrowseButton.Text = "Обзор...";
-            this.BrowseButton.UseVisualStyleBackColor = true;
+            this.BrowseButton.UseVisualStyleBackColor = false;
             this.BrowseButton.Click += new System.EventHandler(this.BrowseButton_Click);
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(31, 53);
+            this.label1.Location = new System.Drawing.Point(13, 38);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(233, 22);
+            this.label1.Size = new System.Drawing.Size(239, 22);
             this.label1.TabIndex = 2;
-            this.label1.Text = "Путь к локальному хранилищу";
+            this.label1.Text = "Путь к локальному хранилищу:";
             // 
-            // AdminButton
+            // AdministrationLinkLabel
             // 
-            this.AdminButton.FlatAppearance.BorderSize = 0;
-            this.AdminButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.AdminButton.Location = new System.Drawing.Point(31, 127);
-            this.AdminButton.Name = "AdminButton";
-            this.AdminButton.Size = new System.Drawing.Size(180, 30);
-            this.AdminButton.TabIndex = 4;
-            this.AdminButton.Text = "Администрирование";
-            this.AdminButton.UseVisualStyleBackColor = true;
-            this.AdminButton.Click += new System.EventHandler(this.AdminButton_Click);
+            this.AdministrationLinkLabel.AutoSize = true;
+            this.AdministrationLinkLabel.Font = new System.Drawing.Font("Trebuchet MS", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.AdministrationLinkLabel.LinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(100)))), ((int)(((byte)(210)))));
+            this.AdministrationLinkLabel.Location = new System.Drawing.Point(390, 9);
+            this.AdministrationLinkLabel.Name = "AdministrationLinkLabel";
+            this.AdministrationLinkLabel.Size = new System.Drawing.Size(159, 22);
+            this.AdministrationLinkLabel.TabIndex = 5;
+            this.AdministrationLinkLabel.TabStop = true;
+            this.AdministrationLinkLabel.Text = "Администрирование";
+            this.AdministrationLinkLabel.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.AdministrationLinkLabel_LinkClicked);
             // 
             // SettingsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 22F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(561, 196);
-            this.Controls.Add(this.AdminButton);
+            this.ClientSize = new System.Drawing.Size(561, 142);
+            this.Controls.Add(this.AdministrationLinkLabel);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.BrowseButton);
             this.Controls.Add(this.PathTextBox);
@@ -99,6 +105,6 @@
         private TextBox PathTextBox;
         private Button BrowseButton;
         private Label label1;
-        private Button AdminButton;
+        private LinkLabel AdministrationLinkLabel;
     }
 }
