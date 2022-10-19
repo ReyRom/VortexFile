@@ -49,7 +49,7 @@ namespace VortexFileClient.Forms
 
         private void FileManagerForm_Load(object sender, EventArgs e)
         {
-            label2.Text = Session.CurrentUser.Login;
+            this.Text = Session.CurrentUser.Login;
             CloudSliderCheckBox.Enabled = CloudSliderCheckBox.Checked = OnlineMode;
             FilesChangeEvent.Invoke();
         }
@@ -297,5 +297,6 @@ namespace VortexFileClient.Forms
         {
             UploadButton.Enabled = CloudSliderCheckBox.Checked || LocalSliderCheckBox.Checked;
         }
+
     }
 }

@@ -52,7 +52,7 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.UsersDataGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.UsersDataGridView.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(237)))), ((int)(((byte)(252)))));
+            this.UsersDataGridView.BackgroundColor = System.Drawing.Color.White;
             this.UsersDataGridView.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.UsersDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.UsersDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -114,10 +114,10 @@
             // 
             // Waiting
             // 
-            this.Waiting.Location = new System.Drawing.Point(187, 77);
+            this.Waiting.Location = new System.Drawing.Point(274, 144);
             this.Waiting.Margin = new System.Windows.Forms.Padding(4);
             this.Waiting.Name = "Waiting";
-            this.Waiting.Size = new System.Drawing.Size(340, 253);
+            this.Waiting.Size = new System.Drawing.Size(190, 110);
             this.Waiting.TabIndex = 1;
             // 
             // AddButton

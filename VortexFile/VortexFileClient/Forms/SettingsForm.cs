@@ -39,7 +39,7 @@ namespace VortexFileClient.Forms
             PathTextBox.Text = Path;
         }
 
-        private void AdminButton_Click(object sender, EventArgs e)
+        private void AdministrationLinkLabel_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             LoadForm.Invoke(this, new LoadFormEventArgs(new AdminAuthForm()));
         }
