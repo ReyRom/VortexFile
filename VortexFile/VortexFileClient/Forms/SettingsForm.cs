@@ -30,7 +30,7 @@ namespace VortexFileClient.Forms
             FolderBrowserDialog folderBrowser = new FolderBrowserDialog();
             if (folderBrowser.ShowDialog() == DialogResult.OK)
             {
-                Path = folderBrowser.SelectedPath;
+                PathTextBox.Text = folderBrowser.SelectedPath;
             }
         }
 
@@ -42,6 +42,20 @@ namespace VortexFileClient.Forms
         private void AdministrationLinkLabel_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             LoadForm.Invoke(this, new LoadFormEventArgs(new AdminAuthForm()));
+        }
+
+        private void SaveButton_Click(object sender, EventArgs e)
+        {
+            if (!Directory.Exists(PathTextBox.Text))
+            {
+                Directory.CreateDirectory(PathTextBox.Text);
+                try
+                {
+                    File.Move(System.IO.Path.Combine(Properties.Settings.Default.Path, "VortexFile.zip"), System.IO.Path.Combine(PathTextBox.Text, "VortexFile.zip"));
+                }
+                catch (Exception){}
+            }
+            Path = PathTextBox.Text;
         }
     }
 }

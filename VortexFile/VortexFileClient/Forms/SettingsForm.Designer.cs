@@ -32,6 +32,7 @@
             this.BrowseButton = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.AdministrationLinkLabel = new System.Windows.Forms.LinkLabel();
+            this.SaveButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // PathTextBox
@@ -79,12 +80,26 @@
             this.AdministrationLinkLabel.Text = "Администрирование";
             this.AdministrationLinkLabel.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.AdministrationLinkLabel_LinkClicked);
             // 
+            // SaveButton
+            // 
+            this.SaveButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(100)))), ((int)(((byte)(210)))));
+            this.SaveButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.SaveButton.ForeColor = System.Drawing.Color.White;
+            this.SaveButton.Location = new System.Drawing.Point(443, 98);
+            this.SaveButton.Name = "SaveButton";
+            this.SaveButton.Size = new System.Drawing.Size(106, 32);
+            this.SaveButton.TabIndex = 7;
+            this.SaveButton.Text = "Сохранить";
+            this.SaveButton.UseVisualStyleBackColor = false;
+            this.SaveButton.Click += new System.EventHandler(this.SaveButton_Click);
+            // 
             // SettingsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 22F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(561, 142);
+            this.Controls.Add(this.SaveButton);
             this.Controls.Add(this.AdministrationLinkLabel);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.BrowseButton);
@@ -106,5 +121,6 @@
         private Button BrowseButton;
         private Label label1;
         private LinkLabel AdministrationLinkLabel;
+        private Button SaveButton;
     }
 }

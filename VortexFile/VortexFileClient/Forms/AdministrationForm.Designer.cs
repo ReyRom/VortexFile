@@ -28,19 +28,17 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.UsersDataGridView = new System.Windows.Forms.DataGridView();
             this.LoginColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.EmailColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.UsernameColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.PhoneColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.DeleteColumn = new System.Windows.Forms.DataGridViewButtonColumn();
-            this.UsersBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.Waiting = new VortexFileClient.Extensions.Waiting();
             this.AddButton = new System.Windows.Forms.Button();
             this.ChangeAdminPasswordLinkLabel = new System.Windows.Forms.LinkLabel();
+            this.Waiting = new VortexFileClient.Extensions.Waiting();
             ((System.ComponentModel.ISupportInitialize)(this.UsersDataGridView)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.UsersBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // UsersDataGridView
@@ -61,6 +59,14 @@
             this.UsernameColumn,
             this.PhoneColumn,
             this.DeleteColumn});
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Trebuchet MS", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.UsersDataGridView.DefaultCellStyle = dataGridViewCellStyle1;
             this.UsersDataGridView.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(101)))), ((int)(((byte)(215)))));
             this.UsersDataGridView.Location = new System.Drawing.Point(15, 18);
             this.UsersDataGridView.Margin = new System.Windows.Forms.Padding(4);
@@ -112,18 +118,11 @@
             this.DeleteColumn.Text = "Удалить";
             this.DeleteColumn.UseColumnTextForButtonValue = true;
             // 
-            // Waiting
-            // 
-            this.Waiting.Location = new System.Drawing.Point(274, 144);
-            this.Waiting.Margin = new System.Windows.Forms.Padding(4);
-            this.Waiting.Name = "Waiting";
-            this.Waiting.Size = new System.Drawing.Size(190, 110);
-            this.Waiting.TabIndex = 1;
-            // 
             // AddButton
             // 
             this.AddButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(100)))), ((int)(((byte)(210)))));
             this.AddButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.AddButton.ForeColor = System.Drawing.Color.White;
             this.AddButton.Location = new System.Drawing.Point(15, 368);
             this.AddButton.Name = "AddButton";
             this.AddButton.Size = new System.Drawing.Size(162, 30);
@@ -145,25 +144,33 @@
             this.ChangeAdminPasswordLinkLabel.Text = "Сменить пароль администратора";
             this.ChangeAdminPasswordLinkLabel.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.ChangeAdminPasswordLinkLabel_LinkClicked);
             // 
+            // Waiting
+            // 
+            this.Waiting.Location = new System.Drawing.Point(279, 133);
+            this.Waiting.Margin = new System.Windows.Forms.Padding(4);
+            this.Waiting.Name = "Waiting";
+            this.Waiting.Size = new System.Drawing.Size(174, 131);
+            this.Waiting.TabIndex = 6;
+            this.Waiting.Visible = false;
+            // 
             // AdministrationForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 22F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(738, 407);
+            this.Controls.Add(this.Waiting);
             this.Controls.Add(this.ChangeAdminPasswordLinkLabel);
             this.Controls.Add(this.AddButton);
-            this.Controls.Add(this.Waiting);
             this.Controls.Add(this.UsersDataGridView);
             this.Font = new System.Drawing.Font("Trebuchet MS", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.ForeColor = System.Drawing.Color.White;
+            this.ForeColor = System.Drawing.Color.Black;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "AdministrationForm";
             this.Text = "AdministationForm";
             this.Load += new System.EventHandler(this.AdministrationForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.UsersDataGridView)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.UsersBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -172,7 +179,6 @@
         #endregion
 
         private DataGridView UsersDataGridView;
-        private BindingSource UsersBindingSource;
         private DataGridViewTextBoxColumn LoginColumn;
         private DataGridViewTextBoxColumn EmailColumn;
         private DataGridViewTextBoxColumn UsernameColumn;

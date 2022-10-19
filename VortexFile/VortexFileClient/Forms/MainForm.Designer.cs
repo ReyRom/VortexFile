@@ -154,12 +154,11 @@ partial class MainForm
             this.SettingsButton.Dock = System.Windows.Forms.DockStyle.Right;
             this.SettingsButton.FlatAppearance.BorderSize = 0;
             this.SettingsButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.SettingsButton.Location = new System.Drawing.Point(629, 0);
+            this.SettingsButton.Location = new System.Drawing.Point(637, 0);
             this.SettingsButton.Name = "SettingsButton";
-            this.SettingsButton.Size = new System.Drawing.Size(114, 30);
+            this.SettingsButton.Size = new System.Drawing.Size(108, 30);
             this.SettingsButton.TabIndex = 4;
             this.SettingsButton.Text = "Настройки";
-            this.SettingsButton.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.SettingsButton.UseVisualStyleBackColor = true;
             this.SettingsButton.Click += new System.EventHandler(this.SettingsButton_Click);
             // 
@@ -168,12 +167,12 @@ partial class MainForm
             this.connectionIndicator.ConnectImage = global::VortexFileClient.Properties.Resources.GreenCircle;
             this.connectionIndicator.DisconnectImage = global::VortexFileClient.Properties.Resources.RedCircle;
             this.connectionIndicator.Dock = System.Windows.Forms.DockStyle.Right;
-            this.connectionIndicator.Location = new System.Drawing.Point(743, 0);
+            this.connectionIndicator.Location = new System.Drawing.Point(745, 0);
             this.connectionIndicator.Margin = new System.Windows.Forms.Padding(4);
             this.connectionIndicator.Name = "connectionIndicator";
-            this.connectionIndicator.Size = new System.Drawing.Size(30, 30);
+            this.connectionIndicator.Size = new System.Drawing.Size(28, 30);
             this.connectionIndicator.TabIndex = 3;
-            this.connectionIndicator.TimerInterval = 60000;
+            this.connectionIndicator.TimerInterval = 100;
             // 
             // BackButton
             // 

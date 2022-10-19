@@ -12,10 +12,17 @@ namespace VortexFileClient.Data
         {
             Database.EnsureCreated();
         }
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<User>().Property(u => u.gid).HasDefaultValue();
+            modelBuilder.Entity<User>().Property(u => u.uid).HasDefaultValue();
+            modelBuilder.Entity<User>().Property(u => u.shell).HasDefaultValue();
+            modelBuilder.Entity<User>().Property(u => u.count).HasDefaultValue();
+        }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseMySQL(
-                "server=91.122.211.144;port=53306;;user=proftpd;password=password;database=ftp;"
+            optionsBuilder.UseMySQL(Properties.Settings.Default.ConnectionString
+                //"server=91.122.211.144;port=53306;user=proftpd;password=password;database=ftp;"
             );
         }
     }

@@ -17,5 +17,8 @@
     <Setting Name="AdminPassword" Type="System.String" Scope="User">
       <Value Profile="(Default)">1234</Value>
     </Setting>
+    <Setting Name="ConnectionString" Type="System.String" Scope="User">
+      <Value Profile="(Default)">server=91.122.211.144;port=53306;user=proftpd;password=password;database=ftp;</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

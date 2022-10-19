@@ -117,4 +117,5 @@ public partial class MainForm : Form
     {
         LoadForm(new SettingsForm());
     }
+
 }
