@@ -35,11 +35,10 @@
             // WaitingPictureBox
             // 
             this.WaitingPictureBox.BackColor = System.Drawing.Color.White;
-            this.WaitingPictureBox.Dock = System.Windows.Forms.DockStyle.Fill;
             this.WaitingPictureBox.Image = global::VortexFileClient.Properties.Resources.Loading;
-            this.WaitingPictureBox.Location = new System.Drawing.Point(0, 0);
+            this.WaitingPictureBox.Location = new System.Drawing.Point(27, 27);
             this.WaitingPictureBox.Name = "WaitingPictureBox";
-            this.WaitingPictureBox.Size = new System.Drawing.Size(313, 253);
+            this.WaitingPictureBox.Size = new System.Drawing.Size(262, 206);
             this.WaitingPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.WaitingPictureBox.TabIndex = 0;
             this.WaitingPictureBox.TabStop = false;
@@ -50,7 +49,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.WaitingPictureBox);
             this.Name = "Waiting";
-            this.Size = new System.Drawing.Size(313, 253);
+            this.Size = new System.Drawing.Size(318, 259);
             ((System.ComponentModel.ISupportInitialize)(this.WaitingPictureBox)).EndInit();
             this.ResumeLayout(false);
 

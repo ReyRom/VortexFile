@@ -108,10 +108,11 @@
             // 
             // waiting
             // 
-            this.waiting.Location = new System.Drawing.Point(419, 190);
+            this.waiting.ImageSize = new System.Drawing.Size(224, 192);
+            this.waiting.Location = new System.Drawing.Point(26, 14);
             this.waiting.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.waiting.Name = "waiting";
-            this.waiting.Size = new System.Drawing.Size(230, 153);
+            this.waiting.Size = new System.Drawing.Size(1009, 518);
             this.waiting.TabIndex = 8;
             this.waiting.Visible = false;
             // 

@@ -21,9 +21,7 @@ namespace VortexFileClient.Data
         }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseMySQL(Properties.Settings.Default.ConnectionString
-                //"server=91.122.211.144;port=53306;user=proftpd;password=password;database=ftp;"
-            );
+            optionsBuilder.UseMySQL(Properties.Settings.Default.ConnectionString);
         }
     }
 }
