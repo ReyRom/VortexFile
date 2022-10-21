@@ -50,7 +50,7 @@ public partial class MainForm : Form
         form.LoadForm += Form_LoadForm;
         form.GoBack += Form_GoBack;
         forms.Push(form);
-        FormTools.FormToPanel(form as Form, BodyPanel);
+        Tools.FormToPanel(form as Form, BodyPanel);
         HeaderLabel.Text = form.Text;
         ValidateButtons();
     }
@@ -75,7 +75,7 @@ public partial class MainForm : Form
     {
         forms.Pop().Dispose();
         IStackableForm form = forms.Peek();
-        FormTools.FormToPanel(form as Form, BodyPanel);
+        Tools.FormToPanel(form as Form, BodyPanel);
         HeaderLabel.Text = form.Text;
         ValidateButtons();
     }

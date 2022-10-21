@@ -101,7 +101,7 @@ namespace VortexFileClient.Data
                 zip.Password = Password;
                 foreach (var item in filesName)
                 {
-                    if (new FileInfo(item).Length > Extensions.Constants.GigaByte * 2)
+                    if (new FileInfo(item).Length > Extensions.Tools.GigaByte * 2)
                     {
                         throw new Exception("Размер загружаемого файла больше 2ГБ.");
                     }

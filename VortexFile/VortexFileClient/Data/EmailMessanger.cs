@@ -16,7 +16,7 @@ namespace VortexFileClient.Data
 
         public EmailMessanger(string email, string name, string password)
         {
-            code = Code.Generate(5);
+            code = Tools.GenerateCode(5);
             this.email = email;
             this.name = name;
             this.password = password;
