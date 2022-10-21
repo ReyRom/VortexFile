@@ -151,14 +151,15 @@ partial class MainForm
             // 
             // SettingsButton
             // 
+            this.SettingsButton.Cursor = System.Windows.Forms.Cursors.Hand;
             this.SettingsButton.Dock = System.Windows.Forms.DockStyle.Right;
             this.SettingsButton.FlatAppearance.BorderSize = 0;
             this.SettingsButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.SettingsButton.Location = new System.Drawing.Point(637, 0);
+            this.SettingsButton.Image = global::VortexFileClient.Properties.Resources.IconCogs;
+            this.SettingsButton.Location = new System.Drawing.Point(715, 0);
             this.SettingsButton.Name = "SettingsButton";
-            this.SettingsButton.Size = new System.Drawing.Size(108, 30);
+            this.SettingsButton.Size = new System.Drawing.Size(30, 30);
             this.SettingsButton.TabIndex = 4;
-            this.SettingsButton.Text = "Настройки";
             this.SettingsButton.UseVisualStyleBackColor = true;
             this.SettingsButton.Click += new System.EventHandler(this.SettingsButton_Click);
             // 
@@ -179,11 +180,11 @@ partial class MainForm
             this.BackButton.Dock = System.Windows.Forms.DockStyle.Left;
             this.BackButton.FlatAppearance.BorderSize = 0;
             this.BackButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BackButton.Image = global::VortexFileClient.Properties.Resources.ArrowBack;
             this.BackButton.Location = new System.Drawing.Point(0, 0);
             this.BackButton.Name = "BackButton";
-            this.BackButton.Size = new System.Drawing.Size(121, 30);
+            this.BackButton.Size = new System.Drawing.Size(56, 30);
             this.BackButton.TabIndex = 1;
-            this.BackButton.Text = "<- Назад";
             this.BackButton.UseVisualStyleBackColor = true;
             this.BackButton.Click += new System.EventHandler(this.BackButton_Click);
             // 

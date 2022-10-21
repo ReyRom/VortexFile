@@ -39,6 +39,7 @@
     <DebugType>portable</DebugType>
   </PropertyGroup>
   <ItemGroup>
+    <None Remove="Resources\arrow_back.png" />
     <None Remove="Resources\FullLogo.png" />
     <None Remove="Resources\green_circle.png" />
     <None Remove="Resources\Hide.png" />
@@ -60,6 +61,7 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Resources\arrow_back.png" />
     <EmbeddedResource Include="Resources\FullLogo.png" />
     <EmbeddedResource Include="Resources\green_circle.png" />
     <EmbeddedResource Include="Resources\Hide.png" />
