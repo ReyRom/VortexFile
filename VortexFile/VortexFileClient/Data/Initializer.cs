@@ -15,14 +15,21 @@ namespace VortexFileClient.Data
             if (File.Exists(config))
             {
                 string strings = File.ReadAllText(config);
-                Regex regex = new Regex(@"^admpass#(?<pass>\S+)[$]cnctstr#(?<cnctstr>\S+)[$]$");
-                Match match = regex.Match(strings);
-                var adminPass = match.Groups["pass"].Value;
-                var connectionString = match.Groups["cnctstr"].Value;
+                var adminPass = Regex.Match(strings, @"^admpass#(?<data>.+)$", RegexOptions.Multiline).Groups["data"].Value.TrimEnd('\r');
                 if (adminPass == Properties.Settings.Default.AdminPassword)
                 {
-                    Properties.Settings.Default.ConnectionString = connectionString;
-                    Properties.Settings.Default.Save();
+                    var connectionString = Regex.Match(strings, @"^cnctstr#(?<data>.+)$", RegexOptions.Multiline).Groups["data"].Value.TrimEnd('\r');
+                    var ftpAddress = Regex.Match(strings, @"^ftpaddrs#(?<data>.+)$", RegexOptions.Multiline).Groups["data"].Value.TrimEnd('\r');
+                    if (!String.IsNullOrWhiteSpace(connectionString))
+                    {
+                        Properties.Settings.Default.ConnectionString = connectionString;
+                        Properties.Settings.Default.Save();
+                    }
+                    if (!String.IsNullOrWhiteSpace(ftpAddress))
+                    {
+                        Properties.Settings.Default.FtpAddress = ftpAddress;
+                        Properties.Settings.Default.Save();
+                    }
                 }
             }
         }

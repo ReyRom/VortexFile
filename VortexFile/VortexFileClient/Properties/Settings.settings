@@ -15,10 +15,13 @@
       <Value Profile="(Default)">1234</Value>
     </Setting>
     <Setting Name="AdminPassword" Type="System.String" Scope="User">
-      <Value Profile="(Default)">1234</Value>
+      <Value Profile="(Default)">admin</Value>
     </Setting>
     <Setting Name="ConnectionString" Type="System.String" Scope="User">
       <Value Profile="(Default)">server=91.122.211.144;port=53306;user=proftpd;password=password;database=ftp;</Value>
+    </Setting>
+    <Setting Name="FtpAddress" Type="System.String" Scope="User">
+      <Value Profile="(Default)">ftp://91.122.211.144:50021/</Value>
     </Setting>
   </Settings>
 </SettingsFile>

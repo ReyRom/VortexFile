@@ -5,7 +5,7 @@ namespace VortexFileClient.Data
 {
     internal class CloudStorage
     {
-        private string serverAddress = "ftp://91.122.211.144:50021/";
+        private string ServerAddress { get => Properties.Settings.Default.FtpAddress; }
         private string login = string.Empty;
         private string password = string.Empty;
 
@@ -30,7 +30,7 @@ namespace VortexFileClient.Data
         {
             foreach (var fileName in fileNames)
             {
-                var status = FtpHelper.DownloadFile(Path.Combine(outFolder, fileName), serverAddress + fileName, login, password);
+                var status = FtpHelper.DownloadFile(Path.Combine(outFolder, fileName), ServerAddress + fileName, login, password);
             }
         }
 
@@ -42,7 +42,7 @@ namespace VortexFileClient.Data
                 {
                     throw new Exception("Размер загружаемого файла больше 2ГБ.");
                 }
-                var status = FtpHelper.UploadFile(fileName, serverAddress + Path.GetFileName(fileName), login, password);
+                var status = FtpHelper.UploadFile(fileName, ServerAddress + Path.GetFileName(fileName), login, password);
             }
         }
 
@@ -50,7 +50,7 @@ namespace VortexFileClient.Data
         {
             foreach (var fileName in fileNames)
             {
-                var status = FtpHelper.DeleteFile(serverAddress + fileName, login, password);
+                var status = FtpHelper.DeleteFile(ServerAddress + fileName, login, password);
             }
         }
 
@@ -58,18 +58,18 @@ namespace VortexFileClient.Data
         {
             foreach (var fileName in fileNames)
             {
-                var status = FtpHelper.DeleteFile(serverAddress + fileName, user.Login, user.Password);
+                var status = FtpHelper.DeleteFile(ServerAddress + fileName, user.Login, user.Password);
             }
         }
 
         public List<string> GetUserCatalog()
         {
-            return FtpHelper.GetFilesList(serverAddress, login, password);
+            return FtpHelper.GetFilesList(ServerAddress, login, password);
         }
 
         public List<string> GetUserCatalog(User user)
         {
-            return FtpHelper.GetFilesList(serverAddress, user.Login, user.Password);
+            return FtpHelper.GetFilesList(ServerAddress, user.Login, user.Password);
         }
     }
 }

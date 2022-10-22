@@ -73,7 +73,7 @@ namespace VortexFileClient.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("1234")]
+        [global::System.Configuration.DefaultSettingValueAttribute("admin")]
         public string AdminPassword {
             get {
                 return ((string)(this["AdminPassword"]));
@@ -92,6 +92,18 @@ namespace VortexFileClient.Properties {
             }
             set {
                 this["ConnectionString"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("ftp://91.122.211.144:50021/")]
+        public string FtpAddress {
+            get {
+                return ((string)(this["FtpAddress"]));
+            }
+            set {
+                this["FtpAddress"] = value;
             }
         }
     }
