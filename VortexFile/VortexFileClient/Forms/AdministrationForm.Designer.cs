@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.UsersDataGridView = new System.Windows.Forms.DataGridView();
             this.LoginColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.EmailColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -38,6 +38,7 @@
             this.AddButton = new System.Windows.Forms.Button();
             this.ChangeAdminPasswordLinkLabel = new System.Windows.Forms.LinkLabel();
             this.Waiting = new VortexFileClient.Extensions.Waiting();
+            this.label2 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.UsersDataGridView)).BeginInit();
             this.SuspendLayout();
             // 
@@ -59,23 +60,23 @@
             this.UsernameColumn,
             this.PhoneColumn,
             this.DeleteColumn});
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Trebuchet MS", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.UsersDataGridView.DefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Trebuchet MS", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.UsersDataGridView.DefaultCellStyle = dataGridViewCellStyle2;
             this.UsersDataGridView.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(101)))), ((int)(((byte)(215)))));
-            this.UsersDataGridView.Location = new System.Drawing.Point(15, 18);
+            this.UsersDataGridView.Location = new System.Drawing.Point(15, 70);
             this.UsersDataGridView.Margin = new System.Windows.Forms.Padding(4);
             this.UsersDataGridView.MultiSelect = false;
             this.UsersDataGridView.Name = "UsersDataGridView";
             this.UsersDataGridView.RowHeadersVisible = false;
             this.UsersDataGridView.RowTemplate.Height = 25;
             this.UsersDataGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.UsersDataGridView.Size = new System.Drawing.Size(708, 339);
+            this.UsersDataGridView.Size = new System.Drawing.Size(708, 343);
             this.UsersDataGridView.TabIndex = 0;
             this.UsersDataGridView.CellBeginEdit += new System.Windows.Forms.DataGridViewCellCancelEventHandler(this.UsersDataGridView_CellBeginEdit);
             this.UsersDataGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.UsersDataGridView_CellContentClick);
@@ -123,7 +124,7 @@
             this.AddButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(100)))), ((int)(((byte)(210)))));
             this.AddButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.AddButton.ForeColor = System.Drawing.Color.White;
-            this.AddButton.Location = new System.Drawing.Point(15, 368);
+            this.AddButton.Location = new System.Drawing.Point(15, 442);
             this.AddButton.Name = "AddButton";
             this.AddButton.Size = new System.Drawing.Size(162, 30);
             this.AddButton.TabIndex = 2;
@@ -136,7 +137,7 @@
             this.ChangeAdminPasswordLinkLabel.AutoSize = true;
             this.ChangeAdminPasswordLinkLabel.Font = new System.Drawing.Font("Trebuchet MS", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.ChangeAdminPasswordLinkLabel.LinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(100)))), ((int)(((byte)(210)))));
-            this.ChangeAdminPasswordLinkLabel.Location = new System.Drawing.Point(475, 372);
+            this.ChangeAdminPasswordLinkLabel.Location = new System.Drawing.Point(472, 446);
             this.ChangeAdminPasswordLinkLabel.Name = "ChangeAdminPasswordLinkLabel";
             this.ChangeAdminPasswordLinkLabel.Size = new System.Drawing.Size(251, 22);
             this.ChangeAdminPasswordLinkLabel.TabIndex = 5;
@@ -146,20 +147,32 @@
             // 
             // Waiting
             // 
-            this.Waiting.ImageSize = new System.Drawing.Size(174, 131);
-            this.Waiting.Location = new System.Drawing.Point(15, 18);
+            this.Waiting.ImageSize = new System.Drawing.Size(200, 200);
+            this.Waiting.Location = new System.Drawing.Point(15, 70);
             this.Waiting.Margin = new System.Windows.Forms.Padding(4);
             this.Waiting.Name = "Waiting";
-            this.Waiting.Size = new System.Drawing.Size(708, 343);
+            this.Waiting.Size = new System.Drawing.Size(708, 365);
             this.Waiting.TabIndex = 6;
             this.Waiting.Visible = false;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Trebuchet MS", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(100)))), ((int)(((byte)(210)))));
+            this.label2.Location = new System.Drawing.Point(13, 18);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(292, 37);
+            this.label2.TabIndex = 16;
+            this.label2.Text = "Администрирование";
             // 
             // AdministrationForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 22F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(738, 407);
+            this.ClientSize = new System.Drawing.Size(738, 484);
+            this.Controls.Add(this.label2);
             this.Controls.Add(this.Waiting);
             this.Controls.Add(this.ChangeAdminPasswordLinkLabel);
             this.Controls.Add(this.AddButton);
@@ -169,7 +182,6 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "AdministrationForm";
-            this.Text = "AdministationForm";
             this.Load += new System.EventHandler(this.AdministrationForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.UsersDataGridView)).EndInit();
             this.ResumeLayout(false);
@@ -188,5 +200,6 @@
         private Extensions.Waiting Waiting;
         private Button AddButton;
         private LinkLabel ChangeAdminPasswordLinkLabel;
+        private Label label2;
     }
 }

@@ -21,6 +21,19 @@ namespace VortexFileClient.Data
             }
         }
 
+        public static void AppendDirectoryToZipWithPassword(string fileName,
+        string sourceDirectory, string password,
+        CompressionLevel compressionLevel = CompressionLevel.Default)
+        {
+            using (var zipFile = new ZipFile(fileName))
+            {
+                zipFile.Password = password;
+                zipFile.CompressionLevel = compressionLevel;
+                zipFile.AddDirectory(sourceDirectory, "\\");
+                zipFile.Save();
+            }
+        }
+
         public static string CreateZip(string fileName)
         {
             using (var zip = new ZipFile())

@@ -33,12 +33,13 @@
             this.label1 = new System.Windows.Forms.Label();
             this.AdministrationLinkLabel = new System.Windows.Forms.LinkLabel();
             this.SaveButton = new System.Windows.Forms.Button();
+            this.label2 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // PathTextBox
             // 
             this.PathTextBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(237)))), ((int)(((byte)(252)))));
-            this.PathTextBox.Location = new System.Drawing.Point(13, 64);
+            this.PathTextBox.Location = new System.Drawing.Point(13, 102);
             this.PathTextBox.Margin = new System.Windows.Forms.Padding(4);
             this.PathTextBox.Name = "PathTextBox";
             this.PathTextBox.Size = new System.Drawing.Size(423, 26);
@@ -50,18 +51,18 @@
             this.BrowseButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(100)))), ((int)(((byte)(210)))));
             this.BrowseButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.BrowseButton.ForeColor = System.Drawing.Color.White;
-            this.BrowseButton.Location = new System.Drawing.Point(443, 61);
+            this.BrowseButton.Location = new System.Drawing.Point(443, 99);
             this.BrowseButton.Name = "BrowseButton";
-            this.BrowseButton.Size = new System.Drawing.Size(106, 32);
+            this.BrowseButton.Size = new System.Drawing.Size(40, 32);
             this.BrowseButton.TabIndex = 1;
-            this.BrowseButton.Text = "Обзор...";
+            this.BrowseButton.Text = "...";
             this.BrowseButton.UseVisualStyleBackColor = false;
             this.BrowseButton.Click += new System.EventHandler(this.BrowseButton_Click);
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(13, 38);
+            this.label1.Location = new System.Drawing.Point(13, 76);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(239, 22);
             this.label1.TabIndex = 2;
@@ -72,7 +73,7 @@
             this.AdministrationLinkLabel.AutoSize = true;
             this.AdministrationLinkLabel.Font = new System.Drawing.Font("Trebuchet MS", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.AdministrationLinkLabel.LinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(100)))), ((int)(((byte)(210)))));
-            this.AdministrationLinkLabel.Location = new System.Drawing.Point(390, 9);
+            this.AdministrationLinkLabel.Location = new System.Drawing.Point(436, 27);
             this.AdministrationLinkLabel.Name = "AdministrationLinkLabel";
             this.AdministrationLinkLabel.Size = new System.Drawing.Size(159, 22);
             this.AdministrationLinkLabel.TabIndex = 5;
@@ -85,7 +86,7 @@
             this.SaveButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(100)))), ((int)(((byte)(210)))));
             this.SaveButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.SaveButton.ForeColor = System.Drawing.Color.White;
-            this.SaveButton.Location = new System.Drawing.Point(443, 98);
+            this.SaveButton.Location = new System.Drawing.Point(489, 99);
             this.SaveButton.Name = "SaveButton";
             this.SaveButton.Size = new System.Drawing.Size(106, 32);
             this.SaveButton.TabIndex = 7;
@@ -93,12 +94,24 @@
             this.SaveButton.UseVisualStyleBackColor = false;
             this.SaveButton.Click += new System.EventHandler(this.SaveButton_Click);
             // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Trebuchet MS", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(100)))), ((int)(((byte)(210)))));
+            this.label2.Location = new System.Drawing.Point(13, 18);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(159, 37);
+            this.label2.TabIndex = 15;
+            this.label2.Text = "Настройки";
+            // 
             // SettingsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 22F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(561, 142);
+            this.ClientSize = new System.Drawing.Size(608, 192);
+            this.Controls.Add(this.label2);
             this.Controls.Add(this.SaveButton);
             this.Controls.Add(this.AdministrationLinkLabel);
             this.Controls.Add(this.label1);
@@ -108,7 +121,6 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "SettingsForm";
-            this.Text = "SettingsForm";
             this.Load += new System.EventHandler(this.SettingsForm_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -122,5 +134,6 @@
         private Label label1;
         private LinkLabel AdministrationLinkLabel;
         private Button SaveButton;
+        private Label label2;
     }
 }

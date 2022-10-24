@@ -13,7 +13,7 @@ namespace VortexFileClient.Data
 
         private string ZipPassword { get => Properties.Settings.Default.ZipPassword; }
 
-        private string Password { get=> user.Login.EncryptString(); }
+        private string Password { get => user.Login.EncryptString(); }
 
         public LocalStorage()
         {
@@ -117,6 +117,46 @@ namespace VortexFileClient.Data
                         }
                     }
                 }
+                using (MemoryStream memoryStream = new MemoryStream())
+                {
+                    zip.Save(memoryStream);
+                    memoryStream.Position = 0;
+                    using (var outerZip = ZipHelper.ReadZip(InitialCatalog))
+                    {
+                        outerZip.UpdateEntry(UserCatalog, memoryStream);
+                        outerZip.Save();
+                    }
+                }
+            }
+        }
+
+        public void CreateDirectory(string directoryName)
+        {
+            using (ZipFile zip = ZipHelper.ReadSubZipWithPassword(InitialCatalog, UserCatalog, ZipPassword))
+            {
+                zip.CompressionLevel = Ionic.Zlib.CompressionLevel.Default;
+                zip.Password = Password;
+                zip.AddDirectoryByName(directoryName);
+                using (MemoryStream memoryStream = new MemoryStream())
+                {
+                    zip.Save(memoryStream);
+                    memoryStream.Position = 0;
+                    using (var outerZip = ZipHelper.ReadZip(InitialCatalog))
+                    {
+                        outerZip.UpdateEntry(UserCatalog, memoryStream);
+                        outerZip.Save();
+                    }
+                }
+            }
+        }
+
+        public void CreateDirectory(string directoryName)
+        {
+            using (ZipFile zip = ZipHelper.ReadSubZipWithPassword(InitialCatalog, UserCatalog, ZipPassword))
+            {
+                zip.CompressionLevel = Ionic.Zlib.CompressionLevel.Default;
+                zip.Password = Password;
+                zip.AddDirectoryByName(directoryName);
                 using (MemoryStream memoryStream = new MemoryStream())
                 {
                     zip.Save(memoryStream);

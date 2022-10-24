@@ -77,7 +77,7 @@ namespace VortexFileClient.Extensions
 
 
 
-        private string[] passwords = { "qwerty", "12345", "йцукен", "password", "admin", "zxcvb", "987654321", "ytrewq", "bvcxz", "пароль" };
+        private string[] passwords = { "qwerty", "12345", "1234","qwer", "йцукен", "password", "admin", "zxcvb", "987654321", "ytrewq", "bvcxz", "пароль" };
 
         private int GetPasswordDifficult(string password)
         {
