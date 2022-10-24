@@ -150,26 +150,6 @@ namespace VortexFileClient.Data
             }
         }
 
-        public void CreateDirectory(string directoryName)
-        {
-            using (ZipFile zip = ZipHelper.ReadSubZipWithPassword(InitialCatalog, UserCatalog, ZipPassword))
-            {
-                zip.CompressionLevel = Ionic.Zlib.CompressionLevel.Default;
-                zip.Password = Password;
-                zip.AddDirectoryByName(directoryName);
-                using (MemoryStream memoryStream = new MemoryStream())
-                {
-                    zip.Save(memoryStream);
-                    memoryStream.Position = 0;
-                    using (var outerZip = ZipHelper.ReadZip(InitialCatalog))
-                    {
-                        outerZip.UpdateEntry(UserCatalog, memoryStream);
-                        outerZip.Save();
-                    }
-                }
-            }
-        }
-
         public List<ZipEntry> GetUserCatalog(string password)
         {
             return ZipHelper.ReadSubZipWithPassword(InitialCatalog, UserCatalog, password).Entries.ToList();
