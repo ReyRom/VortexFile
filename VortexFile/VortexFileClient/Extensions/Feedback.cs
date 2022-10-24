@@ -1,4 +1,5 @@
 ﻿using System.Data;
+using System.Net;
 
 namespace VortexFileClient.Extensions
 {
@@ -8,16 +9,22 @@ namespace VortexFileClient.Extensions
         {
             if (ex == null)
             {
-                System.Windows.Forms.MessageBox.Show("Возникла непредвиденная ошибка", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Возникла непредвиденная ошибка.\nПопробуйте еще раз или обратитетсь к системному администратору.", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
             if (ex is DataException)
             {
-                System.Windows.Forms.MessageBox.Show("При работе с данными возникла ошибка, попробуйте снова. " +
-                    "Если ошибка не исчезнет, обратитесь к администратору приложения", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("При работе с данными возникла непредвиденная ошибка." +
+                    "\nПопробуйте еще раз или обратитетсь к системному администратору.", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-            System.Windows.Forms.MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            if (ex is WebException)
+            {
+                MessageBox.Show("Отсутствует подключение к серверу." +
+                    "\nПопробуйте еще раз или обратитетсь к системному администратору.", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
 
         public static void InformationMessage(string message)

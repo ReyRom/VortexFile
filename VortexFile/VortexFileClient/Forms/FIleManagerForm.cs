@@ -66,7 +66,7 @@ namespace VortexFileClient.Forms
                 }
                 if (OnlineMode)
                 {
-                    foreach (var item in await Task.Run(() => cloudStorage.GetUserCatalog()))
+                    foreach (var item in cloudStorage.GetUserCatalog())
                     {
                         ListViewItem viewItem = new ListViewItem(item, GetIndex(Path.GetExtension(item)), FileManagerListView.Groups["cloudGroup"]);
                         FileManagerListView.Items.Add(viewItem);
@@ -266,7 +266,7 @@ namespace VortexFileClient.Forms
 
         private void ProgressTimer_Tick(object sender, EventArgs e)
         {
-            progressBar.Value +=2;
+            progressBar.Value += 2;
         }
 
         private void FileManagerListView_DragEnter(object sender, DragEventArgs e)
