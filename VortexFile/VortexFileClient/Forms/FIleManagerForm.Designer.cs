@@ -43,6 +43,8 @@
             this.progressBar = new VortexFileClient.Extensions.ColorProgressBar();
             this.DownloadButton = new System.Windows.Forms.Button();
             this.DeleteButton = new System.Windows.Forms.Button();
+            this.UploadDirectoryButton = new System.Windows.Forms.Button();
+            this.CreateDirectoryButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // FileManagerListView
@@ -67,6 +69,7 @@
             this.FileManagerListView.View = System.Windows.Forms.View.Tile;
             this.FileManagerListView.DragDrop += new System.Windows.Forms.DragEventHandler(this.FileManagerListView_DragDrop);
             this.FileManagerListView.DragEnter += new System.Windows.Forms.DragEventHandler(this.FileManagerListView_DragEnter);
+            this.FileManagerListView.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.FileManagerListView_MouseDoubleClick);
             // 
             // ExtensionImageList
             // 
@@ -85,7 +88,7 @@
             this.UploadButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.UploadButton.Font = new System.Drawing.Font("Trebuchet MS", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.UploadButton.ForeColor = System.Drawing.Color.White;
-            this.UploadButton.Location = new System.Drawing.Point(26, 581);
+            this.UploadButton.Location = new System.Drawing.Point(26, 576);
             this.UploadButton.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.UploadButton.Name = "UploadButton";
             this.UploadButton.Size = new System.Drawing.Size(194, 38);
@@ -108,7 +111,7 @@
             // 
             // waiting
             // 
-            this.waiting.ImageSize = new System.Drawing.Size(224, 192);
+            this.waiting.ImageSize = new System.Drawing.Size(330, 430);
             this.waiting.Location = new System.Drawing.Point(26, 14);
             this.waiting.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.waiting.Name = "waiting";
@@ -204,12 +207,44 @@
             this.DeleteButton.UseVisualStyleBackColor = false;
             this.DeleteButton.Click += new System.EventHandler(this.DeleteButton_Click);
             // 
+            // UploadDirectoryButton
+            // 
+            this.UploadDirectoryButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(100)))), ((int)(((byte)(210)))));
+            this.UploadDirectoryButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.UploadDirectoryButton.Font = new System.Drawing.Font("Trebuchet MS", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.UploadDirectoryButton.ForeColor = System.Drawing.Color.White;
+            this.UploadDirectoryButton.Location = new System.Drawing.Point(26, 616);
+            this.UploadDirectoryButton.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.UploadDirectoryButton.Name = "UploadDirectoryButton";
+            this.UploadDirectoryButton.Size = new System.Drawing.Size(194, 38);
+            this.UploadDirectoryButton.TabIndex = 19;
+            this.UploadDirectoryButton.Text = "Загрузить каталог";
+            this.UploadDirectoryButton.UseVisualStyleBackColor = false;
+            this.UploadDirectoryButton.Click += new System.EventHandler(this.UploadDirectoryButton_Click);
+            // 
+            // CreateDirectoryButton
+            // 
+            this.CreateDirectoryButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(100)))), ((int)(((byte)(210)))));
+            this.CreateDirectoryButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.CreateDirectoryButton.Font = new System.Drawing.Font("Trebuchet MS", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.CreateDirectoryButton.ForeColor = System.Drawing.Color.White;
+            this.CreateDirectoryButton.Location = new System.Drawing.Point(610, 582);
+            this.CreateDirectoryButton.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.CreateDirectoryButton.Name = "CreateDirectoryButton";
+            this.CreateDirectoryButton.Size = new System.Drawing.Size(137, 38);
+            this.CreateDirectoryButton.TabIndex = 20;
+            this.CreateDirectoryButton.Text = "Создать папку";
+            this.CreateDirectoryButton.UseVisualStyleBackColor = false;
+            this.CreateDirectoryButton.Click += new System.EventHandler(this.CreateDirectoryButton_Click);
+            // 
             // FileManagerForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 22F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(1065, 664);
+            this.Controls.Add(this.CreateDirectoryButton);
+            this.Controls.Add(this.UploadDirectoryButton);
             this.Controls.Add(this.DeleteButton);
             this.Controls.Add(this.DownloadButton);
             this.Controls.Add(this.progressBar);
@@ -241,5 +276,7 @@
         private Extensions.ColorProgressBar progressBar;
         private Button DownloadButton;
         private Button DeleteButton;
+        private Button UploadDirectoryButton;
+        private Button CreateDirectoryButton;
     }
 }

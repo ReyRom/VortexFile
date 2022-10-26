@@ -67,5 +67,40 @@ namespace VortexFileClient.Data
                 }
             }
         }
+
+//        public static void EncryptStream(this Stream input, Stream output, byte[] key)
+//        {
+//            using (var aes = Aes.Create())
+//            {
+//                aes.Key = key;
+//#warning Переопределить соль
+//                byte[] iv = Encoding.ASCII.GetBytes("ABCDEFGH");
+//                aes.Padding = PaddingMode.Zeros;
+//                using (CryptoStream cs = new CryptoStream(output, aes.CreateEncryptor(key, iv), CryptoStreamMode.Write))
+//                {
+//                    int data;
+//                    while ((data = input.ReadByte()) != -1)
+//                        cs.WriteByte((byte)data);
+//                }
+//            }
+//        }
+
+//        public static void DecryptStream(this Stream input, Stream output, byte[] key)
+//        {
+//#warning Переопределить соль
+//            byte[] iv = Encoding.ASCII.GetBytes("ABCDEFGH");
+//            using (var aes = Aes.Create())
+//            {
+//                aes.Key = key;
+//                aes.IV = iv;
+//                aes.Padding = PaddingMode.Zeros;
+//                using (CryptoStream cs = new CryptoStream(input, aes.CreateDecryptor(key, iv), CryptoStreamMode.Read))
+//                {
+//                    int data;
+//                    while ((data = cs.ReadByte()) != -1)
+//                        output.WriteByte((byte)data);
+//                }
+//            }
+//        }
     }
 }

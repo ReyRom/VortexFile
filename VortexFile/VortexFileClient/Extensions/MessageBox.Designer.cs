@@ -40,8 +40,10 @@
             this.YesButton = new System.Windows.Forms.Button();
             this.BodyPanel = new System.Windows.Forms.Panel();
             this.tableLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
-            this.TextLabel = new System.Windows.Forms.Label();
             this.IconPictureBox = new System.Windows.Forms.PictureBox();
+            this.BodyFlowLayoutPanel = new System.Windows.Forms.FlowLayoutPanel();
+            this.TextLabel = new System.Windows.Forms.Label();
+            this.InputTextBox = new System.Windows.Forms.TextBox();
             this.HeadPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.LogoPictureBox)).BeginInit();
             this.FooterPanel.SuspendLayout();
@@ -49,6 +51,7 @@
             this.BodyPanel.SuspendLayout();
             this.tableLayoutPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.IconPictureBox)).BeginInit();
+            this.BodyFlowLayoutPanel.SuspendLayout();
             this.SuspendLayout();
             // 
             // HeadPanel
@@ -108,7 +111,7 @@
             this.FooterPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(237)))), ((int)(((byte)(252)))));
             this.FooterPanel.Controls.Add(this.ButtonsFlowLayoutPanel);
             this.FooterPanel.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.FooterPanel.Location = new System.Drawing.Point(0, 125);
+            this.FooterPanel.Location = new System.Drawing.Point(0, 120);
             this.FooterPanel.Name = "FooterPanel";
             this.FooterPanel.Size = new System.Drawing.Size(443, 50);
             this.FooterPanel.TabIndex = 3;
@@ -189,7 +192,7 @@
             this.BodyPanel.Location = new System.Drawing.Point(0, 30);
             this.BodyPanel.Margin = new System.Windows.Forms.Padding(4);
             this.BodyPanel.Name = "BodyPanel";
-            this.BodyPanel.Size = new System.Drawing.Size(443, 95);
+            this.BodyPanel.Size = new System.Drawing.Size(443, 90);
             this.BodyPanel.TabIndex = 4;
             // 
             // tableLayoutPanel
@@ -199,38 +202,58 @@
             this.tableLayoutPanel.ColumnCount = 2;
             this.tableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 22.02729F));
             this.tableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 77.97271F));
-            this.tableLayoutPanel.Controls.Add(this.TextLabel, 1, 0);
             this.tableLayoutPanel.Controls.Add(this.IconPictureBox, 0, 0);
+            this.tableLayoutPanel.Controls.Add(this.BodyFlowLayoutPanel, 1, 0);
             this.tableLayoutPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel.Name = "tableLayoutPanel";
             this.tableLayoutPanel.RowCount = 1;
             this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel.Size = new System.Drawing.Size(443, 95);
+            this.tableLayoutPanel.Size = new System.Drawing.Size(443, 90);
             this.tableLayoutPanel.TabIndex = 0;
-            // 
-            // TextLabel
-            // 
-            this.TextLabel.AutoEllipsis = true;
-            this.TextLabel.AutoSize = true;
-            this.TextLabel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.TextLabel.Location = new System.Drawing.Point(100, 0);
-            this.TextLabel.Name = "TextLabel";
-            this.TextLabel.Padding = new System.Windows.Forms.Padding(3);
-            this.TextLabel.Size = new System.Drawing.Size(340, 95);
-            this.TextLabel.TabIndex = 0;
-            this.TextLabel.Text = "label1";
-            this.TextLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // IconPictureBox
             // 
             this.IconPictureBox.Dock = System.Windows.Forms.DockStyle.Fill;
             this.IconPictureBox.Location = new System.Drawing.Point(3, 3);
             this.IconPictureBox.Name = "IconPictureBox";
-            this.IconPictureBox.Size = new System.Drawing.Size(91, 89);
+            this.IconPictureBox.Size = new System.Drawing.Size(91, 84);
             this.IconPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
             this.IconPictureBox.TabIndex = 1;
             this.IconPictureBox.TabStop = false;
+            // 
+            // BodyFlowLayoutPanel
+            // 
+            this.BodyFlowLayoutPanel.Controls.Add(this.TextLabel);
+            this.BodyFlowLayoutPanel.Controls.Add(this.InputTextBox);
+            this.BodyFlowLayoutPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.BodyFlowLayoutPanel.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
+            this.BodyFlowLayoutPanel.Location = new System.Drawing.Point(100, 3);
+            this.BodyFlowLayoutPanel.Name = "BodyFlowLayoutPanel";
+            this.BodyFlowLayoutPanel.Size = new System.Drawing.Size(340, 84);
+            this.BodyFlowLayoutPanel.TabIndex = 2;
+            // 
+            // TextLabel
+            // 
+            this.TextLabel.AutoEllipsis = true;
+            this.TextLabel.AutoSize = true;
+            this.TextLabel.Location = new System.Drawing.Point(3, 3);
+            this.TextLabel.Margin = new System.Windows.Forms.Padding(3);
+            this.TextLabel.Name = "TextLabel";
+            this.TextLabel.Padding = new System.Windows.Forms.Padding(3);
+            this.TextLabel.Size = new System.Drawing.Size(58, 28);
+            this.TextLabel.TabIndex = 0;
+            this.TextLabel.Text = "label1";
+            this.TextLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // AnswerTextBox
+            // 
+            this.InputTextBox.Location = new System.Drawing.Point(10, 44);
+            this.InputTextBox.Margin = new System.Windows.Forms.Padding(10);
+            this.InputTextBox.Name = "AnswerTextBox";
+            this.InputTextBox.Size = new System.Drawing.Size(323, 26);
+            this.InputTextBox.TabIndex = 4;
+            this.InputTextBox.Visible = false;
             // 
             // MessageBox
             // 
@@ -238,7 +261,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.ClientSize = new System.Drawing.Size(443, 175);
+            this.ClientSize = new System.Drawing.Size(443, 170);
             this.Controls.Add(this.BodyPanel);
             this.Controls.Add(this.FooterPanel);
             this.Controls.Add(this.HeadPanel);
@@ -254,8 +277,9 @@
             this.BodyPanel.ResumeLayout(false);
             this.BodyPanel.PerformLayout();
             this.tableLayoutPanel.ResumeLayout(false);
-            this.tableLayoutPanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.IconPictureBox)).EndInit();
+            this.BodyFlowLayoutPanel.ResumeLayout(false);
+            this.BodyFlowLayoutPanel.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -277,5 +301,7 @@
         private TableLayoutPanel tableLayoutPanel;
         private Label TextLabel;
         private PictureBox IconPictureBox;
+        private FlowLayoutPanel BodyFlowLayoutPanel;
+        private TextBox InputTextBox;
     }
 }
