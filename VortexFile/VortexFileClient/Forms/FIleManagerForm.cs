@@ -1,8 +1,10 @@
 ﻿using Ionic.Zip;
 using System.ComponentModel;
+using System.Text.RegularExpressions;
 using System.Windows.Forms;
 using VortexFileClient.Data;
 using VortexFileClient.Extensions;
+using MessageBox = VortexFileClient.Extensions.MessageBox;
 
 namespace VortexFileClient.Forms
 {
@@ -12,7 +14,7 @@ namespace VortexFileClient.Forms
         private CloudStorage cloudStorage = new CloudStorage(Session.CurrentUser);
 
         private List<Action> fileMethods = new List<Action>();
-        private event Action FilesChangeEvent;
+        private event EventHandler<FilesChangedEventArgs> FilesChange;
 
         public event EventHandler<LoadFormEventArgs> LoadForm;
         public event EventHandler GoBack;
@@ -37,13 +39,16 @@ namespace VortexFileClient.Forms
         {
             InitializeComponent();
             OnlineMode = onlineMode;
-            FilesChangeEvent += FileManagerForm_FilesChangeEventAsync;
+            FilesChange += FileManagerForm_FilesChangeAsync; ;
         }
 
-        private async void FileManagerForm_FilesChangeEventAsync()
+        private async void FileManagerForm_FilesChangeAsync(object? sender, FilesChangedEventArgs e)
         {
             waiting.Visible = true;
-            await LoadDataAsync();
+            if(e.ChangedRemote)
+                await LoadRemoteDataAsync();
+            if (e.ChangedLocal)
+                await LoadLocalDataAsync();
             waiting.Visible = false;
         }
 
@@ -51,22 +56,59 @@ namespace VortexFileClient.Forms
         {
             this.Text = Session.CurrentUser.Login;
             CloudSliderCheckBox.Enabled = CloudSliderCheckBox.Checked = OnlineMode;
-            FilesChangeEvent.Invoke();
+            FilesChange?.Invoke(this ,new FilesChangedEventArgs());
         }
 
-        private async Task LoadDataAsync()
+        private async Task LoadLocalDataAsync()
         {
             try
             {
-                FileManagerListView.Items.Clear();
-                foreach (var item in await Task.Run(() => localStorage.GetUserCatalog(Properties.Settings.Default.ZipPassword)))
+                List<ListViewItem> list = new List<ListViewItem>();
+                foreach (ListViewItem item in FileManagerListView.Groups["localGroup"].Items)
                 {
-                    ListViewItem viewItem = new ListViewItem(item.FileName, GetIndex(Path.GetExtension(item.FileName)), FileManagerListView.Groups["localGroup"]);
-                    FileManagerListView.Items.Add(viewItem);
+                    list.Add(item);
                 }
+                foreach (ListViewItem item in list)
+                {
+                    FileManagerListView.Items.Remove(item);
+                }
+                using (ZipFile localFiles = await Task.Run(() => localStorage.GetUserCatalog(Properties.Settings.Default.ZipPassword)))
+                {
+                    foreach (var item in LocalStorage.GetLevel(localStorage.currentDirectory, localFiles.Entries.ToList()))
+                    {
+                        ListViewItem viewItem = new ListViewItem(item, GetIndex(Path.GetExtension(item)), FileManagerListView.Groups["localGroup"]);
+                        FileManagerListView.Items.Add(viewItem);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Feedback.ErrorMessage(ex);
+            }
+        }
+
+        private async Task LoadRemoteDataAsync()
+        {
+            try
+            {
+                List<ListViewItem> list = new List<ListViewItem>();
+                foreach (ListViewItem item in FileManagerListView.Groups["cloudGroup"].Items)
+                {
+                    list.Add(item);
+                }
+                foreach (ListViewItem item in list)
+                {
+                    FileManagerListView.Items.Remove(item);
+                }
+               
                 if (OnlineMode)
                 {
-                    foreach (var item in cloudStorage.GetUserCatalog())
+                    if (cloudStorage.currentDirectory != "")
+                    {
+                        ListViewItem viewItem = new ListViewItem("", GetIndex(""), FileManagerListView.Groups["cloudGroup"]);
+                        FileManagerListView.Items.Add(viewItem);
+                    }
+                    foreach (var item in await Task.Run(() => cloudStorage.GetLevel(cloudStorage.currentDirectory)))
                     {
                         ListViewItem viewItem = new ListViewItem(item, GetIndex(Path.GetExtension(item)), FileManagerListView.Groups["cloudGroup"]);
                         FileManagerListView.Items.Add(viewItem);
@@ -78,6 +120,37 @@ namespace VortexFileClient.Forms
                 Feedback.ErrorMessage(ex);
             }
         }
+
+        //private async Task LoadDataAsync()
+        //{
+        //    try
+        //    {
+        //        FileManagerListView.Items.Clear();
+        //        var localFiles = await Task.Run(() => localStorage.GetUserCatalog(Properties.Settings.Default.ZipPassword));
+        //        foreach (var item in LocalStorage.GetLevel(localStorage.currentDirectory,localFiles))
+        //        {
+        //            ListViewItem viewItem = new ListViewItem(item, GetIndex(Path.GetExtension(item)), FileManagerListView.Groups["localGroup"]);
+        //            FileManagerListView.Items.Add(viewItem);
+        //        }
+        //        if (OnlineMode)
+        //        {
+        //            if (cloudStorage.currentDirectory != "")
+        //            {
+        //                ListViewItem viewItem = new ListViewItem("", GetIndex(""), FileManagerListView.Groups["cloudGroup"]);
+        //                FileManagerListView.Items.Add(viewItem);
+        //            }
+        //            foreach (var item in await Task.Run(() => cloudStorage.GetLevel(cloudStorage.currentDirectory)))
+        //            {
+        //                ListViewItem viewItem = new ListViewItem(item, GetIndex(Path.GetExtension(item)), FileManagerListView.Groups["cloudGroup"]);
+        //                FileManagerListView.Items.Add(viewItem);
+        //            }
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        Feedback.ErrorMessage(ex);
+        //    }
+        //}
 
         private int GetIndex(string extension)
         {
@@ -100,6 +173,8 @@ namespace VortexFileClient.Forms
                 case ".avi":
                 case ".mkv":
                     return 4;
+                case "":
+                    return 0;
                 default:
                     return 1;
             }
@@ -150,6 +225,30 @@ namespace VortexFileClient.Forms
             try
             {
                 RunProgress(() => localStorage.UploadFiles(fileNames));
+            }
+            catch (Exception ex)
+            {
+                Feedback.ErrorMessage(ex);
+            }
+        }
+
+        private void UploadFtp(string directoryName)
+        {
+            try
+            {
+                RunProgress(() => cloudStorage.UploadFiles(directoryName));
+            }
+            catch (Exception ex)
+            {
+                Feedback.ErrorMessage(ex);
+            }
+        }
+
+        private void UploadLocal(string directoryName)
+        {
+            try
+            {
+                RunProgress(() => localStorage.UploadDirectory(directoryName));
             }
             catch (Exception ex)
             {
@@ -252,7 +351,7 @@ namespace VortexFileClient.Forms
             fileMethods.RemoveAt(0);
             if (IsFileChange)
             {
-                FilesChangeEvent?.Invoke();
+                FilesChange?.Invoke(this, new FilesChangedEventArgs());
             }
             if (fileMethods.Count > 0)
             {
@@ -295,8 +394,95 @@ namespace VortexFileClient.Forms
 
         private void SliderCheckBox_CheckedChanged(object sender, EventArgs e)
         {
-            UploadButton.Enabled = CloudSliderCheckBox.Checked || LocalSliderCheckBox.Checked;
+            UploadButton.Enabled = UploadDirectoryButton.Enabled = CloudSliderCheckBox.Checked || LocalSliderCheckBox.Checked;
         }
 
+        private void FileManagerListView_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            ListViewHitTestInfo info = FileManagerListView.HitTest(e.X, e.Y);
+            ListViewItem item = info.Item;
+            if (item.Group == FileManagerListView.Groups["localGroup"])
+            {
+                if (item.Text == "")
+                {
+                    localStorage.currentDirectory = Regex.Match(localStorage.currentDirectory, @"(?<back>([\w\s_]+/)*)[\w\s_]+/").Groups["back"].Value;
+                    FilesChange?.Invoke(this, new FilesChangedEventArgs(true,false));
+                }
+                else if (item.Text.Contains('/'))
+                {
+                    localStorage.currentDirectory += item.Text;
+                    FilesChange?.Invoke(this, new FilesChangedEventArgs(true, false));
+                }
+            }
+            if (item.Group == FileManagerListView.Groups["cloudGroup"])
+            {
+                if (item.Text == "")
+                {
+                    cloudStorage.currentDirectory = Regex.Match(cloudStorage.currentDirectory, @"(?<back>([\w\s_]+/)*)[\w\s_]+/").Groups["back"].Value;
+                    FilesChange?.Invoke(this, new FilesChangedEventArgs(false, true));
+                }
+                else if (!Path.HasExtension(item.Text))
+                {
+                    cloudStorage.currentDirectory += item.Text + "/";
+                    FilesChange?.Invoke(this, new FilesChangedEventArgs(false, true));
+                }
+            }
+        }
+
+        private void UploadDirectoryButton_Click(object sender, EventArgs e)
+        {
+            FolderBrowserDialog folderBrowserDialog = new FolderBrowserDialog();
+            if (folderBrowserDialog.ShowDialog() == DialogResult.OK)
+            {
+                if (LocalSliderCheckBox.Checked)
+                {
+                    UploadLocal(folderBrowserDialog.SelectedPath);
+                }
+                if (CloudSliderCheckBox.Checked)
+                {
+                    UploadFtp(folderBrowserDialog.SelectedPath);
+                }
+            }
+        }
+
+        private void CreateDirectoryLocal(string directoryName)
+        {
+            try
+            {
+                RunProgress(() => localStorage.CreateDirectory(directoryName));
+            }
+            catch (Exception ex)
+            {
+                Feedback.ErrorMessage(ex);
+            }
+        }
+        private void CreateDirectoryFtp(string directoryName)
+        {
+            try
+            {
+                RunProgress(() => cloudStorage.CreateDirectory(directoryName));
+            }
+            catch (Exception ex)
+            {
+                Feedback.ErrorMessage(ex);
+            }
+        }
+
+
+        private void CreateDirectoryButton_Click(object sender, EventArgs e)
+        {
+            var folderName = "";
+            if (MessageBox.Show("Введите название новой папки", out folderName) == DialogResult.OK)
+            {
+                if (LocalSliderCheckBox.Checked)
+                {
+                    CreateDirectoryLocal(folderName);
+                }
+                if (CloudSliderCheckBox.Checked)
+                {
+                    CreateDirectoryFtp(folderName);
+                }
+            }
+        }
     }
 }

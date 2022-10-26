@@ -58,7 +58,6 @@ namespace VortexFileClient.Data
             readOptions.Encoding = encoding;
             using (var zip = ZipFile.Read(fileName, readOptions))
             {
-
                 zip.AlternateEncodingUsage = ZipOption.Always;
                 zip.AlternateEncoding = encoding;
                 ZipEntry entry = zip[subFileName];

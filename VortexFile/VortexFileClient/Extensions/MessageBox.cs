@@ -71,6 +71,20 @@ namespace VortexFileClient.Extensions
                 return dlg.ShowDialog();
             }
         }
+        public static DialogResult Show(string text, out string value, string caption = "", MessageBoxButtons buttons = MessageBoxButtons.OK, MessageBoxIcon icon = MessageBoxIcon.None)
+        {
+            using (var dlg = new MessageBox())
+            {
+                dlg.HeaderLabel.Text = caption;
+                dlg.TextLabel.Text = text;
+                dlg.MessageBoxButtons = buttons;
+                dlg.MessageBoxIcon = icon;
+                dlg.InputTextBox.Visible = true;
+                var result = dlg.ShowDialog();
+                value = dlg.InputTextBox.Text;
+                return result;
+            }
+        }
         private Point mPoint;
         public MessageBox()
         {

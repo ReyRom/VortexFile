@@ -1,4 +1,6 @@
 ﻿using Ionic.Zip;
+using Org.BouncyCastle.Asn1.Pkcs;
+using System.Text.RegularExpressions;
 using VortexFileClient.Data.Models;
 using VortexFileClient.Extensions;
 
@@ -14,6 +16,8 @@ namespace VortexFileClient.Data
         private string ZipPassword { get => Properties.Settings.Default.ZipPassword; }
 
         private string Password { get => user.Login.EncryptString(); }
+
+        public string currentDirectory = "";
 
         public LocalStorage()
         {
@@ -85,10 +89,62 @@ namespace VortexFileClient.Data
         {
             foreach (var fileName in fileNames)
             {
-                var zipEntry = GetUserCatalog(Password).SingleOrDefault(z => z.FileName == fileName);
-                using (MemoryStream memoryStream = zipEntry.ExtractToMemoryStreamWithPassword(Password))
+                var zipEntry = GetUserCatalog(Password).SingleOrDefault(z => z.FileName == currentDirectory + fileName);
+                if (zipEntry.IsDirectory)
                 {
-                    File.WriteAllBytes(Path.Combine(outFolder, fileName), memoryStream.ToArray());
+                    ExtractDirectoryWithPassword(currentDirectory, fileName, outFolder);
+                }
+                else
+                {
+                    using (MemoryStream memoryStream = zipEntry.ExtractToMemoryStreamWithPassword(Password))
+                    {
+                        File.WriteAllBytes(Path.Combine(outFolder, fileName), memoryStream.ToArray());
+                    }
+                }
+            }
+        }
+
+        public void UploadDirectory(string directoryName)
+        {
+            DirectoryInfo directoryInfo = new DirectoryInfo(directoryName);
+            var directories = directoryInfo.GetDirectories("",SearchOption.AllDirectories);
+            var files = directoryInfo.GetFiles("", SearchOption.AllDirectories);
+            using (ZipFile zip = ZipHelper.ReadSubZipWithPassword(InitialCatalog, UserCatalog, ZipPassword))
+            {
+                zip.CompressionLevel = Ionic.Zlib.CompressionLevel.Default;
+                zip.Password = Password;
+                zip.AddDirectoryByName(Path.Combine(currentDirectory, directoryInfo.Name));
+                foreach (var item in directories)
+                {
+                    zip.AddDirectoryByName(Path.Combine(currentDirectory, item.FullName.Remove(0, directoryInfo.Parent.FullName.Length)));
+                }
+                foreach (var item in files)
+                {
+                    if (item.Length > Extensions.Tools.GigaByte * 2)
+                    {
+                        throw new Exception("Размер загружаемого файла больше 2ГБ.");
+                    }
+                    try
+                    {
+                        zip.AddFile(item.FullName, currentDirectory + item.DirectoryName.Remove(0, directoryInfo.Parent.FullName.Length));
+                    }
+                    catch (ArgumentException)
+                    {
+                        if (Extensions.Feedback.QuestionMessage($"Файл с именем {Path.GetFileName(item.Name)} уже есть в каталоге. Заменить?"))
+                        {
+                            zip.UpdateFile(item.FullName, currentDirectory + item.DirectoryName.Remove(0, directoryInfo.Parent.FullName.Length));
+                        }
+                    }
+                }
+                using (MemoryStream memoryStream = new MemoryStream())
+                {
+                    zip.Save(memoryStream);
+                    memoryStream.Position = 0;
+                    using (var outerZip = ZipHelper.ReadZip(InitialCatalog))
+                    {
+                        outerZip.UpdateEntry(UserCatalog, memoryStream);
+                        outerZip.Save();
+                    }
                 }
             }
         }
@@ -107,13 +163,13 @@ namespace VortexFileClient.Data
                     }
                     try
                     {
-                        zip.AddFile(item, "");
+                        zip.AddFile(item, currentDirectory);
                     }
                     catch (ArgumentException)
                     {
                         if (Extensions.Feedback.QuestionMessage($"Файл с именем {Path.GetFileName(item)} уже есть в каталоге. Заменить?"))
                         {
-                            zip.UpdateFile(item, "");
+                            zip.UpdateFile(item, currentDirectory);
                         }
                     }
                 }
@@ -150,14 +206,46 @@ namespace VortexFileClient.Data
             }
         }
 
-        public List<ZipEntry> GetUserCatalog(string password)
+        public static List<string> GetLevel(string initialCatalog, List<ZipEntry> items)
         {
-            return ZipHelper.ReadSubZipWithPassword(InitialCatalog, UserCatalog, password).Entries.ToList();
+            var dirCont = items.Where(x => x.FileName.StartsWith(initialCatalog)).Select(x=>x.FileName.Remove(0,initialCatalog.Length)).ToList();
+            List<string> result = new List<string>();
+            foreach (var item in dirCont)
+            {
+                if (!Regex.IsMatch(item, @"[//]\w"))
+                {
+                    result.Add(item);
+                }
+            }
+            return result;
+        }
+        public void ExtractDirectoryWithPassword(string path, string directoryName, string outerFolder)
+        {
+            using (var zip = ZipHelper.ReadSubZipWithPassword(InitialCatalog, UserCatalog, Password))
+            {
+                var data = zip.Entries.Where(x => x.FileName.StartsWith(path + directoryName)).ToList();
+                foreach (var e in data)
+                {
+                    if (e.IsDirectory)
+                    {
+                        ExtractDirectoryWithPassword(path + directoryName, e.FileName.Remove(0, (path + directoryName).Length), outerFolder);
+                    }
+                    else
+                    {
+                        e.ExtractWithPassword(outerFolder, Password);
+                    }
+                }
+            }
         }
 
-        public List<ZipEntry> GetCatalog()
+        public ZipFile GetUserCatalog(string password)
         {
-            return ZipHelper.ReadZip(InitialCatalog).Entries.ToList();
+            return ZipHelper.ReadSubZipWithPassword(InitialCatalog, UserCatalog, password);
+        }
+
+        public ZipFile GetCatalog()
+        {
+            return ZipHelper.ReadZip(InitialCatalog);
         }
     }
 }
