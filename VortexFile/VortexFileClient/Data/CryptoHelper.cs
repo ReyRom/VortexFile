@@ -19,9 +19,9 @@ namespace VortexFileClient.Data
                 sb.AppendFormat("{0:x2}", b);
             return sb.ToString();
         }
-        public static byte[] GetKey(this string input)
+        public static byte[] GetKey(this string input, int length)
         {
-            byte[] hash = new byte[8];
+            byte[] hash = new byte[length];
             using (var sha1 = SHA1.Create())
             {
                 var temp = sha1.ComputeHash(Encoding.Unicode.GetBytes(input));
@@ -33,50 +33,15 @@ namespace VortexFileClient.Data
             return hash;
         }
 
-        public static void EncryptStream(this Stream input, Stream output, byte[] key)
-        {
-            using (var des = DES.Create())
-            {
-                des.Key = key;
-#warning Переопределить соль
-                byte[] iv = Encoding.ASCII.GetBytes("ABCDEFGH");
-                des.Padding = PaddingMode.Zeros;
-                using (CryptoStream cs = new CryptoStream(output, des.CreateEncryptor(key,iv), CryptoStreamMode.Write))
-                {
-                    int data;
-                    while ((data = input.ReadByte()) != -1)
-                        cs.WriteByte((byte)data);
-                }
-            }
-        }
-
-        public static void DecryptStream(this Stream input, Stream output, byte[] key)
-        {
-#warning Переопределить соль
-            byte[] iv = Encoding.ASCII.GetBytes("ABCDEFGH");
-            using (var des = DES.Create()) 
-            { 
-                des.Key = key;
-                des.IV = iv;
-                des.Padding = PaddingMode.Zeros;
-                using (CryptoStream cs = new CryptoStream(input, des.CreateDecryptor(key,iv), CryptoStreamMode.Read))
-                {
-                    int data;
-                    while ((data = cs.ReadByte()) != -1)
-                        output.WriteByte((byte)data);
-                }
-            }
-        }
-
 //        public static void EncryptStream(this Stream input, Stream output, byte[] key)
 //        {
-//            using (var aes = Aes.Create())
+//            using (var des = DES.Create())
 //            {
-//                aes.Key = key;
+//                des.Key = key;
 //#warning Переопределить соль
 //                byte[] iv = Encoding.ASCII.GetBytes("ABCDEFGH");
-//                aes.Padding = PaddingMode.Zeros;
-//                using (CryptoStream cs = new CryptoStream(output, aes.CreateEncryptor(key, iv), CryptoStreamMode.Write))
+//                des.Padding = PaddingMode.Zeros;
+//                using (CryptoStream cs = new CryptoStream(output, des.CreateEncryptor(key,iv), CryptoStreamMode.Write))
 //                {
 //                    int data;
 //                    while ((data = input.ReadByte()) != -1)
@@ -89,12 +54,12 @@ namespace VortexFileClient.Data
 //        {
 //#warning Переопределить соль
 //            byte[] iv = Encoding.ASCII.GetBytes("ABCDEFGH");
-//            using (var aes = Aes.Create())
-//            {
-//                aes.Key = key;
-//                aes.IV = iv;
-//                aes.Padding = PaddingMode.Zeros;
-//                using (CryptoStream cs = new CryptoStream(input, aes.CreateDecryptor(key, iv), CryptoStreamMode.Read))
+//            using (var des = DES.Create()) 
+//            { 
+//                des.Key = key;
+//                des.IV = iv;
+//                des.Padding = PaddingMode.Zeros;
+//                using (CryptoStream cs = new CryptoStream(input, des.CreateDecryptor(key,iv), CryptoStreamMode.Read))
 //                {
 //                    int data;
 //                    while ((data = cs.ReadByte()) != -1)
@@ -102,5 +67,40 @@ namespace VortexFileClient.Data
 //                }
 //            }
 //        }
+
+        public static void EncryptStream(this Stream input, Stream output, byte[] key)
+        {
+            using (var aes = Aes.Create())
+            {
+                aes.Key = key;
+#warning Переопределить соль
+                byte[] iv = Encoding.ASCII.GetBytes("ABCDEFGHABCDEFGH");
+                aes.Padding = PaddingMode.Zeros;
+                using (CryptoStream cs = new CryptoStream(output, aes.CreateEncryptor(key, iv), CryptoStreamMode.Write))
+                {
+                    int data;
+                    while ((data = input.ReadByte()) != -1)
+                        cs.WriteByte((byte)data);
+                }
+            }
+        }
+
+        public static void DecryptStream(this Stream input, Stream output, byte[] key)
+        {
+#warning Переопределить соль
+            byte[] iv = Encoding.ASCII.GetBytes("ABCDEFGHABCDEFGH");
+            using (var aes = Aes.Create())
+            {
+                aes.Key = key;
+                aes.IV = iv;
+                aes.Padding = PaddingMode.Zeros;
+                using (CryptoStream cs = new CryptoStream(input, aes.CreateDecryptor(key, iv), CryptoStreamMode.Read))
+                {
+                    int data;
+                    while ((data = cs.ReadByte()) != -1)
+                        output.WriteByte((byte)data);
+                }
+            }
+        }
     }
 }

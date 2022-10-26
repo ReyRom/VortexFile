@@ -76,7 +76,7 @@ namespace VortexFileClient.Data
             if (exMessage != String.Empty)
             {
                 throw new Exception($"Возникла непредвиденная ошибка: \"{exMessage}\"." +
-                    "\nВойди в свою учётную запись еще раз или обратитетсь к системному администратору.");
+                    "\nВойдите в свою учётную запись еще раз или обратитетсь к системному администратору.");
             }
         }
 
@@ -89,7 +89,7 @@ namespace VortexFileClient.Data
         {
             foreach (var fileName in fileNames)
             {
-                var status = FtpHelper.DownloadFile(Path.Combine(outFolder, fileName), ServerAddress + fileName, login, password);
+                var status = FtpHelper.DownloadFile(Path.Combine(outFolder, fileName), ServerAddress + currentDirectory + fileName, login, password);
                 ThrowException(status);
             }
         }
@@ -102,7 +102,7 @@ namespace VortexFileClient.Data
                 {
                     throw new Exception("Размер загружаемого файла больше 2ГБ.");
                 }
-                var status = FtpHelper.UploadFile(fileName, ServerAddress + Path.GetFileName(fileName), login, password);
+                var status = FtpHelper.UploadFile(fileName, ServerAddress + currentDirectory + Path.GetFileName(fileName), login, password);
                 ThrowException(status);
             }
         }
@@ -112,7 +112,7 @@ namespace VortexFileClient.Data
             var directories = directoryInfo.GetDirectories("", SearchOption.AllDirectories);
             var files = directoryInfo.GetFiles("", SearchOption.AllDirectories);
             {
-                var status = FtpHelper.CreateDirectory(ServerAddress + directoryInfo.Name, login, password);
+                var status = FtpHelper.CreateDirectory(ServerAddress + currentDirectory + directoryInfo.Name, login, password);
             }
             foreach (var directory in directories)
             {
@@ -125,7 +125,7 @@ namespace VortexFileClient.Data
                 {
                     throw new Exception("Размер загружаемого файла больше 2ГБ.");
                 }
-                var status = FtpHelper.UploadFile(file.FullName, ServerAddress + file.FullName.Remove(0, directoryInfo.Parent.FullName.Length + 1).Replace('\\', '/'), login, password);
+                var status = FtpHelper.UploadFile(file.FullName, ServerAddress + currentDirectory + file.FullName.Remove(0, directoryInfo.Parent.FullName.Length + 1).Replace('\\', '/'), login, password);
             }
         }
 
@@ -133,16 +133,15 @@ namespace VortexFileClient.Data
         {
             foreach (var fileName in fileNames)
             {
+                FtpStatusCode status;
                 if (!Path.HasExtension(fileName))
                 {
-                    var status = FtpHelper.DeleteDirectory(ServerAddress + fileName, login, password);
+                    status = FtpHelper.DeleteDirectory(ServerAddress + currentDirectory + fileName+"/", login, password);
                 }
                 else
                 {
-                    var status = FtpHelper.DeleteFile(ServerAddress + fileName, login, password);
+                    status = FtpHelper.DeleteFile(ServerAddress+ currentDirectory + fileName, login, password);
                 }
-
-                var status = FtpHelper.DeleteFile(ServerAddress + fileName, login, password);
                 ThrowException(status);
             }
         }
@@ -151,7 +150,7 @@ namespace VortexFileClient.Data
         {
             foreach (var fileName in fileNames)
             {
-                var status = FtpHelper.DeleteFile(ServerAddress + fileName, user.Login, user.Password);
+                var status = FtpHelper.DeleteFile(ServerAddress +currentDirectory + fileName, user.Login, user.Password);
                 ThrowException(status);
             }
         }
@@ -163,7 +162,7 @@ namespace VortexFileClient.Data
 
         public void CreateDirectory(string directoryName)
         {
-            FtpHelper.CreateDirectory(ServerAddress + directoryName, login, password);
+            FtpHelper.CreateDirectory(ServerAddress + currentDirectory + directoryName, login, password);
         }
 
         public List<string> GetUserCatalog()

@@ -15,7 +15,7 @@ namespace VortexFileClient.Data
                 {
                     using (FileStream fs = new FileStream(filename, FileMode.Create))
                     {
-                        responseStream.DecryptStream(fs, login.GetKey());
+                        responseStream.DecryptStream(fs, login.GetKey(16));
                         //byte[] buffer = new byte[64];
                         //int size = 0;
                         //while ((size = responseStream.Read(buffer, 0, buffer.Length)) > 0)
@@ -42,7 +42,7 @@ namespace VortexFileClient.Data
                 using (Stream requestStream = request.GetRequestStream())
                 {
                     //requestStream.Write(fileContents, 0, fileContents.Length);
-                    fs.EncryptStream(requestStream, login.GetKey());
+                    fs.EncryptStream(requestStream, login.GetKey(16));
                 }
 
                 using (FtpWebResponse response = (FtpWebResponse)request.GetResponse())
@@ -101,9 +101,9 @@ namespace VortexFileClient.Data
             }
         }
 
-        public static FtpStatusCode DeleteDirectory(string url, string login, string password)
+        public static FtpStatusCode DeleteDirectory(string address, string login, string password)
         {
-            var listRequest = (FtpWebRequest)WebRequest.Create(url);
+            var listRequest = (FtpWebRequest)WebRequest.Create(address);
             listRequest.Method = WebRequestMethods.Ftp.ListDirectoryDetails;
             var credentials = new NetworkCredential(login, password);
             listRequest.Credentials = credentials;
@@ -127,7 +127,7 @@ namespace VortexFileClient.Data
                 string name = tokens[8];
                 string permissions = tokens[0];
 
-                string fileUrl = url + name;
+                string fileUrl = address + name;
 
                 if (permissions[0] == 'd')
                 {
@@ -143,7 +143,7 @@ namespace VortexFileClient.Data
                 }
             }
 
-            var removeRequest = (FtpWebRequest)WebRequest.Create(url);
+            var removeRequest = (FtpWebRequest)WebRequest.Create(address);
             removeRequest.Method = WebRequestMethods.Ftp.RemoveDirectory;
             removeRequest.Credentials = credentials;
 

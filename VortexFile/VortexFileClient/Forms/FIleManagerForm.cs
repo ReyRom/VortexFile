@@ -108,7 +108,19 @@ namespace VortexFileClient.Forms
                         ListViewItem viewItem = new ListViewItem("", GetIndex(""), FileManagerListView.Groups["cloudGroup"]);
                         FileManagerListView.Items.Add(viewItem);
                     }
-                    foreach (var item in await Task.Run(() => cloudStorage.GetLevel(cloudStorage.currentDirectory)))
+                    List<string> data = await Task.Run(List<string>() => 
+                    {
+                        try
+                        {
+                            return cloudStorage.GetLevel(cloudStorage.currentDirectory);
+                        }
+                        catch (Exception ex)
+                        {
+                            Feedback.ErrorMessage(ex);
+                        }
+                        return new List<string>();
+                    });
+                    foreach (var item in data)
                     {
                         ListViewItem viewItem = new ListViewItem(item, GetIndex(Path.GetExtension(item)), FileManagerListView.Groups["cloudGroup"]);
                         FileManagerListView.Items.Add(viewItem);
