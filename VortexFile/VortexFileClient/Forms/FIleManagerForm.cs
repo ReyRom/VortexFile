@@ -76,7 +76,7 @@ namespace VortexFileClient.Forms
                 {
                     foreach (var item in LocalStorage.GetLevel(localStorage.currentDirectory, localFiles.Entries.ToList()))
                     {
-                        ListViewItem viewItem = new ListViewItem(item, GetIndex(Path.GetExtension(item)), FileManagerListView.Groups["localGroup"]);
+                        ListViewItem viewItem = new ListViewItem(item, GetIndex(item), FileManagerListView.Groups["localGroup"]);
                         FileManagerListView.Items.Add(viewItem);
                     }
                 }
@@ -122,7 +122,7 @@ namespace VortexFileClient.Forms
                     });
                     foreach (var item in data)
                     {
-                        ListViewItem viewItem = new ListViewItem(item, GetIndex(Path.GetExtension(item)), FileManagerListView.Groups["cloudGroup"]);
+                        ListViewItem viewItem = new ListViewItem(item, GetIndex(item), FileManagerListView.Groups["cloudGroup"]);
                         FileManagerListView.Items.Add(viewItem);
                     }
                 }
@@ -164,9 +164,17 @@ namespace VortexFileClient.Forms
         //    }
         //}
 
-        private int GetIndex(string extension)
+        private int GetIndex(string fileName)
         {
-            switch (extension.ToLower())
+            if (String.IsNullOrEmpty(fileName))
+            {
+                return 0;
+            }
+            if (fileName.Contains('/'))
+            {
+                return 0;
+            }
+            switch (Path.GetExtension(fileName).ToLower())
             {
                 case ".zip":
                 case ".rar":
@@ -185,8 +193,6 @@ namespace VortexFileClient.Forms
                 case ".avi":
                 case ".mkv":
                     return 4;
-                case "":
-                    return 0;
                 default:
                     return 1;
             }
@@ -433,7 +439,7 @@ namespace VortexFileClient.Forms
                     cloudStorage.currentDirectory = Regex.Match(cloudStorage.currentDirectory, @"(?<back>([\w\s_]+/)*)[\w\s_]+/").Groups["back"].Value;
                     FilesChange?.Invoke(this, new FilesChangedEventArgs(false, true));
                 }
-                else if (!Path.HasExtension(item.Text))
+                else if (item.Text.Contains('/'))
                 {
                     cloudStorage.currentDirectory += item.Text + "/";
                     FilesChange?.Invoke(this, new FilesChangedEventArgs(false, true));

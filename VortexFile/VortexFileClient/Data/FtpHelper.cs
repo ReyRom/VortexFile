@@ -54,9 +54,9 @@ namespace VortexFileClient.Data
 
         public static List<string> GetFilesList(string address, string login, string password)
         {
-            List<string> files = new List<string>();
+            List<string> lines = new List<string>();
             FtpWebRequest request = (FtpWebRequest)WebRequest.Create(address);
-            request.Method = WebRequestMethods.Ftp.ListDirectory;
+            request.Method = WebRequestMethods.Ftp.ListDirectoryDetails;
             request.Credentials = new NetworkCredential(login, password);
 
             using (FtpWebResponse response = (FtpWebResponse)request.GetResponse())
@@ -67,10 +67,20 @@ namespace VortexFileClient.Data
                     {
                         while (!reader.EndOfStream)
                         {
-                            files.Add(reader.ReadLine());
+                            lines.Add(reader.ReadLine());
                         }
                     }
                 }
+            }
+            List<string> files = new List<string>();
+            foreach (string line in lines)
+            {
+                string[] tokens =
+                    line.Split(new[] { ' ' }, 9, StringSplitOptions.RemoveEmptyEntries);
+                string name = tokens[8];
+                string permissions = tokens[0];
+
+                files.Add(name + (permissions[0] == 'd' ? "/" : ""));
             }
             return files;
         }

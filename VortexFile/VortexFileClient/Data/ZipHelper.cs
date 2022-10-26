@@ -46,8 +46,12 @@ namespace VortexFileClient.Data
 
         public static ZipFile ReadZip(string fileName)
         {
-            using (var zip = ZipFile.Read(fileName))
+            ReadOptions readOptions = new ReadOptions();
+            readOptions.Encoding = encoding;
+            using (var zip = ZipFile.Read(fileName, readOptions))
             {
+                zip.AlternateEncodingUsage = ZipOption.Always;
+                zip.AlternateEncoding = encoding;
                 return zip;
             }
         }

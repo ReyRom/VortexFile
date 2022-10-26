@@ -111,7 +111,7 @@
             // 
             // waiting
             // 
-            this.waiting.ImageSize = new System.Drawing.Size(330, 430);
+            this.waiting.ImageSize = new System.Drawing.Size(200, 200);
             this.waiting.Location = new System.Drawing.Point(26, 14);
             this.waiting.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.waiting.Name = "waiting";
