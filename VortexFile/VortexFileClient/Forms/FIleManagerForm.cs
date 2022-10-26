@@ -365,7 +365,7 @@ namespace VortexFileClient.Forms
 
         private void ProgressTimer_Tick(object sender, EventArgs e)
         {
-            progressBar.Value +=2;
+            progressBar.Value += 2;
         }
 
         private void FileManagerListView_DragEnter(object sender, DragEventArgs e)
