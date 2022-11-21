@@ -47,14 +47,19 @@ namespace VortexFileClient.Extensions
                 switch (value)
                 {
                     case MessageBoxIcon.None:
+                        IconPictureBox.Width = 0;
                         break;
                     case MessageBoxIcon.Question:
+                        IconPictureBox.Image = Properties.Resources.Question;
                         break;
                     case MessageBoxIcon.Error:
+                        IconPictureBox.Image = Properties.Resources.Error;
                         break;
                     case MessageBoxIcon.Warning:
+                        IconPictureBox.Image = Properties.Resources.Warning;
                         break;
                     case MessageBoxIcon.Information:
+                        IconPictureBox.Image = Properties.Resources.Info;
                         break;
                 }
             }

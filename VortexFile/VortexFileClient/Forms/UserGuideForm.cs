@@ -16,7 +16,7 @@ namespace VortexFileClient.Forms
 
         private void UserGuideForm_Load(object sender, EventArgs e)
         {
-            Extensions.MessageBox.Show("dgdg");
+            Extensions.MessageBox.Show("dgdgddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd");
         }
     }
 }

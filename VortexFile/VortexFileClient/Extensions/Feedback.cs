@@ -29,17 +29,17 @@ namespace VortexFileClient.Extensions
 
         public static void InformationMessage(string message)
         {
-            System.Windows.Forms.MessageBox.Show(message, "Информация", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            MessageBox.Show(message, "Информация", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         public static void WarningMessage(string message)
         {
-            System.Windows.Forms.MessageBox.Show(message, "Внимание", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            MessageBox.Show(message, "Внимание", MessageBoxButtons.OK, MessageBoxIcon.Warning);
         }
 
         public static bool QuestionMessage(string message)
         {
-            return System.Windows.Forms.MessageBox.Show(message, "", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes;
+            return MessageBox.Show(message, "", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes;
         }
     }
 }

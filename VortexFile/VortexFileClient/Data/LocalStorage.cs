@@ -43,12 +43,10 @@ namespace VortexFileClient.Data
 
         private void DAL_OnUserDelete(object? sender, UserDeleteEventArgs e)
         {
-            using (ZipFile zip = ZipHelper.ReadZip(InitialCatalog))
+            var path = Path.Combine(InitialCatalog, e.User.Login + ".zip");
+            if (File.Exists(path))
             {
-                var zipEntry = GetCatalog().SingleOrDefault(z => z.FileName == e.User.Login + ".zip");
-                if (zipEntry == null) return;
-                zip.RemoveEntry(zipEntry);
-                zip.Save();
+                File.Delete(path);
             }
         }
 

@@ -103,7 +103,7 @@ namespace VortexFileClient.Forms
             e.KeyChar = char.ToUpper(e.KeyChar);
         }
 
-        private void timer_Tick(object sender, EventArgs e)
+        private void Timer_Tick(object sender, EventArgs e)
         {
             timeout--;
             SendCodeLinkLabel.Text = $"Подождите {timeout} секунд для повторной отправки";

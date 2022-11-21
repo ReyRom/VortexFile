@@ -33,48 +33,13 @@ namespace VortexFileClient.Data
             return hash;
         }
 
-//        public static void EncryptStream(this Stream input, Stream output, byte[] key)
-//        {
-//            using (var des = DES.Create())
-//            {
-//                des.Key = key;
-//#warning Переопределить соль
-//                byte[] iv = Encoding.ASCII.GetBytes("ABCDEFGH");
-//                des.Padding = PaddingMode.Zeros;
-//                using (CryptoStream cs = new CryptoStream(output, des.CreateEncryptor(key,iv), CryptoStreamMode.Write))
-//                {
-//                    int data;
-//                    while ((data = input.ReadByte()) != -1)
-//                        cs.WriteByte((byte)data);
-//                }
-//            }
-//        }
-
-//        public static void DecryptStream(this Stream input, Stream output, byte[] key)
-//        {
-//#warning Переопределить соль
-//            byte[] iv = Encoding.ASCII.GetBytes("ABCDEFGH");
-//            using (var des = DES.Create()) 
-//            { 
-//                des.Key = key;
-//                des.IV = iv;
-//                des.Padding = PaddingMode.Zeros;
-//                using (CryptoStream cs = new CryptoStream(input, des.CreateDecryptor(key,iv), CryptoStreamMode.Read))
-//                {
-//                    int data;
-//                    while ((data = cs.ReadByte()) != -1)
-//                        output.WriteByte((byte)data);
-//                }
-//            }
-//        }
-
         public static void EncryptStream(this Stream input, Stream output, byte[] key)
         {
             using (var aes = Aes.Create())
             {
                 aes.Key = key;
 #warning Переопределить соль
-                byte[] iv = Encoding.ASCII.GetBytes("ABCDEFGHABCDEFGH");
+                byte[] iv = Encoding.ASCII.GetBytes("ROMAN_SWAROWSKIY");
                 aes.Padding = PaddingMode.Zeros;
                 using (CryptoStream cs = new CryptoStream(output, aes.CreateEncryptor(key, iv), CryptoStreamMode.Write))
                 {
@@ -88,7 +53,7 @@ namespace VortexFileClient.Data
         public static void DecryptStream(this Stream input, Stream output, byte[] key)
         {
 #warning Переопределить соль
-            byte[] iv = Encoding.ASCII.GetBytes("ABCDEFGHABCDEFGH");
+            byte[] iv = Encoding.ASCII.GetBytes("ROMAN_SWAROWSKIY");
             using (var aes = Aes.Create())
             {
                 aes.Key = key;
