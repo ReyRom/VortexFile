@@ -100,41 +100,41 @@
             this.uploadDirectoryLocalToolStripMenuItem,
             this.createDirectoryLocalToolStripMenuItem});
             this.LocalContextMenuStrip.Name = "LocalContextMenuStrip";
-            this.LocalContextMenuStrip.Size = new System.Drawing.Size(181, 136);
+            this.LocalContextMenuStrip.Size = new System.Drawing.Size(164, 114);
             this.LocalContextMenuStrip.Opening += new System.ComponentModel.CancelEventHandler(this.LocalContextMenuStrip_Opening);
             // 
             // downloadLocalToolStripMenuItem
             // 
             this.downloadLocalToolStripMenuItem.Name = "downloadLocalToolStripMenuItem";
-            this.downloadLocalToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.downloadLocalToolStripMenuItem.Size = new System.Drawing.Size(163, 22);
             this.downloadLocalToolStripMenuItem.Text = "Скачать";
             this.downloadLocalToolStripMenuItem.Click += new System.EventHandler(this.DownloadButton_Click);
             // 
             // deleteLocalToolStripMenuItem
             // 
             this.deleteLocalToolStripMenuItem.Name = "deleteLocalToolStripMenuItem";
-            this.deleteLocalToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.deleteLocalToolStripMenuItem.Size = new System.Drawing.Size(163, 22);
             this.deleteLocalToolStripMenuItem.Text = "Удалить";
             this.deleteLocalToolStripMenuItem.Click += new System.EventHandler(this.DeleteButton_Click);
             // 
             // uploadLocalToolStripMenuItem
             // 
             this.uploadLocalToolStripMenuItem.Name = "uploadLocalToolStripMenuItem";
-            this.uploadLocalToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.uploadLocalToolStripMenuItem.Size = new System.Drawing.Size(163, 22);
             this.uploadLocalToolStripMenuItem.Text = "Загрузить файл";
             this.uploadLocalToolStripMenuItem.Click += new System.EventHandler(this.UploadLocalToolStripMenuItem_Click);
             // 
             // uploadDirectoryLocalToolStripMenuItem
             // 
             this.uploadDirectoryLocalToolStripMenuItem.Name = "uploadDirectoryLocalToolStripMenuItem";
-            this.uploadDirectoryLocalToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.uploadDirectoryLocalToolStripMenuItem.Size = new System.Drawing.Size(163, 22);
             this.uploadDirectoryLocalToolStripMenuItem.Text = "Загрузить папку";
             this.uploadDirectoryLocalToolStripMenuItem.Click += new System.EventHandler(this.UploadDirectoryLocalToolStripMenuItem_Click);
             // 
             // createDirectoryLocalToolStripMenuItem
             // 
             this.createDirectoryLocalToolStripMenuItem.Name = "createDirectoryLocalToolStripMenuItem";
-            this.createDirectoryLocalToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.createDirectoryLocalToolStripMenuItem.Size = new System.Drawing.Size(163, 22);
             this.createDirectoryLocalToolStripMenuItem.Text = "Создать папку";
             this.createDirectoryLocalToolStripMenuItem.Click += new System.EventHandler(this.CreateDirectoryLocalToolStripMenuItem_Click);
             // 
@@ -191,7 +191,7 @@
             this.LocalSliderCheckBox.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.LocalSliderCheckBox.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.LocalSliderCheckBox.ImageIndex = 1;
-            this.LocalSliderCheckBox.Location = new System.Drawing.Point(228, 570);
+            this.LocalSliderCheckBox.Location = new System.Drawing.Point(228, 579);
             this.LocalSliderCheckBox.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.LocalSliderCheckBox.Name = "LocalSliderCheckBox";
             this.LocalSliderCheckBox.Size = new System.Drawing.Size(217, 32);
@@ -214,7 +214,7 @@
             this.CloudSliderCheckBox.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.CloudSliderCheckBox.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.CloudSliderCheckBox.ImageIndex = 1;
-            this.CloudSliderCheckBox.Location = new System.Drawing.Point(228, 598);
+            this.CloudSliderCheckBox.Location = new System.Drawing.Point(228, 617);
             this.CloudSliderCheckBox.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.CloudSliderCheckBox.Name = "CloudSliderCheckBox";
             this.CloudSliderCheckBox.Size = new System.Drawing.Size(210, 32);
@@ -242,7 +242,7 @@
             this.DownloadButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.DownloadButton.Font = new System.Drawing.Font("Trebuchet MS", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.DownloadButton.ForeColor = System.Drawing.Color.White;
-            this.DownloadButton.Location = new System.Drawing.Point(755, 582);
+            this.DownloadButton.Location = new System.Drawing.Point(755, 598);
             this.DownloadButton.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.DownloadButton.Name = "DownloadButton";
             this.DownloadButton.Size = new System.Drawing.Size(137, 38);
@@ -257,7 +257,7 @@
             this.DeleteButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.DeleteButton.Font = new System.Drawing.Font("Trebuchet MS", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.DeleteButton.ForeColor = System.Drawing.Color.White;
-            this.DeleteButton.Location = new System.Drawing.Point(900, 582);
+            this.DeleteButton.Location = new System.Drawing.Point(900, 598);
             this.DeleteButton.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.DeleteButton.Name = "DeleteButton";
             this.DeleteButton.Size = new System.Drawing.Size(135, 38);
@@ -272,7 +272,7 @@
             this.UploadDirectoryButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.UploadDirectoryButton.Font = new System.Drawing.Font("Trebuchet MS", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.UploadDirectoryButton.ForeColor = System.Drawing.Color.White;
-            this.UploadDirectoryButton.Location = new System.Drawing.Point(26, 616);
+            this.UploadDirectoryButton.Location = new System.Drawing.Point(26, 617);
             this.UploadDirectoryButton.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.UploadDirectoryButton.Name = "UploadDirectoryButton";
             this.UploadDirectoryButton.Size = new System.Drawing.Size(194, 38);
@@ -287,7 +287,7 @@
             this.CreateDirectoryButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.CreateDirectoryButton.Font = new System.Drawing.Font("Trebuchet MS", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.CreateDirectoryButton.ForeColor = System.Drawing.Color.White;
-            this.CreateDirectoryButton.Location = new System.Drawing.Point(610, 582);
+            this.CreateDirectoryButton.Location = new System.Drawing.Point(610, 598);
             this.CreateDirectoryButton.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.CreateDirectoryButton.Name = "CreateDirectoryButton";
             this.CreateDirectoryButton.Size = new System.Drawing.Size(137, 38);
@@ -411,7 +411,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "FileManagerForm";
-            this.Text = "FIleManagerForm";
+            this.Text = "Файловый менеджер";
             this.Load += new System.EventHandler(this.FileManagerForm_Load);
             this.LocalContextMenuStrip.ResumeLayout(false);
             this.RemoteContextMenuStrip.ResumeLayout(false);

@@ -16,7 +16,12 @@ namespace VortexFileClient.Forms
         {
             if (PasswordTextBox.Text == Properties.Settings.Default.AdminPassword)
             {
+                PasswordTextBox.Text = String.Empty;
                 LoadForm.Invoke(this, new LoadFormEventArgs(new AdministrationForm()));
+            }
+            else
+            {
+                Feedback.WarningMessage("Неверный пароль администратора");
             }
         }
 

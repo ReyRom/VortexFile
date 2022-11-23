@@ -87,19 +87,6 @@ namespace VortexFileClient.Data
             }
         }
 
-        public static FtpStatusCode RemoveDirectory(string address, string login, string password)
-        {
-            FtpWebRequest request = (FtpWebRequest)WebRequest.Create(address);
-
-            request.Method = WebRequestMethods.Ftp.RemoveDirectory;
-            request.Credentials = new NetworkCredential(login, password);
-
-            using (FtpWebResponse response = (FtpWebResponse)request.GetResponse())
-            {
-                return response.StatusCode;
-            }
-        }
-
         public static FtpStatusCode DeleteDirectory(string address, string login, string password)
         {
             var listRequest = (FtpWebRequest)WebRequest.Create(address);

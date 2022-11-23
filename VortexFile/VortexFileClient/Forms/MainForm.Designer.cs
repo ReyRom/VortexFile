@@ -108,7 +108,7 @@ partial class MainForm
             this.MinimizeButton.Name = "MinimizeButton";
             this.MinimizeButton.Size = new System.Drawing.Size(60, 30);
             this.MinimizeButton.TabIndex = 1;
-            this.MinimizeButton.Text = "-";
+            this.MinimizeButton.Text = "–";
             this.MinimizeButton.UseVisualStyleBackColor = true;
             this.MinimizeButton.Click += new System.EventHandler(this.MinimizeButton_Click);
             // 

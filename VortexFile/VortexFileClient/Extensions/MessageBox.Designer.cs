@@ -69,6 +69,7 @@
             // 
             // HeaderLabel
             // 
+            this.HeaderLabel.BackColor = System.Drawing.Color.White;
             this.HeaderLabel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.HeaderLabel.Location = new System.Drawing.Point(40, 0);
             this.HeaderLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
@@ -118,6 +119,7 @@
             // 
             // ButtonsFlowLayoutPanel
             // 
+            this.ButtonsFlowLayoutPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(215)))), ((int)(((byte)(225)))), ((int)(((byte)(255)))));
             this.ButtonsFlowLayoutPanel.Controls.Add(this.CancelButton);
             this.ButtonsFlowLayoutPanel.Controls.Add(this.OkButton);
             this.ButtonsFlowLayoutPanel.Controls.Add(this.NoButton);
@@ -132,54 +134,62 @@
             // 
             // CancelButton
             // 
+            this.CancelButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(100)))), ((int)(((byte)(210)))));
             this.CancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.CancelButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.CancelButton.ForeColor = System.Drawing.Color.White;
             this.CancelButton.Location = new System.Drawing.Point(374, 10);
             this.CancelButton.Margin = new System.Windows.Forms.Padding(5, 0, 0, 0);
             this.CancelButton.Name = "CancelButton";
             this.CancelButton.Size = new System.Drawing.Size(75, 30);
             this.CancelButton.TabIndex = 0;
             this.CancelButton.Text = "Отмена";
-            this.CancelButton.UseVisualStyleBackColor = true;
+            this.CancelButton.UseVisualStyleBackColor = false;
             this.CancelButton.Visible = false;
             // 
             // OkButton
             // 
+            this.OkButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(100)))), ((int)(((byte)(210)))));
             this.OkButton.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.OkButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.OkButton.ForeColor = System.Drawing.Color.White;
             this.OkButton.Location = new System.Drawing.Point(294, 10);
             this.OkButton.Margin = new System.Windows.Forms.Padding(5, 0, 0, 0);
             this.OkButton.Name = "OkButton";
             this.OkButton.Size = new System.Drawing.Size(75, 30);
             this.OkButton.TabIndex = 1;
             this.OkButton.Text = "ОК";
-            this.OkButton.UseVisualStyleBackColor = true;
+            this.OkButton.UseVisualStyleBackColor = false;
             this.OkButton.Visible = false;
             // 
             // NoButton
             // 
+            this.NoButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(100)))), ((int)(((byte)(210)))));
             this.NoButton.DialogResult = System.Windows.Forms.DialogResult.No;
             this.NoButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.NoButton.ForeColor = System.Drawing.Color.White;
             this.NoButton.Location = new System.Drawing.Point(214, 10);
             this.NoButton.Margin = new System.Windows.Forms.Padding(5, 0, 0, 0);
             this.NoButton.Name = "NoButton";
             this.NoButton.Size = new System.Drawing.Size(75, 30);
             this.NoButton.TabIndex = 2;
             this.NoButton.Text = "Нет";
-            this.NoButton.UseVisualStyleBackColor = true;
+            this.NoButton.UseVisualStyleBackColor = false;
             this.NoButton.Visible = false;
             // 
             // YesButton
             // 
+            this.YesButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(100)))), ((int)(((byte)(210)))));
             this.YesButton.DialogResult = System.Windows.Forms.DialogResult.Yes;
             this.YesButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.YesButton.ForeColor = System.Drawing.Color.White;
             this.YesButton.Location = new System.Drawing.Point(134, 10);
             this.YesButton.Margin = new System.Windows.Forms.Padding(5, 0, 0, 0);
             this.YesButton.Name = "YesButton";
             this.YesButton.Size = new System.Drawing.Size(75, 30);
             this.YesButton.TabIndex = 3;
             this.YesButton.Text = "Да";
-            this.YesButton.UseVisualStyleBackColor = true;
+            this.YesButton.UseVisualStyleBackColor = false;
             this.YesButton.Visible = false;
             // 
             // BodyPanel
@@ -199,6 +209,7 @@
             // 
             this.tableLayoutPanel.AutoSize = true;
             this.tableLayoutPanel.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.tableLayoutPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(237)))), ((int)(((byte)(252)))));
             this.tableLayoutPanel.ColumnCount = 2;
             this.tableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
             this.tableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
@@ -265,6 +276,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.BackColor = System.Drawing.SystemColors.Control;
             this.ClientSize = new System.Drawing.Size(469, 179);
             this.Controls.Add(this.BodyPanel);
             this.Controls.Add(this.FooterPanel);

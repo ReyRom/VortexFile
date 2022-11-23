@@ -32,8 +32,7 @@ namespace VortexFileClient.Forms
 
         private void FileManagerForm_Load(object sender, EventArgs e)
         {
-            this.Text = Session.CurrentUser.Login;
-            CloudSliderCheckBox.Enabled = CloudSliderCheckBox.Checked = OnlineMode;
+            CloudSliderCheckBox.Enabled = CloudSliderCheckBox.Checked = RemoteContextMenuStrip.Enabled = OnlineMode;
             FilesChange?.Invoke(this, new FilesChangedEventArgs());
         }
 
@@ -368,7 +367,7 @@ namespace VortexFileClient.Forms
             }
             else
             {
-                Feedback.WarningMessage("Выберите файлы для удаления.");
+                Feedback.WarningMessage("Выберите файлы для удаления");
             }
         }
 
@@ -411,7 +410,7 @@ namespace VortexFileClient.Forms
             }
             else
             {
-                Feedback.WarningMessage("Выберите файлы для загрузки.");
+                Feedback.WarningMessage("Выберите файлы для загрузки");
             }
         }
 

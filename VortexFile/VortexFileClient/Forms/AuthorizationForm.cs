@@ -38,7 +38,7 @@ namespace VortexFileClient.Forms
             }
             if (user == null)
             {
-                Feedback.WarningMessage("Неправильный логин/email или пароль.");
+                Feedback.WarningMessage("Неправильный логин/email или пароль");
             }
             else
             {

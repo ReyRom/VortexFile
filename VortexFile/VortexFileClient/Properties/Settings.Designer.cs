@@ -85,7 +85,7 @@ namespace VortexFileClient.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("server=91.122.211.144;port=53306;user=proftpd;password=password;database=ftp;")]
+        [global::System.Configuration.DefaultSettingValueAttribute("server=91.122.211.144;port=53306;user=vortexfileadmin;password=d4c45911de055183ebc73cee140d3fb2;database=ftp;")]
         public string ConnectionString {
             get {
                 return ((string)(this["ConnectionString"]));

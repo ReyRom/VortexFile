@@ -110,7 +110,7 @@ namespace VortexFileClient.Forms
         {
             if (e.ColumnIndex == DeleteColumn.Index)
             {
-                if (Feedback.QuestionMessage("Вы уверены, что хотите удалить эту учетную запись"))
+                if (Feedback.QuestionMessage("Вы уверены, что хотите удалить эту учетную запись?"))
                 {
                     var user = UsersDataGridView.Rows[e.RowIndex].DataBoundItem as User;
                     email = user.Email;

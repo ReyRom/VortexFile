@@ -67,7 +67,7 @@ namespace VortexFileClient.Forms
         {
             if (PasswordTextBox.Text != ConfirmTextBox.Text)
             {
-                Feedback.WarningMessage("Пароли не совпадают.");
+                Feedback.WarningMessage("Пароли не совпадают");
                 return;
             }
             if (!Regex.IsMatch(PasswordTextBox.Text, @"^[a-zA-ZА-Яа-яЁё0-9]{8,20}$") || user.Password.Contains(" "))

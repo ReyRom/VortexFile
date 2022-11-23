@@ -48,7 +48,7 @@
             this.PasswordCheckBox.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.PasswordCheckBox.Font = new System.Drawing.Font("Trebuchet MS", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.PasswordCheckBox.ImageIndex = 0;
-            this.PasswordCheckBox.Location = new System.Drawing.Point(347, 32);
+            this.PasswordCheckBox.Location = new System.Drawing.Point(339, 32);
             this.PasswordCheckBox.Name = "PasswordCheckBox";
             this.PasswordCheckBox.Size = new System.Drawing.Size(35, 24);
             this.PasswordCheckBox.TabIndex = 26;
@@ -59,7 +59,7 @@
             // ConfirmTextBox
             // 
             this.ConfirmTextBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(237)))), ((int)(((byte)(252)))));
-            this.ConfirmTextBox.Location = new System.Drawing.Point(38, 70);
+            this.ConfirmTextBox.Location = new System.Drawing.Point(30, 70);
             this.ConfirmTextBox.Margin = new System.Windows.Forms.Padding(5, 6, 5, 6);
             this.ConfirmTextBox.MaxLength = 20;
             this.ConfirmTextBox.Name = "ConfirmTextBox";
@@ -73,7 +73,7 @@
             this.EnterButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(100)))), ((int)(((byte)(210)))));
             this.EnterButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.EnterButton.ForeColor = System.Drawing.Color.White;
-            this.EnterButton.Location = new System.Drawing.Point(37, 106);
+            this.EnterButton.Location = new System.Drawing.Point(29, 106);
             this.EnterButton.Margin = new System.Windows.Forms.Padding(4);
             this.EnterButton.Name = "EnterButton";
             this.EnterButton.Size = new System.Drawing.Size(345, 42);
@@ -85,7 +85,7 @@
             // PasswordTextBox
             // 
             this.PasswordTextBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(237)))), ((int)(((byte)(252)))));
-            this.PasswordTextBox.Location = new System.Drawing.Point(38, 31);
+            this.PasswordTextBox.Location = new System.Drawing.Point(30, 31);
             this.PasswordTextBox.Margin = new System.Windows.Forms.Padding(5, 6, 5, 6);
             this.PasswordTextBox.MaxLength = 20;
             this.PasswordTextBox.Name = "PasswordTextBox";
@@ -98,6 +98,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 22F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(404, 175);
             this.Controls.Add(this.PasswordCheckBox);
             this.Controls.Add(this.ConfirmTextBox);
@@ -105,9 +106,9 @@
             this.Controls.Add(this.PasswordTextBox);
             this.Font = new System.Drawing.Font("Trebuchet MS", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "ChangeAdminPasswordForm";
-            this.Text = "ChangeAdminPasswordForm";
+            this.Text = "Пароль администратора";
             this.ResumeLayout(false);
             this.PerformLayout();
 

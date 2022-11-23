@@ -38,7 +38,6 @@ namespace VortexFileClient.Data
             using (var aes = Aes.Create())
             {
                 aes.Key = key;
-#warning Переопределить соль
                 byte[] iv = Encoding.ASCII.GetBytes("ROMAN_SWAROWSKIY");
                 aes.Padding = PaddingMode.Zeros;
                 using (CryptoStream cs = new CryptoStream(output, aes.CreateEncryptor(key, iv), CryptoStreamMode.Write))
@@ -52,7 +51,6 @@ namespace VortexFileClient.Data
 
         public static void DecryptStream(this Stream input, Stream output, byte[] key)
         {
-#warning Переопределить соль
             byte[] iv = Encoding.ASCII.GetBytes("ROMAN_SWAROWSKIY");
             using (var aes = Aes.Create())
             {
