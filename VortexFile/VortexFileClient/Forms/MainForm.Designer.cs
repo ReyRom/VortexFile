@@ -28,6 +28,7 @@ partial class MainForm
     /// </summary>
     private void InitializeComponent()
     {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.HeadPanel = new System.Windows.Forms.Panel();
             this.HeaderLabel = new System.Windows.Forms.Label();
             this.HelpButton = new System.Windows.Forms.Button();
@@ -198,6 +199,7 @@ partial class MainForm
             this.Controls.Add(this.FooterPanel);
             this.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "MainForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;

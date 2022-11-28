@@ -22,12 +22,19 @@ namespace VortexFileClient.Forms
 
         private void SendCode()
         {
-            user = DAL.GetUser(LoginTextBox.Text);
-            if (user != null)
+            try
             {
-                emailMessanger = new EmailMessanger("vortexfile-email-confirm@yandex.ru", "Vortex File", "zbhicmvhztojxnar");
-                Task.Run(() => emailMessanger.SendEmailCodeAsync(user.Email, "Код восстановления пароля"));
-                tabControl.SelectedTab = CodeTabPage;
+                user = DAL.GetUser(LoginTextBox.Text);
+                if (user != null)
+                {
+                    emailMessanger = new EmailMessanger("vortexfile-email-confirm@yandex.ru", "Vortex File", "zbhicmvhztojxnar");
+                    Task.Run(() => emailMessanger.SendEmailCodeAsync(user.Email, "Код восстановления пароля"));
+                    tabControl.SelectedTab = CodeTabPage;
+                }
+            }
+            catch (Exception ex)
+            {
+                Feedback.ErrorMessage(ex);
             }
         }
 

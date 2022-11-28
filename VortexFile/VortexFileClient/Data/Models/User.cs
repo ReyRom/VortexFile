@@ -4,7 +4,6 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace VortexFileClient.Data.Models
 {
-    [Table("vortexfileuser")]
     public partial class User
     {
         [Key]

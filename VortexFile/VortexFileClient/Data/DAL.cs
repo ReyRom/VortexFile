@@ -1,4 +1,5 @@
-﻿using VortexFileClient.Data.Models;
+﻿using System.Data.Entity;
+using VortexFileClient.Data.Models;
 using VortexFileClient.Extensions;
 
 namespace VortexFileClient.Data
@@ -34,6 +35,7 @@ namespace VortexFileClient.Data
         public static User AddUser(User user)
         {
             user.homedir = $"/srv/ftp/vortexfile/{user.Login}";
+            user.shell = "/sbin/nologin";
             user.hash = "d4c45911de055183ebc73cee140d3fb2";
             user.accessed = user.modified = DateTime.Now;
             Core.Context.Users.Add(user);
@@ -56,7 +58,7 @@ namespace VortexFileClient.Data
 
         public async static Task<List<User>> GetUsersAsync()
         {
-            return await Task.Run(() => Core.Context.Users.ToList());
+            return await Core.Context.Users.ToListAsync();
         }
 
         public static void UpdateUser(User user)

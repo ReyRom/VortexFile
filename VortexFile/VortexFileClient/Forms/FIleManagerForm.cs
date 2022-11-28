@@ -21,7 +21,7 @@ namespace VortexFileClient.Forms
 
         private bool OnlineMode { get; set; }
 
-        private FilesChangedEventArgs FilesChanged { get; set; }
+        private Stack<FilesChangedEventArgs> filesChanged = new Stack<FilesChangedEventArgs>();
 
         public FileManagerForm(bool onlineMode = true)
         {
@@ -191,6 +191,11 @@ namespace VortexFileClient.Forms
         {
             if (MessageBox.Show("Введите название новой папки", out string folderName) == DialogResult.OK)
             {
+                if(string.IsNullOrWhiteSpace(folderName))
+                {
+                    Feedback.WarningMessage("Имя папки не может быть пустым");
+                    return;
+                }
                 if (LocalSliderCheckBox.Checked)
                 {
                     CreateDirectoryLocal(folderName);
@@ -477,7 +482,7 @@ namespace VortexFileClient.Forms
 
         private void RunProgress(Action action, FilesChangedEventArgs filesChangedEventArgs = null)
         {
-            FilesChanged = filesChangedEventArgs;
+            filesChanged.Push(filesChangedEventArgs);
             fileMethods.Add(action);
             if (!BackgroundWorker.IsBusy)
             {
@@ -501,10 +506,23 @@ namespace VortexFileClient.Forms
         private void BackgroundWorker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
             fileMethods.RemoveAt(0);
-            if (FilesChanged is not null)
+            FilesChangedEventArgs filesChangedEventArgs = new FilesChangedEventArgs(local: false, remote: false);
+            while (filesChanged.Count > 0)
             {
-                FilesChange?.Invoke(this, FilesChanged);
+                var filesChanged = this.filesChanged.Pop();
+                if (filesChanged != null)
+                {
+                    if (filesChanged.ChangedLocal)
+                    {
+                        filesChangedEventArgs.ChangedLocal = filesChanged.ChangedLocal;
+                    }
+                    if (filesChanged.ChangedRemote)
+                    {
+                        filesChangedEventArgs.ChangedRemote = filesChanged.ChangedRemote;
+                    }
+                }
             }
+            FilesChange?.Invoke(this, filesChangedEventArgs);
             if (fileMethods.Count > 0)
             {
                 BackgroundWorker.RunWorkerAsync();

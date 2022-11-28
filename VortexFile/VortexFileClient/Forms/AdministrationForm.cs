@@ -32,13 +32,13 @@ namespace VortexFileClient.Forms
             try
             {
                 UsersDataGridView.DataSource = await DAL.GetUsersAsync();
+                Waiting.Visible = false;
+                UsersDataGridView.Visible = true;
             }
             catch (Exception ex)
             {
                 Feedback.ErrorMessage(ex);
             }
-            Waiting.Visible = false;
-            UsersDataGridView.Visible = true;
         }
 
         private void UsersDataGridView_CellEndEdit(object sender, DataGridViewCellEventArgs e)

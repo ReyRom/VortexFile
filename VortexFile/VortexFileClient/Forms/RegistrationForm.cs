@@ -67,7 +67,7 @@ namespace VortexFileClient.Forms
             }
             catch (Exception ex)
             {
-                Feedback.WarningMessage(ex.Message);
+                Feedback.ErrorMessage(ex);
             }
         }
 

@@ -25,61 +25,6 @@ namespace VortexFileClient.Data
             DAL.OnUserDelete += DAL_OnUserDelete;
         }
 
-        private void ThrowException(FtpStatusCode status)
-        {
-            string exMessage = String.Empty;
-            switch (status)
-            {
-                case FtpStatusCode.AccountNeeded:
-                    exMessage = "Непредоставлена учетная запись пользователя. Код ошибки - 532";
-                    break;
-                case FtpStatusCode.ActionAbortedLocalProcessingError:
-                    exMessage = "Возникло препятствие завершению запрошенной операции. Код ошибки - 451";
-                    break;
-                case FtpStatusCode.ActionAbortedUnknownPageType:
-                    exMessage = "Запрошенное действие не может быть выполнено, потому что неизвестен указанный тип страницы. Код ошибки - 551";
-                    break;
-                case FtpStatusCode.ActionNotTakenFilenameNotAllowed:
-                    exMessage = "Запрошенное действие не может быть выполнено с указанным файлом. Код ошибки - 553";
-                    break;
-                case FtpStatusCode.ActionNotTakenFileUnavailable:
-                    exMessage = "Запрошенное действие не может быть выполнено с указанным файлом, потому что файл недоступен. Код ошибки - 550";
-                    break;
-                case FtpStatusCode.ArgumentSyntaxError:
-                    exMessage = "Один или несколько аргументов команды содержат синтаксическую ошибку. Код ошибки - 501";
-                    break;
-                case FtpStatusCode.BadCommandSequence:
-                    exMessage = "Запрошенное действие не может быть выполнено с указанным файлом, потому что файл недоступен. Код ошибки - 503";
-                    break;
-                case FtpStatusCode.CantOpenData:
-                    exMessage = "Подключение к данным не может быть открыто. Код ошибки - 425";
-                    break;
-                case FtpStatusCode.CommandNotImplemented:
-                    exMessage = "Команда не реализована на FTP-сервере. Код ошибки - 502";
-                    break;
-                case FtpStatusCode.CommandSyntaxError:
-                    exMessage = "Команда содержит синтаксическую ошибку или не является командой, распознаваемой сервером. Код ошибки - 500";
-                    break;
-                case FtpStatusCode.ConnectionClosed:
-                    exMessage = "Подключение уже было закрыто. Код ошибки - 426";
-                    break;
-                case FtpStatusCode.FileActionAborted:
-                    exMessage = "Запрошенное действие выполнить невозможно. Код ошибки - 552";
-                    break;
-                case FtpStatusCode.NotLoggedIn:
-                    exMessage = "Сведения для входа на сервер должны быть предоставлены серверу. Код ошибки - 530";
-                    break;
-                case FtpStatusCode.ServiceNotAvailable:
-                    exMessage = "Служба недоступна. Код ошибки - 421";
-                    break;
-            }
-            if (exMessage != String.Empty)
-            {
-                throw new Exception($"Возникла непредвиденная ошибка: \"{exMessage}\"." +
-                    "\nВойдите в свою учётную запись еще раз или обратитетсь к системному администратору.");
-            }
-        }
-
         private void DAL_OnUserDelete(object? sender, UserDeleteEventArgs e)
         {
             DeleteFiles(GetUserCatalog(e.User), e.User);
@@ -89,8 +34,7 @@ namespace VortexFileClient.Data
         {
             foreach (var fileName in fileNames)
             {
-                var status = FtpHelper.DownloadFile(Path.Combine(outFolder, fileName), ServerAddress + currentDirectory + fileName, login, password);
-                ThrowException(status);
+                FtpHelper.DownloadFile(Path.Combine(outFolder, fileName), ServerAddress + currentDirectory + fileName, login, password);
             }
         }
 
@@ -102,8 +46,7 @@ namespace VortexFileClient.Data
                 {
                     throw new Exception("Размер загружаемого файла больше 2ГБ.");
                 }
-                var status = FtpHelper.UploadFile(fileName, ServerAddress + currentDirectory + Path.GetFileName(fileName), login, password);
-                ThrowException(status);
+                FtpHelper.UploadFile(fileName, ServerAddress + currentDirectory + Path.GetFileName(fileName), login, password);
             }
         }
         public void UploadFiles(string directoryName)
@@ -112,12 +55,12 @@ namespace VortexFileClient.Data
             var directories = directoryInfo.GetDirectories("", SearchOption.AllDirectories);
             var files = directoryInfo.GetFiles("", SearchOption.AllDirectories);
             {
-                var status = FtpHelper.CreateDirectory(ServerAddress + currentDirectory + directoryInfo.Name, login, password);
+                FtpHelper.CreateDirectory(ServerAddress + currentDirectory + directoryInfo.Name, login, password);
             }
             foreach (var directory in directories)
             {
                 var address = ServerAddress + directory.FullName.Remove(0, directoryInfo.Parent.FullName.Length+1).Replace('\\','/');
-                var status = FtpHelper.CreateDirectory(address, login, password);
+                FtpHelper.CreateDirectory(address, login, password);
             }
             foreach (var file in files)
             {
@@ -125,7 +68,7 @@ namespace VortexFileClient.Data
                 {
                     throw new Exception("Размер загружаемого файла больше 2ГБ.");
                 }
-                var status = FtpHelper.UploadFile(file.FullName, ServerAddress + currentDirectory + file.FullName.Remove(0, directoryInfo.Parent.FullName.Length + 1).Replace('\\', '/'), login, password);
+                FtpHelper.UploadFile(file.FullName, ServerAddress + currentDirectory + file.FullName.Remove(0, directoryInfo.Parent.FullName.Length + 1).Replace('\\', '/'), login, password);
             }
         }
 
@@ -133,16 +76,14 @@ namespace VortexFileClient.Data
         {
             foreach (var fileName in fileNames)
             {
-                FtpStatusCode status;
                 if (!Path.HasExtension(fileName))
                 {
-                    status = FtpHelper.DeleteDirectory(ServerAddress + currentDirectory + fileName+"/", login, password);
+                    FtpHelper.DeleteDirectory(ServerAddress + currentDirectory + fileName+"/", login, password);
                 }
                 else
                 {
-                    status = FtpHelper.DeleteFile(ServerAddress+ currentDirectory + fileName, login, password);
+                    FtpHelper.DeleteFile(ServerAddress+ currentDirectory + fileName, login, password);
                 }
-                ThrowException(status);
             }
         }
 
@@ -150,8 +91,7 @@ namespace VortexFileClient.Data
         {
             foreach (var fileName in fileNames)
             {
-                var status = FtpHelper.DeleteFile(ServerAddress +currentDirectory + fileName, user.Login, user.Password);
-                ThrowException(status);
+                FtpHelper.DeleteFile(ServerAddress +currentDirectory + fileName, user.Login, user.Password);
             }
         }
 
