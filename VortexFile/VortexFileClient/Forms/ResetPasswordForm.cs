@@ -31,6 +31,10 @@ namespace VortexFileClient.Forms
                     Task.Run(() => emailMessanger.SendEmailCodeAsync(user.Email, "Код восстановления пароля"));
                     tabControl.SelectedTab = CodeTabPage;
                 }
+                else
+                {
+                    Feedback.WarningMessage("Пользователя по указанным данным не существует");
+                }
             }
             catch (Exception ex)
             {
