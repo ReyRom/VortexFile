@@ -52,6 +52,5 @@ namespace VortexFileClient.Forms
             }
             Path = PathTextBox.Text;
         }
-
     }
 }
