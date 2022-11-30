@@ -2,7 +2,7 @@
 {
     public static class Tools
     {
-        public static long GigaByte { get => 8589934592; }
+        public static long GigaByte { get => 1073741824; }
         public static void FormToPanel(Form form, Panel panel)
         {
             panel.Controls.Clear();

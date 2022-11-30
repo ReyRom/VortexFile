@@ -8,18 +8,18 @@ namespace VortexFileClient.Data
     {
         private static Encoding encoding = Encoding.UTF8;
 
-        public static void AppendFilesToZipWithPassword(string fileName,
-            List<string> appendFiles, string password,
-            CompressionLevel compressionLevel = CompressionLevel.Default)
-        {
-            using (var zipFile = ZipFile.Read(fileName))
-            {
-                zipFile.Password = password;
-                zipFile.CompressionLevel = compressionLevel;
-                zipFile.AddFiles(appendFiles, "\\");
-                zipFile.Save();
-            }
-        }
+        //public static void AppendFilesToZipWithPassword(string fileName,
+        //    List<string> appendFiles, string password,
+        //    CompressionLevel compressionLevel = CompressionLevel.Default)
+        //{
+        //    using (var zipFile = ZipFile.Read(fileName))
+        //    {
+        //        zipFile.Password = password;
+        //        zipFile.CompressionLevel = compressionLevel;
+        //        zipFile.AddFiles(appendFiles, "\\");
+        //        zipFile.Save();
+        //    }
+        //}
 
         public static void AppendDirectoryToZipWithPassword(string fileName,
         string sourceDirectory, string password,
@@ -56,30 +56,18 @@ namespace VortexFileClient.Data
             }
         }
 
-        public static ZipFile ReadSubZipWithPassword(string fileName, string subFileName, string password)
+        public static void DeleteFilesFromZip(string fileName, List<string> fileNames, string pathInArchive)
         {
-            ReadOptions readOptions = new ReadOptions();
-            readOptions.Encoding = encoding;
-            using (var zip = ZipFile.Read(fileName, readOptions))
+            using (ZipFile zip = ReadZip(fileName))
             {
-                zip.AlternateEncodingUsage = ZipOption.Always;
-                zip.AlternateEncoding = encoding;
-                ZipEntry entry = zip[subFileName];
-                using (var subZip = ZipFile.Read(entry.ExtractToMemoryStreamWithPassword(password), readOptions))
+                zip.UseZip64WhenSaving = Zip64Option.AsNecessary;
+                foreach (var file in fileNames)
                 {
-                    subZip.AlternateEncodingUsage = ZipOption.Always;
-                    subZip.AlternateEncoding = encoding;
-                    return subZip;
+                    var zipEntry = zip.Entries.SingleOrDefault(z => z.FileName == Path.Combine(pathInArchive,file));
+                    zip.RemoveEntry(zipEntry);
                 }
+                zip.Save();
             }
-        }
-
-        public static MemoryStream ExtractToMemoryStreamWithPassword(this ZipEntry zipEntry, string password)
-        {
-            var mstream = new MemoryStream();
-            zipEntry.ExtractWithPassword(mstream, password);
-            mstream.Position = 0;
-            return mstream;
         }
     }
 }

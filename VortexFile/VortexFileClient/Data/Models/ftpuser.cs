@@ -4,7 +4,6 @@ namespace VortexFileClient.Data.Models
 {
     public partial class User
     {
-        public string hash { get; set; }
         public short uid { get; set; }
         public short gid { get; set; }
         public string homedir { get; set; }

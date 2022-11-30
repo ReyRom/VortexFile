@@ -20,7 +20,7 @@ namespace VortexFileClient.Data
 
         public CloudStorage(User user)
         {
-            this.login = user.Login;
+            this.login = user.Login +"."+ Properties.Settings.Default.Hash;
             this.password = user.Password;
             DAL.OnUserDelete += DAL_OnUserDelete;
         }
@@ -91,7 +91,7 @@ namespace VortexFileClient.Data
         {
             foreach (var fileName in fileNames)
             {
-                FtpHelper.DeleteFile(ServerAddress +currentDirectory + fileName, user.Login, user.Password);
+                FtpHelper.DeleteFile(ServerAddress +currentDirectory + fileName, user.Login + "." + Properties.Settings.Default.Hash, user.Password);
             }
         }
 
@@ -112,7 +112,7 @@ namespace VortexFileClient.Data
 
         public List<string> GetUserCatalog(User user)
         {
-            return FtpHelper.GetFilesList(ServerAddress, user.Login, user.Password);
+            return FtpHelper.GetFilesList(ServerAddress, user.Login + "." + Properties.Settings.Default.Hash, user.Password);
         }
     }
 }

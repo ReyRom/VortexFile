@@ -52,17 +52,18 @@ namespace VortexFileClient.Data
 
         public void DeleteFiles(List<string> fileNames)
         {
-            using (ZipFile zip = ZipHelper.ReadZip(Path.Combine(InitialCatalog, UserCatalog)))
-            {
+            ZipHelper.DeleteFilesFromZip(Path.Combine(InitialCatalog, UserCatalog), fileNames, currentDirectory);
+            //using (ZipFile zip = ZipHelper.ReadZip(Path.Combine(InitialCatalog, UserCatalog)))
+            //{
 
-                zip.UseZip64WhenSaving = Zip64Option.AsNecessary;
-                foreach (var fileName in fileNames)
-                {
-                    var zipEntry = zip.Entries.SingleOrDefault(z => z.FileName == currentDirectory + fileName);
-                    zip.RemoveEntry(zipEntry);
-                }
-                zip.Save();
-            }
+            //    zip.UseZip64WhenSaving = Zip64Option.AsNecessary;
+            //    foreach (var fileName in fileNames)
+            //    {
+            //        var zipEntry = zip.Entries.SingleOrDefault(z => z.FileName == currentDirectory + fileName);
+            //        zip.RemoveEntry(zipEntry);
+            //    }
+            //    zip.Save();
+            //}
         }
 
         public void DownloadFiles(List<string> fileNames, string outFolder)
