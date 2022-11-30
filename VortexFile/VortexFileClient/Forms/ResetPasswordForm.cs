@@ -62,6 +62,7 @@ namespace VortexFileClient.Forms
                 if (emailMessanger.CheckCode(CodeTextBox.Text))
                 {
                     tabControl.SelectedTab = PasswordTabPage;
+                    AcceptButton = ConfirmButton;
                 }
                 else
                 {
@@ -121,6 +122,7 @@ namespace VortexFileClient.Forms
             if (timeout==0)
             {
                 SendCodeLinkLabel.Enabled = true;
+                SendCodeLinkLabel.Text = "Отправить код повторно";
                 timer.Stop();
             }
         }
