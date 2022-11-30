@@ -16,12 +16,6 @@ namespace VortexFileClient.Data
                     using (FileStream fs = new FileStream(filename, FileMode.Create))
                     {
                         responseStream.DecryptStream(fs, login.GetKey(16));
-                        //byte[] buffer = new byte[64];
-                        //int size = 0;
-                        //while ((size = responseStream.Read(buffer, 0, buffer.Length)) > 0)
-                        //{
-                        //    fs.Write(buffer, 0, size);
-                        //}
                     }
                 }
                 return response.StatusCode;
@@ -35,13 +29,8 @@ namespace VortexFileClient.Data
             request.Credentials = new NetworkCredential(login, password);
             using (FileStream fs = new FileStream(filename, FileMode.Open))
             {
-                //byte[] fileContents = new byte[fs.Length];
-                //fs.Read(fileContents, 0, fileContents.Length);
-                //request.ContentLength = fileContents.Length;
-
                 using (Stream requestStream = request.GetRequestStream())
                 {
-                    //requestStream.Write(fileContents, 0, fileContents.Length);
                     fs.EncryptStream(requestStream, login.GetKey(16));
                 }
 
@@ -54,9 +43,9 @@ namespace VortexFileClient.Data
 
         public static List<string> GetFilesList(string address, string login, string password)
         {
-            List<string> files = new List<string>();
+            List<string> lines = new List<string>();
             FtpWebRequest request = (FtpWebRequest)WebRequest.Create(address);
-            request.Method = WebRequestMethods.Ftp.ListDirectory;
+            request.Method = WebRequestMethods.Ftp.ListDirectoryDetails;
             request.Credentials = new NetworkCredential(login, password);
 
             using (FtpWebResponse response = (FtpWebResponse)request.GetResponse())
@@ -67,10 +56,20 @@ namespace VortexFileClient.Data
                     {
                         while (!reader.EndOfStream)
                         {
-                            files.Add(reader.ReadLine());
+                            lines.Add(reader.ReadLine());
                         }
                     }
                 }
+            }
+            List<string> files = new List<string>();
+            foreach (string line in lines)
+            {
+                string[] tokens =
+                    line.Split(new[] { ' ' }, 9, StringSplitOptions.RemoveEmptyEntries);
+                string name = tokens[8];
+                string permissions = tokens[0];
+
+                files.Add(name + (permissions[0] == 'd' ? "/" : ""));
             }
             return files;
         }
@@ -80,19 +79,6 @@ namespace VortexFileClient.Data
             FtpWebRequest request = (FtpWebRequest)WebRequest.Create(address);
 
             request.Method = WebRequestMethods.Ftp.MakeDirectory;
-            request.Credentials = new NetworkCredential(login, password);
-
-            using (FtpWebResponse response = (FtpWebResponse)request.GetResponse())
-            {
-                return response.StatusCode;
-            }
-        }
-
-        public static FtpStatusCode RemoveDirectory(string address, string login, string password)
-        {
-            FtpWebRequest request = (FtpWebRequest)WebRequest.Create(address);
-
-            request.Method = WebRequestMethods.Ftp.RemoveDirectory;
             request.Credentials = new NetworkCredential(login, password);
 
             using (FtpWebResponse response = (FtpWebResponse)request.GetResponse())

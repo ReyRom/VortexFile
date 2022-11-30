@@ -19,10 +19,10 @@ namespace VortexFileClient.Forms
             InitializeComponent();
         }
 
-        private void AdministrationForm_Load(object sender, EventArgs e)
+        private async void AdministrationForm_LoadAsync(object sender, EventArgs e)
         {
             UsersDataGridView.AutoGenerateColumns = false;
-            RenewAsync();
+            await RenewAsync();
         }
 
         private async Task RenewAsync()
@@ -32,13 +32,13 @@ namespace VortexFileClient.Forms
             try
             {
                 UsersDataGridView.DataSource = await DAL.GetUsersAsync();
+                Waiting.Visible = false;
+                UsersDataGridView.Visible = true;
             }
             catch (Exception ex)
             {
                 Feedback.ErrorMessage(ex);
             }
-            Waiting.Visible = false;
-            UsersDataGridView.Visible = true;
         }
 
         private void UsersDataGridView_CellEndEdit(object sender, DataGridViewCellEventArgs e)
@@ -106,11 +106,11 @@ namespace VortexFileClient.Forms
             email = (UsersDataGridView.Rows[e.RowIndex].DataBoundItem as User).Email;
         }
 
-        private void UsersDataGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        private async void UsersDataGridView_CellContentClickAsync(object sender, DataGridViewCellEventArgs e)
         {
             if (e.ColumnIndex == DeleteColumn.Index)
             {
-                if (Feedback.QuestionMessage("Вы уверены, что хотите удалить эту учетную запись"))
+                if (Feedback.QuestionMessage("Вы уверены, что хотите удалить эту учетную запись?"))
                 {
                     var user = UsersDataGridView.Rows[e.RowIndex].DataBoundItem as User;
                     email = user.Email;
@@ -125,12 +125,12 @@ namespace VortexFileClient.Forms
                         Feedback.ErrorMessage(ex);
                         return;
                     }
-                    RenewAsync();
+                    await RenewAsync();
                     try
                     {
                         EmailMessanger emailMessanger = new EmailMessanger("vortexfile-email-confirm@yandex.ru", "Vortex File", "zbhicmvhztojxnar");
                         string body = "Ваша учетная запись удалена";
-                        Task.Run(() => emailMessanger.SendEmailAsync(email, "Ограничение доступа", body));
+                        await emailMessanger.SendEmailAsync(email, "Ограничение доступа", body);
                     }
                     catch (Exception ex)
                     {
@@ -140,10 +140,10 @@ namespace VortexFileClient.Forms
             }
         }
 
-        private void AddButton_Click(object sender, EventArgs e)
+        private async void AddButton_ClickAsync(object sender, EventArgs e)
         {
             LoadForm.Invoke(this, new LoadFormEventArgs(new RegistrationForm()));
-            RenewAsync();
+            await RenewAsync();
         }
 
         private void ChangeAdminPasswordLinkLabel_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)

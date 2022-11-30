@@ -1,5 +1,6 @@
 ﻿using VortexFileClient.Data.Models;
 using VortexFileClient.Extensions;
+using MessageBox = VortexFileClient.Extensions.MessageBox;
 
 namespace VortexFileClient.Forms
 {
@@ -37,7 +38,7 @@ namespace VortexFileClient.Forms
             }
             if (user == null)
             {
-                Feedback.WarningMessage("Неправильный логин/email или пароль.");
+                Feedback.WarningMessage("Неправильный логин/email или пароль");
             }
             else
             {

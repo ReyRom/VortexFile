@@ -49,14 +49,8 @@ namespace VortexFileClient.Forms
             if (!Directory.Exists(PathTextBox.Text))
             {
                 Directory.CreateDirectory(PathTextBox.Text);
-                try
-                {
-                    File.Move(System.IO.Path.Combine(Properties.Settings.Default.Path, "VortexFile.zip"), System.IO.Path.Combine(PathTextBox.Text, "VortexFile.zip"));
-                }
-                catch (Exception){}
             }
             Path = PathTextBox.Text;
         }
-
     }
 }

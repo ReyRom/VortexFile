@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MessageBox));
             this.HeadPanel = new System.Windows.Forms.Panel();
             this.HeaderLabel = new System.Windows.Forms.Label();
             this.LogoPictureBox = new System.Windows.Forms.PictureBox();
@@ -64,16 +65,17 @@
             this.HeadPanel.Location = new System.Drawing.Point(0, 0);
             this.HeadPanel.Margin = new System.Windows.Forms.Padding(4);
             this.HeadPanel.Name = "HeadPanel";
-            this.HeadPanel.Size = new System.Drawing.Size(443, 30);
+            this.HeadPanel.Size = new System.Drawing.Size(469, 30);
             this.HeadPanel.TabIndex = 1;
             // 
             // HeaderLabel
             // 
+            this.HeaderLabel.BackColor = System.Drawing.Color.White;
             this.HeaderLabel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.HeaderLabel.Location = new System.Drawing.Point(40, 0);
             this.HeaderLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.HeaderLabel.Name = "HeaderLabel";
-            this.HeaderLabel.Size = new System.Drawing.Size(343, 30);
+            this.HeaderLabel.Size = new System.Drawing.Size(369, 30);
             this.HeaderLabel.TabIndex = 3;
             this.HeaderLabel.Text = "Header";
             this.HeaderLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -98,7 +100,7 @@
             this.CloseButton.Dock = System.Windows.Forms.DockStyle.Right;
             this.CloseButton.FlatAppearance.BorderSize = 0;
             this.CloseButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.CloseButton.Location = new System.Drawing.Point(383, 0);
+            this.CloseButton.Location = new System.Drawing.Point(409, 0);
             this.CloseButton.Margin = new System.Windows.Forms.Padding(4);
             this.CloseButton.Name = "CloseButton";
             this.CloseButton.Size = new System.Drawing.Size(60, 30);
@@ -111,13 +113,14 @@
             this.FooterPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(237)))), ((int)(((byte)(252)))));
             this.FooterPanel.Controls.Add(this.ButtonsFlowLayoutPanel);
             this.FooterPanel.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.FooterPanel.Location = new System.Drawing.Point(0, 120);
+            this.FooterPanel.Location = new System.Drawing.Point(0, 129);
             this.FooterPanel.Name = "FooterPanel";
-            this.FooterPanel.Size = new System.Drawing.Size(443, 50);
+            this.FooterPanel.Size = new System.Drawing.Size(469, 50);
             this.FooterPanel.TabIndex = 3;
             // 
             // ButtonsFlowLayoutPanel
             // 
+            this.ButtonsFlowLayoutPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(215)))), ((int)(((byte)(225)))), ((int)(((byte)(255)))));
             this.ButtonsFlowLayoutPanel.Controls.Add(this.CancelButton);
             this.ButtonsFlowLayoutPanel.Controls.Add(this.OkButton);
             this.ButtonsFlowLayoutPanel.Controls.Add(this.NoButton);
@@ -127,59 +130,67 @@
             this.ButtonsFlowLayoutPanel.Location = new System.Drawing.Point(0, 0);
             this.ButtonsFlowLayoutPanel.Name = "ButtonsFlowLayoutPanel";
             this.ButtonsFlowLayoutPanel.Padding = new System.Windows.Forms.Padding(10);
-            this.ButtonsFlowLayoutPanel.Size = new System.Drawing.Size(443, 50);
+            this.ButtonsFlowLayoutPanel.Size = new System.Drawing.Size(469, 50);
             this.ButtonsFlowLayoutPanel.TabIndex = 0;
             // 
             // CancelButton
             // 
+            this.CancelButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(100)))), ((int)(((byte)(210)))));
             this.CancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.CancelButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.CancelButton.Location = new System.Drawing.Point(348, 10);
+            this.CancelButton.ForeColor = System.Drawing.Color.White;
+            this.CancelButton.Location = new System.Drawing.Point(374, 10);
             this.CancelButton.Margin = new System.Windows.Forms.Padding(5, 0, 0, 0);
             this.CancelButton.Name = "CancelButton";
             this.CancelButton.Size = new System.Drawing.Size(75, 30);
             this.CancelButton.TabIndex = 0;
             this.CancelButton.Text = "Отмена";
-            this.CancelButton.UseVisualStyleBackColor = true;
+            this.CancelButton.UseVisualStyleBackColor = false;
             this.CancelButton.Visible = false;
             // 
             // OkButton
             // 
+            this.OkButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(100)))), ((int)(((byte)(210)))));
             this.OkButton.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.OkButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.OkButton.Location = new System.Drawing.Point(268, 10);
+            this.OkButton.ForeColor = System.Drawing.Color.White;
+            this.OkButton.Location = new System.Drawing.Point(294, 10);
             this.OkButton.Margin = new System.Windows.Forms.Padding(5, 0, 0, 0);
             this.OkButton.Name = "OkButton";
             this.OkButton.Size = new System.Drawing.Size(75, 30);
             this.OkButton.TabIndex = 1;
             this.OkButton.Text = "ОК";
-            this.OkButton.UseVisualStyleBackColor = true;
+            this.OkButton.UseVisualStyleBackColor = false;
             this.OkButton.Visible = false;
             // 
             // NoButton
             // 
+            this.NoButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(100)))), ((int)(((byte)(210)))));
             this.NoButton.DialogResult = System.Windows.Forms.DialogResult.No;
             this.NoButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.NoButton.Location = new System.Drawing.Point(188, 10);
+            this.NoButton.ForeColor = System.Drawing.Color.White;
+            this.NoButton.Location = new System.Drawing.Point(214, 10);
             this.NoButton.Margin = new System.Windows.Forms.Padding(5, 0, 0, 0);
             this.NoButton.Name = "NoButton";
             this.NoButton.Size = new System.Drawing.Size(75, 30);
             this.NoButton.TabIndex = 2;
             this.NoButton.Text = "Нет";
-            this.NoButton.UseVisualStyleBackColor = true;
+            this.NoButton.UseVisualStyleBackColor = false;
             this.NoButton.Visible = false;
             // 
             // YesButton
             // 
+            this.YesButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(100)))), ((int)(((byte)(210)))));
             this.YesButton.DialogResult = System.Windows.Forms.DialogResult.Yes;
             this.YesButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.YesButton.Location = new System.Drawing.Point(108, 10);
+            this.YesButton.ForeColor = System.Drawing.Color.White;
+            this.YesButton.Location = new System.Drawing.Point(134, 10);
             this.YesButton.Margin = new System.Windows.Forms.Padding(5, 0, 0, 0);
             this.YesButton.Name = "YesButton";
             this.YesButton.Size = new System.Drawing.Size(75, 30);
             this.YesButton.TabIndex = 3;
             this.YesButton.Text = "Да";
-            this.YesButton.UseVisualStyleBackColor = true;
+            this.YesButton.UseVisualStyleBackColor = false;
             this.YesButton.Visible = false;
             // 
             // BodyPanel
@@ -192,24 +203,25 @@
             this.BodyPanel.Location = new System.Drawing.Point(0, 30);
             this.BodyPanel.Margin = new System.Windows.Forms.Padding(4);
             this.BodyPanel.Name = "BodyPanel";
-            this.BodyPanel.Size = new System.Drawing.Size(443, 90);
+            this.BodyPanel.Size = new System.Drawing.Size(469, 99);
             this.BodyPanel.TabIndex = 4;
             // 
             // tableLayoutPanel
             // 
             this.tableLayoutPanel.AutoSize = true;
             this.tableLayoutPanel.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.tableLayoutPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(237)))), ((int)(((byte)(252)))));
             this.tableLayoutPanel.ColumnCount = 2;
-            this.tableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 22.02729F));
-            this.tableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 77.97271F));
+            this.tableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.tableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
             this.tableLayoutPanel.Controls.Add(this.IconPictureBox, 0, 0);
             this.tableLayoutPanel.Controls.Add(this.BodyFlowLayoutPanel, 1, 0);
             this.tableLayoutPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel.Name = "tableLayoutPanel";
             this.tableLayoutPanel.RowCount = 1;
-            this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel.Size = new System.Drawing.Size(443, 90);
+            this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel.Size = new System.Drawing.Size(469, 99);
             this.tableLayoutPanel.TabIndex = 0;
             // 
             // IconPictureBox
@@ -217,28 +229,32 @@
             this.IconPictureBox.Dock = System.Windows.Forms.DockStyle.Fill;
             this.IconPictureBox.Location = new System.Drawing.Point(3, 3);
             this.IconPictureBox.Name = "IconPictureBox";
-            this.IconPictureBox.Size = new System.Drawing.Size(91, 84);
+            this.IconPictureBox.Size = new System.Drawing.Size(91, 93);
             this.IconPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
             this.IconPictureBox.TabIndex = 1;
             this.IconPictureBox.TabStop = false;
             // 
             // BodyFlowLayoutPanel
             // 
+            this.BodyFlowLayoutPanel.AutoSize = true;
+            this.BodyFlowLayoutPanel.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.BodyFlowLayoutPanel.Controls.Add(this.TextLabel);
             this.BodyFlowLayoutPanel.Controls.Add(this.InputTextBox);
             this.BodyFlowLayoutPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.BodyFlowLayoutPanel.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
             this.BodyFlowLayoutPanel.Location = new System.Drawing.Point(100, 3);
             this.BodyFlowLayoutPanel.Name = "BodyFlowLayoutPanel";
-            this.BodyFlowLayoutPanel.Size = new System.Drawing.Size(340, 84);
+            this.BodyFlowLayoutPanel.Padding = new System.Windows.Forms.Padding(10, 30, 10, 30);
+            this.BodyFlowLayoutPanel.Size = new System.Drawing.Size(366, 93);
             this.BodyFlowLayoutPanel.TabIndex = 2;
             // 
             // TextLabel
             // 
             this.TextLabel.AutoEllipsis = true;
             this.TextLabel.AutoSize = true;
-            this.TextLabel.Location = new System.Drawing.Point(3, 3);
+            this.TextLabel.Location = new System.Drawing.Point(13, 33);
             this.TextLabel.Margin = new System.Windows.Forms.Padding(3);
+            this.TextLabel.MaximumSize = new System.Drawing.Size(330, 0);
             this.TextLabel.Name = "TextLabel";
             this.TextLabel.Padding = new System.Windows.Forms.Padding(3);
             this.TextLabel.Size = new System.Drawing.Size(58, 28);
@@ -246,11 +262,11 @@
             this.TextLabel.Text = "label1";
             this.TextLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // AnswerTextBox
+            // InputTextBox
             // 
-            this.InputTextBox.Location = new System.Drawing.Point(10, 44);
+            this.InputTextBox.Location = new System.Drawing.Point(84, 40);
             this.InputTextBox.Margin = new System.Windows.Forms.Padding(10);
-            this.InputTextBox.Name = "AnswerTextBox";
+            this.InputTextBox.Name = "InputTextBox";
             this.InputTextBox.Size = new System.Drawing.Size(323, 26);
             this.InputTextBox.TabIndex = 4;
             this.InputTextBox.Visible = false;
@@ -261,14 +277,17 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.ClientSize = new System.Drawing.Size(443, 170);
+            this.BackColor = System.Drawing.SystemColors.Control;
+            this.ClientSize = new System.Drawing.Size(469, 179);
             this.Controls.Add(this.BodyPanel);
             this.Controls.Add(this.FooterPanel);
             this.Controls.Add(this.HeadPanel);
             this.Font = new System.Drawing.Font("Trebuchet MS", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "MessageBox";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "MessageBox";
             this.HeadPanel.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.LogoPictureBox)).EndInit();
@@ -277,6 +296,7 @@
             this.BodyPanel.ResumeLayout(false);
             this.BodyPanel.PerformLayout();
             this.tableLayoutPanel.ResumeLayout(false);
+            this.tableLayoutPanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.IconPictureBox)).EndInit();
             this.BodyFlowLayoutPanel.ResumeLayout(false);
             this.BodyFlowLayoutPanel.PerformLayout();

@@ -32,12 +32,19 @@
             System.Windows.Forms.ListViewGroup listViewGroup1 = new System.Windows.Forms.ListViewGroup("Локальное хранилище", System.Windows.Forms.HorizontalAlignment.Left);
             System.Windows.Forms.ListViewGroup listViewGroup2 = new System.Windows.Forms.ListViewGroup("Облачное хранилище", System.Windows.Forms.HorizontalAlignment.Left);
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FileManagerForm));
-            this.FileManagerListView = new System.Windows.Forms.ListView();
+            System.Windows.Forms.ListViewGroup listViewGroup3 = new System.Windows.Forms.ListViewGroup("Локальное хранилище", System.Windows.Forms.HorizontalAlignment.Left);
+            System.Windows.Forms.ListViewGroup listViewGroup4 = new System.Windows.Forms.ListViewGroup("Облачное хранилище", System.Windows.Forms.HorizontalAlignment.Left);
+            this.LocalListView = new System.Windows.Forms.ListView();
+            this.LocalContextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.downloadLocalToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.deleteLocalToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.uploadLocalToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.uploadDirectoryLocalToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.createDirectoryLocalToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ExtensionImageList = new System.Windows.Forms.ImageList(this.components);
             this.UploadButton = new System.Windows.Forms.Button();
             this.BackgroundWorker = new System.ComponentModel.BackgroundWorker();
             this.ProgressTimer = new System.Windows.Forms.Timer(this.components);
-            this.waiting = new VortexFileClient.Extensions.Waiting();
             this.LocalSliderCheckBox = new VortexFileClient.Extensions.SliderCheckBox();
             this.CloudSliderCheckBox = new VortexFileClient.Extensions.SliderCheckBox();
             this.progressBar = new VortexFileClient.Extensions.ColorProgressBar();
@@ -45,31 +52,91 @@
             this.DeleteButton = new System.Windows.Forms.Button();
             this.UploadDirectoryButton = new System.Windows.Forms.Button();
             this.CreateDirectoryButton = new System.Windows.Forms.Button();
+            this.RemoteListView = new System.Windows.Forms.ListView();
+            this.RemoteContextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.downloadRemoteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.deleteRemoteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.uploadRemoteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.uploadDirectoryRemoteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.createDirectoryRemoteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.LocalWaiting = new VortexFileClient.Extensions.Waiting();
+            this.RemoteWaiting = new VortexFileClient.Extensions.Waiting();
+            this.LocalContextMenuStrip.SuspendLayout();
+            this.RemoteContextMenuStrip.SuspendLayout();
             this.SuspendLayout();
             // 
-            // FileManagerListView
+            // LocalListView
             // 
-            this.FileManagerListView.AllowDrop = true;
-            this.FileManagerListView.GridLines = true;
+            this.LocalListView.AllowDrop = true;
+            this.LocalListView.ContextMenuStrip = this.LocalContextMenuStrip;
+            this.LocalListView.GridLines = true;
             listViewGroup1.Header = "Локальное хранилище";
             listViewGroup1.Name = "localGroup";
             listViewGroup2.Header = "Облачное хранилище";
             listViewGroup2.Name = "cloudGroup";
-            this.FileManagerListView.Groups.AddRange(new System.Windows.Forms.ListViewGroup[] {
+            this.LocalListView.Groups.AddRange(new System.Windows.Forms.ListViewGroup[] {
             listViewGroup1,
             listViewGroup2});
-            this.FileManagerListView.LargeImageList = this.ExtensionImageList;
-            this.FileManagerListView.Location = new System.Drawing.Point(26, 14);
-            this.FileManagerListView.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.FileManagerListView.Name = "FileManagerListView";
-            this.FileManagerListView.Size = new System.Drawing.Size(1009, 518);
-            this.FileManagerListView.SmallImageList = this.ExtensionImageList;
-            this.FileManagerListView.TabIndex = 2;
-            this.FileManagerListView.UseCompatibleStateImageBehavior = false;
-            this.FileManagerListView.View = System.Windows.Forms.View.Tile;
-            this.FileManagerListView.DragDrop += new System.Windows.Forms.DragEventHandler(this.FileManagerListView_DragDrop);
-            this.FileManagerListView.DragEnter += new System.Windows.Forms.DragEventHandler(this.FileManagerListView_DragEnter);
-            this.FileManagerListView.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.FileManagerListView_MouseDoubleClick);
+            this.LocalListView.LargeImageList = this.ExtensionImageList;
+            this.LocalListView.Location = new System.Drawing.Point(26, 14);
+            this.LocalListView.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.LocalListView.Name = "LocalListView";
+            this.LocalListView.Size = new System.Drawing.Size(499, 518);
+            this.LocalListView.SmallImageList = this.ExtensionImageList;
+            this.LocalListView.TabIndex = 2;
+            this.LocalListView.UseCompatibleStateImageBehavior = false;
+            this.LocalListView.View = System.Windows.Forms.View.Tile;
+            this.LocalListView.ItemSelectionChanged += new System.Windows.Forms.ListViewItemSelectionChangedEventHandler(this.LocalListView_ItemSelectionChanged);
+            this.LocalListView.DragDrop += new System.Windows.Forms.DragEventHandler(this.LocalListView_DragDrop);
+            this.LocalListView.DragEnter += new System.Windows.Forms.DragEventHandler(this.FileManagerListView_DragEnter);
+            this.LocalListView.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.LocalListView_MouseDoubleClick);
+            // 
+            // LocalContextMenuStrip
+            // 
+            this.LocalContextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.downloadLocalToolStripMenuItem,
+            this.deleteLocalToolStripMenuItem,
+            this.uploadLocalToolStripMenuItem,
+            this.uploadDirectoryLocalToolStripMenuItem,
+            this.createDirectoryLocalToolStripMenuItem});
+            this.LocalContextMenuStrip.Name = "LocalContextMenuStrip";
+            this.LocalContextMenuStrip.Size = new System.Drawing.Size(164, 114);
+            this.LocalContextMenuStrip.Opening += new System.ComponentModel.CancelEventHandler(this.LocalContextMenuStrip_Opening);
+            // 
+            // downloadLocalToolStripMenuItem
+            // 
+            this.downloadLocalToolStripMenuItem.Name = "downloadLocalToolStripMenuItem";
+            this.downloadLocalToolStripMenuItem.Size = new System.Drawing.Size(163, 22);
+            this.downloadLocalToolStripMenuItem.Text = "Скачать";
+            this.downloadLocalToolStripMenuItem.Click += new System.EventHandler(this.DownloadButton_Click);
+            // 
+            // deleteLocalToolStripMenuItem
+            // 
+            this.deleteLocalToolStripMenuItem.Name = "deleteLocalToolStripMenuItem";
+            this.deleteLocalToolStripMenuItem.Size = new System.Drawing.Size(163, 22);
+            this.deleteLocalToolStripMenuItem.Text = "Удалить";
+            this.deleteLocalToolStripMenuItem.Click += new System.EventHandler(this.DeleteButton_Click);
+            // 
+            // uploadLocalToolStripMenuItem
+            // 
+            this.uploadLocalToolStripMenuItem.Name = "uploadLocalToolStripMenuItem";
+            this.uploadLocalToolStripMenuItem.Size = new System.Drawing.Size(163, 22);
+            this.uploadLocalToolStripMenuItem.Text = "Загрузить файл";
+            this.uploadLocalToolStripMenuItem.Click += new System.EventHandler(this.UploadLocalToolStripMenuItem_Click);
+            // 
+            // uploadDirectoryLocalToolStripMenuItem
+            // 
+            this.uploadDirectoryLocalToolStripMenuItem.Name = "uploadDirectoryLocalToolStripMenuItem";
+            this.uploadDirectoryLocalToolStripMenuItem.Size = new System.Drawing.Size(163, 22);
+            this.uploadDirectoryLocalToolStripMenuItem.Text = "Загрузить папку";
+            this.uploadDirectoryLocalToolStripMenuItem.Click += new System.EventHandler(this.UploadDirectoryLocalToolStripMenuItem_Click);
+            // 
+            // createDirectoryLocalToolStripMenuItem
+            // 
+            this.createDirectoryLocalToolStripMenuItem.Name = "createDirectoryLocalToolStripMenuItem";
+            this.createDirectoryLocalToolStripMenuItem.Size = new System.Drawing.Size(163, 22);
+            this.createDirectoryLocalToolStripMenuItem.Text = "Создать папку";
+            this.createDirectoryLocalToolStripMenuItem.Click += new System.EventHandler(this.CreateDirectoryLocalToolStripMenuItem_Click);
             // 
             // ExtensionImageList
             // 
@@ -81,6 +148,8 @@
             this.ExtensionImageList.Images.SetKeyName(2, "icon_image.png");
             this.ExtensionImageList.Images.SetKeyName(3, "icon_music.png");
             this.ExtensionImageList.Images.SetKeyName(4, "icon_film.png");
+            this.ExtensionImageList.Images.SetKeyName(5, "icon_folder_up.png");
+            this.ExtensionImageList.Images.SetKeyName(6, "icon_archive.png");
             // 
             // UploadButton
             // 
@@ -109,16 +178,6 @@
             this.ProgressTimer.Interval = 25;
             this.ProgressTimer.Tick += new System.EventHandler(this.ProgressTimer_Tick);
             // 
-            // waiting
-            // 
-            this.waiting.ImageSize = new System.Drawing.Size(330, 430);
-            this.waiting.Location = new System.Drawing.Point(26, 14);
-            this.waiting.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.waiting.Name = "waiting";
-            this.waiting.Size = new System.Drawing.Size(1009, 518);
-            this.waiting.TabIndex = 8;
-            this.waiting.Visible = false;
-            // 
             // LocalSliderCheckBox
             // 
             this.LocalSliderCheckBox.Appearance = System.Windows.Forms.Appearance.Button;
@@ -132,7 +191,7 @@
             this.LocalSliderCheckBox.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.LocalSliderCheckBox.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.LocalSliderCheckBox.ImageIndex = 1;
-            this.LocalSliderCheckBox.Location = new System.Drawing.Point(228, 570);
+            this.LocalSliderCheckBox.Location = new System.Drawing.Point(228, 579);
             this.LocalSliderCheckBox.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.LocalSliderCheckBox.Name = "LocalSliderCheckBox";
             this.LocalSliderCheckBox.Size = new System.Drawing.Size(217, 32);
@@ -155,7 +214,7 @@
             this.CloudSliderCheckBox.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.CloudSliderCheckBox.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.CloudSliderCheckBox.ImageIndex = 1;
-            this.CloudSliderCheckBox.Location = new System.Drawing.Point(228, 598);
+            this.CloudSliderCheckBox.Location = new System.Drawing.Point(228, 617);
             this.CloudSliderCheckBox.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.CloudSliderCheckBox.Name = "CloudSliderCheckBox";
             this.CloudSliderCheckBox.Size = new System.Drawing.Size(210, 32);
@@ -183,7 +242,7 @@
             this.DownloadButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.DownloadButton.Font = new System.Drawing.Font("Trebuchet MS", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.DownloadButton.ForeColor = System.Drawing.Color.White;
-            this.DownloadButton.Location = new System.Drawing.Point(755, 582);
+            this.DownloadButton.Location = new System.Drawing.Point(755, 598);
             this.DownloadButton.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.DownloadButton.Name = "DownloadButton";
             this.DownloadButton.Size = new System.Drawing.Size(137, 38);
@@ -198,7 +257,7 @@
             this.DeleteButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.DeleteButton.Font = new System.Drawing.Font("Trebuchet MS", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.DeleteButton.ForeColor = System.Drawing.Color.White;
-            this.DeleteButton.Location = new System.Drawing.Point(900, 582);
+            this.DeleteButton.Location = new System.Drawing.Point(900, 598);
             this.DeleteButton.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.DeleteButton.Name = "DeleteButton";
             this.DeleteButton.Size = new System.Drawing.Size(135, 38);
@@ -213,7 +272,7 @@
             this.UploadDirectoryButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.UploadDirectoryButton.Font = new System.Drawing.Font("Trebuchet MS", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.UploadDirectoryButton.ForeColor = System.Drawing.Color.White;
-            this.UploadDirectoryButton.Location = new System.Drawing.Point(26, 616);
+            this.UploadDirectoryButton.Location = new System.Drawing.Point(26, 617);
             this.UploadDirectoryButton.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.UploadDirectoryButton.Name = "UploadDirectoryButton";
             this.UploadDirectoryButton.Size = new System.Drawing.Size(194, 38);
@@ -228,7 +287,7 @@
             this.CreateDirectoryButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.CreateDirectoryButton.Font = new System.Drawing.Font("Trebuchet MS", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.CreateDirectoryButton.ForeColor = System.Drawing.Color.White;
-            this.CreateDirectoryButton.Location = new System.Drawing.Point(610, 582);
+            this.CreateDirectoryButton.Location = new System.Drawing.Point(610, 598);
             this.CreateDirectoryButton.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.CreateDirectoryButton.Name = "CreateDirectoryButton";
             this.CreateDirectoryButton.Size = new System.Drawing.Size(137, 38);
@@ -237,12 +296,108 @@
             this.CreateDirectoryButton.UseVisualStyleBackColor = false;
             this.CreateDirectoryButton.Click += new System.EventHandler(this.CreateDirectoryButton_Click);
             // 
+            // RemoteListView
+            // 
+            this.RemoteListView.AllowDrop = true;
+            this.RemoteListView.ContextMenuStrip = this.RemoteContextMenuStrip;
+            this.RemoteListView.GridLines = true;
+            listViewGroup3.Header = "Локальное хранилище";
+            listViewGroup3.Name = "localGroup";
+            listViewGroup4.Header = "Облачное хранилище";
+            listViewGroup4.Name = "cloudGroup";
+            this.RemoteListView.Groups.AddRange(new System.Windows.Forms.ListViewGroup[] {
+            listViewGroup3,
+            listViewGroup4});
+            this.RemoteListView.LargeImageList = this.ExtensionImageList;
+            this.RemoteListView.Location = new System.Drawing.Point(536, 14);
+            this.RemoteListView.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.RemoteListView.Name = "RemoteListView";
+            this.RemoteListView.Size = new System.Drawing.Size(499, 518);
+            this.RemoteListView.SmallImageList = this.ExtensionImageList;
+            this.RemoteListView.TabIndex = 21;
+            this.RemoteListView.UseCompatibleStateImageBehavior = false;
+            this.RemoteListView.View = System.Windows.Forms.View.Tile;
+            this.RemoteListView.ItemSelectionChanged += new System.Windows.Forms.ListViewItemSelectionChangedEventHandler(this.RemoteListView_ItemSelectionChanged);
+            this.RemoteListView.DragDrop += new System.Windows.Forms.DragEventHandler(this.RemoteListView_DragDrop);
+            this.RemoteListView.DragEnter += new System.Windows.Forms.DragEventHandler(this.FileManagerListView_DragEnter);
+            this.RemoteListView.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.RemoteListView_MouseDoubleClick);
+            // 
+            // RemoteContextMenuStrip
+            // 
+            this.RemoteContextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.downloadRemoteToolStripMenuItem,
+            this.deleteRemoteToolStripMenuItem,
+            this.uploadRemoteToolStripMenuItem,
+            this.uploadDirectoryRemoteToolStripMenuItem,
+            this.createDirectoryRemoteToolStripMenuItem});
+            this.RemoteContextMenuStrip.Name = "LocalContextMenuStrip";
+            this.RemoteContextMenuStrip.Size = new System.Drawing.Size(164, 114);
+            this.RemoteContextMenuStrip.Opening += new System.ComponentModel.CancelEventHandler(this.RemoteContextMenuStrip_Opening);
+            // 
+            // downloadRemoteToolStripMenuItem
+            // 
+            this.downloadRemoteToolStripMenuItem.Name = "downloadRemoteToolStripMenuItem";
+            this.downloadRemoteToolStripMenuItem.Size = new System.Drawing.Size(163, 22);
+            this.downloadRemoteToolStripMenuItem.Text = "Скачать";
+            this.downloadRemoteToolStripMenuItem.Click += new System.EventHandler(this.DownloadButton_Click);
+            // 
+            // deleteRemoteToolStripMenuItem
+            // 
+            this.deleteRemoteToolStripMenuItem.Name = "deleteRemoteToolStripMenuItem";
+            this.deleteRemoteToolStripMenuItem.Size = new System.Drawing.Size(163, 22);
+            this.deleteRemoteToolStripMenuItem.Text = "Удалить";
+            this.deleteRemoteToolStripMenuItem.Click += new System.EventHandler(this.DeleteButton_Click);
+            // 
+            // uploadRemoteToolStripMenuItem
+            // 
+            this.uploadRemoteToolStripMenuItem.Name = "uploadRemoteToolStripMenuItem";
+            this.uploadRemoteToolStripMenuItem.Size = new System.Drawing.Size(163, 22);
+            this.uploadRemoteToolStripMenuItem.Text = "Загрузить файл";
+            this.uploadRemoteToolStripMenuItem.Click += new System.EventHandler(this.UploadRemoteToolStripMenuItem_Click);
+            // 
+            // uploadDirectoryRemoteToolStripMenuItem
+            // 
+            this.uploadDirectoryRemoteToolStripMenuItem.Name = "uploadDirectoryRemoteToolStripMenuItem";
+            this.uploadDirectoryRemoteToolStripMenuItem.Size = new System.Drawing.Size(163, 22);
+            this.uploadDirectoryRemoteToolStripMenuItem.Text = "Загрузить папку";
+            this.uploadDirectoryRemoteToolStripMenuItem.Click += new System.EventHandler(this.UploadDirectoryRemoteToolStripMenuItem_Click);
+            // 
+            // createDirectoryRemoteToolStripMenuItem
+            // 
+            this.createDirectoryRemoteToolStripMenuItem.Name = "createDirectoryRemoteToolStripMenuItem";
+            this.createDirectoryRemoteToolStripMenuItem.Size = new System.Drawing.Size(163, 22);
+            this.createDirectoryRemoteToolStripMenuItem.Text = "Создать папку";
+            this.createDirectoryRemoteToolStripMenuItem.Click += new System.EventHandler(this.CreateDirectoryRemoteToolStripMenuItem_Click);
+            // 
+            // LocalWaiting
+            // 
+            this.LocalWaiting.ImageSize = 50;
+            this.LocalWaiting.Location = new System.Drawing.Point(26, 14);
+            this.LocalWaiting.Margin = new System.Windows.Forms.Padding(4);
+            this.LocalWaiting.Name = "LocalWaiting";
+            this.LocalWaiting.Size = new System.Drawing.Size(499, 518);
+            this.LocalWaiting.TabIndex = 22;
+            this.LocalWaiting.Visible = false;
+            // 
+            // RemoteWaiting
+            // 
+            this.RemoteWaiting.ImageSize = 50;
+            this.RemoteWaiting.Location = new System.Drawing.Point(536, 14);
+            this.RemoteWaiting.Margin = new System.Windows.Forms.Padding(5, 6, 5, 6);
+            this.RemoteWaiting.Name = "RemoteWaiting";
+            this.RemoteWaiting.Size = new System.Drawing.Size(499, 518);
+            this.RemoteWaiting.TabIndex = 23;
+            this.RemoteWaiting.Visible = false;
+            // 
             // FileManagerForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 22F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(1065, 664);
+            this.Controls.Add(this.RemoteWaiting);
+            this.Controls.Add(this.LocalWaiting);
+            this.Controls.Add(this.RemoteListView);
             this.Controls.Add(this.CreateDirectoryButton);
             this.Controls.Add(this.UploadDirectoryButton);
             this.Controls.Add(this.DeleteButton);
@@ -250,27 +405,27 @@
             this.Controls.Add(this.progressBar);
             this.Controls.Add(this.CloudSliderCheckBox);
             this.Controls.Add(this.LocalSliderCheckBox);
-            this.Controls.Add(this.waiting);
             this.Controls.Add(this.UploadButton);
-            this.Controls.Add(this.FileManagerListView);
+            this.Controls.Add(this.LocalListView);
             this.Font = new System.Drawing.Font("Trebuchet MS", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "FileManagerForm";
-            this.Text = "FIleManagerForm";
+            this.Text = "Файловый менеджер";
             this.Load += new System.EventHandler(this.FileManagerForm_Load);
+            this.LocalContextMenuStrip.ResumeLayout(false);
+            this.RemoteContextMenuStrip.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
 
         #endregion
-        private ListView FileManagerListView;
+        private ListView LocalListView;
         private ImageList ExtensionImageList;
         private Button UploadButton;
         private System.ComponentModel.BackgroundWorker BackgroundWorker;
         private System.Windows.Forms.Timer ProgressTimer;
-        private Extensions.Waiting waiting;
         private Extensions.SliderCheckBox LocalSliderCheckBox;
         private Extensions.SliderCheckBox CloudSliderCheckBox;
         private Extensions.ColorProgressBar progressBar;
@@ -278,5 +433,20 @@
         private Button DeleteButton;
         private Button UploadDirectoryButton;
         private Button CreateDirectoryButton;
+        private ListView RemoteListView;
+        private Extensions.Waiting LocalWaiting;
+        private Extensions.Waiting RemoteWaiting;
+        private ContextMenuStrip LocalContextMenuStrip;
+        private ToolStripMenuItem downloadLocalToolStripMenuItem;
+        private ToolStripMenuItem deleteLocalToolStripMenuItem;
+        private ToolStripMenuItem uploadLocalToolStripMenuItem;
+        private ToolStripMenuItem uploadDirectoryLocalToolStripMenuItem;
+        private ToolStripMenuItem createDirectoryLocalToolStripMenuItem;
+        private ContextMenuStrip RemoteContextMenuStrip;
+        private ToolStripMenuItem downloadRemoteToolStripMenuItem;
+        private ToolStripMenuItem deleteRemoteToolStripMenuItem;
+        private ToolStripMenuItem uploadRemoteToolStripMenuItem;
+        private ToolStripMenuItem uploadDirectoryRemoteToolStripMenuItem;
+        private ToolStripMenuItem createDirectoryRemoteToolStripMenuItem;
     }
 }

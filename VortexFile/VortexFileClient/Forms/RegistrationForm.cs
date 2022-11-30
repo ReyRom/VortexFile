@@ -33,12 +33,12 @@ namespace VortexFileClient.Forms
         {
             if (PasswordTextBox.Text != ConfirmTextBox.Text)
             {
-                Feedback.WarningMessage("Пароли не совпадают.");
+                Feedback.WarningMessage("Пароли не совпадают");
                 return;
             }
             if (!Captcha.CheckText(CaptchaTextBox.Text))
             {
-                Feedback.WarningMessage("Неправильно указан текст с картинки.");
+                Feedback.WarningMessage("Неправильно указан текст с картинки");
                 return;
             }
             User newUser = new User()
@@ -52,7 +52,7 @@ namespace VortexFileClient.Forms
             try
             {
                 Session.Registration(newUser);
-                Feedback.InformationMessage("Вы успешно зарегистрировались.");
+                Feedback.InformationMessage("Вы успешно зарегистрировались");
                 try
                 {
                     EmailMessanger emailMessanger = new EmailMessanger("vortexfile-email-confirm@yandex.ru", "Vortex File", "zbhicmvhztojxnar");
@@ -67,7 +67,7 @@ namespace VortexFileClient.Forms
             }
             catch (Exception ex)
             {
-                Feedback.WarningMessage(ex.Message);
+                Feedback.ErrorMessage(ex);
             }
         }
 

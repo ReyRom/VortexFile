@@ -40,7 +40,7 @@ namespace VortexFileClient.Extensions
         {
             try
             {
-                e.Result = Core.Context.Database.CanConnectAsync().Result;
+                e.Result = await Core.Context.Database.CanConnectAsync();
             }
             catch (Exception)
             {

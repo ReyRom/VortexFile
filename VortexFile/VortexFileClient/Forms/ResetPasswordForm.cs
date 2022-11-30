@@ -22,12 +22,19 @@ namespace VortexFileClient.Forms
 
         private void SendCode()
         {
-            user = DAL.GetUser(LoginTextBox.Text);
-            if (user != null)
+            try
             {
-                emailMessanger = new EmailMessanger("vortexfile-email-confirm@yandex.ru", "Vortex File", "zbhicmvhztojxnar");
-                Task.Run(() => emailMessanger.SendEmailCodeAsync(user.Email, "Код восстановления пароля"));
-                tabControl.SelectedTab = CodeTabPage;
+                user = DAL.GetUser(LoginTextBox.Text);
+                if (user != null)
+                {
+                    emailMessanger = new EmailMessanger("vortexfile-email-confirm@yandex.ru", "Vortex File", "zbhicmvhztojxnar");
+                    Task.Run(() => emailMessanger.SendEmailCodeAsync(user.Email, "Код восстановления пароля"));
+                    tabControl.SelectedTab = CodeTabPage;
+                }
+            }
+            catch (Exception ex)
+            {
+                Feedback.ErrorMessage(ex);
             }
         }
 
@@ -67,7 +74,7 @@ namespace VortexFileClient.Forms
         {
             if (PasswordTextBox.Text != ConfirmTextBox.Text)
             {
-                Feedback.WarningMessage("Пароли не совпадают.");
+                Feedback.WarningMessage("Пароли не совпадают");
                 return;
             }
             if (!Regex.IsMatch(PasswordTextBox.Text, @"^[a-zA-ZА-Яа-яЁё0-9]{8,20}$") || user.Password.Contains(" "))
@@ -103,7 +110,7 @@ namespace VortexFileClient.Forms
             e.KeyChar = char.ToUpper(e.KeyChar);
         }
 
-        private void timer_Tick(object sender, EventArgs e)
+        private void Timer_Tick(object sender, EventArgs e)
         {
             timeout--;
             SendCodeLinkLabel.Text = $"Подождите {timeout} секунд для повторной отправки";

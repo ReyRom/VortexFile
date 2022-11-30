@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.UsersDataGridView = new System.Windows.Forms.DataGridView();
             this.LoginColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.EmailColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -60,14 +60,14 @@
             this.UsernameColumn,
             this.PhoneColumn,
             this.DeleteColumn});
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Trebuchet MS", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.UsersDataGridView.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Trebuchet MS", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.UsersDataGridView.DefaultCellStyle = dataGridViewCellStyle1;
             this.UsersDataGridView.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(101)))), ((int)(((byte)(215)))));
             this.UsersDataGridView.Location = new System.Drawing.Point(15, 70);
             this.UsersDataGridView.Margin = new System.Windows.Forms.Padding(4);
@@ -79,7 +79,7 @@
             this.UsersDataGridView.Size = new System.Drawing.Size(708, 343);
             this.UsersDataGridView.TabIndex = 0;
             this.UsersDataGridView.CellBeginEdit += new System.Windows.Forms.DataGridViewCellCancelEventHandler(this.UsersDataGridView_CellBeginEdit);
-            this.UsersDataGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.UsersDataGridView_CellContentClick);
+            this.UsersDataGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.UsersDataGridView_CellContentClickAsync);
             this.UsersDataGridView.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.UsersDataGridView_CellEndEdit);
             // 
             // LoginColumn
@@ -130,7 +130,7 @@
             this.AddButton.TabIndex = 2;
             this.AddButton.Text = "Добавить";
             this.AddButton.UseVisualStyleBackColor = false;
-            this.AddButton.Click += new System.EventHandler(this.AddButton_Click);
+            this.AddButton.Click += new System.EventHandler(this.AddButton_ClickAsync);
             // 
             // ChangeAdminPasswordLinkLabel
             // 
@@ -147,7 +147,7 @@
             // 
             // Waiting
             // 
-            this.Waiting.ImageSize = new System.Drawing.Size(200, 200);
+            this.Waiting.ImageSize = 50;
             this.Waiting.Location = new System.Drawing.Point(15, 70);
             this.Waiting.Margin = new System.Windows.Forms.Padding(4);
             this.Waiting.Name = "Waiting";
@@ -182,7 +182,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "AdministrationForm";
-            this.Load += new System.EventHandler(this.AdministrationForm_Load);
+            this.Load += new System.EventHandler(this.AdministrationForm_LoadAsync);
             ((System.ComponentModel.ISupportInitialize)(this.UsersDataGridView)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
