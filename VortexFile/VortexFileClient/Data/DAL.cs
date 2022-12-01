@@ -6,7 +6,9 @@ namespace VortexFileClient.Data
 {
     public static class DAL
     {
-        public static event EventHandler<UserDeleteEventArgs> OnUserDelete;
+        public static event EventHandler<UserEventArgs> OnUserDelete;
+
+        public static event EventHandler<UserEventArgs> OnUserCreate;
 
         public static User GetUserByLogin(string login)
         {
@@ -38,6 +40,7 @@ namespace VortexFileClient.Data
             //user.hash = "d4c45911de055183ebc73cee140d3fb2";
             Core.Context.Users.Add(user);
             Core.Context.SaveChanges();
+            OnUserCreate?.Invoke(user.Login, new UserEventArgs(user));
             return GetUserByLogin(user.Login);
         }
 
@@ -67,7 +70,7 @@ namespace VortexFileClient.Data
         public static void DeleteUser(User user)
         {
             var login = user.Login;
-            OnUserDelete.Invoke(login, new UserDeleteEventArgs(user));
+            OnUserDelete.Invoke(login, new UserEventArgs(user));
             Core.Context.Remove(user);
             Core.Context.SaveChanges();
         }

@@ -29,5 +29,10 @@ namespace VortexFileClient.Forms
         {
             PasswordTextBox.UseSystemPasswordChar = !PasswordCheckBox.Checked;
         }
+
+        private void AdminAuthForm_Load(object sender, EventArgs e)
+        {
+            PasswordTextBox.Focus();
+        }
     }
 }

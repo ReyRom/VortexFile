@@ -17,6 +17,12 @@ namespace VortexFileClient.Forms
         public AdministrationForm()
         {
             InitializeComponent();
+            DAL.OnUserCreate += DAL_OnUserCreateAsync;
+        }
+
+        private async void DAL_OnUserCreateAsync(object? sender, UserEventArgs e)
+        {
+            await RenewAsync();
         }
 
         private async void AdministrationForm_LoadAsync(object sender, EventArgs e)
@@ -143,7 +149,6 @@ namespace VortexFileClient.Forms
         private async void AddButton_ClickAsync(object sender, EventArgs e)
         {
             LoadForm.Invoke(this, new LoadFormEventArgs(new RegistrationForm()));
-            await RenewAsync();
         }
 
         private void ChangeAdminPasswordLinkLabel_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)

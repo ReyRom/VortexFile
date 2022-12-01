@@ -7,9 +7,9 @@ using VortexFileClient.Data.Models;
 
 namespace VortexFileClient.Extensions
 {
-    public class UserDeleteEventArgs : EventArgs
+    public class UserEventArgs : EventArgs
     {
-        public UserDeleteEventArgs(User user)
+        public UserEventArgs(User user)
         {
             User = user;
         }

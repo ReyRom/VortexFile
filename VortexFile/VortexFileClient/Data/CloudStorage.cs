@@ -25,7 +25,7 @@ namespace VortexFileClient.Data
             DAL.OnUserDelete += DAL_OnUserDelete;
         }
 
-        private void DAL_OnUserDelete(object? sender, UserDeleteEventArgs e)
+        private void DAL_OnUserDelete(object? sender, UserEventArgs e)
         {
             DeleteFiles(GetUserCatalog(e.User), e.User);
         }

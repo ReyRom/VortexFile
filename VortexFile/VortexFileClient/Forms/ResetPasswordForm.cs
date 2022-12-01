@@ -103,6 +103,7 @@ namespace VortexFileClient.Forms
         {
             tabControl.ItemSize = new Size(0, 1);
             tabControl.SizeMode = TabSizeMode.Fixed;
+            LoginTextBox.Focus();
         }
 
         private void PasswordCheckBox_CheckedChanged(object sender, EventArgs e)
