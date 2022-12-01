@@ -23,5 +23,8 @@
     <Setting Name="FtpAddress" Type="System.String" Scope="User">
       <Value Profile="(Default)">ftp://91.122.211.144:50021/</Value>
     </Setting>
+    <Setting Name="Hash" Type="System.String" Scope="User">
+      <Value Profile="(Default)">d4c45911de055183ebc73cee140d3fb2</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

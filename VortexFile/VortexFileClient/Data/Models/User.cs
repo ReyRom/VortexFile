@@ -1,9 +1,11 @@
 ﻿#nullable disable
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Data.Entity.Infrastructure;
 
 namespace VortexFileClient.Data.Models
 {
+    [Table("vortexfileuser")]
     public partial class User
     {
         [Key]

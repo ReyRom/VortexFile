@@ -48,7 +48,7 @@ namespace VortexFileClient.Extensions
                 case FtpStatusCode.ActionNotTakenFilenameNotAllowed:
                     return "Запрошенное действие не может быть выполнено с указанным файлом. Код ошибки - 553";
                 case FtpStatusCode.ActionNotTakenFileUnavailable:
-                    return "Запрошенное действие не может быть выполнено с указанным файлом, потому что файл недоступен. Код ошибки - 550";
+                    return "Запрошенное действие не может быть выполнено с указанным файлом, потому что файл недоступен. Возможно файл с заданным именем уже существует. Код ошибки - 550";
                 case FtpStatusCode.ArgumentSyntaxError:
                     return "Один или несколько аргументов команды содержат синтаксическую ошибку. Код ошибки - 501";
                 case FtpStatusCode.BadCommandSequence:

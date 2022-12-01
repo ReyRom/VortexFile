@@ -12,7 +12,7 @@ namespace VortexFileClient.Properties {
     
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "17.0.3.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "17.3.0.0")]
     internal sealed partial class Settings : global::System.Configuration.ApplicationSettingsBase {
         
         private static Settings defaultInstance = ((Settings)(global::System.Configuration.ApplicationSettingsBase.Synchronized(new Settings())));
@@ -85,7 +85,7 @@ namespace VortexFileClient.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("server=91.122.211.144;port=53306;user=vortexfileadmin;password=d4c45911de055183ebc73cee140d3fb2;database=ftp;")]
+        [global::System.Configuration.DefaultSettingValueAttribute("server=91.122.211.144;port=53306;user=proftpd;password=password;database=ftp;")]
         public string ConnectionString {
             get {
                 return ((string)(this["ConnectionString"]));
@@ -104,6 +104,18 @@ namespace VortexFileClient.Properties {
             }
             set {
                 this["FtpAddress"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("d4c45911de055183ebc73cee140d3fb2")]
+        public string Hash {
+            get {
+                return ((string)(this["Hash"]));
+            }
+            set {
+                this["Hash"] = value;
             }
         }
     }

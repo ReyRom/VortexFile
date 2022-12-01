@@ -6,7 +6,7 @@
       <Compartment Name="Properties" Collapsed="true" />
     </Compartments>
     <TypeIdentifier>
-      <HashCode>AAAAAAAACGIAEACABQAAAAAAAAAAAAACAAAQIAEAAAA=</HashCode>
+      <HashCode>AAAAAAAACCAAAAAAAQAAAAAAAAAAAAACAAAQIAEAAAA=</HashCode>
       <FileName>Data\Models\ftpuser.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -17,7 +17,7 @@
       <Compartment Name="Properties" Collapsed="true" />
     </Compartments>
     <TypeIdentifier>
-      <HashCode>QAAAAAAAAAAAAAAAACAIAAARAAAAAQAAQAAAQgAAEQA=</HashCode>
+      <HashCode>QAAAAAAAAAAAAAAAACAIAAARAAAAAAAAQAAAQgAAEQA=</HashCode>
       <FileName>Data\CloudStorage.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -59,7 +59,7 @@
   <Class Name="VortexFileClient.Data.FtpHelper">
     <Position X="11" Y="0.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>ACAAAAAAAAAAAAAAACAAAAAAAAQAAAAQAAEgAAAAAQA=</HashCode>
+      <HashCode>ACAAAAAAAAAAAAAAACAAAAAAAAQAAAAAAAEgAAAAAQA=</HashCode>
       <FileName>Data\FtpHelper.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -77,7 +77,7 @@
       <Compartment Name="Properties" Collapsed="true" />
     </Compartments>
     <TypeIdentifier>
-      <HashCode>QAAEAAAAAAEAIAAAACAIAAARAAAAAAASQAAAQAAAEQE=</HashCode>
+      <HashCode>QAAEAAAAAAEAIAAAACAIAAABIAAAAAASQAAAQAAAEQE=</HashCode>
       <FileName>Data\LocalStorage.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -108,7 +108,7 @@
       <Compartment Name="Fields" Collapsed="true" />
     </Compartments>
     <TypeIdentifier>
-      <HashCode>AAAAACCAAAAAAAAAAAAAAAAAEAAAAIACAAAIAAAIAAA=</HashCode>
+      <HashCode>QAAAACCAAAAAIAAAAAAAAAAQEAAAAIAAAAAAQAAAAQA=</HashCode>
       <FileName>Data\ZipHelper.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -147,7 +147,7 @@
   <Class Name="VortexFileClient.Extensions.Feedback">
     <Position X="4" Y="9.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AQAAAAAAAAAAAAAAAAAAEAAAAAAMAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>ASAAAAAAAAAAAAAAAAAAEAAAAAAMAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Extensions\Feedback.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -213,7 +213,7 @@
       <Compartment Name="Properties" Collapsed="true" />
     </Compartments>
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAQAAAAIAAAAAAAAAAAAAAQAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAQAAAAYAAAAAAAAAAAAAAQAAAAAAAAAAAA=</HashCode>
       <FileName>Extensions\Tools.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -231,7 +231,7 @@
       <Compartment Name="Properties" Collapsed="true" />
     </Compartments>
     <TypeIdentifier>
-      <HashCode>AACAAAAAACAAAAAAAACAIAACAAAAACAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AACAAAAAACAAAAAAAACAIAACIAAAACAAAAAAAAAAAAA=</HashCode>
       <FileName>Extensions\Waiting.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -252,7 +252,7 @@
       <Compartment Name="Fields" Collapsed="true" />
     </Compartments>
     <TypeIdentifier>
-      <HashCode>EAAAAAAAAjEACBAjAQCAAEACBAAAACUAAQEAQIACAIA=</HashCode>
+      <HashCode>EAAAQAAAAjEACBAjAQCAQEACBAgAAAEAAQAAQIACAIA=</HashCode>
       <FileName>Forms\AdministrationForm.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
@@ -286,7 +286,7 @@
       <Compartment Name="Properties" Collapsed="true" />
     </Compartments>
     <TypeIdentifier>
-      <HashCode>FAABAABRFrAADEA4kCCAAACGAAMAAiWACgEAAgABAkQ=</HashCode>
+      <HashCode>FANJCAhRF7AkDEJ6kgOGAAAPAAMAEmWgC0FAIgAFIiQ=</HashCode>
       <FileName>Forms\FIleManagerForm.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
@@ -328,7 +328,7 @@
       <Compartment Name="Fields" Collapsed="true" />
     </Compartments>
     <TypeIdentifier>
-      <HashCode>EAQAAAIBACBgIFIAQgCAAAAiBAIAUAFICwQCgQAAAQA=</HashCode>
+      <HashCode>EAQAAAIBACBgIFJAQgCAAAAiBAIAUAEICwQCgQAAAQA=</HashCode>
       <FileName>Forms\ResetPasswordForm.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />

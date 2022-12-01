@@ -43,7 +43,7 @@ namespace VortexFileClient.Forms
 
         private void SliderCheckBox_CheckedChanged(object sender, EventArgs e)
         {
-            UploadButton.Enabled = UploadDirectoryButton.Enabled = CloudSliderCheckBox.Checked || LocalSliderCheckBox.Checked;
+            CreateDirectoryButton.Enabled = UploadButton.Enabled = UploadDirectoryButton.Enabled = CloudSliderCheckBox.Checked || LocalSliderCheckBox.Checked;
         }
 
         private void LocalListView_ItemSelectionChanged(object sender, ListViewItemSelectionChangedEventArgs e)
@@ -294,7 +294,7 @@ namespace VortexFileClient.Forms
         {
             try
             {
-                RunProgress(() => localStorage.UploadFiles(((string[])e.Data.GetData(DataFormats.FileDrop)).ToList()), new FilesChangedEventArgs(remote: false));
+                RunProgress(() => localStorage.Upload(((string[])e.Data.GetData(DataFormats.FileDrop)).ToList()), new FilesChangedEventArgs(remote: false));
             }
             catch (Exception ex)
             {
@@ -306,7 +306,7 @@ namespace VortexFileClient.Forms
         {
             try
             {
-                RunProgress(() => cloudStorage.UploadFiles(((string[])e.Data.GetData(DataFormats.FileDrop)).ToList()), new FilesChangedEventArgs(local: false));
+                RunProgress(() => cloudStorage.Upload(((string[])e.Data.GetData(DataFormats.FileDrop)).ToList()), new FilesChangedEventArgs(local: false));
             }
             catch (Exception ex)
             {

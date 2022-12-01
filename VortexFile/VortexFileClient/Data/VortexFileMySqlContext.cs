@@ -15,15 +15,6 @@ namespace VortexFileClient.Data
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<User>((u =>
-            {
-                u.HasNoKey();
-                u.ToView("vortexfileuser");
-            }));
-            modelBuilder.Entity<User>().Property(u => u.gid).HasDefaultValue();
-            modelBuilder.Entity<User>().Property(u => u.uid).HasDefaultValue();
-            modelBuilder.Entity<User>().Property(u => u.shell).HasDefaultValue();
-            modelBuilder.Entity<User>().Property(u => u.count).HasDefaultValue();
         }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
