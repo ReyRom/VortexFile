@@ -21,10 +21,5 @@ namespace VortexFileClient.Data.Models
         public string Username { get; set; }
         [Column("phone")]
         public string Phone { get; set; }
-
-        public IDbAsyncEnumerator GetAsyncEnumerator()
-        {
-            throw new NotImplementedException();
-        }
     }
 }

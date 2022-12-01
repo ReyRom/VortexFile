@@ -72,6 +72,28 @@ namespace VortexFileClient.Data
             }
         }
 
+        public void Upload(List<string> uploadList)
+        {
+            List<string> files = new List<string>();
+            List<string> directories = new List<string>();
+            foreach (var item in uploadList)
+            {
+                if (Directory.Exists(item))
+                {
+                    directories.Add(item);
+                }
+                else
+                {
+                    files.Add(item);
+                }
+            }
+            foreach (var item in directories)
+            {
+                UploadFiles(item);
+            }
+            UploadFiles(files);
+        }
+
         public void DeleteFiles(List<string> fileNames)
         {
             foreach (var fileName in fileNames)
