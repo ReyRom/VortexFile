@@ -27,7 +27,7 @@ namespace VortexFileClient.Forms
         {
             InitializeComponent();
             OnlineMode = onlineMode;
-            FilesChange += FileManagerForm_FilesChangeAsync; ;
+            FilesChange += FileManagerForm_FilesChangeAsync;
         }
 
         private void FileManagerForm_Load(object sender, EventArgs e)
@@ -71,9 +71,9 @@ namespace VortexFileClient.Forms
         {
             if (e.ChangedRemote && e.ChangedLocal)
             {
-                RemoteWaiting.Visible = LocalWaiting.Visible = true;
-                await LoadRemoteDataAsync();
+                RemoteWaiting.Visible = LocalWaiting.Visible = true;               
                 await LoadLocalDataAsync();
+                await LoadRemoteDataAsync();
                 RemoteWaiting.Visible = LocalWaiting.Visible = false;
                 return;
             }
