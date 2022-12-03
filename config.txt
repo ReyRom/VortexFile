@@ -1,0 +1,3 @@
+admpass#admin
+cnctstr#server=91.122.211.144;port=53306;user=vortexfileadmin;password=d4c45911de055183ebc73cee140d3fb2;database=ftp;
+ftpaddrs#ftp://91.122.211.144:50021/
