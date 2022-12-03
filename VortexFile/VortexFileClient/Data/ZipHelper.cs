@@ -8,32 +8,6 @@ namespace VortexFileClient.Data
     {
         private static Encoding encoding = Encoding.UTF8;
 
-        //public static void AppendFilesToZipWithPassword(string fileName,
-        //    List<string> appendFiles, string password,
-        //    CompressionLevel compressionLevel = CompressionLevel.Default)
-        //{
-        //    using (var zipFile = ZipFile.Read(fileName))
-        //    {
-        //        zipFile.Password = password;
-        //        zipFile.CompressionLevel = compressionLevel;
-        //        zipFile.AddFiles(appendFiles, "\\");
-        //        zipFile.Save();
-        //    }
-        //}
-
-        public static void AppendDirectoryToZipWithPassword(string fileName,
-        string sourceDirectory, string password,
-        CompressionLevel compressionLevel = CompressionLevel.Default)
-        {
-            using (var zipFile = new ZipFile(fileName))
-            {
-                zipFile.Password = password;
-                zipFile.CompressionLevel = compressionLevel;
-                var entry = zipFile.AddDirectory(sourceDirectory, "\\");
-                zipFile.Save();
-            }
-        }
-
         public static string CreateZip(string fileName)
         {
             using (var zip = new ZipFile())
@@ -74,7 +48,6 @@ namespace VortexFileClient.Data
         {
             using (ZipFile zip = ZipHelper.ReadZip(zipName))
             {
-                //zip.Encryption = EncryptionAlgorithm.WinZipAes128;
                 foreach (var fileName in fileNames)
                 {
                     var zipEntry = zip.SingleOrDefault(z => z.FileName == Path.Combine(pathInArchive, fileName));
@@ -119,8 +92,6 @@ namespace VortexFileClient.Data
             {
                 zip.CompressionLevel = Ionic.Zlib.CompressionLevel.Default;
                 zip.Password = password;
-                //zip.Encryption = EncryptionAlgorithm.WinZipAes128;
-
                 zip.UseZip64WhenSaving = Zip64Option.AsNecessary;
                 try
                 {
@@ -159,7 +130,6 @@ namespace VortexFileClient.Data
             {
                 zip.CompressionLevel = Ionic.Zlib.CompressionLevel.Default;
                 zip.Password = password;
-                //zip.Encryption = EncryptionAlgorithm.WinZipAes128;
                 zip.UseZip64WhenSaving = Zip64Option.AsNecessary;
                 foreach (var item in filesName)
                 {
@@ -187,7 +157,6 @@ namespace VortexFileClient.Data
                 {
                     zip.CompressionLevel = Ionic.Zlib.CompressionLevel.Default;
                     zip.Password = password;
-                    //zip.Encryption = EncryptionAlgorithm.WinZipAes128;
                     zip.AddDirectoryByName(directoryName);
                     zip.UseZip64WhenSaving = Zip64Option.AsNecessary;
                     zip.Save();
