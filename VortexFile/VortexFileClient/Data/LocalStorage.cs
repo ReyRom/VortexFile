@@ -96,7 +96,7 @@ namespace VortexFileClient.Data
 
         public void CreateDirectory(string directoryName)
         {
-            ZipHelper.CreateDirectory(ZipName, directoryName, Password);
+            ZipHelper.CreateDirectory(ZipName, currentDirectory + directoryName, Password);
         }
 
         public static List<string> GetLevel(string initialCatalog, List<ZipEntry> items)

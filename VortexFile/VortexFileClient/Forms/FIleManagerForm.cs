@@ -549,6 +549,14 @@ namespace VortexFileClient.Forms
                 localStorage.currentDirectory += item.Text;
                 FilesChange?.Invoke(this, new FilesChangedEventArgs(true, false));
             }
+            if (String.IsNullOrWhiteSpace(localStorage.currentDirectory))
+            {
+                LocalListView.Groups[0].Header = "Локальное хранилище";
+            }
+            else
+            {
+                LocalListView.Groups[0].Header = "Локальное хранилище/" + localStorage.currentDirectory;
+            }
         }
 
         private void RemoteListView_MouseDoubleClick(object sender, MouseEventArgs e)
@@ -564,6 +572,14 @@ namespace VortexFileClient.Forms
             {
                 cloudStorage.currentDirectory += item.Text + "/";
                 FilesChange?.Invoke(this, new FilesChangedEventArgs(false, true));
+            }
+            if (String.IsNullOrWhiteSpace(cloudStorage.currentDirectory))
+            {
+                RemoteListView.Groups[1].Header = "Облачное хранилище";
+            }
+            else
+            {
+                RemoteListView.Groups[1].Header = "Облачное хранилище/" + cloudStorage.currentDirectory.Replace("//", "/");
             }
         }
         #endregion

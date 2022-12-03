@@ -84,6 +84,7 @@ namespace VortexFileClient.Data
                     }
                     else
                     {
+                        zipEntry.FileName = Path.GetFileName(zipEntry.FileName);
                         zipEntry.ExtractWithPassword(outFolder, password);
                     }
                 }

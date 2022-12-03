@@ -100,11 +100,11 @@ namespace VortexFileClient.Data
             {
                 if (!Path.HasExtension(fileName))
                 {
-                    FtpHelper.DeleteDirectory(ServerAddress + currentDirectory + fileName+"/", login, password);
+                    FtpHelper.DeleteDirectory(ServerAddress + currentDirectory + fileName + "/", login, password);
                 }
                 else
                 {
-                    FtpHelper.DeleteFile(ServerAddress+ currentDirectory + fileName, login, password);
+                    FtpHelper.DeleteFile(ServerAddress + currentDirectory + fileName, login, password);
                 }
             }
         }
