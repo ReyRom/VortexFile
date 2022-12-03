@@ -32,19 +32,32 @@ namespace VortexFileClient.Data
             DeleteFiles(GetUserCatalog(e.User), e.User);
         }
 
-        public void DownloadFiles(List<string> fileNames, string outFolder, string path="")
+        public void DownloadFiles(List<string> fileNames, string outFolder)
         {
             foreach (var fileName in fileNames)
             {
                 if(fileName.Last() == '/')
                 {
                     var newDir = Directory.CreateDirectory(Path.Combine(outFolder, fileName));
-                    path += fileName;
-                    DownloadFiles(GetLevel(currentDirectory + fileName), newDir.FullName, path);
+                    DownloadDirectory(GetAllLevels(currentDirectory + fileName), Path.Combine(outFolder, fileName));
                 }
                 else
                 {
-                    FtpHelper.DownloadFile(Path.Combine(outFolder, fileName), ServerAddress + currentDirectory + path + fileName, login, password);
+                    FtpHelper.DownloadFile(Path.Combine(outFolder, fileName), ServerAddress + currentDirectory + fileName, login, password);
+                }
+            }
+        }
+        public void DownloadDirectory(List<string> fileNames, string outFolder)
+        {
+            foreach (var fileName in fileNames)
+            {
+                if (fileName.Last() == '/')
+                {
+                    Directory.CreateDirectory(Path.Combine(outFolder, fileName));
+                }
+                else
+                {
+                    FtpHelper.DownloadFile(Path.Combine(outFolder, fileName), ServerAddress + currentDirectory + fileName, login, password);
                 }
             }
         }
