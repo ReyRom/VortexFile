@@ -69,10 +69,11 @@ namespace VortexFileClient.Data
         public void UploadFiles(string directoryName)
         {
             DirectoryInfo directoryInfo = new DirectoryInfo(directoryName);
+            var parentPathLength = directoryInfo.Parent.FullName.Length;
             var directories = directoryInfo.GetDirectories("", SearchOption.AllDirectories);
             var files = directoryInfo.GetFiles("", SearchOption.AllDirectories);
             var cloudFiles = GetLevel(currentDirectory);
-            if (cloudFiles.Contains(directoryInfo.Name+"/"))
+            if (cloudFiles.Contains(directoryInfo.Name + "/"))
             {
                 cloudFiles = GetAllLevels($"{currentDirectory}/{directoryInfo.Name}");
             }
@@ -83,17 +84,19 @@ namespace VortexFileClient.Data
             }
             foreach (var directory in directories)
             {
-                var address = ServerAddress + directory.FullName.Remove(0, directoryInfo.Parent.FullName.Length + 1).Replace('\\', '/');
-                if (cloudFiles.Count > 0 && !cloudFiles.Contains(directoryInfo.Name))
+                var path = directory.FullName.Remove(0, parentPathLength).Replace('\\', '/').Replace("//", "/") + "/";
+                if (cloudFiles.Count < 0 || !cloudFiles.Contains(path))
                 {
+                    var address = ServerAddress + directory.FullName.Remove(0, directoryInfo.Parent.FullName.Length + 1).Replace('\\', '/');
                     FtpHelper.CreateDirectory(address, login, password);
                 }
             }
             foreach (var file in files)
             {
-                if (cloudFiles.Count > 0 && cloudFiles.Contains(file.Name))
+                var match = cloudFiles.FirstOrDefault(f => Path.GetFileName(f) == file.Name);
+                if (cloudFiles.Count < 0 || match != null)
                 {
-                    if (!Feedback.QuestionMessage($"Файл с именем {file.Name} уже есть в каталоге. Заменить?"))
+                    if (!Feedback.QuestionMessage($"Файл с именем {match} уже есть в каталоге. Заменить?"))
                     {
                         continue;
                     }
@@ -159,12 +162,14 @@ namespace VortexFileClient.Data
         public List<string> GetAllLevels(string initialCatalog)
         {
             List<string> files = FtpHelper.GetFilesList(ServerAddress + initialCatalog + "/", login, password);
-            List<string> allFiles = files.ToList();
+            List<string> allFiles = new List<string>();
             foreach (var file in files)
             {
+                var level = (initialCatalog + "/" + file).Replace("//", "/");
+                allFiles.Add(level);
                 if (file.Last() == '/')
                 {
-                    allFiles.AddRange(FtpHelper.GetFilesList(ServerAddress + initialCatalog + "/" + file, login, password));
+                    allFiles.AddRange(GetAllLevels(level));
                 }
             }
             return allFiles;

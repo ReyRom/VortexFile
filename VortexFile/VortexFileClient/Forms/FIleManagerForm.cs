@@ -340,14 +340,14 @@ namespace VortexFileClient.Forms
 
         private void UploadFtp(string directoryName)
         {
-            //try
-            //{
+            try
+            {
                 RunProgress(() => cloudStorage.UploadFiles(directoryName), new FilesChangedEventArgs(local: false));
-            //}
-            //catch (Exception ex)
-            //{
-            //    Feedback.ErrorMessage(ex);
-            //}
+            }
+            catch (Exception ex)
+            {
+                Feedback.ErrorMessage(ex);
+            }
         }
 
         private void UploadLocal(string directoryName)
@@ -409,7 +409,7 @@ namespace VortexFileClient.Forms
         #region Download
         private void DownloadButton_Click(object sender, EventArgs e)
         {
-            if(LocalListView.SelectedItems.Count > 0 || RemoteListView.SelectedItems.Count > 0)
+            if (LocalListView.SelectedItems.Count > 0 || RemoteListView.SelectedItems.Count > 0)
             {
                 Download();
             }
@@ -429,7 +429,7 @@ namespace VortexFileClient.Forms
                     List<string> localFilesName = new List<string>();
                     List<string> cloudFilesName = new List<string>();
                     foreach (ListViewItem item in LocalListView.SelectedItems)
-                    { 
+                    {
                         localFilesName.Add(item.Text);
                     }
                     foreach (ListViewItem item in RemoteListView.SelectedItems)
@@ -458,14 +458,14 @@ namespace VortexFileClient.Forms
         {
             set
             {
-                UploadButton.Enabled = 
+                UploadButton.Enabled =
                     DownloadButton.Enabled =
-                    DeleteButton.Enabled = 
-                    LocalSliderCheckBox.Enabled = 
-                    CloudSliderCheckBox.Enabled = 
-                    UploadDirectoryButton.Enabled = 
+                    DeleteButton.Enabled =
+                    LocalSliderCheckBox.Enabled =
+                    CloudSliderCheckBox.Enabled =
+                    UploadDirectoryButton.Enabled =
                     CreateDirectoryButton.Enabled =
-                    LocalContextMenuStrip.Enabled = 
+                    LocalContextMenuStrip.Enabled =
                     RemoteContextMenuStrip.Enabled = !value;
 
                 progressBar.Visible = ProgressTimer.Enabled = value;
@@ -493,15 +493,15 @@ namespace VortexFileClient.Forms
 
         private void BackgroundWorker_DoWork(object sender, DoWorkEventArgs e)
         {
-            //try
-            //{
+            try
+            {
                 fileMethods.First().Invoke();
-            //}
-            //catch (Exception ex)
-            //{
-            //    Feedback.ErrorMessage(ex);
-            //}
-}
+            }
+            catch (Exception ex)
+            {
+                Feedback.ErrorMessage(ex);
+            }
+        }
 
         private void BackgroundWorker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
