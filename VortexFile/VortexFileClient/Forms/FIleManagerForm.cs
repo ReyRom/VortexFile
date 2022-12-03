@@ -565,7 +565,7 @@ namespace VortexFileClient.Forms
             ListViewItem item = info.Item;
             if (item.Text == "")
             {
-                cloudStorage.currentDirectory = Regex.Match(cloudStorage.currentDirectory, @"(?<back>([\w\s_]+/)*)[\w\s_]+/").Groups["back"].Value;
+                cloudStorage.currentDirectory = Regex.Match(cloudStorage.currentDirectory, @"(?<back>(.+/)*)[\w\s_]+/").Groups["back"].Value;
                 FilesChange?.Invoke(this, new FilesChangedEventArgs(false, true));
             }
             else if (item.Text.Contains('/'))
