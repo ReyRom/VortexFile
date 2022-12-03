@@ -73,7 +73,7 @@ namespace VortexFileClient.Data
                 {
                     if (e.IsDirectory)
                     {
-                        ExtractDirectoryWithPassword(zipName, pathInArchive + directoryName, e.FileName.Remove(0, (pathInArchive + directoryName).Length), outerFolder, password);
+                        Directory.CreateDirectory(Path.Combine(outerFolder, e.FileName));
                     }
                     else
                     {
