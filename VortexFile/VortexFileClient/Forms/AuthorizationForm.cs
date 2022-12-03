@@ -29,12 +29,17 @@ namespace VortexFileClient.Forms
             User user = null;
             try
             {
+                waiter.Visible = true;
                 user = Data.Session.Authorize(LoginTextBox.Text, PasswordTextBox.Text);
             }
             catch (Exception ex)
             {
                 Feedback.ErrorMessage(ex);
                 return;
+            }
+            finally
+            {
+                waiter.Visible = false;
             }
             if (user == null)
             {

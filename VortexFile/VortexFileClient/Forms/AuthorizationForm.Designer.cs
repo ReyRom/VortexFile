@@ -38,6 +38,7 @@
             this.OfflineCheckBox = new VortexFileClient.Extensions.SliderCheckBox();
             this.label1 = new System.Windows.Forms.Label();
             this.PasswordCheckBox = new VortexFileClient.Extensions.PasswordCheckBox();
+            this.waiter = new VortexFileClient.Extensions.Waiting();
             this.SuspendLayout();
             // 
             // LoginTextBox
@@ -177,6 +178,16 @@
             this.PasswordCheckBox.UseVisualStyleBackColor = false;
             this.PasswordCheckBox.CheckedChanged += new System.EventHandler(this.PasswordCheckBox_CheckedChanged);
             // 
+            // waiter
+            // 
+            this.waiter.ImageSize = 100;
+            this.waiter.Location = new System.Drawing.Point(-1, -4);
+            this.waiter.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.waiter.Name = "waiter";
+            this.waiter.Size = new System.Drawing.Size(408, 288);
+            this.waiter.TabIndex = 10;
+            this.waiter.Visible = false;
+            // 
             // AuthorizationForm
             // 
             this.AcceptButton = this.EnterButton;
@@ -184,6 +195,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(405, 282);
+            this.Controls.Add(this.waiter);
             this.Controls.Add(this.PasswordCheckBox);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.OfflineCheckBox);
@@ -213,5 +225,6 @@
         private Extensions.SliderCheckBox OfflineCheckBox;
         private Label label1;
         private Extensions.PasswordCheckBox PasswordCheckBox;
+        private Extensions.Waiting waiter;
     }
 }

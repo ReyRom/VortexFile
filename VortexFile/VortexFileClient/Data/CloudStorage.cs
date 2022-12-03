@@ -1,7 +1,9 @@
 ﻿using System.IO;
 ﻿using System.Net;
+using System.Xml.Linq;
 using VortexFileClient.Data.Models;
 using VortexFileClient.Extensions;
+using static System.Net.WebRequestMethods;
 using User = VortexFileClient.Data.Models.User;
 
 namespace VortexFileClient.Data
@@ -34,14 +36,28 @@ namespace VortexFileClient.Data
         {
             foreach (var fileName in fileNames)
             {
-                FtpHelper.DownloadFile(Path.Combine(outFolder, fileName), ServerAddress + currentDirectory + fileName, login, password);
+                var file = fileName;
+                if(fileName.Last() == '/')
+                {
+                    file = fileName.Remove(fileName.Length-1);
+                }
+                FtpHelper.DownloadFile(Path.Combine(outFolder, file), ServerAddress + currentDirectory + file, login, password);
             }
         }
 
         public void UploadFiles(List<string> fileNames)
         {
+            var files = GetLevel(currentDirectory);
             foreach (var fileName in fileNames)
             {
+                var name = Path.GetFileName(fileName);
+                if (files.Contains(name))
+                {
+                    if (!Feedback.QuestionMessage($"Файл с именем {name} уже есть в каталоге. Заменить?"))
+                    {
+                        continue;
+                    }
+                }
                 if (new FileInfo(fileName).Length > Extensions.Tools.GigaByte * 2)
                 {
                     throw new Exception("Размер загружаемого файла больше 2ГБ.");
@@ -49,21 +65,39 @@ namespace VortexFileClient.Data
                 FtpHelper.UploadFile(fileName, ServerAddress + currentDirectory + Path.GetFileName(fileName), login, password);
             }
         }
+
         public void UploadFiles(string directoryName)
         {
             DirectoryInfo directoryInfo = new DirectoryInfo(directoryName);
             var directories = directoryInfo.GetDirectories("", SearchOption.AllDirectories);
             var files = directoryInfo.GetFiles("", SearchOption.AllDirectories);
+            var cloudFiles = GetLevel(currentDirectory);
+            if (cloudFiles.Contains(directoryInfo.Name+"/"))
             {
+                cloudFiles = GetAllLevels($"{currentDirectory}/{directoryInfo.Name}");
+            }
+            else
+            {
+                cloudFiles.Clear();
                 FtpHelper.CreateDirectory(ServerAddress + currentDirectory + directoryInfo.Name, login, password);
             }
             foreach (var directory in directories)
             {
-                var address = ServerAddress + directory.FullName.Remove(0, directoryInfo.Parent.FullName.Length+1).Replace('\\','/');
-                FtpHelper.CreateDirectory(address, login, password);
+                var address = ServerAddress + directory.FullName.Remove(0, directoryInfo.Parent.FullName.Length + 1).Replace('\\', '/');
+                if (cloudFiles.Count > 0 && !cloudFiles.Contains(directoryInfo.Name))
+                {
+                    FtpHelper.CreateDirectory(address, login, password);
+                }
             }
             foreach (var file in files)
             {
+                if (cloudFiles.Count > 0 && cloudFiles.Contains(file.Name))
+                {
+                    if (!Feedback.QuestionMessage($"Файл с именем {file.Name} уже есть в каталоге. Заменить?"))
+                    {
+                        continue;
+                    }
+                }
                 if (file.Length > Extensions.Tools.GigaByte * 2)
                 {
                     throw new Exception("Размер загружаемого файла больше 2ГБ.");
@@ -119,7 +153,21 @@ namespace VortexFileClient.Data
 
         public List<string> GetLevel(string initialCatalog)
         {
-            return FtpHelper.GetFilesList(ServerAddress + initialCatalog + "/", login, password); ;
+            return FtpHelper.GetFilesList(ServerAddress + initialCatalog + "/", login, password);
+        }
+
+        public List<string> GetAllLevels(string initialCatalog)
+        {
+            List<string> files = FtpHelper.GetFilesList(ServerAddress + initialCatalog + "/", login, password);
+            List<string> allFiles = files.ToList();
+            foreach (var file in files)
+            {
+                if (file.Last() == '/')
+                {
+                    allFiles.AddRange(FtpHelper.GetFilesList(ServerAddress + initialCatalog + "/" + file, login, password));
+                }
+            }
+            return allFiles;
         }
 
         public void CreateDirectory(string directoryName)

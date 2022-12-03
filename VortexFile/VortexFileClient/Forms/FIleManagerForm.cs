@@ -340,14 +340,14 @@ namespace VortexFileClient.Forms
 
         private void UploadFtp(string directoryName)
         {
-            try
-            {
+            //try
+            //{
                 RunProgress(() => cloudStorage.UploadFiles(directoryName), new FilesChangedEventArgs(local: false));
-            }
-            catch (Exception ex)
-            {
-                Feedback.ErrorMessage(ex);
-            }
+            //}
+            //catch (Exception ex)
+            //{
+            //    Feedback.ErrorMessage(ex);
+            //}
         }
 
         private void UploadLocal(string directoryName)
@@ -493,15 +493,15 @@ namespace VortexFileClient.Forms
 
         private void BackgroundWorker_DoWork(object sender, DoWorkEventArgs e)
         {
-            try
-            {
+            //try
+            //{
                 fileMethods.First().Invoke();
-            }
-            catch (Exception ex)
-            {
-                Feedback.ErrorMessage(ex);
-            }
-        }
+            //}
+            //catch (Exception ex)
+            //{
+            //    Feedback.ErrorMessage(ex);
+            //}
+}
 
         private void BackgroundWorker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
