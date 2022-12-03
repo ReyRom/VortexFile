@@ -36,7 +36,7 @@ namespace VortexFileClient.Data
 
         public static User AddUser(User user)
         {
-            user.homedir = $"/srv/ftp/vortexfile/{user.Login}";
+            //user.homedir = $"/srv/ftp/vortexfile/{user.Login}";
             //user.hash = "d4c45911de055183ebc73cee140d3fb2";
             Core.Context.Users.Add(user);
             Core.Context.SaveChanges();

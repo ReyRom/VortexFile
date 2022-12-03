@@ -83,6 +83,7 @@
             this.LocalListView.Name = "LocalListView";
             this.LocalListView.Size = new System.Drawing.Size(499, 518);
             this.LocalListView.SmallImageList = this.ExtensionImageList;
+            this.LocalListView.Sorting = System.Windows.Forms.SortOrder.Ascending;
             this.LocalListView.TabIndex = 2;
             this.LocalListView.UseCompatibleStateImageBehavior = false;
             this.LocalListView.View = System.Windows.Forms.View.Tile;
@@ -314,6 +315,7 @@
             this.RemoteListView.Name = "RemoteListView";
             this.RemoteListView.Size = new System.Drawing.Size(499, 518);
             this.RemoteListView.SmallImageList = this.ExtensionImageList;
+            this.RemoteListView.Sorting = System.Windows.Forms.SortOrder.Ascending;
             this.RemoteListView.TabIndex = 21;
             this.RemoteListView.UseCompatibleStateImageBehavior = false;
             this.RemoteListView.View = System.Windows.Forms.View.Tile;

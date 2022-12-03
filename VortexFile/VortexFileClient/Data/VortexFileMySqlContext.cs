@@ -6,15 +6,11 @@ namespace VortexFileClient.Data
 {
     public class VortexFileMySqlContext : DbContext
     {
-        
         public DbSet<User> Users { get; set; }
 
         public VortexFileMySqlContext()
         {
             Database.EnsureCreated();
-        }
-        protected override void OnModelCreating(ModelBuilder modelBuilder)
-        {
         }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
