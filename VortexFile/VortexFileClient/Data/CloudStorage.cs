@@ -93,7 +93,7 @@ namespace VortexFileClient.Data
             }
             foreach (var file in files)
             {
-                var match = cloudFiles.FirstOrDefault(f => Path.GetFileName(f) == file.Name);
+                var match = cloudFiles.FirstOrDefault(f => f == file.FullName.Remove(0, parentPathLength).Replace('\\', '/'));
                 if (cloudFiles.Count < 0 || match != null)
                 {
                     if (!Feedback.QuestionMessage($"Файл с именем {match} уже есть в каталоге. Заменить?"))
