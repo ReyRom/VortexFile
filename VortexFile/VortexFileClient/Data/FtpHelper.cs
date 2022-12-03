@@ -114,7 +114,6 @@ namespace VortexFileClient.Data
                 string permissions = tokens[0];
 
                 string fileUrl = address + name;
-
                 if (permissions[0] == 'd')
                 {
                     DeleteDirectory(fileUrl + "/", login, password);
@@ -127,9 +126,10 @@ namespace VortexFileClient.Data
 
                     deleteRequest.GetResponse();
                 }
+
             }
 
-            var removeRequest = (FtpWebRequest)WebRequest.Create(address);
+            var removeRequest = (FtpWebRequest)WebRequest.Create(address.Remove(address.Length - 1));
             removeRequest.Method = WebRequestMethods.Ftp.RemoveDirectory;
             removeRequest.Credentials = credentials;
 
