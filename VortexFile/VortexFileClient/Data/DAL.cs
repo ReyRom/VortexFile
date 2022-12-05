@@ -1,4 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.VisualBasic.Logging;
+using Org.BouncyCastle.Crypto.Operators;
 using VortexFileClient.Data.Models;
 using VortexFileClient.Extensions;
 
@@ -10,26 +12,24 @@ namespace VortexFileClient.Data
 
         public static event EventHandler<UserEventArgs> OnUserCreate;
 
-        public static User GetUserByLogin(string login)
+        public async static Task<User?> GetUserByLoginAsync(string login)
         {
-            User? user = null;
-            user = Core.Context.Users.SingleOrDefault(x => x.Login == login);
-            return user;
+            var users = await Core.Context.Users.ToListAsync();
+            return users.SingleOrDefault(x => x.Login == login);
         }
 
-        public static User GetUserByEmail(string email)
+        public async static Task<User?> GetUserByEmailAsync(string email)
         {
-            User? user = null;
-            user = Core.Context.Users.SingleOrDefault(x => x.Email == email);
-            return user;
+            var users = await Core.Context.Users.ToListAsync();
+            return users.SingleOrDefault(x => x.Email == email);
         }
 
-        public static User? GetUser(string login)
+        public async static Task<User?> GetUserAsync(string login)
         {
-            User? user = GetUserByLogin(login);
+            User? user = await GetUserByLoginAsync(login);
             if (user == null)
             {
-                user = GetUserByEmail(login);
+                user = await GetUserByEmailAsync(login);
             }
             return user;
         }
@@ -41,7 +41,7 @@ namespace VortexFileClient.Data
             Core.Context.Users.Add(user);
             Core.Context.SaveChanges();
             OnUserCreate?.Invoke(user.Login, new UserEventArgs(user));
-            return GetUserByLogin(user.Login);
+            return GetUserByLoginAsync(user.Login).Result;
         }
 
         public static User ChangeUserPassword(User user, string newPassword)
@@ -49,7 +49,7 @@ namespace VortexFileClient.Data
             user.Password = newPassword.EncryptString();
             Core.Context.Entry(user).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
             Core.Context.SaveChanges();
-            return GetUserByLogin(user.Login);
+            return GetUserByLoginAsync(user.Login).Result;
         }
 
         public static List<User> GetUsers()

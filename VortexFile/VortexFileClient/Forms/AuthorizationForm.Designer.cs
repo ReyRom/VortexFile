@@ -76,7 +76,7 @@
             this.EnterButton.TabIndex = 1;
             this.EnterButton.Text = "Войти";
             this.EnterButton.UseVisualStyleBackColor = false;
-            this.EnterButton.Click += new System.EventHandler(this.EnterButton_Click);
+            this.EnterButton.Click += new System.EventHandler(this.EnterButton_ClickAsync);
             // 
             // RegistrationLinkLabel
             // 

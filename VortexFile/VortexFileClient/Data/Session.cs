@@ -30,10 +30,11 @@ namespace VortexFileClient.Data
             }
         }
 
-        public static User Authorize(string login, string password)
+        public async static Task<User?> AuthorizeAsync(string login, string password)
         {
             CurrentUser = null;
-            User? user = DAL.GetUser(login);
+            User? user = await DAL.GetUserAsync(login);
+            await Task.Delay(1000);
             if (user != null && user.Password == password.EncryptString())
             {
                 CurrentUser = user;
@@ -49,11 +50,11 @@ namespace VortexFileClient.Data
         public static User Registration(User user)
         {
             StringBuilder errors = new StringBuilder();
-            if (DAL.GetUserByLogin(user.Login) != null && user.Login != Public.Login)
+            if (DAL.GetUserByLoginAsync(user.Login) != null && user.Login != Public.Login)
             {
                 errors.AppendLine("Логин занят другим пользователем.");
             }
-            if (DAL.GetUserByEmail(user.Email) != null)
+            if (DAL.GetUserByEmailAsync(user.Email) != null)
             {
                 errors.AppendLine("Почта занята другим пользователем.");
             }

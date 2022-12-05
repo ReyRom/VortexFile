@@ -33,12 +33,11 @@ namespace VortexFileClient.Data
             return hash;
         }
 
-        public static void EncryptStream(this Stream input, Stream output, byte[] key)
+        public static void EncryptStream(this Stream input, Stream output, byte[] key, byte[] iv)
         {
             using (var aes = Aes.Create())
             {
                 aes.Key = key;
-                byte[] iv = Encoding.ASCII.GetBytes("ROMAN_SWAROWSKIY");
                 aes.Padding = PaddingMode.Zeros;
                 using (CryptoStream cs = new CryptoStream(output, aes.CreateEncryptor(key, iv), CryptoStreamMode.Write))
                 {
@@ -49,9 +48,8 @@ namespace VortexFileClient.Data
             }
         }
 
-        public static void DecryptStream(this Stream input, Stream output, byte[] key)
+        public static void DecryptStream(this Stream input, Stream output, byte[] key, byte[] iv)
         {
-            byte[] iv = Encoding.ASCII.GetBytes("ROMAN_SWAROWSKIY");
             using (var aes = Aes.Create())
             {
                 aes.Key = key;

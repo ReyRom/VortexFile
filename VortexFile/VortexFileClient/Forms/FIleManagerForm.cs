@@ -21,6 +21,8 @@ namespace VortexFileClient.Forms
 
         private bool OnlineMode { get; set; }
 
+        private bool enableNav = true;
+
         private Stack<FilesChangedEventArgs> filesChanged = new Stack<FilesChangedEventArgs>();
 
         public FileManagerForm(bool onlineMode = true)
@@ -161,13 +163,13 @@ namespace VortexFileClient.Forms
             };
             if (openFileDialog.ShowDialog() == DialogResult.OK)
             {
-                if (LocalSliderCheckBox.Checked)
-                {
-                    UploadLocal(openFileDialog.FileNames.ToList());
-                }
                 if (CloudSliderCheckBox.Checked)
                 {
                     UploadFtp(openFileDialog.FileNames.ToList());
+                }
+                if (LocalSliderCheckBox.Checked)
+                {
+                    UploadLocal(openFileDialog.FileNames.ToList());
                 }
             }
         }
@@ -176,13 +178,13 @@ namespace VortexFileClient.Forms
             FolderBrowserDialog folderBrowserDialog = new FolderBrowserDialog();
             if (folderBrowserDialog.ShowDialog() == DialogResult.OK)
             {
-                if (LocalSliderCheckBox.Checked)
-                {
-                    UploadLocal(folderBrowserDialog.SelectedPath);
-                }
                 if (CloudSliderCheckBox.Checked)
                 {
                     UploadFtp(folderBrowserDialog.SelectedPath);
+                }
+                if (LocalSliderCheckBox.Checked)
+                {
+                    UploadLocal(folderBrowserDialog.SelectedPath);
                 }
             }
         }
@@ -466,7 +468,8 @@ namespace VortexFileClient.Forms
                     UploadDirectoryButton.Enabled =
                     CreateDirectoryButton.Enabled =
                     LocalContextMenuStrip.Enabled =
-                    RemoteContextMenuStrip.Enabled = !value;
+                    RemoteContextMenuStrip.Enabled =
+                    enableNav = !value;
 
                 progressBar.Visible = ProgressTimer.Enabled = value;
                 progressBar.Value = 0;
@@ -537,6 +540,10 @@ namespace VortexFileClient.Forms
         #region FolderNavigation
         private void LocalListView_MouseDoubleClick(object sender, MouseEventArgs e)
         {
+            if (!enableNav)
+            {
+                return;
+            }
             ListViewHitTestInfo info = LocalListView.HitTest(e.X, e.Y);
             ListViewItem item = info.Item;
             if (item.Text == "")
@@ -561,6 +568,10 @@ namespace VortexFileClient.Forms
 
         private void RemoteListView_MouseDoubleClick(object sender, MouseEventArgs e)
         {
+            if (!enableNav)
+            {
+                return;
+            }
             ListViewHitTestInfo info = RemoteListView.HitTest(e.X, e.Y);
             ListViewItem item = info.Item;
             if (item.Text == "")

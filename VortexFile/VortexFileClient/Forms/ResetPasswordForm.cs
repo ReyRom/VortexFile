@@ -24,7 +24,7 @@ namespace VortexFileClient.Forms
         {
             try
             {
-                user = DAL.GetUser(LoginTextBox.Text);
+                user = DAL.GetUserAsync(LoginTextBox.Text).Result;
                 if (user != null)
                 {
                     emailMessanger = new EmailMessanger("vortexfile-email-confirm@yandex.ru", "Vortex File", "zbhicmvhztojxnar");

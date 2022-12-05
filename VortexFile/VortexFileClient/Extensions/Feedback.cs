@@ -32,7 +32,13 @@ namespace VortexFileClient.Extensions
                     "\nПопробуйте еще раз или обратитетсь к системному администратору.", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-            MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            if (ex.InnerException is Timeout)
+            {
+                MessageBox.Show("Время выполнения запроса истекло." +
+                    "\nПопробуйте еще раз или обратитетсь к системному администратору.", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            MessageBox.Show(ex.Message + "\nПопробуйте еще раз или обратитетсь к системному администратору.", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
 
         private static string GetMessage(FtpStatusCode status)

@@ -54,7 +54,7 @@ namespace VortexFileClient.Forms
             User tmp = null;
             try
             {
-                tmp = DAL.GetUserByEmail(user.Email);
+                tmp = DAL.GetUserByEmailAsync(user.Email).Result;
             }
             catch (Exception ex)
             {

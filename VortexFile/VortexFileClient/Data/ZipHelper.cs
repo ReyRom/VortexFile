@@ -38,7 +38,15 @@ namespace VortexFileClient.Data
                 foreach (var file in fileNames)
                 {
                     var zipEntry = zip.Entries.SingleOrDefault(z => z.FileName == Path.Combine(pathInArchive,file));
-                    zip.RemoveEntry(zipEntry);
+                    if (zipEntry.IsDirectory)
+                    {
+                        var zipEntries = zip.Entries.Where(z => z.FileName.StartsWith(zipEntry.FileName)).ToList();
+                        zip.RemoveEntries(zipEntries);
+                    }
+                    else
+                    {
+                        zip.RemoveEntry(zipEntry);
+                    }
                 }
                 zip.Save();
             }
@@ -114,7 +122,8 @@ namespace VortexFileClient.Data
                     }
                     catch (ArgumentException)
                     {
-                        if (Extensions.Feedback.QuestionMessage($"Файл с именем {Path.GetFileName(item.Name)} уже есть в каталоге. Заменить?"))
+                        var path = (pathInArchive + item.DirectoryName.Remove(0, directoryInfo.Parent.FullName.Length) + "/" + Path.GetFileName(item.Name)).Replace("\\", "/");
+                        if (Extensions.Feedback.QuestionMessage($"Файл с именем {path} уже есть в локальном хранилище. Заменить?"))
                         {
                             zip.UpdateFile(item.FullName, pathInArchive + item.DirectoryName.Remove(0, directoryInfo.Parent.FullName.Length));
                         }
@@ -139,7 +148,7 @@ namespace VortexFileClient.Data
                     }
                     catch (ArgumentException)
                     {
-                        if (Extensions.Feedback.QuestionMessage($"Файл с именем {Path.GetFileName(item)} уже есть в каталоге. Заменить?"))
+                        if (Extensions.Feedback.QuestionMessage($"Файл с именем {pathInArchive + Path.GetFileName(item)} уже есть в локальном хранилище. Заменить?"))
                         {
                             zip.UpdateFile(item, pathInArchive);
                         }

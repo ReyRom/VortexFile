@@ -1,4 +1,5 @@
 ﻿using System.Net;
+using System.Text;
 
 namespace VortexFileClient.Data
 {
@@ -9,13 +10,14 @@ namespace VortexFileClient.Data
             FtpWebRequest request = (FtpWebRequest)WebRequest.Create(address);
             request.Method = WebRequestMethods.Ftp.DownloadFile;
             request.Credentials = new NetworkCredential(login, password);
+            byte[] iv = Encoding.ASCII.GetBytes("ROMAN_SWAROWSKIY");
             using (FtpWebResponse response = (FtpWebResponse)request.GetResponse())
             {
                 using (Stream responseStream = response.GetResponseStream())
                 {
                     using (FileStream fs = new FileStream(filename, FileMode.Create))
                     {
-                        responseStream.DecryptStream(fs, login.GetKey(16));
+                        responseStream.DecryptStream(fs, login.GetKey(16), iv);
                     }
                 }
                 return response.StatusCode;
@@ -27,11 +29,12 @@ namespace VortexFileClient.Data
             FtpWebRequest request = (FtpWebRequest)WebRequest.Create(address);
             request.Method = WebRequestMethods.Ftp.UploadFile;
             request.Credentials = new NetworkCredential(login, password);
+            byte[] iv = Encoding.ASCII.GetBytes("ROMAN_SWAROWSKIY");
             using (FileStream fs = new FileStream(filename, FileMode.Open))
             {
                 using (Stream requestStream = request.GetRequestStream())
                 {
-                    fs.EncryptStream(requestStream, login.GetKey(16));
+                    fs.EncryptStream(requestStream, login.GetKey(16), iv);
                 }
 
                 using (FtpWebResponse response = (FtpWebResponse)request.GetResponse())

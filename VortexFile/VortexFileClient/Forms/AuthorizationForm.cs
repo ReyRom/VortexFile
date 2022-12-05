@@ -17,7 +17,7 @@ namespace VortexFileClient.Forms
         public event EventHandler<LoadFormEventArgs> LoadForm;
         public event EventHandler GoBack;
 
-        private void EnterButton_Click(object sender, EventArgs e)
+        private async void EnterButton_ClickAsync(object sender, EventArgs e)
         {
             if (OfflineCheckBox.Checked)
             {
@@ -26,11 +26,11 @@ namespace VortexFileClient.Forms
                 LoadForm.Invoke(this, new LoadFormEventArgs(new FileManagerForm(false)));
                 return;
             }
-            User user = null;
+            User? user;
+            waiter.Visible = true;
             try
             {
-                waiter.Visible = true;
-                user = Data.Session.Authorize(LoginTextBox.Text, PasswordTextBox.Text);
+                user = await Data.Session.AuthorizeAsync(LoginTextBox.Text, PasswordTextBox.Text);
             }
             catch (Exception ex)
             {

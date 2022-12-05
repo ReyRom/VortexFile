@@ -70,7 +70,7 @@ namespace VortexFileClient.Data
                 var name = Path.GetFileName(fileName);
                 if (files.Contains(name))
                 {
-                    if (!Feedback.QuestionMessage($"Файл с именем {name} уже есть в каталоге. Заменить?"))
+                    if (!Feedback.QuestionMessage($"Файл с именем {name} уже есть в облачном хранилище. Заменить?"))
                     {
                         continue;
                     }
@@ -113,7 +113,7 @@ namespace VortexFileClient.Data
                 var match = cloudFiles.FirstOrDefault(f => f == file.FullName.Remove(0, parentPathLength).Replace('\\', '/'));
                 if (cloudFiles.Count < 0 || match != null)
                 {
-                    if (!Feedback.QuestionMessage($"Файл с именем {match} уже есть в каталоге. Заменить?"))
+                    if (!Feedback.QuestionMessage($"Файл с именем {match} уже есть в облачном хранилище. Заменить?"))
                     {
                         continue;
                     }
