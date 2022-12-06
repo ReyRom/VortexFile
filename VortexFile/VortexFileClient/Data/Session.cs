@@ -34,12 +34,7 @@ namespace VortexFileClient.Data
         {
             CurrentUser = null;
             await Task.Delay(1000);
-            var task = DAL.GetUserAsync(login);
-            while (!task.IsCompleted)
-            {
-                await Task.Delay(1000);
-            }
-            User? user = task.Result;
+            User? user = await DAL.GetUserAsync(login);
             if (user != null && user.Password == password.EncryptString())
             {
                 CurrentUser = user;
