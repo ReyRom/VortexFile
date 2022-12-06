@@ -33,8 +33,13 @@ namespace VortexFileClient.Data
         public async static Task<User?> AuthorizeAsync(string login, string password)
         {
             CurrentUser = null;
-            User? user = await DAL.GetUserAsync(login);
             await Task.Delay(1000);
+            var task = DAL.GetUserAsync(login);
+            while (!task.IsCompleted)
+            {
+                await Task.Delay(1000);
+            }
+            User? user = task.Result;
             if (user != null && user.Password == password.EncryptString())
             {
                 CurrentUser = user;

@@ -27,6 +27,7 @@
     <BootstrapperEnabled>true</BootstrapperEnabled>
     <Platforms>AnyCPU;x64</Platforms>
     <ApplicationIcon>Logo.ico</ApplicationIcon>
+    <StartupObject>VortexFileClient.Program</StartupObject>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)' == 'Debug'">
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>

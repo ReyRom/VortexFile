@@ -3,6 +3,7 @@ using Microsoft.VisualBasic.Logging;
 using Org.BouncyCastle.Crypto.Operators;
 using VortexFileClient.Data.Models;
 using VortexFileClient.Extensions;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
 
 namespace VortexFileClient.Data
 {
@@ -14,14 +15,12 @@ namespace VortexFileClient.Data
 
         public async static Task<User?> GetUserByLoginAsync(string login)
         {
-            var users = await Core.Context.Users.ToListAsync();
-            return users.SingleOrDefault(x => x.Login == login);
+            return await Core.Context.Users.SingleOrDefaultAsync(x => x.Login == login);
         }
 
         public async static Task<User?> GetUserByEmailAsync(string email)
         {
-            var users = await Core.Context.Users.ToListAsync();
-            return users.SingleOrDefault(x => x.Email == email);
+            return await Core.Context.Users.SingleOrDefaultAsync(x => x.Email == email);
         }
 
         public async static Task<User?> GetUserAsync(string login)
@@ -36,8 +35,6 @@ namespace VortexFileClient.Data
 
         public static User AddUser(User user)
         {
-            //user.homedir = $"/srv/ftp/vortexfile/{user.Login}";
-            //user.hash = "d4c45911de055183ebc73cee140d3fb2";
             Core.Context.Users.Add(user);
             Core.Context.SaveChanges();
             OnUserCreate?.Invoke(user.Login, new UserEventArgs(user));

@@ -21,7 +21,6 @@ namespace VortexFileClient.Extensions
             }
             if (ex is WebException web)
             {
-                
                 MessageBox.Show(GetMessage(((FtpWebResponse)web.Response).StatusCode) +
                     "\nПопробуйте еще раз или обратитетсь к системному администратору.", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
@@ -32,7 +31,7 @@ namespace VortexFileClient.Extensions
                     "\nПопробуйте еще раз или обратитетсь к системному администратору.", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-            if (ex.InnerException is Timeout)
+            if (ex.InnerException is TimeoutException)
             {
                 MessageBox.Show("Время выполнения запроса истекло." +
                     "\nПопробуйте еще раз или обратитетсь к системному администратору.", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
