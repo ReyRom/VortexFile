@@ -197,11 +197,6 @@ namespace VortexFileClient.Data
             FtpHelper.CreateDirectory(ServerAddress + currentDirectory + directoryName, login, password);
         }
 
-        public List<string> GetUserCatalog()
-        {
-            return FtpHelper.GetFilesList(ServerAddress, login, password);
-        }
-
         public List<string> GetUserCatalog(User user)
         {
             return FtpHelper.GetFilesList(ServerAddress, user.Login + "." + Properties.Settings.Default.Hash, user.Password);

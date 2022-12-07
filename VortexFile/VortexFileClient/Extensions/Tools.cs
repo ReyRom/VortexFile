@@ -26,7 +26,7 @@
         {
             if (String.IsNullOrEmpty(fileName))
             {
-                return 5;//папка назад
+                return 5;
             }
             if (fileName.Contains('/'))
             {
@@ -37,7 +37,7 @@
                 case ".zip":
                 case ".rar":
                 case ".7z":
-                    return 6;//архив
+                    return 6;
                 case ".jpg":
                 case ".png":
                 case ".bmp":

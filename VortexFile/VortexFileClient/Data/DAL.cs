@@ -49,11 +49,6 @@ namespace VortexFileClient.Data
             return GetUserByLoginAsync(user.Login).Result;
         }
 
-        public static List<User> GetUsers()
-        {
-            return Core.Context.Users.ToList();
-        }
-
         public async static Task<List<User>> GetUsersAsync()
         {
             return await Core.Context.Users.ToListAsync();

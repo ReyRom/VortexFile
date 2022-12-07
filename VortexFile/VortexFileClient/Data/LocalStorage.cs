@@ -14,8 +14,6 @@ namespace VortexFileClient.Data
 
         private string ZipName { get => Path.Combine(InitialCatalog, UserCatalog); }
 
-        private string ZipPassword { get => Properties.Settings.Default.ZipPassword; }
-
         private string Password { get => user.Login.EncryptString(); }
 
         public string currentDirectory = "";
@@ -116,11 +114,6 @@ namespace VortexFileClient.Data
         public ZipFile GetUserCatalog(string password)
         {
             return ZipHelper.ReadZip(Path.Combine(InitialCatalog,UserCatalog));
-        }
-
-        public ZipFile GetCatalog()
-        {
-            return ZipHelper.ReadZip(InitialCatalog);
         }
     }
 }

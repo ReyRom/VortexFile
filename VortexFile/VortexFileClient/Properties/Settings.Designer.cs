@@ -12,7 +12,7 @@ namespace VortexFileClient.Properties {
     
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "17.3.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "17.4.0.0")]
     internal sealed partial class Settings : global::System.Configuration.ApplicationSettingsBase {
         
         private static Settings defaultInstance = ((Settings)(global::System.Configuration.ApplicationSettingsBase.Synchronized(new Settings())));
@@ -61,18 +61,6 @@ namespace VortexFileClient.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("1234")]
-        public string ZipPassword {
-            get {
-                return ((string)(this["ZipPassword"]));
-            }
-            set {
-                this["ZipPassword"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("admin")]
         public string AdminPassword {
             get {
@@ -85,7 +73,8 @@ namespace VortexFileClient.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("server=91.122.211.144;port=53306;user=proftpd;password=password;database=ftp;")]
+        [global::System.Configuration.DefaultSettingValueAttribute("server=91.122.211.144;port=53306;user=vortexfileadmin;password=d4c45911de055183eb" +
+            "c73cee140d3fb2;database=ftp;")]
         public string ConnectionString {
             get {
                 return ((string)(this["ConnectionString"]));
