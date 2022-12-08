@@ -111,7 +111,7 @@ namespace VortexFileClient.Data
             return result;
         }
 
-        public ZipFile GetUserCatalog(string password)
+        public ZipFile GetUserCatalog()
         {
             return ZipHelper.ReadZip(Path.Combine(InitialCatalog,UserCatalog));
         }

@@ -99,7 +99,7 @@ namespace VortexFileClient.Forms
             {
 
                 LocalListView.Items.Clear();
-                using (ZipFile localFiles = await Task.Run(() => localStorage.GetUserCatalog(Properties.Settings.Default.ZipPassword)))
+                using (ZipFile localFiles = await Task.Run(() => localStorage.GetUserCatalog()))
                 {
                     foreach (var item in LocalStorage.GetLevel(localStorage.currentDirectory, localFiles.Entries.ToList()))
                     {
