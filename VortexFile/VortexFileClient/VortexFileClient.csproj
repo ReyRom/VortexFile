@@ -66,6 +66,7 @@
     <None Remove="Resources\red_circle.png" />
     <None Remove="Resources\Refresh.png" />
     <None Remove="Resources\Show.png" />
+    <None Remove="VortexFile.chm" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
@@ -75,7 +76,12 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Logo.ico" />
+    <Content Include="Logo.ico">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="VortexFile.chm">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Resources\arrow_back.png" />

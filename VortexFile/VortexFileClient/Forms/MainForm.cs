@@ -95,7 +95,7 @@ public partial class MainForm : Form
 
     private void HelpButton_Click(object sender, EventArgs e)
     {
-        LoadForm(new UserGuideForm());
+        Help.ShowHelp(this, Path.Combine(Environment.CurrentDirectory, "VortexFile.chm"));
     }
 
     private void MainForm_SizeChanged(object sender, EventArgs e)
