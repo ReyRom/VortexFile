@@ -38,8 +38,8 @@ namespace VortexFileClient.Data
             {
                 if(fileName.Last() == '/')
                 {
-                    var newDir = Directory.CreateDirectory(Path.Combine(outFolder, fileName));
-                    DownloadDirectory(GetAllLevels(currentDirectory + fileName), Path.Combine(outFolder, fileName));
+                    var dir = Directory.CreateDirectory(Path.Combine(outFolder, fileName));
+                    DownloadDirectory(GetAllLevels(currentDirectory + fileName), dir.FullName);
                 }
                 else
                 {
@@ -53,11 +53,11 @@ namespace VortexFileClient.Data
             {
                 if (fileName.Last() == '/')
                 {
-                    Directory.CreateDirectory(Path.Combine(outFolder, fileName));
+                    Directory.CreateDirectory(Path.Combine(outFolder, Path.GetFileName(fileName)));
                 }
                 else
                 {
-                    FtpHelper.DownloadFile(Path.Combine(outFolder, fileName), ServerAddress + currentDirectory + fileName, login, password);
+                    FtpHelper.DownloadFile(Path.Combine(outFolder, Path.GetFileName(fileName)), ServerAddress + fileName, login, password);
                 }
             }
         }

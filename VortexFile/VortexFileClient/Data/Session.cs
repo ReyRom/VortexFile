@@ -50,11 +50,11 @@ namespace VortexFileClient.Data
         public static User Registration(User user)
         {
             StringBuilder errors = new StringBuilder();
-            if (DAL.GetUserByLoginAsync(user.Login) != null && user.Login != Public.Login)
+            if (DAL.GetUserByLoginAsync(user.Login).Result != null && user.Login != Public.Login)
             {
                 errors.AppendLine("Логин занят другим пользователем.");
             }
-            if (DAL.GetUserByEmailAsync(user.Email) != null)
+            if (DAL.GetUserByEmailAsync(user.Email).Result != null)
             {
                 errors.AppendLine("Почта занята другим пользователем.");
             }

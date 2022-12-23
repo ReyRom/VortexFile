@@ -57,7 +57,7 @@ namespace VortexFileClient.Forms
                 {
                     EmailMessanger emailMessanger = new EmailMessanger("vortexfile-email-confirm@yandex.ru", "Vortex File", "zbhicmvhztojxnar");
                     string body = "Вы зарегистрированы в системе  VortexFile";
-                    Task.Run(() => emailMessanger.SendEmailAsync(newUser.Email, "Ограничение доступа", body));
+                    Task.Run(() => emailMessanger.SendEmailAsync(newUser.Email, "Регистрация", body));
                 }
                 catch (Exception ex)
                 {
