@@ -1,0 +1,389 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="VortexFileClient.Data.Models.User">
+    <Position X="9.25" Y="10.25" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Properties" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAACCAAAAAAAQAAAAAAAAAAAAACAAAQIAAAAAA=</HashCode>
+      <FileName>Data\Models\User.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="VortexFileClient.Data.CloudStorage">
+    <Position X="12.75" Y="3.5" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+      <Compartment Name="Properties" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>QAAAAAAAAAAAAAAAACAIAAgRAAAAAAACQAAAQgAAESA=</HashCode>
+      <FileName>Data\CloudStorage.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="VortexFileClient.Data.Core" Collapsed="true">
+    <Position X="9.25" Y="0.5" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+      <Compartment Name="Properties" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Data\Core.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="VortexFileClient.Data.CryptoHelper">
+    <Position X="9.25" Y="1.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ACAAAAAAAAAAAAAAIAAAAAQAAAAAAAAAAAAAAAAAACA=</HashCode>
+      <FileName>Data\CryptoHelper.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="VortexFileClient.Data.DAL">
+    <Position X="9.25" Y="3" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Events" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>IAAIAAAAAAAIAAAEAAAAAAAAAQAAAAAgKAAAAUAABAA=</HashCode>
+      <FileName>Data\DAL.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="VortexFileClient.Data.EmailMessanger">
+    <Position X="11" Y="4.5" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAgAAAAAAAAIAAEAAAAAAAAAwAAEAE=</HashCode>
+      <FileName>Data\EmailMessanger.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="VortexFileClient.Data.FtpHelper">
+    <Position X="11" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ACAAAAAAAAAAAAAAACAAAAAAAAQAAAAAAAEgAAAAAQA=</HashCode>
+      <FileName>Data\FtpHelper.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="VortexFileClient.Data.Initializer">
+    <Position X="14.5" Y="3" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Data\Initializer.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="VortexFileClient.Data.LocalStorage">
+    <Position X="14.5" Y="7.75" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+      <Compartment Name="Properties" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>QAAEAAAAAAEAIAAAACAIAAgBIAAAAAASQAAAQAAAEQE=</HashCode>
+      <FileName>Data\LocalStorage.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="VortexFileClient.Data.Session">
+    <Position X="12.75" Y="7.25" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+      <Compartment Name="Properties" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAIAAAACAAAAAAAAAAAAAAAACACAwAAAEQAA=</HashCode>
+      <FileName>Data\Session.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="VortexFileClient.Data.VortexFileMySqlContext">
+    <Position X="11" Y="6.5" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Properties" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>AAAAACAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Data\VortexFileMySqlContext.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="VortexFileClient.Data.ZipHelper">
+    <Position X="16.25" Y="2.5" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>QAAAACCAAAAAIAAAAAAAAAAQAAAAAIAAAAAAQAAAAQA=</HashCode>
+      <FileName>Data\ZipHelper.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="VortexFileClient.Extensions.Captcha">
+    <Position X="12.75" Y="9.5" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>AQAACAAAACAAAAAAAACAAAACAAAIAAAIAAAAAAAAQAA=</HashCode>
+      <FileName>Extensions\Captcha.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="VortexFileClient.Extensions.ColorProgressBar">
+    <Position X="16.25" Y="8.75" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+      <Compartment Name="Properties" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>AACAAAAAACAAAAAAAACIAAAiAAAAAACAAAAAgAAAAAA=</HashCode>
+      <FileName>Extensions\ColorProgressBar.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="VortexFileClient.Extensions.ConnectionIndicator">
+    <Position X="14.5" Y="4.25" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+      <Compartment Name="Properties" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>AAQIQAAAAiAAAADAiACAAAACACAAAAAEAAAAAAAAARI=</HashCode>
+      <FileName>Extensions\ConnectionIndicator.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="VortexFileClient.Extensions.Feedback">
+    <Position X="4" Y="8.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ASAAAAAAAAAAAAAAAAAAEAAAAAAMAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Extensions\Feedback.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="VortexFileClient.Extensions.FilesChangedEventArgs">
+    <Position X="9.25" Y="6" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Properties" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>AAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAA=</HashCode>
+      <FileName>Extensions\LoadDataEventArgs.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="VortexFileClient.Extensions.LoadFormEventArgs">
+    <Position X="11" Y="2.75" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Extensions\LoadFormEventArgs.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="VortexFileClient.Extensions.MessageBox">
+    <Position X="12.75" Y="0.5" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+      <Compartment Name="Properties" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>AAAAIAEQACQAAAQAABCAAAASgCEECQAEAACghAAAAQQ=</HashCode>
+      <FileName>Extensions\MessageBox.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="VortexFileClient.Extensions.PasswordCheckBox">
+    <Position X="16.25" Y="6.25" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>AACAAAAAACAAAAAAAACAAAASAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Extensions\PasswordCheckBox.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="VortexFileClient.Extensions.PasswordStrengthIndicator">
+    <Position X="11" Y="8.25" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+      <Compartment Name="Properties" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>AACAAAABACAAAAAACECAAAACACAAACACAAAgAgAAAAA=</HashCode>
+      <FileName>Extensions\PasswordStrengthIndicator.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="VortexFileClient.Extensions.SliderCheckBox">
+    <Position X="9.25" Y="7.75" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>AACAAAAAACAAAAAAAACAAAASAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Extensions\SliderCheckBox.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="VortexFileClient.Extensions.Tools">
+    <Position X="16.25" Y="0.5" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Properties" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAQAAAAYAAAAAAAAAAAAAAQAAAAAAAAAAAA=</HashCode>
+      <FileName>Extensions\Tools.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="VortexFileClient.Extensions.UserEventArgs" Collapsed="true">
+    <Position X="16.25" Y="5.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Extensions\UserDeleteEventArgs.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="VortexFileClient.Extensions.Waiting">
+    <Position X="14.5" Y="0.5" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+      <Compartment Name="Properties" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>AACAAAAAACAAAAAAAACAIAACIAAAACAAAAAAAAAAAAA=</HashCode>
+      <FileName>Extensions\Waiting.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="VortexFileClient.Forms.AdminAuthForm">
+    <Position X="4" Y="0.5" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+      <Compartment Name="Events" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>EAAAACBAACAAAAAAAACAAAAiCAAAAAEIAgAEAAAAAAA=</HashCode>
+      <FileName>Forms\AdminAuthForm.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="VortexFileClient.Forms.AdministrationForm">
+    <Position X="7.5" Y="4.25" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+      <Compartment Name="Events" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>EAAAQAAAgjEACBAjAQCAQEACBAgAAAEAAQAAQIACAIA=</HashCode>
+      <FileName>Forms\AdministrationForm.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="VortexFileClient.Forms.AuthorizationForm">
+    <Position X="7.5" Y="0.5" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+      <Compartment Name="Events" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>EAAAAABIAiBQABQAAQCAEABiIAAAAAEICgAAEAAAAAA=</HashCode>
+      <FileName>Forms\AuthorizationForm.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="VortexFileClient.Forms.ChangeAdminPasswordForm">
+    <Position X="5.75" Y="7.25" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+      <Compartment Name="Events" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>EAAAAABAACAAAAAAAgCAAAAiCAAAAAEIAgAAAAAAAAA=</HashCode>
+      <FileName>Forms\ChangeAdminPasswordForm.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="VortexFileClient.Forms.FileManagerForm">
+    <Position X="0.5" Y="0.5" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+      <Compartment Name="Properties" Collapsed="true" />
+      <Compartment Name="Events" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>FANJCAhRF7AkDEJ6kgOGAAAPAAMAEmWgC0FAIgAFIiQ=</HashCode>
+      <FileName>Forms\FIleManagerForm.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="VortexFileClient.Forms.IntroForm">
+    <Position X="7.5" Y="8.25" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAACAAAABAAACAAAACACAAAAAAAAAAAAAAAAg=</HashCode>
+      <FileName>Forms\IntroForm.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="VortexFileClient.Forms.MainForm">
+    <Position X="2.25" Y="0.5" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>EAAAIBDEAiQABAAAAICJEAMSAgEACwHAAAigQCAAIQI=</HashCode>
+      <FileName>Forms\MainForm.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="VortexFileClient.Forms.RegistrationForm">
+    <Position X="5.75" Y="0.5" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+      <Compartment Name="Events" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>EIIAAEhEACJAABCAAgCAAAAiCAAAIAEIAgAEBACgAIA=</HashCode>
+      <FileName>Forms\RegistrationForm.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="VortexFileClient.Forms.ResetPasswordForm">
+    <Position X="2.25" Y="5.75" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+      <Compartment Name="Events" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>EAQAAAIBACBgIFJAQgCAAAAiBAIAUAEICwQCgQAAAQA=</HashCode>
+      <FileName>Forms\ResetPasswordForm.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="VortexFileClient.Forms.SettingsForm">
+    <Position X="4" Y="3.5" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+      <Compartment Name="Properties" Collapsed="true" />
+      <Compartment Name="Events" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>FAAAAEAAACAQABIAABDAAEgCAABAAAEAAAAAAAAAAAA=</HashCode>
+      <FileName>Forms\SettingsForm.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="VortexFileClient.Forms.UserGuideForm">
+    <Position X="5.75" Y="4.5" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+      <Compartment Name="Events" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>EAAAAAAAACAAAAAAAACAIAACAAAAAAEAAAAAAAAAAAA=</HashCode>
+      <FileName>Forms\UserGuideForm.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Interface Name="VortexFileClient.Forms.IStackableForm">
+    <Position X="4" Y="6.75" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Properties" Collapsed="true" />
+      <Compartment Name="Events" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>EAAAAAAAACAAAAAAAAAAAAAAAAAAAAEAAAAACAAAAAA=</HashCode>
+      <FileName>Forms\IStackableForm.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
