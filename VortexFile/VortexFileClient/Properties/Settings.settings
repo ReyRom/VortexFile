@@ -14,14 +14,14 @@
     <Setting Name="AdminPassword" Type="System.String" Scope="User">
       <Value Profile="(Default)">admin</Value>
     </Setting>
-    <Setting Name="ConnectionString" Type="System.String" Scope="User">
-      <Value Profile="(Default)">server=91.122.211.144;port=53306;user=vortexfileadmin;password=d4c45911de055183ebc73cee140d3fb2;database=ftp;</Value>
-    </Setting>
-    <Setting Name="FtpAddress" Type="System.String" Scope="User">
-      <Value Profile="(Default)">ftp://91.122.211.144:50021/</Value>
-    </Setting>
     <Setting Name="Hash" Type="System.String" Scope="User">
       <Value Profile="(Default)">d4c45911de055183ebc73cee140d3fb2</Value>
+    </Setting>
+    <Setting Name="ConnectionString" Type="System.String" Scope="User">
+      <Value Profile="(Default)">server=185.5.249.12;port=3306;user=profqpd;password=password;database=ftp;</Value>
+    </Setting>
+    <Setting Name="FtpAddress" Type="System.String" Scope="User">
+      <Value Profile="(Default)">ftp://185.5.249.12:21/</Value>
     </Setting>
   </Settings>
 </SettingsFile>

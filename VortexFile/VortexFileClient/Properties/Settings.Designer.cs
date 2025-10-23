@@ -12,7 +12,7 @@ namespace VortexFileClient.Properties {
     
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "17.4.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "17.14.0.0")]
     internal sealed partial class Settings : global::System.Configuration.ApplicationSettingsBase {
         
         private static Settings defaultInstance = ((Settings)(global::System.Configuration.ApplicationSettingsBase.Synchronized(new Settings())));
@@ -73,8 +73,19 @@ namespace VortexFileClient.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("server=91.122.211.144;port=53306;user=vortexfileadmin;password=d4c45911de055183eb" +
-            "c73cee140d3fb2;database=ftp;")]
+        [global::System.Configuration.DefaultSettingValueAttribute("d4c45911de055183ebc73cee140d3fb2")]
+        public string Hash {
+            get {
+                return ((string)(this["Hash"]));
+            }
+            set {
+                this["Hash"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("server=185.5.249.12;port=3306;user=profqpd;password=password;database=ftp;")]
         public string ConnectionString {
             get {
                 return ((string)(this["ConnectionString"]));
@@ -86,25 +97,13 @@ namespace VortexFileClient.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("ftp://91.122.211.144:50021/")]
+        [global::System.Configuration.DefaultSettingValueAttribute("ftp://185.5.249.12:21/")]
         public string FtpAddress {
             get {
                 return ((string)(this["FtpAddress"]));
             }
             set {
                 this["FtpAddress"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("d4c45911de055183ebc73cee140d3fb2")]
-        public string Hash {
-            get {
-                return ((string)(this["Hash"]));
-            }
-            set {
-                this["Hash"] = value;
             }
         }
     }

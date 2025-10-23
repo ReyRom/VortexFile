@@ -3,7 +3,6 @@ using Microsoft.VisualBasic.Logging;
 using Org.BouncyCastle.Crypto.Operators;
 using VortexFileClient.Data.Models;
 using VortexFileClient.Extensions;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
 
 namespace VortexFileClient.Data
 {
